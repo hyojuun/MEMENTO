@@ -12,7 +12,7 @@ Embodied agents empowered by large language models (LLMs) have shown strong perf
 [Docker file build]
 
 ### Datasets
-[Dataset Installation via PARTNR repository]
+[Dataset Installation via PARTNR repository](https://github.com/facebookresearch/partnr-planner/blob/main/INSTALLATION.md)
 
 ## Setup
 
@@ -54,7 +54,7 @@ Note: HabitatLLM is separately defined in the workspace to facilitate code manag
 
 ## Experiments
 
-### Running Experiments
+### Experiments Settings
 MEMENTO includes a structured approach to running experiments, as exemplified by stage1:
 
 1. **Experiment Script**: 
