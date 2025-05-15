@@ -1,0 +1,26 @@
+defaults:
+  # - /llm@plan_config.llm: openai_chat
+  - /instruct@plan_config.instruct: zero_shot_prompt
+
+_target_: 'src.planner.ZeroShotReactPlanner'
+_recursive_: False
+_partial_: True
+
+plan_config:
+    replanning_threshold: 40 # max number of times the LLM is allowed to plan to finish the task
+    planning_mode: "cot"
+    constrained_generation: False
+    objects_response: True
+    objects_response_include_states: False
+    centralized: False
+    enable_rag: True # If we want to use RAG or not
+    mapper_file_path: "./memory/v1_experiment/mapper.json" # The path to the memory mapper file
+    rag_dataset_dir: 
+      - "./memory/v1_experiment/"
+      # - "./outputs/pilot_study/gpt-4o_pilot_org/results/" # The path to the rag_data_source_name folder
+    rag_data_source_name: 
+      - "v1_val_stage1.json.gz" # rag_data_source_name folder itself
+    top_k: 1
+    example_type: "react" # The prompting format
+    gold_memory: false
+

@@ -1,0 +1,56 @@
+# @package _global_
+
+defaults:
+  - /main/base
+  - /habitat_conf/dataset/v1: v1_stage3 ###### SHOULD CHANGE
+  - /planner@evaluation.planner: llm_zero_shot_react_planner ###### SHOULD CHANGE
+  - /world_model@world_model: gt_graph_partial_obs
+  - /llm@evaluation.planner.plan_config.llm: openai_chat ###### SHOULD CHANGE
+  - _self_
+
+num_runs_per_episode: 1
+num_proc: 5 ####### SHOULD CHANGE
+
+dataset_type: memory_management # memory_management or collaboration
+
+stage: 3 ###### SHOULD CHANGE
+build_memory: false ####### SHOULD CHANGE
+
+evaluation:
+  replan_thresh: 40  # max number of times the LLM is allowed to plan to finish the task
+  save_video: false
+  
+  agents:
+    agent_0:
+      planner:
+        plan_config:
+          constrained_generation: True
+          objects_response: True
+          replanning_threshold: 40
+
+  planner:
+    plan_config:
+      enable_rag: false
+      ####### SHOULD CHANGE
+
+      rag_dataset_dir: ####### SHOULD CHANGE
+        - "./memory/gpt-4o-mini_build_memory/" # memory가 있는 폴더 path
+      
+      memory_path: "gpt-4o-mini_v1_memory" # memory 이름 path
+      ####### SHOULD CHANGE
+      
+      rag_data_source_name:
+        - "v1_val_stage1.json.gz" # 사용 안함 -> 아무 값이나 상관 노노
+      top_k: 5 # RAG top k 
+      ####### SHOULD CHANGE
+
+      example_type: "react"
+      gold_memory: true # gold memory (즉, 항상 답 불러올 것인지)
+
+      ensure_same_scene: true # 항상 같은 scene에서 메모리 찾을 것인지
+      ####### SHOULD CHANGE
+  
+habitat:
+  environment:
+    max_episode_steps: 10000
+    max_episode_seconds: 2000

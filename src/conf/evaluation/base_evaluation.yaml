@@ -1,0 +1,17 @@
+defaults:
+  # - /planner: llm_centralized_planner
+  - /agent/@oracle_rearrange_agent: oracle_rearrange_agent
+  - /agent/@agents.agent_0.config: oracle_rearrange_agent
+
+type: "centralized"
+do_print: True
+save_video: True
+log_data: True
+log_detailed_traces: True
+
+truncate_length: 50  # max characters in file name, long files names can raise OS errors
+output_dir: ${hydra:runtime.output_dir}
+
+agents:
+  agent_0:
+    uid: 0

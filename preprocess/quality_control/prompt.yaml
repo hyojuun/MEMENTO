@@ -1,0 +1,92 @@
+user_pattern: |-
+  Your task is to generate a user instruction that includes user pattern for embodied agent that can perform rearrangment tasks.
+  The instruction should be related to personalized knowledge based on the original instruction.
+
+  The user pattern can be categorized into 2 types:
+  - preference: A specific way the user prefers to prepare or arrange their environment when a particular situation occurs.
+  - routine: A sequence or setup the user follows as a habit or regular activity.
+
+  You should generate 2 types of instructions, memory, and user pattern:
+  - Stage 1: Instruction for memorization; The instruction should be original instruction + user pattern. You should explicitly state the user's preference or routine in the instruction.
+  - Stage 2: Instruction for utilization; The instruction should be only about user's preference or routine that a human would naturally use in the situated environment. You should make the instruction difficult for the agent without using memory and try to make it short.
+  - Memory: The memory is for embodied agent to remember and utilize the user's preference or routine to perform the task.
+  - User pattern: The user pattern should be the user's preference or routine that can be reused for future rearrangement tasks.
+
+  Note that if the original instruction requires a sequence of actions, the order of the actions should be followed for the stage 2 instruction.
+
+  The output format should be as follows:
+  ### Input
+  <original instruction>
+
+  ### Output
+  - Stage 1: <original instruction> + <user pattern>
+  - Stage 2: <user pattern formed in a natural way> 
+  - Memory: <Memory about user's preference or routine>
+  - User pattern: <user pattern>
+
+  [Example 1]
+  ### Input
+  Move the book from the living room to the hallway.
+
+  ### Output
+  - Stage 1: Move the book from the living room to the hallway. If I'm not done reading the book, I like to keep it in the hallway for easy access.
+  - Stage 2: Can you organize this book? I'm not done reading it yet.
+  - Memory: Keep books that aren't finished in the hallway for easy access.
+  - User pattern: routine
+
+  [Example 2]
+  ### Input
+  Move the soap dispenser and sponge from the rec room to the garage.
+
+  ### Output
+  - Stage 1: Move the soap dispenser and sponge from the rec room to the garage. I usually keep the soap dispenser and sponge in the garage for easy access when I'm cleaning the car.
+  - Stage 2: Can you put the soap and sponge where I usually keep them?
+  - Memory: Keep the soap dispenser and sponge in the garage for easy access during car cleaning.
+  - User pattern: preference
+
+  [Example 3]
+  ### Input
+  Move the cup from the dining table to the living room table and place it next to the chair.
+
+  ### Output
+  - Stage 1: Move the cup from the dining table to the living room table and place it next to the chair. I usually have my cup next to the chair in the living room for my evening tea. 
+  - Stage 2: Can you set the cup for my evening tea?
+  - Memory: Place the cup next to the chair in the living room for evening tea.
+  - User pattern: routine
+
+  [Example 4]
+  ### Input
+  Move the tray from the kitchen counter to the dining room table. Also, move the plate from the kitchen counter to the dining room chair.
+
+  ### Output
+  - Stage 1: Move the tray from the kitchen counter to the dining room table. Also, move the plate from the kitchen counter to the dining room chair. Before meals, I usually set the tray on the dining room table and place the plate on the dining room chair.
+  - Stage 2: Could you set everything up for mealtime?
+  - Memory: Set the tray on the dining room table and place the plate on the dining room chair before meals.
+  - User pattern: routine
+
+  [Example 5]
+  ### Input
+  Place the book and lamp on the chest of drawers , next to each other.
+
+  ### Output
+  - Stage 1: Place the book and lamp on the chest of drawers, next to each other. I like to have my book and lamp on the chest of drawers for nighttime reading.
+  - Stage 2: Can you set up my nighttime reading spot?
+  - Memory: Arrange the book and lamp on the chest of drawers for nighttime reading.
+  - User pattern: preference
+
+  [Example 6]
+  ### Input
+  {org_instruction}
+  
+
+
+test: |-
+  [Example 2]
+  ### Input
+  Move the candle from the chest of drawers in the bedroom to bed in the bedroom.
+
+  ### Output
+  - Stage 1: Move the candle from the chest of drawers in the bedroom to the bed. I like to have a candle on the bed for ambiance at night.
+  - Stage 2: Can you place the candle where I usually enjoy its light at night?
+  - Memory: I like to have a candle on the bed for ambiance at night.
+  - User pattern: preference

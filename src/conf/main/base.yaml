@@ -1,0 +1,42 @@
+# @package _global_
+
+defaults:
+  - /habitat_baselines: habitat_baselines_rl_config_base
+  - /habitat_conf          : oracle_spot_kinematic
+  - /habitat_conf/task     : rearrange_easy_single_agent
+  - /evaluation: base_evaluation
+  - /trajectory@trajectory : trajectory_logger
+  - /wandb_conf@                : own
+  - override /hydra/output: output
+  - _self_
+
+
+agent_asymmetry: False # 판단 필요
+
+
+device      : cuda
+instruction : ''
+mode: "dataset" # cli / dataset
+env: habitat
+num_runs_per_episode: 1
+num_proc: 1
+dry_run: False
+robot_agent_uid: 0
+human_agent_uid: 1
+
+build_memory: False
+stage: 1
+
+paths:
+  results_dir: ${hydra:runtime.output_dir}/results
+  epi_result_file_path: "${paths.results_dir}/episode_result_log.csv"
+  run_result_file_path: "${paths.results_dir}/run_result_log.csv"
+  end_result_file_path: "${paths.results_dir}/end_result_log.csv"
+  mean_result_file_path: "${paths.results_dir}/mean_result_log.csv"
+
+
+hydra:
+  job:
+    name: 'personalized_embodied_agent'
+    chdir: False
+

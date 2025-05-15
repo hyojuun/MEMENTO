@@ -1,2 +1,2 @@
-# MEMENTO
-MEMENTO
+# Memory Systems for Embodied AI
+

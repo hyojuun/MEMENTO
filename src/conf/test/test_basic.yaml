@@ -1,0 +1,56 @@
+# @package _global_
+
+defaults:
+  - /habitat_baselines: habitat_baselines_rl_config_base
+  - /habitat_conf          : oracle_spot_kinematic
+  - /habitat_conf/task     : rearrange_easy_single_agent
+  - /evaluation: base_evaluation
+  - /trajectory@trajectory : trajectory_logger
+  - /wandb_conf@                : own
+  ## Setup
+  - /habitat_conf/dataset: collaboration_hssd
+  - /planner@evaluation.planner: llm_zero_shot_react_planner
+  - /world_model@world_model: gt_graph
+  ## Hydra
+  - override /hydra/output: output
+  - _self_
+
+
+agent_asymmetry: False # 판단 필요
+
+
+device      : cuda
+instruction : ''
+mode: "dataset" # cli / dataset
+env: habitat
+num_runs_per_episode: 1
+num_proc: 4
+dry_run: False
+robot_agent_uid: 0
+human_agent_uid: 1
+
+paths:
+  results_dir: ${hydra:runtime.output_dir}/results
+  epi_result_file_path: "${paths.results_dir}/episode_result_log.csv"
+  run_result_file_path: "${paths.results_dir}/run_result_log.csv"
+  end_result_file_path: "${paths.results_dir}/end_result_log.csv"
+
+
+evaluation:
+  replan_thresh: 100  # max number of times the LLM is allowed to plan to finish the task
+  
+  agents:
+    agent_0:
+      planner:
+        plan_config:
+          constrained_generation: True
+          objects_response: True
+          replanning_threshold: 50
+          # llm:
+          #   inference_mode: "rlm"
+
+hydra: ## 왜인지는 모르겠지만 이거 삭제하면 에러터짐ㅋㅋ
+  job:
+    name: 'personalized_embodied_agent'
+    chdir: False
+

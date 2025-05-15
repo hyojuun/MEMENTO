@@ -1,0 +1,28 @@
+# @package _global_
+
+defaults:
+  - /main/base
+  - /habitat_conf/dataset/pilot_study: pilot_preference_stage1
+  - /planner@evaluation.planner: llm_zero_shot_react_planner
+  - /world_model@world_model: gt_graph_partial_obs
+  - /llm@evaluation.planner.plan_config.llm: openai_chat
+  - _self_
+
+num_runs_per_episode: 1
+num_proc: 4
+
+dataset_type: memory_management # memory_management or collaboration
+
+evaluation:
+  replan_thresh: 30  # max number of times the LLM is allowed to plan to finish the task
+  save_video: false
+  
+  agents:
+    agent_0:
+      planner:
+        plan_config:
+          constrained_generation: True
+          objects_response: True
+          replanning_threshold: 50
+          # llm:
+          #   inference_mode: "rlm"

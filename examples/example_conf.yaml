@@ -1,0 +1,1771 @@
+habitat_baselines:
+  evaluate: false
+  trainer_name: ver
+  updater_name: PPO
+  distrib_updater_name: DDPPO
+  torch_gpu_id: 0
+  tensorboard_dir: ${hydra:sweep.dir}/logs
+  writer_type: wb
+  video_dir: ${hydra:sweep.dir}/video
+  video_fps: 30
+  test_episode_count: 250
+  eval_ckpt_path_dir: ${hydra:sweep.dir}/checkpoints
+  num_environments: 1
+  num_processes: -1
+  rollout_storage_name: RolloutStorage
+  checkpoint_folder: ${hydra:sweep.dir}/checkpoints
+  num_updates: -1
+  num_checkpoints: 120
+  checkpoint_interval: -1
+  total_num_steps: 600000000.0
+  log_interval: 10
+  log_file: ${hydra:sweep.dir}/train.log
+  force_blind_policy: false
+  verbose: false
+  vector_env_factory:
+    _target_: habitat_baselines.common.HabitatVectorEnvFactory
+  evaluator:
+    _target_: habitat_baselines.rl.ppo.habitat_evaluator.HabitatEvaluator
+  eval_keys_to_include_in_name:
+  - reward
+  - force
+  - success
+  force_torch_single_threaded: true
+  wb:
+    project_name: habitat-llm
+    entity: sergioarnaud
+    group: tests
+    run_name: test_1
+  load_resume_state_config: false
+  eval:
+    split: val
+    use_ckpt_config: true
+    should_load_ckpt: true
+    evals_per_ep: 1
+    video_option:
+    - disk
+    extra_sim_sensors: {}
+  profiling:
+    capture_start_step: -1
+    num_steps_to_capture: -1
+  should_log_single_proc_infos: false
+  on_save_ckpt_callback: null
+  rl:
+    agent:
+      type: SingleAgentAccessMgr
+      num_agent_types: 1
+      num_active_agents_per_type:
+      - 1
+      num_pool_agents_per_type:
+      - 1
+      agent_sample_interval: 20
+      force_partner_sample_idx: -1
+      behavior_latent_dim: -1
+      force_all_agents: false
+      discrim_reward_weight: 1.0
+      allow_self_play: false
+      self_play_batched: false
+      load_type1_pop_ckpts: null
+    preemption:
+      append_slurm_job_id: false
+      save_resume_state_interval: 100
+      save_state_batch_only: false
+    policy:
+      main_agent:
+        name: PointNavResNetPolicy
+        action_distribution_type: categorical
+        action_dist:
+          use_log_std: true
+          use_softplus: false
+          std_init: ???
+          log_std_init: 0.0
+          use_std_param: false
+          clamp_std: true
+          min_std: 1.0e-06
+          max_std: 1
+          min_log_std: -5
+          max_log_std: 2
+          action_activation: tanh
+          scheduled_std: false
+        obs_transforms: {}
+        hierarchical_policy: ???
+      agent_0:
+        name: PointNavResNetPolicy
+        action_distribution_type: gaussian
+        action_dist:
+          use_log_std: true
+          use_softplus: false
+          std_init: -1.0
+          log_std_init: 0.0
+          use_std_param: true
+          clamp_std: true
+          min_std: 1.0e-06
+          max_std: 1
+          min_log_std: -5
+          max_log_std: 2
+          action_activation: tanh
+          scheduled_std: false
+        obs_transforms: {}
+        hierarchical_policy: ???
+      agent_1:
+        name: PointNavResNetPolicy
+        action_distribution_type: gaussian
+        action_dist:
+          use_log_std: true
+          use_softplus: false
+          std_init: -1.0
+          log_std_init: 0.0
+          use_std_param: true
+          clamp_std: true
+          min_std: 1.0e-06
+          max_std: 1
+          min_log_std: -5
+          max_log_std: 2
+          action_activation: tanh
+          scheduled_std: false
+        obs_transforms: {}
+        hierarchical_policy: ???
+    ppo:
+      clip_param: 0.2
+      ppo_epoch: 2
+      num_mini_batch: 1
+      value_loss_coef: 0.5
+      entropy_coef: 0.001
+      lr: 0.0003
+      eps: 1.0e-05
+      max_grad_norm: 0.2
+      num_steps: 128
+      use_gae: true
+      use_linear_lr_decay: false
+      use_linear_clip_decay: false
+      gamma: 0.99
+      tau: 0.95
+      reward_window_size: 50
+      use_normalized_advantage: false
+      hidden_size: 512
+      entropy_target_factor: 0.0
+      use_adaptive_entropy_pen: false
+      use_clipped_value_loss: true
+      use_double_buffered_sampler: false
+    ddppo:
+      sync_frac: 0.6
+      distrib_backend: NCCL
+      rnn_type: LSTM
+      num_recurrent_layers: 2
+      backbone: resnet18
+      pretrained_weights: data/ddppo-models/gibson-2plus-resnet50.pth
+      pretrained: false
+      pretrained_encoder: false
+      train_encoder: true
+      reset_critic: false
+      force_distributed: false
+    ver:
+      variable_experience: true
+      num_inference_workers: 2
+      overlap_rollouts_and_learn: false
+    auxiliary_losses: {}
+habitat:
+  seed: 47668090
+  env_task: GymHabitatEnv
+  env_task_gym_dependencies: []
+  env_task_gym_id: ''
+  environment:
+    max_episode_steps: 20000
+    max_episode_seconds: 10000000
+    iterator_options:
+      cycle: true
+      shuffle: true
+      group_by_scene: true
+      num_episode_sample: -1
+      max_scene_repeat_episodes: -1
+      max_scene_repeat_steps: 10000
+      step_repetition_range: 0.2
+  simulator:
+    type: CollaborationSim-v0
+    forward_step_size: 0.25
+    turn_angle: 10
+    create_renderer: false
+    requires_textures: true
+    auto_sleep: true
+    step_physics: false
+    concur_render: false
+    needs_markers: true
+    update_articulated_agent: true
+    scene: data/scene_datasets/habitat-test-scenes/van-gogh-room.glb
+    scene_dataset: default
+    additional_object_paths:
+    - data/objects/ycb/configs/
+    - data/objects_ovmm/train_val/ai2thorhab/configs/objects
+    - data/objects_ovmm/train_val/amazon_berkeley/configs
+    - data/objects_ovmm/train_val/google_scanned/configs
+    - data/objects_ovmm/train_val/hssd/configs/objects
+    seed: 47668090
+    default_agent_id: 0
+    debug_render: false
+    debug_render_articulated_agent: false
+    kinematic_mode: true
+    should_setup_semantic_ids: true
+    debug_render_goal: true
+    robot_joint_start_noise: 0.0
+    ctrl_freq: 120.0
+    ac_freq_ratio: 4
+    load_objs: true
+    hold_thresh: 0.15
+    grasp_impulse: 10000.0
+    agents:
+      agent_0:
+        height: 1.5
+        radius: 0.3
+        max_climb: 0.2
+        max_slope: 45.0
+        grasp_managers: 1
+        sim_sensors:
+          head_rgb_sensor:
+            type: HabitatSimRGBSensor
+            height: 256
+            width: 256
+            position:
+            - 0.0
+            - 1.25
+            - 0.0
+            orientation:
+            - 0.0
+            - 0.0
+            - 0.0
+            hfov: 90
+            sensor_subtype: PINHOLE
+            noise_model: None
+            noise_model_kwargs: {}
+            uuid: head_rgb
+          head_depth_sensor:
+            type: HabitatSimDepthSensor
+            height: 256
+            width: 256
+            position:
+            - 0.0
+            - 1.25
+            - 0.0
+            orientation:
+            - 0.0
+            - 0.0
+            - 0.0
+            hfov: 90
+            sensor_subtype: PINHOLE
+            noise_model: None
+            noise_model_kwargs: {}
+            min_depth: 0.0
+            max_depth: 10.0
+            normalize_depth: true
+            uuid: head_depth
+          arm_rgb_sensor:
+            type: HabitatSimRGBSensor
+            height: 256
+            width: 256
+            position:
+            - 0.0
+            - 1.25
+            - 0.0
+            orientation:
+            - 0.0
+            - 0.0
+            - 0.0
+            hfov: 90
+            sensor_subtype: PINHOLE
+            noise_model: None
+            noise_model_kwargs: {}
+            uuid: articulated_agent_arm_rgb
+          arm_depth_sensor:
+            type: HabitatSimDepthSensor
+            height: 224
+            width: 171
+            position:
+            - 0.0
+            - 1.25
+            - 0.0
+            orientation:
+            - 0.0
+            - 0.0
+            - 0.0
+            hfov: 55
+            sensor_subtype: PINHOLE
+            noise_model: None
+            noise_model_kwargs: {}
+            min_depth: 0.0
+            max_depth: 10.0
+            normalize_depth: true
+            uuid: articulated_agent_arm_depth
+          third_rgb_sensor:
+            type: HabitatSimRGBSensor
+            height: 512
+            width: 512
+            position:
+            - 0.0
+            - 1.25
+            - 0.0
+            orientation:
+            - 0.0
+            - 0.0
+            - 0.0
+            hfov: 80
+            sensor_subtype: PINHOLE
+            noise_model: None
+            noise_model_kwargs: {}
+            uuid: third_rgb
+          arm_panoptic_sensor:
+            type: HabitatSimSemanticSensor
+            height: 256
+            width: 256
+            position:
+            - 0.0
+            - 1.25
+            - 0.0
+            orientation:
+            - 0.0
+            - 0.0
+            - 0.0
+            hfov: 90
+            sensor_subtype: PINHOLE
+            noise_model: None
+            noise_model_kwargs: {}
+            uuid: articulated_agent_arm_panoptic
+          jaw_rgb_sensor:
+            type: HabitatSimRGBSensor
+            height: 256
+            width: 256
+            position:
+            - 0.0
+            - 1.25
+            - 0.0
+            orientation:
+            - 0.0
+            - 0.0
+            - 0.0
+            hfov: 90
+            sensor_subtype: PINHOLE
+            noise_model: None
+            noise_model_kwargs: {}
+            uuid: articulated_agent_jaw_rgb
+          jaw_depth_sensor:
+            type: HabitatSimDepthSensor
+            height: 256
+            width: 256
+            position:
+            - 0.0
+            - 1.25
+            - 0.0
+            orientation:
+            - 0.0
+            - 0.0
+            - 0.0
+            hfov: 90
+            sensor_subtype: PINHOLE
+            noise_model: None
+            noise_model_kwargs: {}
+            min_depth: 0.0
+            max_depth: 10.0
+            normalize_depth: true
+            uuid: articulated_agent_jaw_depth
+          jaw_panoptic_sensor:
+            type: HabitatSimSemanticSensor
+            height: 256
+            width: 256
+            position:
+            - 0.0
+            - 1.25
+            - 0.0
+            orientation:
+            - 0.0
+            - 0.0
+            - 0.0
+            hfov: 90
+            sensor_subtype: PINHOLE
+            noise_model: None
+            noise_model_kwargs: {}
+            uuid: articulated_agent_jaw_panoptic
+        is_set_start_state: false
+        start_position:
+        - 0.0
+        - 0.0
+        - 0.0
+        start_rotation:
+        - 0.0
+        - 0.0
+        - 0.0
+        - 1.0
+        joint_start_noise: 0.0
+        joint_that_can_control: null
+        joint_start_override: null
+        articulated_agent_urdf: ./data/robots/hab_spot_arm/urdf/hab_spot_arm.urdf
+        articulated_agent_type: SpotRobot
+        ik_arm_urdf: null
+        motion_data_path: ''
+        auto_update_sensor_transform: true
+      agent_1:
+        height: 1.5
+        radius: 0.3
+        max_climb: 0.2
+        max_slope: 45.0
+        grasp_managers: 1
+        sim_sensors:
+          head_rgb_sensor:
+            type: HabitatSimRGBSensor
+            height: 224
+            width: 224
+            position:
+            - 0.0
+            - 1.25
+            - 0.0
+            orientation:
+            - 0.0
+            - 0.0
+            - 0.0
+            hfov: 90
+            sensor_subtype: PINHOLE
+            noise_model: None
+            noise_model_kwargs: {}
+            uuid: head_rgb
+          head_depth_sensor:
+            type: HabitatSimDepthSensor
+            height: 224
+            width: 224
+            position:
+            - 0.0
+            - 1.25
+            - 0.0
+            orientation:
+            - 0.0
+            - 0.0
+            - 0.0
+            hfov: 90
+            sensor_subtype: PINHOLE
+            noise_model: None
+            noise_model_kwargs: {}
+            min_depth: 0.0
+            max_depth: 10.0
+            normalize_depth: true
+            uuid: head_depth
+          arm_rgb_sensor:
+            type: HabitatSimRGBSensor
+            height: 256
+            width: 256
+            position:
+            - 0.0
+            - 1.25
+            - 0.0
+            orientation:
+            - 0.0
+            - 0.0
+            - 0.0
+            hfov: 90
+            sensor_subtype: PINHOLE
+            noise_model: None
+            noise_model_kwargs: {}
+            uuid: articulated_agent_arm_rgb
+          arm_depth_sensor:
+            type: HabitatSimDepthSensor
+            height: 224
+            width: 171
+            position:
+            - 0.0
+            - 1.25
+            - 0.0
+            orientation:
+            - 0.0
+            - 0.0
+            - 0.0
+            hfov: 55
+            sensor_subtype: PINHOLE
+            noise_model: None
+            noise_model_kwargs: {}
+            min_depth: 0.0
+            max_depth: 10.0
+            normalize_depth: true
+            uuid: articulated_agent_arm_depth
+          third_rgb_sensor:
+            type: HabitatSimRGBSensor
+            height: 512
+            width: 512
+            position:
+            - 0.0
+            - 1.25
+            - 0.0
+            orientation:
+            - 0.0
+            - 0.0
+            - 0.0
+            hfov: 80
+            sensor_subtype: PINHOLE
+            noise_model: None
+            noise_model_kwargs: {}
+            uuid: third_rgb
+          arm_panoptic_sensor:
+            type: HabitatSimSemanticSensor
+            height: 256
+            width: 256
+            position:
+            - 0.0
+            - 1.25
+            - 0.0
+            orientation:
+            - 0.0
+            - 0.0
+            - 0.0
+            hfov: 90
+            sensor_subtype: PINHOLE
+            noise_model: None
+            noise_model_kwargs: {}
+            uuid: articulated_agent_arm_panoptic
+          head_panoptic_sensor:
+            type: HabitatSimSemanticSensor
+            height: 256
+            width: 256
+            position:
+            - 0.0
+            - 1.25
+            - 0.0
+            orientation:
+            - 0.0
+            - 0.0
+            - 0.0
+            hfov: 90
+            sensor_subtype: PINHOLE
+            noise_model: None
+            noise_model_kwargs: {}
+            uuid: head_panoptic
+        is_set_start_state: false
+        start_position:
+        - 0.0
+        - 0.0
+        - 0.0
+        start_rotation:
+        - 0.0
+        - 0.0
+        - 0.0
+        - 1.0
+        joint_start_noise: 0.1
+        joint_that_can_control: null
+        joint_start_override: null
+        articulated_agent_urdf: data/humanoids/humanoid_data/female_2/female_2.urdf
+        articulated_agent_type: KinematicHumanoid
+        ik_arm_urdf: null
+        motion_data_path: data/humanoids/humanoid_data/female_2/female_2_motion_data_smplx.pkl
+        auto_update_sensor_transform: true
+    agents_order:
+    - agent_0
+    - agent_1
+    default_agent_navmesh: true
+    navmesh_include_static_objects: false
+    habitat_sim_v0:
+      gpu_device_id: 0
+      gpu_gpu: false
+      allow_sliding: true
+      frustum_culling: true
+      enable_physics: true
+      enable_hbao: false
+      physics_config_file: ./data/default.physics_config.json
+      leave_context_with_background_renderer: false
+      enable_gfx_replay_save: false
+    ep_info: null
+    object_ids_start: 100
+    renderer:
+      enable_batch_renderer: false
+      composite_files: null
+      classic_replay_renderer: false
+    metadata: null
+  task:
+    physics_target_sps: 60.0
+    reward_measure: zero
+    success_measure: zero
+    success_reward: 100.0
+    slack_reward: -0.01
+    end_on_success: true
+    type: RearrangeEmptyTask-v0
+    lab_sensors:
+      humanoid_detector_sensor:
+        type: HumanoidDetectorSensor
+        human_id: 100
+        human_pixel_threshold: 1000
+        return_image: false
+        is_return_image_bbox: false
+      relative_resting_pos_sensor:
+        type: RelativeRestingPositionSensor
+      target_start_sensor:
+        type: TargetStartSensor
+        goal_format: CARTESIAN
+        dimensionality: 3
+      goal_sensor:
+        type: GoalSensor
+        goal_format: CARTESIAN
+        dimensionality: 3
+      joint_sensor:
+        type: JointSensor
+        dimensionality: 7
+        arm_joint_mask: null
+      end_effector_sensor:
+        type: EEPositionSensor
+      is_holding_sensor:
+        type: IsHoldingSensor
+      target_start_gps_compass_sensor:
+        type: TargetStartGpsCompassSensor
+      target_goal_gps_compass_sensor:
+        type: TargetGoalGpsCompassSensor
+    measurements:
+      articulated_agent_force:
+        type: RobotForce
+        min_force: 20.0
+      force_terminate:
+        type: ForceTerminate
+        max_accum_force: -1.0
+        max_instant_force: -1.0
+      articulated_agent_colls:
+        type: RobotCollisions
+      zero:
+        type: ZeroMeasure
+      num_steps:
+        type: NumStepsMeasure
+      did_violate_hold_constraint:
+        type: DidViolateHoldConstraintMeasure
+      gfx_replay_measure:
+        type: GfxReplayMeasure
+    rank0_env0_measure_names:
+    - habitat_perf
+    rank0_measure_names: []
+    goal_sensor_uuid: pointgoal
+    count_obj_collisions: true
+    settle_steps: 5
+    constraint_violation_ends_episode: false
+    constraint_violation_drops_object: true
+    force_regenerate: false
+    should_save_to_cache: false
+    object_in_hand_sample_prob: 0.167
+    min_start_distance: 3.0
+    render_target: true
+    filter_colliding_states: true
+    num_spawn_attempts: 200
+    spawn_max_dist_to_obj: 2.0
+    base_angle_noise: 0.523599
+    spawn_max_dist_to_obj_delta: 0.02
+    recep_place_shrink_factor: 0.8
+    ee_sample_factor: 0.2
+    ee_exclude_region: 0.0
+    base_noise: 0.05
+    spawn_region_scale: 0.2
+    joint_max_impulse: -1.0
+    desired_resting_position:
+    - 0.5
+    - 0.0
+    - 1.0
+    use_marker_t: true
+    cache_robot_init: false
+    success_state: 0.0
+    should_enforce_target_within_reach: false
+    task_spec_base_path: habitat/task/rearrange/pddl/
+    task_spec: rearrange_easy
+    pddl_domain_def: fp
+    obj_succ_thresh: 0.3
+    enable_safe_drop: false
+    art_succ_thresh: 0.15
+    robot_at_thresh: 2.0
+    min_distance_start_agents: -1.0
+    actions:
+      agent_0_arm_action:
+        type: ArmAction
+        arm_controller: ArmRelPosAction
+        grip_controller: null
+        arm_joint_mask: null
+        arm_joint_dimensionality: 7
+        arm_joint_limit: null
+        grasp_thresh_dist: 0.15
+        disable_grip: false
+        delta_pos_limit: 0.0125
+        ee_ctrl_lim: 0.015
+        should_clip: false
+        render_ee_target: false
+        gaze_distance_range: null
+        center_cone_angle_threshold: 0.0
+        center_cone_vector: null
+        auto_grasp: false
+      agent_0_base_velocity:
+        type: BaseVelAction
+        lin_speed: 10.0
+        ang_speed: 10.0
+        allow_dyn_slide: true
+        allow_back: true
+      agent_1_base_velocity:
+        type: BaseVelAction
+        lin_speed: 10.0
+        ang_speed: 10.0
+        allow_dyn_slide: true
+        allow_back: true
+      agent_1_humanoid_base_velocity:
+        type: HumanoidBaseVelAction
+        name: humanoid_base_velocity
+        num_joints: 54
+        lin_speed: 10.0
+        ang_speed: 10.0
+      agent_1_humanoidjoint_action:
+        type: HumanoidJointAction
+        num_joints: 54
+  dataset:
+    type: CollaborationDataset-v0
+    split: train
+    scenes_dir: data/hssd-hab
+    content_scenes:
+    - '*'
+    data_path: data/datasets/partnr_episodes/v0_0/val_mini.json.gz
+    metadata: null
+  gym:
+    obs_keys:
+    - agent_0_third_rgb
+    - agent_0_articulated_agent_arm_depth
+    - agent_0_articulated_agent_arm_rgb
+    - agent_0_articulated_agent_arm_panoptic
+    - agent_0_head_depth
+    - agent_0_head_rgb
+    - agent_0_relative_resting_position
+    - agent_0_joint
+    - agent_0_ee_pos
+    - agent_0_is_holding
+    - agent_0_dynamic_obj_goal_sensor
+    - agent_0_dynamic_goal_to_agent_gps_compass
+    - agent_0_dynamic_obj_start_sensor
+    - agent_0_goal_to_agent_gps_compass
+    - agent_0_humanoid_detector_sensor
+    - agent_0_articulated_agent_jaw_rgb
+    - agent_0_articulated_agent_jaw_depth
+    - agent_0_articulated_agent_jaw_panoptic
+    - agent_1_third_rgb
+    - agent_1_articulated_agent_arm_depth
+    - agent_1_articulated_agent_arm_rgb
+    - agent_1_head_panoptic
+    - agent_1_head_depth
+    - agent_1_head_rgb
+    - agent_1_relative_resting_position
+    - agent_1_joint
+    - agent_1_ee_pos
+    - agent_1_is_holding
+    - agent_1_dynamic_obj_goal_sensor
+    - agent_1_dynamic_goal_to_agent_gps_compass
+    - agent_1_dynamic_obj_start_sensor
+    action_keys: null
+    achieved_goal_keys: []
+    desired_goal_keys: []
+evaluation:
+  agents:
+    agent_0:
+      config:
+        tools:
+          motor_skills:
+            oracle_nav:
+              _target_: habitat_llm.tools.motor_skills.MotorSkillTool
+              _recursive_: false
+              skill_config:
+                skill:
+                  _target_: habitat_llm.tools.motor_skills.OracleNavSkill
+                  _partial_: true
+                name: Navigate
+                description: Used for navigating to an entity. You must provide the
+                  name of the entity you want to navigate to. Example (Navigate[counter_22])
+                max_skill_steps: 600
+                force_end_on_timeout: true
+                dist_thresh: 0.2
+                turn_thresh: 0.45
+                forward_velocity: 10.0
+                turn_velocity: 10.0
+                sim_freq: 120
+                enable_backing_up: false
+                enable_exploration: false
+            oracle_pick:
+              _target_: habitat_llm.tools.motor_skills.MotorSkillTool
+              _recursive_: false
+              skill_config:
+                skill:
+                  _target_: habitat_llm.tools.motor_skills.OraclePickSkill
+                  _partial_: true
+                name: Pick
+                description: Used for picking up an object. You must provide the name
+                  of the object to be picked. The agent cannot hold more than one
+                  object at a time. Example (Pick[cup_1])
+                max_skill_steps: 25
+                force_end_on_timeout: true
+                wait_time_for_obj_to_grasp: 10
+                thresh_for_art_state: 0.01
+                grasping_distance: 2.0
+                enable_exploration: false
+            oracle_place:
+              _target_: habitat_llm.tools.motor_skills.MotorSkillTool
+              _recursive_: false
+              skill_config:
+                skill:
+                  _target_: habitat_llm.tools.motor_skills.OraclePlaceSkill
+                  _partial_: true
+                name: Place
+                description: Used for placing an object on a target location. You
+                  need to provide the name of the object to be placed, the name of
+                  the furniture where it should be placed, spatial relation ("on"
+                  or "within") describing the relation between the object and furniture.
+                  The object to be placed must already be held by the agent (i.e.
+                  picked previously). In addition to these, you can request to place
+                  the object near another object. For that you can optionally provide
+                  a spatial constraints ("next_to") and the name of the reference
+                  object. To place next to an object, the reference object must already
+                  be on the target furniture. API template - Place[<object_to_be_placed>,
+                  <spatial_relation>, <furniture to be placed on>, <spatial_constraint>,
+                  <reference_object>]. spatial_constraint and reference_object should
+                  be set to "None" when necessary.
+                max_skill_steps: 25
+                force_end_on_timeout: true
+                wait_time_for_obj_to_place: 10
+                placing_distance: 2.0
+                thresh_for_art_state: 0.01
+                enable_exploration: false
+            oracle_open:
+              _target_: habitat_llm.tools.motor_skills.MotorSkillTool
+              _recursive_: false
+              skill_config:
+                skill:
+                  _target_: habitat_llm.tools.motor_skills.OracleOpenSkill
+                  _partial_: true
+                name: Open
+                description: Used for opening an articulated entity. You must provide
+                  the name of the furniture you want to open. Example (Open[chest_of_drawers_1])
+                max_skill_steps: 10
+                at_resting_threshold: 0.15
+                force_end_on_timeout: true
+                max_dis_interact_art: 2.0
+                enable_exploration: false
+            oracle_close:
+              _target_: habitat_llm.tools.motor_skills.MotorSkillTool
+              _recursive_: false
+              skill_config:
+                skill:
+                  _target_: habitat_llm.tools.motor_skills.OracleCloseSkill
+                  _partial_: true
+                name: Close
+                description: Used for closing an articulated entity. You must provide
+                  the name of the furniture you want to close. Example (Close[chest_of_drawers_1])
+                max_skill_steps: 10
+                at_resting_threshold: 0.15
+                force_end_on_timeout: true
+                max_dis_interact_art: 2.0
+                enable_exploration: false
+            oracle_rearrange:
+              _target_: habitat_llm.tools.motor_skills.MotorSkillTool
+              _recursive_: false
+              skill_config:
+                skill:
+                  _target_: habitat_llm.tools.motor_skills.OracleRearrangeSkill
+                  _partial_: true
+                name: Rearrange
+                description: Used for moving an object from its current location to
+                  the target location. You need to provide the name of the object
+                  to be moved, the name of the furniture where is should be moved,
+                  spatial relation ("on" or "within") describing the relation between
+                  the object and furniture. This will automatically pick the specified
+                  object and move to the target furniture and attempt to place it.
+                  In addition to these, you can request to place the object near another
+                  object. For that you can optionally provide a spatial constraints
+                  ("next_to") and the name of the reference object. To place next
+                  to an object, the reference object must already be on the target
+                  furniture. API template Rearrange[<object_to_be_moved>, <spatial_relation>,
+                  <furniture to be placed on>, <spatial_constraint>, <reference_object>].
+                  spatial_constraint and reference_object should be set to "None"
+                  when necessary.
+                max_skill_steps: 1000
+                force_end_on_timeout: true
+                sim_freq: 120
+                enable_backing_up: false
+                enable_exploration: false
+                nav_skill_config:
+                  name: Navigate
+                  description: Used for navigating to an entity. You must provide
+                    the name of the entity you want to navigate to.
+                  max_skill_steps: 600
+                  force_end_on_timeout: true
+                  dist_thresh: 0.2
+                  turn_thresh: 0.45
+                  forward_velocity: 10.0
+                  turn_velocity: 10.0
+                  navmesh_offset:
+                  - - 0.0
+                    - 0.0
+                  sim_freq: 120
+                  enable_backing_up: false
+                  enable_exploration: false
+                pick_skill_config:
+                  name: Pick
+                  description: Used for picking up an object. You must provide the
+                    name of the object to be picked.
+                  max_skill_steps: 25
+                  force_end_on_timeout: true
+                  wait_time_for_obj_to_grasp: 10
+                  thresh_for_art_state: 0.01
+                  grasping_distance: 2.0
+                  enable_exploration: false
+                place_skill_config:
+                  name: Place
+                  description: Used for placing an object, you must provide the name
+                    of the furniture where you want to place the object.
+                  max_skill_steps: 25
+                  force_end_on_timeout: true
+                  wait_time_for_obj_to_place: 10
+                  placing_distance: 2.0
+                  thresh_for_art_state: 0.01
+                  enable_exploration: false
+            oracle_power_on_in_place:
+              _target_: habitat_llm.tools.motor_skills.MotorSkillTool
+              _recursive_: false
+              skill_config:
+                skill:
+                  _target_: habitat_llm.tools.motor_skills.OraclePowerOnInPlaceSkill
+                  _partial_: true
+                name: PowerOn
+                description: Used for turning on a powered object. You need to provide
+                  the name of the object to be turned on.
+                max_skill_steps: 1000
+                force_end_on_timeout: true
+                sim_freq: 120
+                enable_backing_up: false
+                enable_exploration: false
+                oracle_skill_duration_range:
+                - 2
+                - 3
+            oracle_power_off_in_place:
+              _target_: habitat_llm.tools.motor_skills.MotorSkillTool
+              _recursive_: false
+              skill_config:
+                skill:
+                  _target_: habitat_llm.tools.motor_skills.OraclePowerOffInPlaceSkill
+                  _partial_: true
+                name: PowerOff
+                description: Used for turning off a powered object. You need to provide
+                  the name of the object to be turned off.
+                max_skill_steps: 1000
+                force_end_on_timeout: true
+                sim_freq: 120
+                enable_backing_up: false
+                enable_exploration: false
+            oracle_clean_in_place:
+              _target_: habitat_llm.tools.motor_skills.MotorSkillTool
+              _recursive_: false
+              skill_config:
+                skill:
+                  _target_: habitat_llm.tools.motor_skills.OracleCleanInPlaceSkill
+                  _partial_: true
+                name: Clean
+                description: Used for cleaning an object. You need to provide the
+                  name of the object to clean.
+                max_skill_steps: 1000
+                force_end_on_timeout: true
+                sim_freq: 120
+                enable_backing_up: false
+                enable_exploration: false
+            oracle_fill_in_place:
+              _target_: habitat_llm.tools.motor_skills.MotorSkillTool
+              _recursive_: false
+              skill_config:
+                skill:
+                  _target_: habitat_llm.tools.motor_skills.OracleFillInPlaceSkill
+                  _partial_: true
+                name: Fill
+                description: Used for filling an object. You need to provide the name
+                  of the object to fill.
+                max_skill_steps: 1000
+                force_end_on_timeout: true
+                sim_freq: 120
+                enable_backing_up: false
+                enable_exploration: false
+            oracle_pour_in_place:
+              _target_: habitat_llm.tools.motor_skills.MotorSkillTool
+              _recursive_: false
+              skill_config:
+                skill:
+                  _target_: habitat_llm.tools.motor_skills.OraclePourInPlaceSkill
+                  _partial_: true
+                name: Pour
+                description: Used for pouring from one container to another. This
+                  skill will pour into the specified container from whichever container
+                  is currently held by the agent.
+                max_skill_steps: 1000
+                force_end_on_timeout: true
+                sim_freq: 120
+                enable_backing_up: false
+                enable_exploration: false
+            oracle_explore:
+              _target_: habitat_llm.tools.motor_skills.MotorSkillTool
+              _recursive_: false
+              skill_config:
+                skill:
+                  _target_: habitat_llm.tools.motor_skills.OracleExploreSkill
+                  _partial_: true
+                name: Explore
+                description: Search a specific room by visiting various receptacles
+                  or furnitures in that room. The input to the skill is the EXACT
+                  name of the room to be visited. Use the room names provided in the
+                  house description. This tool exhaustivly explores the specified
+                  room. Example (Explore[kitchen_1])
+                max_skill_steps: 2400
+                force_end_on_timeout: true
+                sim_freq: 120
+                enable_backing_up: false
+                enable_exploration: false
+                nav_skill_config:
+                  name: Navigate
+                  description: Used for navigating to an entity. You must provide
+                    the name of the entity you want to navigate to.
+                  max_skill_steps: 1200
+                  force_end_on_timeout: true
+                  dist_thresh: 0.2
+                  turn_thresh: 0.45
+                  forward_velocity: 10.0
+                  turn_velocity: 10.0
+                  navmesh_offset:
+                  - - 0.0
+                    - 0.0
+                  sim_freq: 120
+                  enable_backing_up: false
+                  enable_exploration: false
+            wait:
+              _target_: habitat_llm.tools.motor_skills.MotorSkillTool
+              _recursive_: false
+              skill_config:
+                skill:
+                  _target_: habitat_llm.tools.motor_skills.WaitSkill
+                  _partial_: true
+                name: Wait
+                description: Used to make agent stay idle for some time. Example (Wait[])
+                default_wait_time: 1
+                max_skill_steps: 1000000
+                force_end_on_timeout: true
+                sim_freq: 120
+        env: habitat
+      planner:
+        plan_config:
+          llm:
+            llm:
+              _target_: habitat_llm.llm.Llama
+              _partial_: true
+            host: ''
+            port: 4449
+            serverdir: ''
+            inference_mode: hf
+            system_tag: '<|start_header_id|>system<|end_header_id|>
+
+
+              '
+            user_tag: '<|start_header_id|>user<|end_header_id|>
+
+
+              '
+            assistant_tag: '<|start_header_id|>assistant<|end_header_id|>
+
+
+              '
+            eot_tag: <|eot_id|>
+            generation_params:
+              engine: meta-llama/Meta-Llama-3-8B-Instruct
+              prompt: ''
+              max_tokens: 250
+              temperature: 0.0
+              'n': 1
+              best_of: 1
+              stop: \n
+              batch_response: false
+              do_sample: false
+              repetition_penalty: 1.0
+              top_k: 50
+              top_p: 1
+          instruct:
+            prompt: '{system_tag}You are an agent that solves multi-agent planning
+              problems. The task assigned to you will be situated in a house and will
+              generally involve navigating to objects, picking and placing them on
+              different receptacles to achieve rearrangement. You strictly follow
+              any format specifications and pay attention to the previous actions
+              taken in order to avoid repeating mistakes. Rooms do not need to be
+              explored more than once.
+
+
+              There will be another agent trying to solve the same task that you are
+              at the same time. You may find that that agent has picked up relevant
+              objects or is in the process of completing parts of the task. If that
+              is the case you may want to move on to a different part of the task.
+
+
+              Rooms do not need to be explored more than once.
+
+              This means if you have explored the living room and have not found the
+              object, then you should explore the kitchen, if a relevant object is
+              still not found, you should explore the hallway etc...
+
+
+              {agent_role_description}
+
+
+              Many calls to the same action in a row are a sign that something has
+              gone wrong and you should try a different action.{eot_tag}{rag_examples}{user_tag}Task:
+              {input}
+
+
+              {world_description}
+
+
+              Possible Actions:
+
+              {tool_descriptions}
+
+              - Done: Used to indicate that the agent has finished the task. Example
+              (Done[])
+
+
+              What is the next action to make progress towards completing the task?
+
+              Return your response in the following format
+
+
+              Thought: <reasoning for why you are taking the next action>
+
+              <next action call>
+
+              Assigned!
+
+
+              Here is an example:
+
+              Thought: Since there are no objects found I should explore a room I
+              have not explored yet
+
+              Explore[<room name>]
+
+              Assigned!
+
+              {eot_tag}{assistant_tag}'
+            stopword: Assigned!
+            end_expression: Done[]
+            actions_parser:
+              _target_: habitat_llm.llm.instruct.utils.zero_shot_action_parser
+              _partial_: true
+          replanning_threshold: 50
+          planning_mode: cot
+          constrained_generation: true
+          objects_response: true
+          objects_response_include_states: false
+          centralized: false
+          enable_rag: false
+          rag_dataset_dir: ''
+          rag_data_source_name: ''
+          example_type: react
+        _target_: habitat_llm.planner.ZeroShotReactPlanner
+        _recursive_: false
+        _partial_: true
+      uid: 0
+  type: decentralized
+  truncate_length: 50
+  save_video: false
+  output_dir: /home/taeyoon/partnr-planner/outputs/habitat_llm/2024-12-23_07-45-02-val_mini.json
+  do_print: true
+  log_data: true
+  log_detailed_traces: true
+world_model:
+  type: gt_graph
+  partial_obs: true
+  update_mode: gt
+trajectory:
+  save: false
+  agent_names:
+  - agent_0
+  camera_prefixes:
+  - articulated_agent_jaw
+  save_path: data/trajectories/
+  save_options:
+  - rgb
+  - depth
+  - panoptic
+  - pose
+agents:
+  agent_0:
+    config:
+      tools:
+        motor_skills:
+          oracle_nav:
+            _target_: habitat_llm.tools.motor_skills.MotorSkillTool
+            _recursive_: false
+            skill_config:
+              skill:
+                _target_: habitat_llm.tools.motor_skills.OracleNavSkill
+                _partial_: true
+              name: Navigate
+              description: Used for navigating to an entity. You must provide the
+                name of the entity you want to navigate to. Example (Navigate[counter_22])
+              max_skill_steps: 600
+              force_end_on_timeout: true
+              dist_thresh: 0.2
+              turn_thresh: 0.45
+              forward_velocity: 10.0
+              turn_velocity: 10.0
+              sim_freq: 120
+              enable_backing_up: false
+              enable_exploration: false
+          oracle_pick:
+            _target_: habitat_llm.tools.motor_skills.MotorSkillTool
+            _recursive_: false
+            skill_config:
+              skill:
+                _target_: habitat_llm.tools.motor_skills.OraclePickSkill
+                _partial_: true
+              name: Pick
+              description: Used for picking up an object. You must provide the name
+                of the object to be picked. The agent cannot hold more than one object
+                at a time. Example (Pick[cup_1])
+              max_skill_steps: 25
+              force_end_on_timeout: true
+              wait_time_for_obj_to_grasp: 10
+              thresh_for_art_state: 0.01
+              grasping_distance: 2.0
+              enable_exploration: false
+          oracle_place:
+            _target_: habitat_llm.tools.motor_skills.MotorSkillTool
+            _recursive_: false
+            skill_config:
+              skill:
+                _target_: habitat_llm.tools.motor_skills.OraclePlaceSkill
+                _partial_: true
+              name: Place
+              description: Used for placing an object on a target location. You need
+                to provide the name of the object to be placed, the name of the furniture
+                where it should be placed, spatial relation ("on" or "within") describing
+                the relation between the object and furniture. The object to be placed
+                must already be held by the agent (i.e. picked previously). In addition
+                to these, you can request to place the object near another object.
+                For that you can optionally provide a spatial constraints ("next_to")
+                and the name of the reference object. To place next to an object,
+                the reference object must already be on the target furniture. API
+                template - Place[<object_to_be_placed>, <spatial_relation>, <furniture
+                to be placed on>, <spatial_constraint>, <reference_object>]. spatial_constraint
+                and reference_object should be set to "None" when necessary.
+              max_skill_steps: 25
+              force_end_on_timeout: true
+              wait_time_for_obj_to_place: 10
+              placing_distance: 2.0
+              thresh_for_art_state: 0.01
+              enable_exploration: false
+          oracle_open:
+            _target_: habitat_llm.tools.motor_skills.MotorSkillTool
+            _recursive_: false
+            skill_config:
+              skill:
+                _target_: habitat_llm.tools.motor_skills.OracleOpenSkill
+                _partial_: true
+              name: Open
+              description: Used for opening an articulated entity. You must provide
+                the name of the furniture you want to open. Example (Open[chest_of_drawers_1])
+              max_skill_steps: 10
+              at_resting_threshold: 0.15
+              force_end_on_timeout: true
+              max_dis_interact_art: 2.0
+              enable_exploration: false
+          oracle_close:
+            _target_: habitat_llm.tools.motor_skills.MotorSkillTool
+            _recursive_: false
+            skill_config:
+              skill:
+                _target_: habitat_llm.tools.motor_skills.OracleCloseSkill
+                _partial_: true
+              name: Close
+              description: Used for closing an articulated entity. You must provide
+                the name of the furniture you want to close. Example (Close[chest_of_drawers_1])
+              max_skill_steps: 10
+              at_resting_threshold: 0.15
+              force_end_on_timeout: true
+              max_dis_interact_art: 2.0
+              enable_exploration: false
+          oracle_rearrange:
+            _target_: habitat_llm.tools.motor_skills.MotorSkillTool
+            _recursive_: false
+            skill_config:
+              skill:
+                _target_: habitat_llm.tools.motor_skills.OracleRearrangeSkill
+                _partial_: true
+              name: Rearrange
+              description: Used for moving an object from its current location to
+                the target location. You need to provide the name of the object to
+                be moved, the name of the furniture where is should be moved, spatial
+                relation ("on" or "within") describing the relation between the object
+                and furniture. This will automatically pick the specified object and
+                move to the target furniture and attempt to place it. In addition
+                to these, you can request to place the object near another object.
+                For that you can optionally provide a spatial constraints ("next_to")
+                and the name of the reference object. To place next to an object,
+                the reference object must already be on the target furniture. API
+                template Rearrange[<object_to_be_moved>, <spatial_relation>, <furniture
+                to be placed on>, <spatial_constraint>, <reference_object>]. spatial_constraint
+                and reference_object should be set to "None" when necessary.
+              max_skill_steps: 1000
+              force_end_on_timeout: true
+              sim_freq: 120
+              enable_backing_up: false
+              enable_exploration: false
+              nav_skill_config:
+                name: Navigate
+                description: Used for navigating to an entity. You must provide the
+                  name of the entity you want to navigate to.
+                max_skill_steps: 600
+                force_end_on_timeout: true
+                dist_thresh: 0.2
+                turn_thresh: 0.45
+                forward_velocity: 10.0
+                turn_velocity: 10.0
+                navmesh_offset:
+                - - 0.0
+                  - 0.0
+                sim_freq: 120
+                enable_backing_up: false
+                enable_exploration: false
+              pick_skill_config:
+                name: Pick
+                description: Used for picking up an object. You must provide the name
+                  of the object to be picked.
+                max_skill_steps: 25
+                force_end_on_timeout: true
+                wait_time_for_obj_to_grasp: 10
+                thresh_for_art_state: 0.01
+                grasping_distance: 2.0
+                enable_exploration: false
+              place_skill_config:
+                name: Place
+                description: Used for placing an object, you must provide the name
+                  of the furniture where you want to place the object.
+                max_skill_steps: 25
+                force_end_on_timeout: true
+                wait_time_for_obj_to_place: 10
+                placing_distance: 2.0
+                thresh_for_art_state: 0.01
+                enable_exploration: false
+          oracle_explore:
+            _target_: habitat_llm.tools.motor_skills.MotorSkillTool
+            _recursive_: false
+            skill_config:
+              skill:
+                _target_: habitat_llm.tools.motor_skills.OracleExploreSkill
+                _partial_: true
+              name: Explore
+              description: Search a specific room by visiting various receptacles
+                or furnitures in that room. The input to the skill is the EXACT name
+                of the room to be visited. Use the room names provided in the house
+                description. This tool exhaustivly explores the specified room. Example
+                (Explore[kitchen_1])
+              max_skill_steps: 2400
+              force_end_on_timeout: true
+              sim_freq: 120
+              enable_backing_up: false
+              enable_exploration: false
+              nav_skill_config:
+                name: Navigate
+                description: Used for navigating to an entity. You must provide the
+                  name of the entity you want to navigate to.
+                max_skill_steps: 1200
+                force_end_on_timeout: true
+                dist_thresh: 0.2
+                turn_thresh: 0.45
+                forward_velocity: 10.0
+                turn_velocity: 10.0
+                navmesh_offset:
+                - - 0.0
+                  - 0.0
+                sim_freq: 120
+                enable_backing_up: false
+                enable_exploration: false
+          wait:
+            _target_: habitat_llm.tools.motor_skills.MotorSkillTool
+            _recursive_: false
+            skill_config:
+              skill:
+                _target_: habitat_llm.tools.motor_skills.WaitSkill
+                _partial_: true
+              name: Wait
+              description: Used to make agent stay idle for some time. Example (Wait[])
+              default_wait_time: 1
+              max_skill_steps: 1000000
+              force_end_on_timeout: true
+              sim_freq: 120
+        perception:
+          find_receptacle_tool:
+            _target_: habitat_llm.tools.perception.FindReceptacleTool
+            _recursive_: false
+            skill_config:
+              description: Used to know the exact name of a receptacle. A receptacle
+                is a furniture or entity (like a chair, table, bed etc.) where you
+                can place an object. Example (FindReceptacleTool[a kitchen counter])
+              name: FindReceptacleTool
+              prompt: FRT_FEW_SHOT
+          find_object_tool:
+            _target_: habitat_llm.tools.perception.FindObjectTool
+            _recursive_: false
+            skill_config:
+              description: Used to find the exact name/names of the object/objects
+                of interest. If you want to find names of objects on specific receptacles
+                or furnitures, please include that in the query. Example (FindObjectTool[toys
+                on the floor] or FindObjectTool[apples])
+              name: FindObjectTool
+              prompt: FOT_FEW_SHOT
+          find_agent_action_tool:
+            _target_: habitat_llm.tools.perception.FindAgentActionTool
+            _recursive_: false
+            skill_config:
+              description: Should be used to find current and past state history of
+                other agent.
+              name: FindAgentActionTool
+              prompt: FAAT_FEW_SHOT
+          find_room_tool:
+            _target_: habitat_llm.tools.perception.FindRoomTool
+            _recursive_: false
+            skill_config:
+              description: Used to know the exact name of a room in the house. A room
+                is a region in the house where furniture is placed. Example (FindRoomTool[a
+                room which might have something to eat])
+              name: FindRoomTool
+              prompt: FindRoomPrompt
+      env: habitat
+  agent_1:
+    config:
+      tools:
+        motor_skills:
+          oracle_nav:
+            _target_: habitat_llm.tools.motor_skills.MotorSkillTool
+            _recursive_: false
+            skill_config:
+              skill:
+                _target_: habitat_llm.tools.motor_skills.OracleNavSkill
+                _partial_: true
+              name: Navigate
+              description: Used for navigating to an entity. You must provide the
+                name of the entity you want to navigate to. Example (Navigate[counter_22])
+              max_skill_steps: 600
+              force_end_on_timeout: true
+              dist_thresh: 0.2
+              turn_thresh: 0.45
+              forward_velocity: 10.0
+              turn_velocity: 10.0
+              sim_freq: 120
+              enable_backing_up: false
+              enable_exploration: false
+          oracle_pick:
+            _target_: habitat_llm.tools.motor_skills.MotorSkillTool
+            _recursive_: false
+            skill_config:
+              skill:
+                _target_: habitat_llm.tools.motor_skills.OraclePickSkill
+                _partial_: true
+              name: Pick
+              description: Used for picking up an object. You must provide the name
+                of the object to be picked. The agent cannot hold more than one object
+                at a time. Example (Pick[cup_1])
+              max_skill_steps: 25
+              force_end_on_timeout: true
+              wait_time_for_obj_to_grasp: 10
+              thresh_for_art_state: 0.01
+              grasping_distance: 2.0
+              enable_exploration: false
+          oracle_place:
+            _target_: habitat_llm.tools.motor_skills.MotorSkillTool
+            _recursive_: false
+            skill_config:
+              skill:
+                _target_: habitat_llm.tools.motor_skills.OraclePlaceSkill
+                _partial_: true
+              name: Place
+              description: Used for placing an object on a target location. You need
+                to provide the name of the object to be placed, the name of the furniture
+                where it should be placed, spatial relation ("on" or "within") describing
+                the relation between the object and furniture. The object to be placed
+                must already be held by the agent (i.e. picked previously). In addition
+                to these, you can request to place the object near another object.
+                For that you can optionally provide a spatial constraints ("next_to")
+                and the name of the reference object. To place next to an object,
+                the reference object must already be on the target furniture. API
+                template - Place[<object_to_be_placed>, <spatial_relation>, <furniture
+                to be placed on>, <spatial_constraint>, <reference_object>]. spatial_constraint
+                and reference_object should be set to "None" when necessary.
+              max_skill_steps: 25
+              force_end_on_timeout: true
+              wait_time_for_obj_to_place: 10
+              placing_distance: 2.0
+              thresh_for_art_state: 0.01
+              enable_exploration: false
+          oracle_open:
+            _target_: habitat_llm.tools.motor_skills.MotorSkillTool
+            _recursive_: false
+            skill_config:
+              skill:
+                _target_: habitat_llm.tools.motor_skills.OracleOpenSkill
+                _partial_: true
+              name: Open
+              description: Used for opening an articulated entity. You must provide
+                the name of the furniture you want to open. Example (Open[chest_of_drawers_1])
+              max_skill_steps: 10
+              at_resting_threshold: 0.15
+              force_end_on_timeout: true
+              max_dis_interact_art: 2.0
+              enable_exploration: false
+          oracle_close:
+            _target_: habitat_llm.tools.motor_skills.MotorSkillTool
+            _recursive_: false
+            skill_config:
+              skill:
+                _target_: habitat_llm.tools.motor_skills.OracleCloseSkill
+                _partial_: true
+              name: Close
+              description: Used for closing an articulated entity. You must provide
+                the name of the furniture you want to close. Example (Close[chest_of_drawers_1])
+              max_skill_steps: 10
+              at_resting_threshold: 0.15
+              force_end_on_timeout: true
+              max_dis_interact_art: 2.0
+              enable_exploration: false
+          oracle_rearrange:
+            _target_: habitat_llm.tools.motor_skills.MotorSkillTool
+            _recursive_: false
+            skill_config:
+              skill:
+                _target_: habitat_llm.tools.motor_skills.OracleRearrangeSkill
+                _partial_: true
+              name: Rearrange
+              description: Used for moving an object from its current location to
+                the target location. You need to provide the name of the object to
+                be moved, the name of the furniture where is should be moved, spatial
+                relation ("on" or "within") describing the relation between the object
+                and furniture. This will automatically pick the specified object and
+                move to the target furniture and attempt to place it. In addition
+                to these, you can request to place the object near another object.
+                For that you can optionally provide a spatial constraints ("next_to")
+                and the name of the reference object. To place next to an object,
+                the reference object must already be on the target furniture. API
+                template Rearrange[<object_to_be_moved>, <spatial_relation>, <furniture
+                to be placed on>, <spatial_constraint>, <reference_object>]. spatial_constraint
+                and reference_object should be set to "None" when necessary.
+              max_skill_steps: 1000
+              force_end_on_timeout: true
+              sim_freq: 120
+              enable_backing_up: false
+              enable_exploration: false
+              nav_skill_config:
+                name: Navigate
+                description: Used for navigating to an entity. You must provide the
+                  name of the entity you want to navigate to.
+                max_skill_steps: 600
+                force_end_on_timeout: true
+                dist_thresh: 0.2
+                turn_thresh: 0.45
+                forward_velocity: 10.0
+                turn_velocity: 10.0
+                navmesh_offset:
+                - - 0.0
+                  - 0.0
+                sim_freq: 120
+                enable_backing_up: false
+                enable_exploration: false
+              pick_skill_config:
+                name: Pick
+                description: Used for picking up an object. You must provide the name
+                  of the object to be picked.
+                max_skill_steps: 25
+                force_end_on_timeout: true
+                wait_time_for_obj_to_grasp: 10
+                thresh_for_art_state: 0.01
+                grasping_distance: 2.0
+                enable_exploration: false
+              place_skill_config:
+                name: Place
+                description: Used for placing an object, you must provide the name
+                  of the furniture where you want to place the object.
+                max_skill_steps: 25
+                force_end_on_timeout: true
+                wait_time_for_obj_to_place: 10
+                placing_distance: 2.0
+                thresh_for_art_state: 0.01
+                enable_exploration: false
+          oracle_power_on_in_place:
+            _target_: habitat_llm.tools.motor_skills.MotorSkillTool
+            _recursive_: false
+            skill_config:
+              skill:
+                _target_: habitat_llm.tools.motor_skills.OraclePowerOnInPlaceSkill
+                _partial_: true
+              name: PowerOn
+              description: Used for turning on a powered object. You need to provide
+                the name of the object to be turned on.
+              max_skill_steps: 1000
+              force_end_on_timeout: true
+              sim_freq: 120
+              enable_backing_up: false
+              enable_exploration: false
+              oracle_skill_duration_range:
+              - 2
+              - 3
+          oracle_power_off_in_place:
+            _target_: habitat_llm.tools.motor_skills.MotorSkillTool
+            _recursive_: false
+            skill_config:
+              skill:
+                _target_: habitat_llm.tools.motor_skills.OraclePowerOffInPlaceSkill
+                _partial_: true
+              name: PowerOff
+              description: Used for turning off a powered object. You need to provide
+                the name of the object to be turned off.
+              max_skill_steps: 1000
+              force_end_on_timeout: true
+              sim_freq: 120
+              enable_backing_up: false
+              enable_exploration: false
+          oracle_clean_in_place:
+            _target_: habitat_llm.tools.motor_skills.MotorSkillTool
+            _recursive_: false
+            skill_config:
+              skill:
+                _target_: habitat_llm.tools.motor_skills.OracleCleanInPlaceSkill
+                _partial_: true
+              name: Clean
+              description: Used for cleaning an object. You need to provide the name
+                of the object to clean.
+              max_skill_steps: 1000
+              force_end_on_timeout: true
+              sim_freq: 120
+              enable_backing_up: false
+              enable_exploration: false
+          oracle_fill_in_place:
+            _target_: habitat_llm.tools.motor_skills.MotorSkillTool
+            _recursive_: false
+            skill_config:
+              skill:
+                _target_: habitat_llm.tools.motor_skills.OracleFillInPlaceSkill
+                _partial_: true
+              name: Fill
+              description: Used for filling an object. You need to provide the name
+                of the object to fill.
+              max_skill_steps: 1000
+              force_end_on_timeout: true
+              sim_freq: 120
+              enable_backing_up: false
+              enable_exploration: false
+          oracle_pour_in_place:
+            _target_: habitat_llm.tools.motor_skills.MotorSkillTool
+            _recursive_: false
+            skill_config:
+              skill:
+                _target_: habitat_llm.tools.motor_skills.OraclePourInPlaceSkill
+                _partial_: true
+              name: Pour
+              description: Used for pouring from one container to another. This skill
+                will pour into the specified container from whichever container is
+                currently held by the agent.
+              max_skill_steps: 1000
+              force_end_on_timeout: true
+              sim_freq: 120
+              enable_backing_up: false
+              enable_exploration: false
+          oracle_explore:
+            _target_: habitat_llm.tools.motor_skills.MotorSkillTool
+            _recursive_: false
+            skill_config:
+              skill:
+                _target_: habitat_llm.tools.motor_skills.OracleExploreSkill
+                _partial_: true
+              name: Explore
+              description: Search a specific room by visiting various receptacles
+                or furnitures in that room. The input to the skill is the EXACT name
+                of the room to be visited. Use the room names provided in the house
+                description. This tool exhaustivly explores the specified room. Example
+                (Explore[kitchen_1])
+              max_skill_steps: 2400
+              force_end_on_timeout: true
+              sim_freq: 120
+              enable_backing_up: false
+              enable_exploration: false
+              nav_skill_config:
+                name: Navigate
+                description: Used for navigating to an entity. You must provide the
+                  name of the entity you want to navigate to.
+                max_skill_steps: 1200
+                force_end_on_timeout: true
+                dist_thresh: 0.2
+                turn_thresh: 0.45
+                forward_velocity: 10.0
+                turn_velocity: 10.0
+                navmesh_offset:
+                - - 0.0
+                  - 0.0
+                sim_freq: 120
+                enable_backing_up: false
+                enable_exploration: false
+          wait:
+            _target_: habitat_llm.tools.motor_skills.MotorSkillTool
+            _recursive_: false
+            skill_config:
+              skill:
+                _target_: habitat_llm.tools.motor_skills.WaitSkill
+                _partial_: true
+              name: Wait
+              description: Used to make agent stay idle for some time. Example (Wait[])
+              default_wait_time: 1
+              max_skill_steps: 1000000
+              force_end_on_timeout: true
+              sim_freq: 120
+        perception:
+          find_receptacle_tool:
+            _target_: habitat_llm.tools.perception.FindReceptacleTool
+            _recursive_: false
+            skill_config:
+              description: Used to know the exact name of a receptacle. A receptacle
+                is a furniture or entity (like a chair, table, bed etc.) where you
+                can place an object. Example (FindReceptacleTool[a kitchen counter])
+              name: FindReceptacleTool
+              prompt: FRT_FEW_SHOT
+          find_object_tool:
+            _target_: habitat_llm.tools.perception.FindObjectTool
+            _recursive_: false
+            skill_config:
+              description: Used to find the exact name/names of the object/objects
+                of interest. If you want to find names of objects on specific receptacles
+                or furnitures, please include that in the query. Example (FindObjectTool[toys
+                on the floor] or FindObjectTool[apples])
+              name: FindObjectTool
+              prompt: FOT_FEW_SHOT
+          find_agent_action_tool:
+            _target_: habitat_llm.tools.perception.FindAgentActionTool
+            _recursive_: false
+            skill_config:
+              description: Should be used to find current and past state history of
+                other agent.
+              name: FindAgentActionTool
+              prompt: FAAT_FEW_SHOT
+          find_room_tool:
+            _target_: habitat_llm.tools.perception.FindRoomTool
+            _recursive_: false
+            skill_config:
+              description: Used to know the exact name of a room in the house. A room
+                is a region in the house where furniture is placed. Example (FindRoomTool[a
+                room which might have something to eat])
+              name: FindRoomTool
+              prompt: FindRoomPrompt
+      env: habitat
+WANDB:
+  project: habitat-llm
+  resume: allow
+  mode: online
+  name: test_1
+  group: tests
+  entity: sergioarnaud
+agent_asymmetry: true
+device: cuda
+instruction: ''
+mode: dataset
+env: habitat
+num_runs_per_episode: 1
+num_proc: 1
+dry_run: false
+robot_agent_uid: 0
+human_agent_uid: 1
+paths:
+  results_dir: /home/taeyoon/partnr-planner/outputs/habitat_llm/2024-12-23_07-45-02-val_mini.json/results
+  epi_result_file_path: /home/taeyoon/partnr-planner/outputs/habitat_llm/2024-12-23_07-45-02-val_mini.json/results/episode_result_log.csv
+  run_result_file_path: /home/taeyoon/partnr-planner/outputs/habitat_llm/2024-12-23_07-45-02-val_mini.json/results/run_result_log.csv
+  end_result_file_path: /home/taeyoon/partnr-planner/outputs/habitat_llm/2024-12-23_07-45-02-val_mini.json/results/end_result_log.csv

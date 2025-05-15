@@ -1,0 +1,21 @@
+oracle_fill_in_place:
+
+  _target_                   : 'src.tools.motor_skills.MotorSkillTool'
+  _recursive_                : False
+
+  skill_config                :
+
+    skill                      :
+      _target_                 : "src.tools.motor_skills.OracleFillInPlaceSkill"
+      _partial_                : True
+
+    name                       : 'Fill'
+    description                : 'Used for filling an object. You need to provide the name of the object to fill.'
+    category                   : 'Motor skills'
+    max_skill_steps            : 1000
+    force_end_on_timeout       : True
+
+    sim_freq                   : 120 # Hz
+    enable_backing_up          : False
+    # Disable exploration
+    enable_exploration         : False
