@@ -87,3 +87,4 @@ To run an experiment, simply execute the appropriate script:
 ```
 
 ## License
+MEMENTO is MIT licensed. See the [LICENSE](LICENSE) for details.
