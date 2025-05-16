@@ -4,7 +4,8 @@
 
 ## Abstract
 
-Embodied agents empowered by large language models (LLMs) have shown strong performance in object rearrangement tasks. However, these tasks primarily focus on single-turn interactions with static instructions that the agents can simply follow, raising the question of whether they truly reflect the challenges of providing meaningful assistance to users. For personalized embodied agents, it is important to leverage memories in order to understand unique user semantics assigned to the physical world—what we refer to as personalized knowledge—to provide personalized assistance. Therefore, in this work, we present MEMENTO, a personalized embodied agent evaluation framework designed for comprehensive assessment of memory utilization with personalized knowledge. MEMENTO consists of a two-stage memory evaluation process. In the *memory acquisition stage*, agents perform tasks with instructions containing personalized knowledge while accumulating the interaction history. Subsequently, the *memory utilization stage* challenges agents to complete the same tasks using modified instructions that require previous interaction history to succeed. This process enables the evaluation of agents' understanding of personalized knowledge in object rearrangement tasks by focusing on its role in goal interpretation: (1) the ability to identify target objects based on personal meaning (*object semantics*), and (2) the ability to infer object–location configurations from consistent user patterns, such as routines (*user patterns*).
+Embodied agents empowered by large language models (LLMs) have shown strong performance in object rearrangement tasks. However, these tasks primarily focus on single-turn interactions with static and simplified instructions, which limits their relevance to real-world personalized assistance. To provide meaningful support, personalized embodied agents must understand personalized knowledge—unique semantics users assign to their environment—and leverage episodic memory to interpret dynamic instructions. Therefore, in this work, we present MEMENTO, a personalized embodied agent evaluation framework designed for comprehensive assessment of memory utilization with personalized knowledge. MEMENTO consists of a two-stage memory evaluation process.  In the *memory acquisition stage*, agents perform tasks with instructions containing personalized knowledge while accumulating the interaction history. Subsequently, the *memory utilization stage* challenges agents to complete the same tasks using modified instructions that require previous interaction history to succeed.  This process enables the evaluation of agents' understanding of personalized knowledge in object rearrangement tasks by focusing on its role in goal interpretation: (1) the ability to identify target objects based on personal meaning (*object semantics*), and (2) the ability to infer object–location configurations from consistent user patterns, such as routines (*user patterns*).
+Our evaluation across a range of LLM-powered embodied agents reveals that even frontier models struggle to utilize episodic memory with personalized knowledge, highlighting key limitations and providing insights for developing more personalized embodied agents.
 
 ## Installation
 
@@ -19,15 +20,15 @@ Embodied agents empowered by large language models (LLMs) have shown strong perf
 ### Docker Run Command
 ```bash
 docker run -it \ 
-  -v USER_LOCAL_HUGGINGFACE_CACHE_DIR/:/data/huggingface_cache/ \ # (Modify) Personal model storage
-  -v USER_LOCAL_HABITAT_DATA_DIR/:/data/ \ # (Modify) Habitat data storage
-  -v USER_LOCAL_CODE_DIR/:/HabitatLLM/workspace \ # (Modify) Personal workspace
+  -v /path/to/local/huggingface_cache/:/data/huggingface_cache/ \ # Path to your local model storage
+  -v /path/to/local/habitat_data/:/data/ \ # Path to your local Habitat data
+  -v /path/to/local/code/:/HabitatLLM/workspace \ # Path to your local workspace
   -e NVIDIA_DRIVER_CAPABILITIES=all \ 
-  -u USER_SERVER_NAME \ # (Modify) Your server account name
+  -u username \ # Your username
   --gpus all \
   --pid=host \
-  --name USER_CONTAINER_NAME \ # (Modify) Container name
-  IMAGE_NAME/habitat:2.0 \ # (Modify) Image for container creation
+  --name container_name \ # Container name
+  image_name/habitat:2.0 \ # Image name
   /bin/bash
 ```
 
