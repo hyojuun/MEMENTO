@@ -89,7 +89,7 @@ To run an experiment, simply execute the appropriate script:
 
 ## Citation
 
-our codebase is based on [PARTNR](https://github.com/facebookresearch/partnr-planner), [habitat-lab](https://github.com/facebookresearch/habitat-lab).
+our codebase is based on [PARTNR](https://github.com/facebookresearch/partnr-planner), [Habitat-Lab](https://github.com/facebookresearch/habitat-lab).
 If you use our codebase or dataset in your research, please cite the PARTNR and habitat-lab
 
 ```
