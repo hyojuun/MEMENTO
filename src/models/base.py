@@ -6,7 +6,6 @@ from openai import OpenAI
 import anthropic
 import sys
 import re
-sys.path.append("/home/taeyoon/workspace/HabitatLLM")
 
 # from src.utils import print
 
