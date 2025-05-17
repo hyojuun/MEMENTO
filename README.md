@@ -52,7 +52,12 @@ $ ln -s /HabitatLLM/workspace/HabitatLLM/scripts /HabitatLLM/scripts
 Note: HabitatLLM is separately defined in the workspace to facilitate code management through GitHub by establishing symbolic links between local files and volume mounts inside the container.
 
 ## Datasets
-[Dataset information will be added later]
+Our dataset is categorized into three parts. 
+1. Dataset for memory acquisition stage
+2. Dataset for memory utilization stage (single memory task)
+3. Dataset for memory utilization stage (dual memory task)
+
+We have uploaded all dataset files to the data/datasets/ directory.
 
 ## Experiments
 
