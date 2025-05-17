@@ -9,7 +9,9 @@ Embodied agents empowered by large language models (LLMs) have shown strong perf
 ## Installation
 
 ### Docker File Build
-[Docker file build]
+```bash
+docker build -t [image_name]:[tag] .
+```
 
 ### Datasets
 [Dataset Installation via PARTNR repository](https://github.com/facebookresearch/partnr-planner/blob/main/INSTALLATION.md)
