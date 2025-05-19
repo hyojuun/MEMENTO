@@ -1,0 +1,210 @@
+You are an agent that solves embodied-agent planning problems. The task assigned to you will be situated in a house and will generally involve navigating to objects, picking and placing them on different receptacles to achieve rearrangement. You strictly follow any format specifications and pay attention to the previous actions taken in order to avoid repeating mistakes. 
+
+If there are multiple tasks to complete, please follow them in the order they appear in the instruction.
+
+Rooms do not need to be explored more than once. This means if you have explored the living room and have not found the object, then you should explore the kitchen, if a relevant object is still not found, you should explore the hallway etc...
+
+Many calls to the same action in a row are a sign that something has gone wrong and you should try a different action.
+
+Task: Move a book and a pencil case from the bedroom to the living room. Place them on the table. The book has a cover image of a modern interior, and the pencil case is colorful with a paisley pattern, named Olive Kids Paisley Pencil Case. The book was a gift from a dear friend.
+
+Furniture:
+entryway_1: floor_entryway_1
+other_room_1: floor_other_room_1
+living_room_1: floor_living_room_1, table_32, chair_34, chair_35, chair_36, shelves_43, shelves_44, couch_45
+tv_1: floor_tv_1, couch_23, couch_29
+bathroom_1: floor_bathroom_1
+closet_2: floor_closet_2
+bathroom_2: floor_bathroom_2
+office_1: floor_office_1, chair_42, table_61, wardrobe_63
+hallway_1: floor_hallway_1
+bedroom_1: floor_bedroom_1, bed_33, chair_41, chest_of_drawers_50, chest_of_drawers_51, chest_of_drawers_54, chest_of_drawers_58, table_60
+bedroom_2: floor_bedroom_2
+laundryroom_1: floor_laundryroom_1, washer_dryer_30, cabinet_59, cabinet_64
+bedroom_3: floor_bedroom_3, bed_37, bench_46, chest_of_drawers_52, chest_of_drawers_57
+bedroom_4: floor_bedroom_4, bed_31, chair_38, chair_39, chest_of_drawers_47, chest_of_drawers_49, chest_of_drawers_53, chest_of_drawers_55
+closet_3: floor_closet_3
+bathroom_3: floor_bathroom_3
+bathroom_4: floor_bathroom_4
+closet_4: floor_closet_4
+bedroom_5: floor_bedroom_5, bed_28, chair_40, chest_of_drawers_48, chest_of_drawers_56, table_62
+closet_5: floor_closet_5
+bathroom_5: floor_bathroom_5
+kitchen_1: floor_kitchen_1, counter_22, stool_24, stool_25, stool_26, stool_27, cabinet_65
+
+The following furnitures have a faucet: cabinet_59, cabinet_65
+Objects:
+No objects found yet
+
+Possible Actions:
+- Close: Used for closing an articulated entity. You must provide the name of the furniture you want to close. Example (Close[chest_of_drawers_1])
+- DescribeObjectTool: Used to retrieve a brief descriptive or semantic meaning of a given object or furniture name. Example (DescribeObjectTool[sponge_1])
+- Explore: Search a specific room by visiting various receptacles or furnitures in that room. The input to the skill is the EXACT name of the room to be visited. Use the room names provided in the house description. This tool exhaustivly explores the specified room. Example (Explore[kitchen_1])
+- FindObjectTool: Used to find the exact name/names of the object/objects of interest. If you want to find the exact names of objects on specific receptacles or furnitures, please include that in the query. Example (FindObjectTool[toys on the floor] or FindObjectTool[apples])
+- FindReceptacleTool: Used to know the exact name of a receptacle. A receptacle is a furniture or entity (like a chair, table, bed etc.) where you can place an object. Example (FindReceptacleTool[a kitchen counter])
+- FindRoomTool: Used to know the exact name of a room in the house. A room is a region in the house where furniture is placed. Example (FindRoomTool[a room which might have something to eat])
+- Navigate: Used for navigating to an entity. You must provide the name of the entity you want to navigate to. Example (Navigate[counter_22])
+- Open: Used for opening an articulated entity. You must provide the name of the furniture you want to open. Example (Open[chest_of_drawers_1])
+- Pick: Used for picking up an object. You must provide the name of the object to be picked. The agent cannot hold more than one object at a time. Example (Pick[cup_1])
+- Place: Used for placing an object on a target location. You need to provide the name of the object to be placed, the name of the furniture where it should be placed, spatial relation ("on" or "within") describing the relation between the object and furniture. The object to be placed must already be held by the agent (i.e. picked previously). In addition to these, you can request to place the object near another object. For that you can optionally provide a spatial constraints ("next_to") and the name of the reference object. To place next to an object, the reference object must already be on the target furniture. API template - Place[<object_to_be_placed>, <spatial_relation>, <furniture to be placed on>, <spatial_constraint>, <reference_object>]. spatial_constraint and reference_object should be set to "None" when necessary.
+- Wait: Used to make agent stay idle for some time. Example (Wait[])
+- Done: Used to indicate that the agent has finished the task. Example (Done[])
+
+What is the next action to make progress towards completing the task?
+Return your response in the following format
+
+Thought: <reasoning for why you are taking the next action>
+<next action call>
+Assigned!
+Thought: To begin the task, I need to locate the book and the pencil case in the bedroom. I will start by exploring the bedroom to find these objects.
+
+Explore[bedroom_1]  
+Assigned!
+Result: Successful execution!
+Objects: bowl_4: bed_33 in bedroom_1
+cup_5: bed_33 in bedroom_1
+Thought: The exploration of bedroom_1 did not reveal the book or the pencil case. I will continue by exploring another bedroom to locate these objects.
+
+Explore[bedroom_2]  
+Assigned!
+Result: Successful execution!
+Objects: bowl_4: bed_33 in bedroom_1
+cup_5: bed_33 in bedroom_1
+Thought: The exploration of bedroom_1 did not reveal the book or the pencil case. I will continue by exploring another bedroom to locate these objects.
+
+Explore[bedroom_3]  
+Assigned!
+Result: Successful execution!
+Objects: bowl_4: bed_33 in bedroom_1
+cup_5: bed_33 in bedroom_1
+pencil_case_6: bed_37 in bedroom_3
+book_0: bed_37 in bedroom_3
+book_7: bed_37 in bedroom_3
+pencil_case_1: bed_37 in bedroom_3
+Thought: I have found multiple books and pencil cases in bedroom_3. I need to identify the specific book with a cover image of a modern interior and the colorful paisley pencil case named Olive Kids Paisley Pencil Case. I will use the DescribeObjectTool to identify these objects.
+
+DescribeObjectTool[book_0]  
+Assigned!
+Result: The description of the object 'book_0' is:
+A book with a cover image of a modern interior.
+Objects: bowl_4: bed_33 in bedroom_1
+cup_5: bed_33 in bedroom_1
+pencil_case_6: bed_37 in bedroom_3
+book_0: bed_37 in bedroom_3
+book_7: bed_37 in bedroom_3
+pencil_case_1: bed_37 in bedroom_3
+Thought: I have identified 'book_0' as the book with a cover image of a modern interior. Now, I need to identify the colorful paisley pencil case named Olive Kids Paisley Pencil Case. I will use the DescribeObjectTool to identify the correct pencil case.
+
+DescribeObjectTool[pencil_case_6]  
+Assigned!
+Result: The description of the object 'pencil_case_6' is:
+A pink pencil case with large white dots, Big Dot Pink Pencil Case.
+Objects: bowl_4: bed_33 in bedroom_1
+cup_5: bed_33 in bedroom_1
+pencil_case_6: bed_37 in bedroom_3
+book_0: bed_37 in bedroom_3
+book_7: bed_37 in bedroom_3
+pencil_case_1: bed_37 in bedroom_3
+Thought: The pencil case 'pencil_case_6' is not the one I am looking for. I will now check the description of 'pencil_case_1' to see if it matches the colorful paisley pattern named Olive Kids Paisley Pencil Case.
+
+DescribeObjectTool[pencil_case_1]  
+Assigned!
+Result: The description of the object 'pencil_case_1' is:
+A colorful, paisley-patterned pencil case, Olive Kids Paisley Pencil Case.
+Objects: bowl_4: bed_33 in bedroom_1
+cup_5: bed_33 in bedroom_1
+pencil_case_6: bed_37 in bedroom_3
+book_0: bed_37 in bedroom_3
+book_7: bed_37 in bedroom_3
+pencil_case_1: bed_37 in bedroom_3
+Thought: I have identified 'book_0' as the book with a cover image of a modern interior and 'pencil_case_1' as the Olive Kids Paisley Pencil Case. I will now proceed to pick up 'book_0' from bedroom_3.
+
+Pick[book_0]  
+Assigned!
+Result: Successful execution!
+Objects: bowl_4: bed_33 in bedroom_1
+cup_5: bed_33 in bedroom_1
+pencil_case_6: bed_37 in bedroom_3
+book_0: held by the agent
+book_7: bed_37 in bedroom_3
+pencil_case_1: bed_37 in bedroom_3
+Thought: I have successfully picked up 'book_0'. Now, I need to navigate to the living room to place the book on the table.
+
+Navigate[living_room_1]  
+Assigned!
+Result: Successful execution!
+Objects: bowl_4: bed_33 in bedroom_1
+cup_5: bed_33 in bedroom_1
+pencil_case_6: bed_37 in bedroom_3
+book_0: held by the agent
+book_7: bed_37 in bedroom_3
+pencil_case_1: bed_37 in bedroom_3
+bottle_2: shelves_43 in living_room_1
+Thought: I have successfully navigated to the living room. Now, I will place 'book_0' on the table in the living room.
+
+Place[book_0, on, table_32, None, None]  
+Assigned!
+Result: Successful execution!
+Objects: bowl_4: bed_33 in bedroom_1
+cup_5: bed_33 in bedroom_1
+pencil_case_6: bed_37 in bedroom_3
+book_0: table_32 in living_room_1
+book_7: bed_37 in bedroom_3
+pencil_case_1: bed_37 in bedroom_3
+bottle_2: shelves_43 in living_room_1
+Thought: I have successfully placed 'book_0' on the table in the living room. Now, I need to return to bedroom_3 to pick up 'pencil_case_1'.
+
+Navigate[bedroom_3]  
+Assigned!
+Result: Successful execution!
+Objects: bowl_4: bed_33 in bedroom_1
+cup_5: bed_33 in bedroom_1
+pencil_case_6: bed_37 in bedroom_3
+book_0: table_32 in living_room_1
+book_7: bed_37 in bedroom_3
+pencil_case_1: bed_37 in bedroom_3
+bottle_2: shelves_43 in living_room_1
+glass_3: cabinet_65 in kitchen_1
+Thought: I have successfully navigated back to bedroom_3. Now, I will pick up 'pencil_case_1', the Olive Kids Paisley Pencil Case.
+
+Pick[pencil_case_1]  
+Assigned!
+Result: Successful execution!
+Objects: bowl_4: bed_33 in bedroom_1
+cup_5: bed_33 in bedroom_1
+pencil_case_6: bed_37 in bedroom_3
+book_0: table_32 in living_room_1
+book_7: bed_37 in bedroom_3
+pencil_case_1: held by the agent
+bottle_2: shelves_43 in living_room_1
+glass_3: cabinet_65 in kitchen_1
+Thought: I have successfully picked up 'pencil_case_1'. Now, I need to navigate back to the living room to place the pencil case on the table.
+
+Navigate[living_room_1]  
+Assigned!
+Result: Successful execution!
+Objects: bowl_4: bed_33 in bedroom_1
+cup_5: bed_33 in bedroom_1
+pencil_case_6: bed_37 in bedroom_3
+book_0: table_32 in living_room_1
+book_7: bed_37 in bedroom_3
+pencil_case_1: held by the agent
+bottle_2: shelves_43 in living_room_1
+glass_3: cabinet_65 in kitchen_1
+Thought: I have successfully navigated back to the living room. Now, I will place 'pencil_case_1' on the table in the living room.
+
+Place[pencil_case_1, on, table_32, None, None]  
+Assigned!
+Result: Successful execution!
+Objects: bowl_4: bed_33 in bedroom_1
+cup_5: bed_33 in bedroom_1
+pencil_case_6: bed_37 in bedroom_3
+book_0: table_32 in living_room_1
+book_7: bed_37 in bedroom_3
+pencil_case_1: table_32 in living_room_1
+bottle_2: shelves_43 in living_room_1
+glass_3: cabinet_65 in kitchen_1
+Thought: I have successfully placed both 'book_0' and 'pencil_case_1' on the table in the living room. The task of moving the book and the pencil case from the bedroom to the living room and placing them on the table is now complete.
+
+Done[]
+Assigned!

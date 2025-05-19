@@ -1,0 +1,187 @@
+You are an agent that solves embodied-agent planning problems. The task assigned to you will be situated in a house and will generally involve navigating to objects, picking and placing them on different receptacles to achieve rearrangement. You strictly follow any format specifications and pay attention to the previous actions taken in order to avoid repeating mistakes. 
+
+If there are multiple tasks to complete, please follow them in the order they appear in the instruction.
+
+Rooms do not need to be explored more than once. This means if you have explored the living room and have not found the object, then you should explore the kitchen, if a relevant object is still not found, you should explore the hallway etc...
+
+Many calls to the same action in a row are a sign that something has gone wrong and you should try a different action.
+
+Task: Move the vase and picture frame from the living room table to the lounge chair. Place them next to each other on the chair. The vase is dark blue with a faceted design, and the picture frame has a light blue border with multicolored accents. The dark blue vase is my personal favorite.
+
+Furniture:
+outdoor_1: floor_outdoor_1
+bedroom_1: floor_bedroom_1, chair_33, bed_54, chest_of_drawers_58, chest_of_drawers_59, chest_of_drawers_62
+bedroom_2: floor_bedroom_2, table_27, chair_28, chair_29, bed_48, bed_49, bench_52, chest_of_drawers_64
+bathroom_1: floor_bathroom_1, bench_37, toilet_46, cabinet_63
+living_room_1: floor_living_room_1, table_15, table_16, chair_17, chair_18, table_22, table_23, table_24, table_25, couch_30, stool_31, stool_32, table_36, table_42, couch_51, bench_53, stand_67
+bathroom_2: floor_bathroom_2, bench_26, toilet_47
+hallway_1: floor_hallway_1
+bedroom_3: floor_bedroom_3, bed_21, chair_39, chair_40, stool_41, chest_of_drawers_60, chest_of_drawers_61
+lounge_1: floor_lounge_1, chair_19, chair_20, stool_38, chair_43, chair_44, chair_45, table_50
+other_room_2: floor_other_room_2
+hallway_2: floor_hallway_2
+laundryroom_1: floor_laundryroom_1, washer_dryer_14
+other_room_3: floor_other_room_3
+kitchen_1: floor_kitchen_1, stool_34, stool_35, cabinet_55, cabinet_56, fridge_57, unknown_65, counter_66
+
+The following furnitures have a faucet: cabinet_63
+Objects:
+No objects found yet
+
+Possible Actions:
+- Close: Used for closing an articulated entity. You must provide the name of the furniture you want to close. Example (Close[chest_of_drawers_1])
+- DescribeObjectTool: Used to retrieve a brief descriptive or semantic meaning of a given object or furniture name. Example (DescribeObjectTool[sponge_1])
+- Explore: Search a specific room by visiting various receptacles or furnitures in that room. The input to the skill is the EXACT name of the room to be visited. Use the room names provided in the house description. This tool exhaustivly explores the specified room. Example (Explore[kitchen_1])
+- FindObjectTool: Used to find the exact name/names of the object/objects of interest. If you want to find the exact names of objects on specific receptacles or furnitures, please include that in the query. Example (FindObjectTool[toys on the floor] or FindObjectTool[apples])
+- FindReceptacleTool: Used to know the exact name of a receptacle. A receptacle is a furniture or entity (like a chair, table, bed etc.) where you can place an object. Example (FindReceptacleTool[a kitchen counter])
+- FindRoomTool: Used to know the exact name of a room in the house. A room is a region in the house where furniture is placed. Example (FindRoomTool[a room which might have something to eat])
+- Navigate: Used for navigating to an entity. You must provide the name of the entity you want to navigate to. Example (Navigate[counter_22])
+- Open: Used for opening an articulated entity. You must provide the name of the furniture you want to open. Example (Open[chest_of_drawers_1])
+- Pick: Used for picking up an object. You must provide the name of the object to be picked. The agent cannot hold more than one object at a time. Example (Pick[cup_1])
+- Place: Used for placing an object on a target location. You need to provide the name of the object to be placed, the name of the furniture where it should be placed, spatial relation ("on" or "within") describing the relation between the object and furniture. The object to be placed must already be held by the agent (i.e. picked previously). In addition to these, you can request to place the object near another object. For that you can optionally provide a spatial constraints ("next_to") and the name of the reference object. To place next to an object, the reference object must already be on the target furniture. API template - Place[<object_to_be_placed>, <spatial_relation>, <furniture to be placed on>, <spatial_constraint>, <reference_object>]. spatial_constraint and reference_object should be set to "None" when necessary.
+- Wait: Used to make agent stay idle for some time. Example (Wait[])
+- Done: Used to indicate that the agent has finished the task. Example (Done[])
+
+What is the next action to make progress towards completing the task?
+Return your response in the following format
+
+Thought: <reasoning for why you are taking the next action>
+<next action call>
+Assigned!
+Thought: The task requires moving a vase and a picture frame from the living room table to the lounge chair. First, I need to explore the living room to locate the specific vase and picture frame.
+
+Explore[living_room_1]
+Assigned!
+Result: Successful execution!
+Objects: vase_3: table_15 in living_room_1
+picture_frame_1: table_15 in living_room_1
+vase_0: table_15 in living_room_1
+picture_frame_4: table_15 in living_room_1
+soap_dispenser_2: bed_21 in bedroom_3
+Thought: I have found multiple vases and picture frames on table_15 in the living room. I need to identify the specific dark blue vase with a faceted design and the picture frame with a light blue border and multicolored accents. I will use the DescribeObjectTool to get descriptions of these objects.
+
+DescribeObjectTool[vase_3]
+Assigned!
+Result: The description of the object 'vase_3' is:
+A white vase with a scalloped rim.
+Objects: vase_3: table_15 in living_room_1
+picture_frame_1: table_15 in living_room_1
+vase_0: table_15 in living_room_1
+picture_frame_4: table_15 in living_room_1
+soap_dispenser_2: bed_21 in bedroom_3
+Thought: The description of 'vase_3' does not match the dark blue vase with a faceted design. I will now describe 'vase_0' to see if it matches the required vase.
+
+DescribeObjectTool[vase_0]
+Assigned!
+Result: The description of the object 'vase_0' is:
+A dark blue vase with a faceted design.
+Objects: vase_3: table_15 in living_room_1
+picture_frame_1: table_15 in living_room_1
+vase_0: table_15 in living_room_1
+picture_frame_4: table_15 in living_room_1
+soap_dispenser_2: bed_21 in bedroom_3
+Thought: I have identified 'vase_0' as the dark blue vase with a faceted design. Now, I need to identify the picture frame with a light blue border and multicolored accents. I will describe 'picture_frame_1' first.
+
+DescribeObjectTool[picture_frame_1]
+Assigned!
+Result: The description of the object 'picture_frame_1' is:
+A decorative picture frame with a light blue border and multicolored accents.
+Objects: vase_3: table_15 in living_room_1
+picture_frame_1: table_15 in living_room_1
+vase_0: table_15 in living_room_1
+picture_frame_4: table_15 in living_room_1
+soap_dispenser_2: bed_21 in bedroom_3
+Thought: I have identified 'picture_frame_1' as the picture frame with a light blue border and multicolored accents. Now, I need to pick up 'vase_0' from table_15 in the living room.
+
+Pick[vase_0]
+Assigned!
+Result: Unexpected failure! - Failed to pick! Not close enough to the object.
+Objects: vase_3: table_15 in living_room_1
+picture_frame_1: table_15 in living_room_1
+vase_0: table_15 in living_room_1
+picture_frame_4: table_15 in living_room_1
+soap_dispenser_2: bed_21 in bedroom_3
+Thought: I need to navigate closer to 'table_15' in the living room to pick up 'vase_0'.
+
+Navigate[table_15]
+Assigned!
+Result: Successful execution!
+Objects: vase_3: table_15 in living_room_1
+picture_frame_1: table_15 in living_room_1
+vase_0: table_15 in living_room_1
+picture_frame_4: table_15 in living_room_1
+soap_dispenser_2: bed_21 in bedroom_3
+Thought: I am now close enough to 'table_15' in the living room. I will attempt to pick up 'vase_0' again.
+
+Pick[vase_0]
+Assigned!
+Result: Successful execution!
+Objects: vase_3: table_15 in living_room_1
+picture_frame_1: table_15 in living_room_1
+vase_0: held by the agent
+picture_frame_4: table_15 in living_room_1
+soap_dispenser_2: bed_21 in bedroom_3
+Thought: I have successfully picked up 'vase_0'. Now, I need to navigate to the lounge chair to place the vase there.
+
+Navigate[chair_19]
+Assigned!
+Result: Successful execution!
+Objects: vase_3: table_15 in living_room_1
+picture_frame_1: table_15 in living_room_1
+vase_0: held by the agent
+picture_frame_4: table_15 in living_room_1
+soap_dispenser_2: bed_21 in bedroom_3
+Thought: I am now at the lounge chair. I will place 'vase_0' on 'chair_19'.
+
+Place[vase_0, on, chair_19, None, None]
+Assigned!
+Result: Successful execution!
+Objects: vase_3: table_15 in living_room_1
+picture_frame_1: table_15 in living_room_1
+vase_0: chair_19 in lounge_1
+picture_frame_4: table_15 in living_room_1
+soap_dispenser_2: bed_21 in bedroom_3
+Thought: I have successfully placed 'vase_0' on 'chair_19'. Now, I need to return to 'table_15' in the living room to pick up 'picture_frame_1'.
+
+Navigate[table_15]
+Assigned!
+Result: Successful execution!
+Objects: vase_3: table_15 in living_room_1
+picture_frame_1: table_15 in living_room_1
+vase_0: chair_19 in lounge_1
+picture_frame_4: table_15 in living_room_1
+soap_dispenser_2: bed_21 in bedroom_3
+Thought: I am now close to 'table_15' in the living room. I will pick up 'picture_frame_1'.
+
+Pick[picture_frame_1]
+Assigned!
+Result: Successful execution!
+Objects: vase_3: table_15 in living_room_1
+picture_frame_1: held by the agent
+vase_0: chair_19 in lounge_1
+picture_frame_4: table_15 in living_room_1
+soap_dispenser_2: bed_21 in bedroom_3
+Thought: I have successfully picked up 'picture_frame_1'. Now, I need to navigate back to the lounge chair to place the picture frame next to the vase.
+
+Navigate[chair_19]
+Assigned!
+Result: Successful execution!
+Objects: vase_3: table_15 in living_room_1
+picture_frame_1: held by the agent
+vase_0: chair_19 in lounge_1
+picture_frame_4: table_15 in living_room_1
+soap_dispenser_2: bed_21 in bedroom_3
+Thought: I am now at the lounge chair. I will place 'picture_frame_1' on 'chair_19' next to 'vase_0'.
+
+Place[picture_frame_1, on, chair_19, next_to, vase_0]
+Assigned!
+Result: Successful execution!
+Objects: vase_3: table_15 in living_room_1
+picture_frame_1: chair_19 in lounge_1
+vase_0: chair_19 in lounge_1
+picture_frame_4: table_15 in living_room_1
+soap_dispenser_2: bed_21 in bedroom_3
+Thought: I have successfully placed both 'vase_0' and 'picture_frame_1' on 'chair_19' in the lounge, next to each other. The task is now complete.
+
+Done[]
+Assigned!

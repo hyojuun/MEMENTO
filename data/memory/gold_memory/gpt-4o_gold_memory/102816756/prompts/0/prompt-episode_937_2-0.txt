@@ -1,0 +1,169 @@
+You are an agent that solves embodied-agent planning problems. The task assigned to you will be situated in a house and will generally involve navigating to objects, picking and placing them on different receptacles to achieve rearrangement. You strictly follow any format specifications and pay attention to the previous actions taken in order to avoid repeating mistakes. 
+
+If there are multiple tasks to complete, please follow them in the order they appear in the instruction.
+
+Rooms do not need to be explored more than once. This means if you have explored the living room and have not found the object, then you should explore the kitchen, if a relevant object is still not found, you should explore the hallway etc...
+
+Many calls to the same action in a row are a sign that something has gone wrong and you should try a different action.
+
+Task: Move the plant container from the bedroom table to the living room table. Take the stuffed toy from the kitchen cabinet and put it on a bedroom table. I like to have the plant container in the living room for better sunlight, and the stuffed toy should be on the bedroom table to add a cozy touch.
+
+Furniture:
+bedroom_1: floor_bedroom_1, chair_41, chair_42, bed_49, table_54, chest_of_drawers_72, chest_of_drawers_73, chest_of_drawers_75, chest_of_drawers_87
+closet_1: floor_closet_1, wardrobe_91
+living_room_1: floor_living_room_1, chair_13, chair_14, chair_15, chair_16, chair_17, chair_18, chair_19, chair_20, chair_21, chair_22, couch_26, couch_28, couch_29, chair_30, stool_31, stool_32, table_38, table_39, table_48, table_50, stand_52, counter_78
+toilet_1: floor_toilet_1, toilet_43
+bedroom_2: floor_bedroom_2, bed_23, chair_46, chair_47, table_53, chest_of_drawers_55, chest_of_drawers_58, chest_of_drawers_59, chest_of_drawers_60, chest_of_drawers_61
+bedroom_3: floor_bedroom_3, bed_37, chair_40, chest_of_drawers_74, table_77, chest_of_drawers_79, chest_of_drawers_80, chest_of_drawers_89, wardrobe_92
+bedroom_4: floor_bedroom_4, chair_27, bed_45, table_51, wardrobe_56, wardrobe_57, chest_of_drawers_82, chest_of_drawers_83, table_84, table_86
+kitchen_1: floor_kitchen_1, shelves_24, shelves_25, chair_33, chair_34, chair_35, chair_36, cabinet_62, cabinet_63, cabinet_64, cabinet_65, cabinet_66, counter_67, counter_68, counter_69, cabinet_70, cabinet_71, cabinet_76, cabinet_81, unknown_88, fridge_90
+other_room_1: floor_other_room_1
+other_room_2: floor_other_room_2
+bathroom_1: floor_bathroom_1, toilet_44
+porch_1: floor_porch_1
+entryway_1: floor_entryway_1, table_85
+
+The following furnitures have a faucet: cabinet_70
+Objects:
+No objects found yet
+
+Possible Actions:
+- Close: Used for closing an articulated entity. You must provide the name of the furniture you want to close. Example (Close[chest_of_drawers_1])
+- DescribeObjectTool: Used to retrieve a brief descriptive or semantic meaning of a given object or furniture name. Example (DescribeObjectTool[sponge_1])
+- Explore: Search a specific room by visiting various receptacles or furnitures in that room. The input to the skill is the EXACT name of the room to be visited. Use the room names provided in the house description. This tool exhaustivly explores the specified room. Example (Explore[kitchen_1])
+- FindObjectTool: Used to find the exact name/names of the object/objects of interest. If you want to find the exact names of objects on specific receptacles or furnitures, please include that in the query. Example (FindObjectTool[toys on the floor] or FindObjectTool[apples])
+- FindReceptacleTool: Used to know the exact name of a receptacle. A receptacle is a furniture or entity (like a chair, table, bed etc.) where you can place an object. Example (FindReceptacleTool[a kitchen counter])
+- FindRoomTool: Used to know the exact name of a room in the house. A room is a region in the house where furniture is placed. Example (FindRoomTool[a room which might have something to eat])
+- Navigate: Used for navigating to an entity. You must provide the name of the entity you want to navigate to. Example (Navigate[counter_22])
+- Open: Used for opening an articulated entity. You must provide the name of the furniture you want to open. Example (Open[chest_of_drawers_1])
+- Pick: Used for picking up an object. You must provide the name of the object to be picked. The agent cannot hold more than one object at a time. Example (Pick[cup_1])
+- Place: Used for placing an object on a target location. You need to provide the name of the object to be placed, the name of the furniture where it should be placed, spatial relation ("on" or "within") describing the relation between the object and furniture. The object to be placed must already be held by the agent (i.e. picked previously). In addition to these, you can request to place the object near another object. For that you can optionally provide a spatial constraints ("next_to") and the name of the reference object. To place next to an object, the reference object must already be on the target furniture. API template - Place[<object_to_be_placed>, <spatial_relation>, <furniture to be placed on>, <spatial_constraint>, <reference_object>]. spatial_constraint and reference_object should be set to "None" when necessary.
+- Wait: Used to make agent stay idle for some time. Example (Wait[])
+- Done: Used to indicate that the agent has finished the task. Example (Done[])
+
+What is the next action to make progress towards completing the task?
+Return your response in the following format
+
+Thought: <reasoning for why you are taking the next action>
+<next action call>
+Assigned!
+Thought: To begin the task, I need to locate the plant container in the bedroom and the stuffed toy in the kitchen. I will start by exploring the bedroom to find the plant container.
+
+Explore[bedroom_1]
+Assigned!
+Result: Successful execution!
+Objects: tray_3: table_48 in living_room_1
+candle_2: chair_30 in living_room_1
+Thought: I have explored the bedroom to find the plant container. Now, I need to explore the kitchen to locate the stuffed toy.
+
+Explore[kitchen_1]
+Assigned!
+Result: Successful execution!
+Objects: tray_3: table_48 in living_room_1
+candle_2: chair_30 in living_room_1
+stuffed_toy_1: cabinet_76 in kitchen_1
+box_4: couch_26 in living_room_1
+Thought: I have found the stuffed toy in the kitchen cabinet. Now, I need to locate the plant container in the bedroom. I will explore the bedroom to find it.
+
+Explore[bedroom_1]
+Assigned!
+Result: Successful execution!
+Objects: tray_3: table_48 in living_room_1
+candle_2: chair_30 in living_room_1
+stuffed_toy_1: cabinet_76 in kitchen_1
+box_4: couch_26 in living_room_1
+plant_container_0: table_77 in bedroom_3
+Thought: I have found the plant container on the table in bedroom_3 and the stuffed toy in the kitchen cabinet. I will first navigate to bedroom_3 to pick up the plant container.
+
+Navigate[table_77]
+Assigned!
+Result: Successful execution!
+Objects: tray_3: table_48 in living_room_1
+candle_2: chair_30 in living_room_1
+stuffed_toy_1: cabinet_76 in kitchen_1
+box_4: couch_26 in living_room_1
+plant_container_0: table_77 in bedroom_3
+Thought: I have successfully navigated to the table in bedroom_3 where the plant container is located. Now, I will pick up the plant container.
+
+Pick[plant_container_0]
+Assigned!
+Result: Successful execution!
+Objects: tray_3: table_48 in living_room_1
+candle_2: chair_30 in living_room_1
+stuffed_toy_1: cabinet_76 in kitchen_1
+box_4: couch_26 in living_room_1
+plant_container_0: held by the agent
+Thought: I have successfully picked up the plant container. Now, I need to navigate to the living room to place the plant container on a table there.
+
+Navigate[table_38]
+Assigned!
+Result: Successful execution!
+Objects: tray_3: table_48 in living_room_1
+candle_2: chair_30 in living_room_1
+stuffed_toy_1: cabinet_76 in kitchen_1
+box_4: couch_26 in living_room_1
+plant_container_0: held by the agent
+Thought: I have successfully navigated to the living room table. Now, I will place the plant container on the table in the living room.
+
+Place[plant_container_0, on, table_38, None, None]
+Assigned!
+Result: Successful execution!
+Objects: tray_3: table_48 in living_room_1
+candle_2: chair_30 in living_room_1
+stuffed_toy_1: cabinet_76 in kitchen_1
+box_4: couch_26 in living_room_1
+plant_container_0: table_38 in living_room_1
+Thought: I have successfully placed the plant container on the table in the living room. Now, I need to navigate to the kitchen to pick up the stuffed toy from the cabinet.
+
+Navigate[cabinet_76]
+Assigned!
+Result: Successful execution!
+Objects: tray_3: table_48 in living_room_1
+candle_2: chair_30 in living_room_1
+stuffed_toy_1: cabinet_76 in kitchen_1
+box_4: couch_26 in living_room_1
+plant_container_0: table_38 in living_room_1
+Thought: I have successfully navigated to the kitchen cabinet where the stuffed toy is located. Now, I will open the cabinet to access the stuffed toy.
+
+Open[cabinet_76]
+Assigned!
+Result: Successful execution!
+Objects: tray_3: table_48 in living_room_1
+candle_2: chair_30 in living_room_1
+stuffed_toy_1: cabinet_76 in kitchen_1
+box_4: couch_26 in living_room_1
+plant_container_0: table_38 in living_room_1
+Thought: I have successfully opened the kitchen cabinet. Now, I will pick up the stuffed toy from the cabinet.
+
+Pick[stuffed_toy_1]
+Assigned!
+Result: Successful execution!
+Objects: tray_3: table_48 in living_room_1
+candle_2: chair_30 in living_room_1
+stuffed_toy_1: held by the agent
+box_4: couch_26 in living_room_1
+plant_container_0: table_38 in living_room_1
+Thought: I have successfully picked up the stuffed toy from the kitchen cabinet. Now, I need to navigate to a bedroom table to place the stuffed toy there.
+
+Navigate[table_54]
+Assigned!
+Result: Successful execution!
+Objects: tray_3: table_48 in living_room_1
+candle_2: chair_30 in living_room_1
+stuffed_toy_1: held by the agent
+box_4: couch_26 in living_room_1
+plant_container_0: table_38 in living_room_1
+Thought: I have successfully navigated to the bedroom table. Now, I will place the stuffed toy on the table in the bedroom.
+
+Place[stuffed_toy_1, on, table_54, None, None]
+Assigned!
+Result: Successful execution!
+Objects: tray_3: table_48 in living_room_1
+candle_2: chair_30 in living_room_1
+stuffed_toy_1: table_54 in bedroom_1
+box_4: couch_26 in living_room_1
+plant_container_0: table_38 in living_room_1
+Thought: I have successfully placed the stuffed toy on the bedroom table and the plant container on the living room table. The tasks are now complete.
+
+Done[]
+Assigned!

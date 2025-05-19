@@ -1,0 +1,189 @@
+You are an agent that solves embodied-agent planning problems. The task assigned to you will be situated in a house and will generally involve navigating to objects, picking and placing them on different receptacles to achieve rearrangement. You strictly follow any format specifications and pay attention to the previous actions taken in order to avoid repeating mistakes. 
+
+If there are multiple tasks to complete, please follow them in the order they appear in the instruction.
+
+Rooms do not need to be explored more than once. This means if you have explored the living room and have not found the object, then you should explore the kitchen, if a relevant object is still not found, you should explore the hallway etc...
+
+Many calls to the same action in a row are a sign that something has gone wrong and you should try a different action.
+
+Task: Help me tidy up the closet. Move the basket, hat, and candle to the top of different shelves. I prefer to have the basket, hat, and candle each on separate shelves for better organization and easy access.
+
+Furniture:
+bedroom_1: floor_bedroom_1, bed_21, table_25, table_29, table_30, chair_37, wardrobe_57
+bathroom_1: floor_bathroom_1, bathtub_24, stand_26, table_28, toilet_38
+closet_1: floor_closet_1, shelves_43
+bedroom_2: floor_bedroom_2, table_20, table_34, table_35, chair_36, bed_40, chest_of_drawers_55, wardrobe_58
+hallway_1: floor_hallway_1, couch_33, chest_of_drawers_48
+kitchen_1: floor_kitchen_1, cabinet_45, cabinet_46, cabinet_49, cabinet_50, fridge_52, cabinet_53, cabinet_54, unknown_59, cabinet_60, cabinet_61, cabinet_62
+entryway_1: floor_entryway_1, bench_18, chest_of_drawers_56
+closet_2: floor_closet_2, shelves_41, shelves_42, cabinet_51
+office_1: floor_office_1, chair_15, shelves_17, couch_22, table_27, bench_31, table_32, table_44
+living_room_1: floor_living_room_1, table_12, chair_13, chair_14, table_16, couch_19, table_23, couch_39
+dining_room_1: floor_dining_room_1, table_11, counter_47
+
+The following furnitures have a faucet: 
+Objects:
+No objects found yet
+
+Possible Actions:
+- Close: Used for closing an articulated entity. You must provide the name of the furniture you want to close. Example (Close[chest_of_drawers_1])
+- DescribeObjectTool: Used to retrieve a brief descriptive or semantic meaning of a given object or furniture name. Example (DescribeObjectTool[sponge_1])
+- Explore: Search a specific room by visiting various receptacles or furnitures in that room. The input to the skill is the EXACT name of the room to be visited. Use the room names provided in the house description. This tool exhaustivly explores the specified room. Example (Explore[kitchen_1])
+- FindObjectTool: Used to find the exact name/names of the object/objects of interest. If you want to find the exact names of objects on specific receptacles or furnitures, please include that in the query. Example (FindObjectTool[toys on the floor] or FindObjectTool[apples])
+- FindReceptacleTool: Used to know the exact name of a receptacle. A receptacle is a furniture or entity (like a chair, table, bed etc.) where you can place an object. Example (FindReceptacleTool[a kitchen counter])
+- FindRoomTool: Used to know the exact name of a room in the house. A room is a region in the house where furniture is placed. Example (FindRoomTool[a room which might have something to eat])
+- Navigate: Used for navigating to an entity. You must provide the name of the entity you want to navigate to. Example (Navigate[counter_22])
+- Open: Used for opening an articulated entity. You must provide the name of the furniture you want to open. Example (Open[chest_of_drawers_1])
+- Pick: Used for picking up an object. You must provide the name of the object to be picked. The agent cannot hold more than one object at a time. Example (Pick[cup_1])
+- Place: Used for placing an object on a target location. You need to provide the name of the object to be placed, the name of the furniture where it should be placed, spatial relation ("on" or "within") describing the relation between the object and furniture. The object to be placed must already be held by the agent (i.e. picked previously). In addition to these, you can request to place the object near another object. For that you can optionally provide a spatial constraints ("next_to") and the name of the reference object. To place next to an object, the reference object must already be on the target furniture. API template - Place[<object_to_be_placed>, <spatial_relation>, <furniture to be placed on>, <spatial_constraint>, <reference_object>]. spatial_constraint and reference_object should be set to "None" when necessary.
+- Wait: Used to make agent stay idle for some time. Example (Wait[])
+- Done: Used to indicate that the agent has finished the task. Example (Done[])
+
+What is the next action to make progress towards completing the task?
+Return your response in the following format
+
+Thought: <reasoning for why you are taking the next action>
+<next action call>
+Assigned!
+Thought: To begin tidying up the closet, I need to locate the basket, hat, and candle. Since the task is to organize the closet, I will start by exploring the closet to find these objects.
+
+Explore[closet_1]
+Assigned!
+Result: Successful execution!
+Objects: egg_7: bed_40 in bedroom_2
+stuffed_toy_4: table_34 in bedroom_2
+candle_2: shelves_43 in closet_1
+Thought: I have found the candle on the shelves in closet_1. Now, I need to find the basket and the hat. Since I have already explored closet_1, I will explore closet_2 next to see if the basket and hat are there.
+
+Explore[closet_2]
+Assigned!
+Result: Successful execution!
+Objects: egg_7: bed_40 in bedroom_2
+stuffed_toy_4: table_34 in bedroom_2
+candle_2: shelves_43 in closet_1
+hat_1: shelves_42 in closet_2
+Thought: I have found the hat on the shelves in closet_2. Now, I need to find the basket. Since I have already explored both closets, I will explore the bedroom_1 next to see if the basket is there.
+
+Explore[bedroom_1]
+Assigned!
+Result: Successful execution!
+Objects: egg_7: bed_40 in bedroom_2
+stuffed_toy_4: table_34 in bedroom_2
+candle_2: shelves_43 in closet_1
+hat_1: shelves_42 in closet_2
+Thought: I have not found the basket yet. Since I have already explored closet_1, closet_2, and bedroom_1, I will explore bedroom_2 next to see if the basket is there.
+
+Explore[bedroom_2]
+Assigned!
+Result: Successful execution!
+Objects: egg_7: bed_40 in bedroom_2
+stuffed_toy_4: table_34 in bedroom_2
+candle_2: shelves_43 in closet_1
+hat_1: shelves_42 in closet_2
+Thought: I have not found the basket yet. Since I have already explored closet_1, closet_2, bedroom_1, and bedroom_2, I will explore the bathroom_1 next to see if the basket is there.
+
+Explore[bathroom_1]
+Assigned!
+Result: Successful execution!
+Objects: egg_7: bed_40 in bedroom_2
+stuffed_toy_4: table_34 in bedroom_2
+candle_2: shelves_43 in closet_1
+hat_1: shelves_42 in closet_2
+Thought: I have not found the basket yet. Since I have already explored closet_1, closet_2, bedroom_1, bedroom_2, and bathroom_1, I will explore the living_room_1 next to see if the basket is there.
+
+Explore[living_room_1]
+Assigned!
+Result: Successful execution!
+Objects: egg_7: bed_40 in bedroom_2
+stuffed_toy_4: table_34 in bedroom_2
+candle_2: shelves_43 in closet_1
+hat_1: shelves_42 in closet_2
+picture_frame_5: table_23 in living_room_1
+Thought: I have not found the basket yet. Since I have already explored closet_1, closet_2, bedroom_1, bedroom_2, bathroom_1, and living_room_1, I will explore the kitchen_1 next to see if the basket is there.
+
+Explore[kitchen_1]
+Assigned!
+Result: Successful execution!
+Objects: egg_7: bed_40 in bedroom_2
+stuffed_toy_4: table_34 in bedroom_2
+candle_2: shelves_43 in closet_1
+hat_1: shelves_42 in closet_2
+picture_frame_5: table_23 in living_room_1
+basket_0: shelves_41 in closet_2
+box_6: cabinet_62 in kitchen_1
+Thought: I have found all the objects: the basket is on shelves_41 in closet_2, the hat is on shelves_42 in closet_2, and the candle is on shelves_43 in closet_1. Now, I need to rearrange them so that each object is on a different shelf. I will start by moving the basket to a different shelf.
+
+Navigate[shelves_41]
+Assigned!
+Result: Successful execution!
+Objects: egg_7: bed_40 in bedroom_2
+stuffed_toy_4: table_34 in bedroom_2
+candle_2: shelves_43 in closet_1
+hat_1: shelves_42 in closet_2
+picture_frame_5: table_23 in living_room_1
+basket_0: shelves_41 in closet_2
+box_6: cabinet_62 in kitchen_1
+Thought: I have navigated to shelves_41 where the basket is located. I will now pick up the basket to move it to a different shelf.
+
+Pick[basket_0]
+Assigned!
+Result: Successful execution!
+Objects: egg_7: bed_40 in bedroom_2
+stuffed_toy_4: table_34 in bedroom_2
+candle_2: shelves_43 in closet_1
+hat_1: shelves_42 in closet_2
+picture_frame_5: table_23 in living_room_1
+basket_0: held by the agent
+box_6: cabinet_62 in kitchen_1
+Thought: I have picked up the basket. Now, I need to place it on a different shelf. Since the candle is on shelves_43 in closet_1, I will place the basket on shelves_42 in closet_2, where the hat is currently located, and then move the hat to a different shelf.
+
+Place[basket_0, on, shelves_42, None, None]
+Assigned!
+Result: Successful execution!
+Objects: egg_7: bed_40 in bedroom_2
+stuffed_toy_4: table_34 in bedroom_2
+candle_2: shelves_43 in closet_1
+hat_1: shelves_42 in closet_2
+picture_frame_5: table_23 in living_room_1
+basket_0: shelves_42 in closet_2
+box_6: cabinet_62 in kitchen_1
+Thought: I have placed the basket on shelves_42 in closet_2. Now, I need to move the hat to a different shelf to ensure each object is on a separate shelf. I will navigate to shelves_42 to pick up the hat.
+
+Navigate[shelves_42]
+Assigned!
+Result: Successful execution!
+Objects: egg_7: bed_40 in bedroom_2
+stuffed_toy_4: table_34 in bedroom_2
+candle_2: shelves_43 in closet_1
+hat_1: shelves_42 in closet_2
+picture_frame_5: table_23 in living_room_1
+basket_0: shelves_42 in closet_2
+box_6: cabinet_62 in kitchen_1
+Thought: I have navigated to shelves_42 where the hat is located. I will now pick up the hat to move it to a different shelf.
+
+Pick[hat_1]
+Assigned!
+Result: Successful execution!
+Objects: egg_7: bed_40 in bedroom_2
+stuffed_toy_4: table_34 in bedroom_2
+candle_2: shelves_43 in closet_1
+hat_1: held by the agent
+picture_frame_5: table_23 in living_room_1
+basket_0: shelves_42 in closet_2
+box_6: cabinet_62 in kitchen_1
+Thought: I have picked up the hat. Now, I need to place it on a different shelf to ensure each object is on a separate shelf. Since the basket is now on shelves_42 and the candle is on shelves_43, I will place the hat on shelves_41 in closet_2.
+
+Place[hat_1, on, shelves_41, None, None]
+Assigned!
+Result: Successful execution!
+Objects: egg_7: bed_40 in bedroom_2
+stuffed_toy_4: table_34 in bedroom_2
+candle_2: shelves_43 in closet_1
+hat_1: shelves_41 in closet_2
+picture_frame_5: table_23 in living_room_1
+basket_0: shelves_42 in closet_2
+box_6: cabinet_62 in kitchen_1
+Thought: I have successfully placed the basket on shelves_42, the hat on shelves_41, and the candle is already on shelves_43. Each object is now on a separate shelf, as requested. The task of tidying up the closet is complete.
+
+Done[]
+Assigned!

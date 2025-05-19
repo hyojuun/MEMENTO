@@ -1,0 +1,174 @@
+You are an agent that solves embodied-agent planning problems. The task assigned to you will be situated in a house and will generally involve navigating to objects, picking and placing them on different receptacles to achieve rearrangement. You strictly follow any format specifications and pay attention to the previous actions taken in order to avoid repeating mistakes. 
+
+If there are multiple tasks to complete, please follow them in the order they appear in the instruction.
+
+Rooms do not need to be explored more than once. This means if you have explored the living room and have not found the object, then you should explore the kitchen, if a relevant object is still not found, you should explore the hallway etc...
+
+Many calls to the same action in a row are a sign that something has gone wrong and you should try a different action.
+
+Task: Move the jug and cup from the kitchen counter to the living room table. Then move the tray on the couch. I usually have the jug and cup on the living room table for serving drinks and the tray on the couch for easy access to snacks during movie nights.
+
+Furniture:
+outdoor_1: floor_outdoor_1
+bedroom_1: floor_bedroom_1, chair_33, bed_54, chest_of_drawers_58, chest_of_drawers_59, chest_of_drawers_62
+bedroom_2: floor_bedroom_2, table_27, chair_28, chair_29, bed_48, bed_49, bench_52, chest_of_drawers_64
+bathroom_1: floor_bathroom_1, bench_37, toilet_46, cabinet_63
+living_room_1: floor_living_room_1, table_15, table_16, chair_17, chair_18, table_22, table_23, table_24, table_25, couch_30, stool_31, stool_32, table_36, table_42, couch_51, bench_53, stand_67
+bathroom_2: floor_bathroom_2, bench_26, toilet_47
+hallway_1: floor_hallway_1
+bedroom_3: floor_bedroom_3, bed_21, chair_39, chair_40, stool_41, chest_of_drawers_60, chest_of_drawers_61
+lounge_1: floor_lounge_1, chair_19, chair_20, stool_38, chair_43, chair_44, chair_45, table_50
+other_room_2: floor_other_room_2
+hallway_2: floor_hallway_2
+laundryroom_1: floor_laundryroom_1, washer_dryer_14
+other_room_3: floor_other_room_3
+kitchen_1: floor_kitchen_1, stool_34, stool_35, cabinet_55, cabinet_56, fridge_57, unknown_65, counter_66
+
+The following furnitures have a faucet: cabinet_63
+Objects:
+No objects found yet
+
+Possible Actions:
+- Close: Used for closing an articulated entity. You must provide the name of the furniture you want to close. Example (Close[chest_of_drawers_1])
+- DescribeObjectTool: Used to retrieve a brief descriptive or semantic meaning of a given object or furniture name. Example (DescribeObjectTool[sponge_1])
+- Explore: Search a specific room by visiting various receptacles or furnitures in that room. The input to the skill is the EXACT name of the room to be visited. Use the room names provided in the house description. This tool exhaustivly explores the specified room. Example (Explore[kitchen_1])
+- FindObjectTool: Used to find the exact name/names of the object/objects of interest. If you want to find the exact names of objects on specific receptacles or furnitures, please include that in the query. Example (FindObjectTool[toys on the floor] or FindObjectTool[apples])
+- FindReceptacleTool: Used to know the exact name of a receptacle. A receptacle is a furniture or entity (like a chair, table, bed etc.) where you can place an object. Example (FindReceptacleTool[a kitchen counter])
+- FindRoomTool: Used to know the exact name of a room in the house. A room is a region in the house where furniture is placed. Example (FindRoomTool[a room which might have something to eat])
+- Navigate: Used for navigating to an entity. You must provide the name of the entity you want to navigate to. Example (Navigate[counter_22])
+- Open: Used for opening an articulated entity. You must provide the name of the furniture you want to open. Example (Open[chest_of_drawers_1])
+- Pick: Used for picking up an object. You must provide the name of the object to be picked. The agent cannot hold more than one object at a time. Example (Pick[cup_1])
+- Place: Used for placing an object on a target location. You need to provide the name of the object to be placed, the name of the furniture where it should be placed, spatial relation ("on" or "within") describing the relation between the object and furniture. The object to be placed must already be held by the agent (i.e. picked previously). In addition to these, you can request to place the object near another object. For that you can optionally provide a spatial constraints ("next_to") and the name of the reference object. To place next to an object, the reference object must already be on the target furniture. API template - Place[<object_to_be_placed>, <spatial_relation>, <furniture to be placed on>, <spatial_constraint>, <reference_object>]. spatial_constraint and reference_object should be set to "None" when necessary.
+- Wait: Used to make agent stay idle for some time. Example (Wait[])
+- Done: Used to indicate that the agent has finished the task. Example (Done[])
+
+What is the next action to make progress towards completing the task?
+Return your response in the following format
+
+Thought: <reasoning for why you are taking the next action>
+<next action call>
+Assigned!
+Thought: To begin the task, I need to locate the jug and cup in the kitchen. I will start by exploring the kitchen to find these objects.
+
+Explore[kitchen_1]
+Assigned!
+Result: Successful execution!
+Objects: bowl_4: bed_54 in bedroom_1
+cup_1: counter_66 in kitchen_1
+tray_2: counter_66 in kitchen_1
+statue_3: stand_67 in living_room_1
+jug_0: counter_66 in kitchen_1
+Thought: I have found the jug and cup on the kitchen counter. I will now pick up the jug first and move it to the living room table.
+
+Pick[jug_0]
+Assigned!
+Result: Successful execution!
+Objects: bowl_4: bed_54 in bedroom_1
+cup_1: counter_66 in kitchen_1
+tray_2: counter_66 in kitchen_1
+statue_3: stand_67 in living_room_1
+jug_0: held by the agent
+Thought: I have successfully picked up the jug. Now, I need to navigate to the living room table to place the jug there.
+
+Navigate[table_15]
+Assigned!
+Result: Successful execution!
+Objects: bowl_4: bed_54 in bedroom_1
+cup_1: counter_66 in kitchen_1
+tray_2: counter_66 in kitchen_1
+statue_3: stand_67 in living_room_1
+jug_0: held by the agent
+Thought: I have successfully navigated to the living room table. Now, I will place the jug on the table.
+
+Place[jug_0, on, table_15, None, None]
+Assigned!
+Result: Successful execution!
+Objects: bowl_4: bed_54 in bedroom_1
+cup_1: counter_66 in kitchen_1
+tray_2: counter_66 in kitchen_1
+statue_3: stand_67 in living_room_1
+jug_0: table_15 in living_room_1
+Thought: I have successfully placed the jug on the living room table. Now, I need to go back to the kitchen counter to pick up the cup.
+
+Navigate[counter_66]
+Assigned!
+Result: Successful execution!
+Objects: bowl_4: bed_54 in bedroom_1
+cup_1: counter_66 in kitchen_1
+tray_2: counter_66 in kitchen_1
+statue_3: stand_67 in living_room_1
+jug_0: table_15 in living_room_1
+Thought: I have successfully navigated back to the kitchen counter. Now, I will pick up the cup.
+
+Pick[cup_1]
+Assigned!
+Result: Successful execution!
+Objects: bowl_4: bed_54 in bedroom_1
+cup_1: held by the agent
+tray_2: counter_66 in kitchen_1
+statue_3: stand_67 in living_room_1
+jug_0: table_15 in living_room_1
+Thought: I have successfully picked up the cup. Now, I need to navigate back to the living room table to place the cup there.
+
+Navigate[table_15]
+Assigned!
+Result: Successful execution!
+Objects: bowl_4: bed_54 in bedroom_1
+cup_1: held by the agent
+tray_2: counter_66 in kitchen_1
+statue_3: stand_67 in living_room_1
+jug_0: table_15 in living_room_1
+Thought: I have successfully navigated back to the living room table. Now, I will place the cup on the table next to the jug.
+
+Place[cup_1, on, table_15, next_to, jug_0]
+Assigned!
+Result: Successful execution!
+Objects: bowl_4: bed_54 in bedroom_1
+cup_1: table_15 in living_room_1
+tray_2: counter_66 in kitchen_1
+statue_3: stand_67 in living_room_1
+jug_0: table_15 in living_room_1
+Thought: I have successfully placed the cup on the living room table next to the jug. Now, I need to go back to the kitchen counter to pick up the tray and move it to the couch in the living room.
+
+Navigate[counter_66]
+Assigned!
+Result: Successful execution!
+Objects: bowl_4: bed_54 in bedroom_1
+cup_1: table_15 in living_room_1
+tray_2: counter_66 in kitchen_1
+statue_3: stand_67 in living_room_1
+jug_0: table_15 in living_room_1
+Thought: I have successfully navigated back to the kitchen counter. Now, I will pick up the tray.
+
+Pick[tray_2]
+Assigned!
+Result: Successful execution!
+Objects: bowl_4: bed_54 in bedroom_1
+cup_1: table_15 in living_room_1
+tray_2: held by the agent
+statue_3: stand_67 in living_room_1
+jug_0: table_15 in living_room_1
+Thought: I have successfully picked up the tray. Now, I need to navigate to the couch in the living room to place the tray there.
+
+Navigate[couch_30]
+Assigned!
+Result: Successful execution!
+Objects: bowl_4: bed_54 in bedroom_1
+cup_1: table_15 in living_room_1
+tray_2: held by the agent
+statue_3: stand_67 in living_room_1
+jug_0: table_15 in living_room_1
+Thought: I have successfully navigated to the couch in the living room. Now, I will place the tray on the couch.
+
+Place[tray_2, on, couch_30, None, None]
+Assigned!
+Result: Successful execution!
+Objects: bowl_4: bed_54 in bedroom_1
+cup_1: table_15 in living_room_1
+tray_2: couch_30 in living_room_1
+statue_3: stand_67 in living_room_1
+jug_0: table_15 in living_room_1
+Thought: I have successfully completed all the tasks: the jug and cup are on the living room table, and the tray is on the couch. There are no further actions required.
+
+Done[]
+Assigned!

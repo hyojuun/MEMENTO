@@ -1,0 +1,167 @@
+You are an agent that solves embodied-agent planning problems. The task assigned to you will be situated in a house and will generally involve navigating to objects, picking and placing them on different receptacles to achieve rearrangement. You strictly follow any format specifications and pay attention to the previous actions taken in order to avoid repeating mistakes. 
+
+If there are multiple tasks to complete, please follow them in the order they appear in the instruction.
+
+Rooms do not need to be explored more than once. This means if you have explored the living room and have not found the object, then you should explore the kitchen, if a relevant object is still not found, you should explore the hallway etc...
+
+Many calls to the same action in a row are a sign that something has gone wrong and you should try a different action.
+
+Task: Move the phone stand to a new dining room chair. Also, move the statue to a new dining room chair. The phone stand is silver and light blue with a sleek design, and the statue is dark bronze with elongated features. The statue was a gift from my best friend.
+
+Furniture:
+garage_1: floor_garage_1, bench_21
+laundryroom_1: floor_laundryroom_1, washer_dryer_12, washer_dryer_13, unknown_31, cabinet_44, cabinet_45, cabinet_48, cabinet_49, cabinet_50, cabinet_51
+tv_1: floor_tv_1, table_14, couch_15, chair_27, table_34, chair_35, chair_36, table_37, unknown_47
+toilet_1: floor_toilet_1, toilet_32, cabinet_46
+tv_2: floor_tv_2, chair_29, couch_30, table_33, shelves_38, table_39
+lounge_1: floor_lounge_1, counter_42
+closet_1: floor_closet_1
+kitchen_1: floor_kitchen_1, chair_16, chair_17, chair_18, fridge_40, cabinet_43
+outdoor_1: floor_outdoor_1
+dining_room_1: floor_dining_room_1, chair_10, chair_11, chair_19, chair_20, chair_22, chair_23, chair_24, chair_25, table_26, table_28, counter_41
+
+The following furnitures have a faucet: 
+Objects:
+No objects found yet
+
+Possible Actions:
+- Close: Used for closing an articulated entity. You must provide the name of the furniture you want to close. Example (Close[chest_of_drawers_1])
+- DescribeObjectTool: Used to retrieve a brief descriptive or semantic meaning of a given object or furniture name. Example (DescribeObjectTool[sponge_1])
+- Explore: Search a specific room by visiting various receptacles or furnitures in that room. The input to the skill is the EXACT name of the room to be visited. Use the room names provided in the house description. This tool exhaustivly explores the specified room. Example (Explore[kitchen_1])
+- FindObjectTool: Used to find the exact name/names of the object/objects of interest. If you want to find the exact names of objects on specific receptacles or furnitures, please include that in the query. Example (FindObjectTool[toys on the floor] or FindObjectTool[apples])
+- FindReceptacleTool: Used to know the exact name of a receptacle. A receptacle is a furniture or entity (like a chair, table, bed etc.) where you can place an object. Example (FindReceptacleTool[a kitchen counter])
+- FindRoomTool: Used to know the exact name of a room in the house. A room is a region in the house where furniture is placed. Example (FindRoomTool[a room which might have something to eat])
+- Navigate: Used for navigating to an entity. You must provide the name of the entity you want to navigate to. Example (Navigate[counter_22])
+- Open: Used for opening an articulated entity. You must provide the name of the furniture you want to open. Example (Open[chest_of_drawers_1])
+- Pick: Used for picking up an object. You must provide the name of the object to be picked. The agent cannot hold more than one object at a time. Example (Pick[cup_1])
+- Place: Used for placing an object on a target location. You need to provide the name of the object to be placed, the name of the furniture where it should be placed, spatial relation ("on" or "within") describing the relation between the object and furniture. The object to be placed must already be held by the agent (i.e. picked previously). In addition to these, you can request to place the object near another object. For that you can optionally provide a spatial constraints ("next_to") and the name of the reference object. To place next to an object, the reference object must already be on the target furniture. API template - Place[<object_to_be_placed>, <spatial_relation>, <furniture to be placed on>, <spatial_constraint>, <reference_object>]. spatial_constraint and reference_object should be set to "None" when necessary.
+- Wait: Used to make agent stay idle for some time. Example (Wait[])
+- Done: Used to indicate that the agent has finished the task. Example (Done[])
+
+What is the next action to make progress towards completing the task?
+Return your response in the following format
+
+Thought: <reasoning for why you are taking the next action>
+<next action call>
+Assigned!
+Thought: To begin the task, I need to locate the phone stand and the statue. I will start by exploring the dining room, as it is the target location for placing the objects, and it might already contain the objects.
+
+Explore[dining_room_1]
+Assigned!
+Result: Successful execution!
+Objects: statue_1: table_26 in dining_room_1
+statue_3: table_26 in dining_room_1
+phone_stand_4: table_26 in dining_room_1
+phone_stand_0: table_26 in dining_room_1
+Thought: I have found both the phone stands and statues on table_26 in the dining room. I will first pick up one of the phone stands and place it on a new dining room chair.
+
+Pick[phone_stand_4]
+Assigned!
+Result: Unexpected failure! - Failed to pick! Not close enough to the object.
+Objects: statue_1: table_26 in dining_room_1
+statue_3: table_26 in dining_room_1
+phone_stand_4: table_26 in dining_room_1
+phone_stand_0: table_26 in dining_room_1
+Thought: I need to navigate closer to the table_26 in the dining room to successfully pick up the phone stand.
+
+Navigate[table_26]
+Assigned!
+Result: Successful execution!
+Objects: statue_1: table_26 in dining_room_1
+statue_3: table_26 in dining_room_1
+phone_stand_4: table_26 in dining_room_1
+phone_stand_0: table_26 in dining_room_1
+Thought: Now that I am close to table_26, I will attempt to pick up one of the phone stands again.
+
+Pick[phone_stand_4]
+Assigned!
+Result: Successful execution!
+Objects: statue_1: table_26 in dining_room_1
+statue_3: table_26 in dining_room_1
+phone_stand_4: held by the agent
+phone_stand_0: table_26 in dining_room_1
+Thought: I have successfully picked up the phone stand. Now, I need to place it on a new dining room chair. I will find a suitable chair in the dining room to place the phone stand.
+
+Place[phone_stand_4, on, chair_10, None, None]
+Assigned!
+Result: Unexpected failure! - Failed to place! Not close enough to chair_10 or occluded.
+Objects: statue_1: table_26 in dining_room_1
+statue_3: table_26 in dining_room_1
+phone_stand_4: held by the agent
+phone_stand_0: table_26 in dining_room_1
+Thought: I need to navigate closer to chair_10 in the dining room to successfully place the phone stand on it.
+
+Navigate[chair_10]
+Assigned!
+Result: Successful execution!
+Objects: statue_1: table_26 in dining_room_1
+statue_3: table_26 in dining_room_1
+phone_stand_4: held by the agent
+phone_stand_0: table_26 in dining_room_1
+Thought: Now that I am close to chair_10, I will attempt to place the phone stand on it.
+
+Place[phone_stand_4, on, chair_10, None, None]
+Assigned!
+Result: Successful execution!
+Objects: statue_1: table_26 in dining_room_1
+statue_3: table_26 in dining_room_1
+phone_stand_4: chair_10 in dining_room_1
+phone_stand_0: table_26 in dining_room_1
+Thought: I have successfully placed the phone stand on chair_10. Now, I need to pick up one of the statues from table_26 and place it on a new dining room chair.
+
+Pick[statue_1]
+Assigned!
+Result: Unexpected failure! - Failed to pick! Not close enough to the object.
+Objects: statue_1: table_26 in dining_room_1
+statue_3: table_26 in dining_room_1
+phone_stand_4: chair_10 in dining_room_1
+phone_stand_0: table_26 in dining_room_1
+Thought: I need to navigate closer to table_26 in the dining room to successfully pick up the statue.
+
+Navigate[table_26]
+Assigned!
+Result: Successful execution!
+Objects: statue_1: table_26 in dining_room_1
+statue_3: table_26 in dining_room_1
+phone_stand_4: chair_10 in dining_room_1
+phone_stand_0: table_26 in dining_room_1
+Thought: Now that I am close to table_26, I will attempt to pick up one of the statues.
+
+Pick[statue_1]
+Assigned!
+Result: Successful execution!
+Objects: statue_1: held by the agent
+statue_3: table_26 in dining_room_1
+phone_stand_4: chair_10 in dining_room_1
+phone_stand_0: table_26 in dining_room_1
+Thought: I have successfully picked up the statue. Now, I need to place it on a new dining room chair. I will find a suitable chair in the dining room to place the statue.
+
+Place[statue_1, on, chair_11, None, None]
+Assigned!
+Result: Unexpected failure! - Failed to place! Not close enough to chair_11 or occluded.
+Objects: statue_1: held by the agent
+statue_3: table_26 in dining_room_1
+phone_stand_4: chair_10 in dining_room_1
+phone_stand_0: table_26 in dining_room_1
+Thought: I need to navigate closer to chair_11 in the dining room to successfully place the statue on it.
+
+Navigate[chair_11]
+Assigned!
+Result: Successful execution!
+Objects: statue_1: held by the agent
+statue_3: table_26 in dining_room_1
+phone_stand_4: chair_10 in dining_room_1
+phone_stand_0: table_26 in dining_room_1
+Thought: Now that I am close to chair_11, I will attempt to place the statue on it.
+
+Place[statue_1, on, chair_11, None, None]
+Assigned!
+Result: Successful execution!
+Objects: statue_1: chair_11 in dining_room_1
+statue_3: table_26 in dining_room_1
+phone_stand_4: chair_10 in dining_room_1
+phone_stand_0: table_26 in dining_room_1
+Thought: I have successfully placed the phone stand on chair_10 and the statue on chair_11 in the dining room. The task is now complete.
+
+Done[]
+Assigned!

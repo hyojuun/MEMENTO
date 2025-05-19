@@ -1,0 +1,188 @@
+You are an agent that solves embodied-agent planning problems. The task assigned to you will be situated in a house and will generally involve navigating to objects, picking and placing them on different receptacles to achieve rearrangement. You strictly follow any format specifications and pay attention to the previous actions taken in order to avoid repeating mistakes. 
+
+If there are multiple tasks to complete, please follow them in the order they appear in the instruction.
+
+Rooms do not need to be explored more than once. This means if you have explored the living room and have not found the object, then you should explore the kitchen, if a relevant object is still not found, you should explore the hallway etc...
+
+Many calls to the same action in a row are a sign that something has gone wrong and you should try a different action.
+
+Task: Move the jug and cup from the kitchen counter to the living room table. Place them next to each other. The jug is red with a white dot pattern, and the cup is a white, 16 oz coffee mug, ACE Coffee Mug Kristen. The coffee mug is my favorite.
+
+Furniture:
+living_room_1: floor_living_room_1, table_10, couch_18, shelves_26, chair_28, chair_29, table_32, chair_33, chair_34, chair_35, chair_36, table_46, table_47, stand_55, chest_of_drawers_56
+other_room_1: floor_other_room_1
+bathroom_1: floor_bathroom_1, chair_23, table_37, unknown_38, bench_48
+bathroom_2: floor_bathroom_2, unknown_14, table_50
+bedroom_1: floor_bedroom_1, chair_16, table_22, bed_45, bench_49, chest_of_drawers_52, chest_of_drawers_54
+laundryroom_1: floor_laundryroom_1, washer_dryer_11, washer_dryer_12, shelves_15
+entryway_1: floor_entryway_1, bench_51
+bedroom_2: floor_bedroom_2, table_13, chair_17, bed_21, table_24, table_25, chair_27, stool_31, bench_44, table_59, chest_of_drawers_61
+hallway_1: floor_hallway_1, table_30
+kitchen_1: floor_kitchen_1, counter_19, chair_20, cabinet_39, cabinet_40, chair_41, chair_42, chair_43, counter_53, cabinet_57, fridge_58, unknown_60
+
+The following furnitures have a faucet: cabinet_57
+Objects:
+No objects found yet
+
+Possible Actions:
+- Close: Used for closing an articulated entity. You must provide the name of the furniture you want to close. Example (Close[chest_of_drawers_1])
+- DescribeObjectTool: Used to retrieve a brief descriptive or semantic meaning of a given object or furniture name. Example (DescribeObjectTool[sponge_1])
+- Explore: Search a specific room by visiting various receptacles or furnitures in that room. The input to the skill is the EXACT name of the room to be visited. Use the room names provided in the house description. This tool exhaustivly explores the specified room. Example (Explore[kitchen_1])
+- FindObjectTool: Used to find the exact name/names of the object/objects of interest. If you want to find the exact names of objects on specific receptacles or furnitures, please include that in the query. Example (FindObjectTool[toys on the floor] or FindObjectTool[apples])
+- FindReceptacleTool: Used to know the exact name of a receptacle. A receptacle is a furniture or entity (like a chair, table, bed etc.) where you can place an object. Example (FindReceptacleTool[a kitchen counter])
+- FindRoomTool: Used to know the exact name of a room in the house. A room is a region in the house where furniture is placed. Example (FindRoomTool[a room which might have something to eat])
+- Navigate: Used for navigating to an entity. You must provide the name of the entity you want to navigate to. Example (Navigate[counter_22])
+- Open: Used for opening an articulated entity. You must provide the name of the furniture you want to open. Example (Open[chest_of_drawers_1])
+- Pick: Used for picking up an object. You must provide the name of the object to be picked. The agent cannot hold more than one object at a time. Example (Pick[cup_1])
+- Place: Used for placing an object on a target location. You need to provide the name of the object to be placed, the name of the furniture where it should be placed, spatial relation ("on" or "within") describing the relation between the object and furniture. The object to be placed must already be held by the agent (i.e. picked previously). In addition to these, you can request to place the object near another object. For that you can optionally provide a spatial constraints ("next_to") and the name of the reference object. To place next to an object, the reference object must already be on the target furniture. API template - Place[<object_to_be_placed>, <spatial_relation>, <furniture to be placed on>, <spatial_constraint>, <reference_object>]. spatial_constraint and reference_object should be set to "None" when necessary.
+- Wait: Used to make agent stay idle for some time. Example (Wait[])
+- Done: Used to indicate that the agent has finished the task. Example (Done[])
+
+What is the next action to make progress towards completing the task?
+Return your response in the following format
+
+Thought: <reasoning for why you are taking the next action>
+<next action call>
+Assigned!
+Thought: The task requires moving a jug and a specific coffee mug from the kitchen counter to the living room table. Since I need to locate these objects first, I will start by exploring the kitchen to find the jug and the coffee mug.
+
+Explore[kitchen_1]
+Assigned!
+Result: Successful execution!
+Objects: clock_3: table_30 in hallway_1
+cup_1: counter_19 in kitchen_1
+cup_6: counter_19 in kitchen_1
+jug_7: counter_19 in kitchen_1
+jug_0: counter_19 in kitchen_1
+glass_2: chair_41 in kitchen_1
+Thought: I have found two cups and two jugs on the kitchen counter. I need to identify which cup is the "ACE Coffee Mug Kristen" and which jug is the red one with a white dot pattern. I will use the DescribeObjectTool to get more information about these objects.
+
+DescribeObjectTool[cup_1]
+Assigned!
+Result: The description of the object 'cup_1' is:
+A white, 16 oz coffee mug, ACE Coffee Mug Kristen.
+Objects: clock_3: table_30 in hallway_1
+cup_1: counter_19 in kitchen_1
+cup_6: counter_19 in kitchen_1
+jug_7: counter_19 in kitchen_1
+jug_0: counter_19 in kitchen_1
+glass_2: chair_41 in kitchen_1
+Thought: I have identified that "cup_1" is the "ACE Coffee Mug Kristen" that needs to be moved. Now, I need to identify which jug is the red one with a white dot pattern. I will use the DescribeObjectTool to get more information about the jugs.
+
+DescribeObjectTool[jug_7]
+Assigned!
+Result: The description of the object 'jug_7' is:
+A light green jug with a curved spout.
+Objects: clock_3: table_30 in hallway_1
+cup_1: counter_19 in kitchen_1
+cup_6: counter_19 in kitchen_1
+jug_7: counter_19 in kitchen_1
+jug_0: counter_19 in kitchen_1
+glass_2: chair_41 in kitchen_1
+Thought: The jug "jug_7" is not the red one with a white dot pattern. I will now check the description of "jug_0" to see if it matches the required jug.
+
+DescribeObjectTool[jug_0]
+Assigned!
+Result: The description of the object 'jug_0' is:
+A red jug with a white dot pattern.
+Objects: clock_3: table_30 in hallway_1
+cup_1: counter_19 in kitchen_1
+cup_6: counter_19 in kitchen_1
+jug_7: counter_19 in kitchen_1
+jug_0: counter_19 in kitchen_1
+glass_2: chair_41 in kitchen_1
+Thought: I have identified "jug_0" as the red jug with a white dot pattern that needs to be moved. Now that I have identified both the required objects, I will proceed to pick up the "ACE Coffee Mug Kristen" first.
+
+Pick[cup_1]
+Assigned!
+Result: Successful execution!
+Objects: clock_3: table_30 in hallway_1
+cup_1: held by the agent
+cup_6: counter_19 in kitchen_1
+jug_7: counter_19 in kitchen_1
+jug_0: counter_19 in kitchen_1
+glass_2: chair_41 in kitchen_1
+Thought: I have successfully picked up the "ACE Coffee Mug Kristen." Now, I need to navigate to the living room table to place the cup there.
+
+FindReceptacleTool[living room table]
+Assigned!
+Result: - table_10 in living_room
+- table_32 in living_room
+- table_46 in living_room
+- table_47 in living_room
+Objects: clock_3: table_30 in hallway_1
+cup_1: held by the agent
+cup_6: counter_19 in kitchen_1
+jug_7: counter_19 in kitchen_1
+jug_0: counter_19 in kitchen_1
+glass_2: chair_41 in kitchen_1
+Thought: There are multiple tables in the living room. I will navigate to one of them, specifically "table_10," to place the cup there.
+
+Navigate[table_10]
+Assigned!
+Result: Successful execution!
+Objects: clock_3: table_30 in hallway_1
+cup_1: held by the agent
+cup_6: counter_19 in kitchen_1
+jug_7: counter_19 in kitchen_1
+jug_0: counter_19 in kitchen_1
+glass_2: chair_41 in kitchen_1
+Thought: I have successfully navigated to "table_10" in the living room. Now, I will place the "ACE Coffee Mug Kristen" on this table.
+
+Place[cup_1, on, table_10, None, None]
+Assigned!
+Result: Successful execution!
+Objects: clock_3: table_30 in hallway_1
+cup_1: table_10 in living_room_1
+cup_6: counter_19 in kitchen_1
+jug_7: counter_19 in kitchen_1
+jug_0: counter_19 in kitchen_1
+glass_2: chair_41 in kitchen_1
+Thought: I have successfully placed the "ACE Coffee Mug Kristen" on "table_10" in the living room. Now, I need to go back to the kitchen to pick up the red jug with a white dot pattern, "jug_0."
+
+Navigate[counter_19]
+Assigned!
+Result: Successful execution!
+Objects: clock_3: table_30 in hallway_1
+cup_1: table_10 in living_room_1
+cup_6: counter_19 in kitchen_1
+jug_7: counter_19 in kitchen_1
+jug_0: counter_19 in kitchen_1
+glass_2: chair_41 in kitchen_1
+Thought: I have successfully navigated back to the kitchen counter where the red jug with a white dot pattern, "jug_0," is located. Now, I will pick up the jug.
+
+Pick[jug_0]
+Assigned!
+Result: Successful execution!
+Objects: clock_3: table_30 in hallway_1
+cup_1: table_10 in living_room_1
+cup_6: counter_19 in kitchen_1
+jug_7: counter_19 in kitchen_1
+jug_0: held by the agent
+glass_2: chair_41 in kitchen_1
+Thought: I have successfully picked up the red jug with a white dot pattern, "jug_0." Now, I need to navigate back to the living room table where I placed the "ACE Coffee Mug Kristen" to place the jug next to the cup.
+
+Navigate[table_10]
+Assigned!
+Result: Successful execution!
+Objects: clock_3: table_30 in hallway_1
+cup_1: table_10 in living_room_1
+cup_6: counter_19 in kitchen_1
+jug_7: counter_19 in kitchen_1
+jug_0: held by the agent
+glass_2: chair_41 in kitchen_1
+Thought: I have successfully navigated back to "table_10" in the living room where the "ACE Coffee Mug Kristen" is placed. Now, I will place the red jug with a white dot pattern, "jug_0," next to the cup on the table.
+
+Place[jug_0, on, table_10, next_to, cup_1]
+Assigned!
+Result: Successful execution!
+Objects: clock_3: table_30 in hallway_1
+cup_1: table_10 in living_room_1
+cup_6: counter_19 in kitchen_1
+jug_7: counter_19 in kitchen_1
+jug_0: table_10 in living_room_1
+glass_2: chair_41 in kitchen_1
+Thought: I have successfully placed both the "ACE Coffee Mug Kristen" and the red jug with a white dot pattern on "table_10" in the living room, next to each other. The task is now complete.
+
+Done[]
+Assigned!

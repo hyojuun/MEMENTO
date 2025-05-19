@@ -1,0 +1,197 @@
+You are an agent that solves embodied-agent planning problems. The task assigned to you will be situated in a house and will generally involve navigating to objects, picking and placing them on different receptacles to achieve rearrangement. You strictly follow any format specifications and pay attention to the previous actions taken in order to avoid repeating mistakes. 
+
+If there are multiple tasks to complete, please follow them in the order they appear in the instruction.
+
+Rooms do not need to be explored more than once. This means if you have explored the living room and have not found the object, then you should explore the kitchen, if a relevant object is still not found, you should explore the hallway etc...
+
+Many calls to the same action in a row are a sign that something has gone wrong and you should try a different action.
+
+Task: Put the shoe and pencil case on the bedroom chest of drawers. The shoe is a black and orange sports shoe, F10_TRX_FG_ssscuo9tGxb, and the pencil case is colorful featuring butterflies and flowers, Olive Kids Butterfly Garden. The pencil case is a gift from my childhood friend.
+
+Furniture:
+living_room_1: floor_living_room_1, table_14, table_15, couch_23, chair_32, chair_33, unknown_39
+bathroom_1: floor_bathroom_1, toilet_30
+closet_1: floor_closet_1, shelves_24, shelves_25, shelves_26, shelves_27
+workout_1: floor_workout_1
+bedroom_1: floor_bedroom_1, table_16, chair_17, bed_22, chest_of_drawers_36, chest_of_drawers_37, chest_of_drawers_38
+closet_2: floor_closet_2, chest_of_drawers_40
+bathroom_2: floor_bathroom_2, toilet_31
+entryway_1: floor_entryway_1, table_29
+kitchen_1: floor_kitchen_1, stool_18, stool_19, stool_20, unknown_28, counter_34, cabinet_35, cabinet_41, cabinet_42
+dining_room_1: floor_dining_room_1, chair_10, chair_11, chair_12, chair_13, table_21
+
+The following furnitures have a faucet: cabinet_42
+Objects:
+No objects found yet
+
+Possible Actions:
+- Close: Used for closing an articulated entity. You must provide the name of the furniture you want to close. Example (Close[chest_of_drawers_1])
+- DescribeObjectTool: Used to retrieve a brief descriptive or semantic meaning of a given object or furniture name. Example (DescribeObjectTool[sponge_1])
+- Explore: Search a specific room by visiting various receptacles or furnitures in that room. The input to the skill is the EXACT name of the room to be visited. Use the room names provided in the house description. This tool exhaustivly explores the specified room. Example (Explore[kitchen_1])
+- FindObjectTool: Used to find the exact name/names of the object/objects of interest. If you want to find the exact names of objects on specific receptacles or furnitures, please include that in the query. Example (FindObjectTool[toys on the floor] or FindObjectTool[apples])
+- FindReceptacleTool: Used to know the exact name of a receptacle. A receptacle is a furniture or entity (like a chair, table, bed etc.) where you can place an object. Example (FindReceptacleTool[a kitchen counter])
+- FindRoomTool: Used to know the exact name of a room in the house. A room is a region in the house where furniture is placed. Example (FindRoomTool[a room which might have something to eat])
+- Navigate: Used for navigating to an entity. You must provide the name of the entity you want to navigate to. Example (Navigate[counter_22])
+- Open: Used for opening an articulated entity. You must provide the name of the furniture you want to open. Example (Open[chest_of_drawers_1])
+- Pick: Used for picking up an object. You must provide the name of the object to be picked. The agent cannot hold more than one object at a time. Example (Pick[cup_1])
+- Place: Used for placing an object on a target location. You need to provide the name of the object to be placed, the name of the furniture where it should be placed, spatial relation ("on" or "within") describing the relation between the object and furniture. The object to be placed must already be held by the agent (i.e. picked previously). In addition to these, you can request to place the object near another object. For that you can optionally provide a spatial constraints ("next_to") and the name of the reference object. To place next to an object, the reference object must already be on the target furniture. API template - Place[<object_to_be_placed>, <spatial_relation>, <furniture to be placed on>, <spatial_constraint>, <reference_object>]. spatial_constraint and reference_object should be set to "None" when necessary.
+- Wait: Used to make agent stay idle for some time. Example (Wait[])
+- Done: Used to indicate that the agent has finished the task. Example (Done[])
+
+What is the next action to make progress towards completing the task?
+Return your response in the following format
+
+Thought: <reasoning for why you are taking the next action>
+<next action call>
+Assigned!
+Thought: To begin the task, I need to locate the shoe and the pencil case. I will start by exploring the living room to see if either of these objects are there.
+
+Explore[living_room_1]
+Assigned!
+Result: Successful execution!
+Objects: potato_4: shelves_26 in closet_1
+cup_2: couch_23 in living_room_1
+Thought: The shoe and pencil case were not found in the living room. I will now explore the kitchen to continue searching for these objects.
+
+Explore[kitchen_1]
+Assigned!
+Result: Successful execution!
+Objects: potato_4: shelves_26 in closet_1
+cup_2: couch_23 in living_room_1
+pencil_case_1: cabinet_35 in kitchen_1
+pencil_case_5: cabinet_35 in kitchen_1
+shoe_0: cabinet_35 in kitchen_1
+shoe_6: cabinet_35 in kitchen_1
+Thought: I have found multiple pencil cases and shoes in the kitchen. I need to identify the correct pencil case and shoe based on their descriptions. I will use the DescribeObjectTool to get more information about these objects.
+
+DescribeObjectTool[pencil_case_1]
+Assigned!
+Result: The description of the object 'pencil_case_1' is:
+A colorful pencil case featuring butterflies and flowers, Olive Kids Butterfly Garden.
+Objects: potato_4: shelves_26 in closet_1
+cup_2: couch_23 in living_room_1
+pencil_case_1: cabinet_35 in kitchen_1
+pencil_case_5: cabinet_35 in kitchen_1
+shoe_0: cabinet_35 in kitchen_1
+shoe_6: cabinet_35 in kitchen_1
+Thought: The description of 'pencil_case_1' matches the description of the pencil case I am looking for. Now, I need to identify the correct shoe. I will use the DescribeObjectTool to get more information about the shoes.
+
+DescribeObjectTool[shoe_0]
+Assigned!
+Result: The description of the object 'shoe_0' is:
+A black and orange sports shoe, F10_TRX_FG_ssscuo9tGxb.
+Objects: potato_4: shelves_26 in closet_1
+cup_2: couch_23 in living_room_1
+pencil_case_1: cabinet_35 in kitchen_1
+pencil_case_5: cabinet_35 in kitchen_1
+shoe_0: cabinet_35 in kitchen_1
+shoe_6: cabinet_35 in kitchen_1
+Thought: The description of 'shoe_0' matches the description of the shoe I am looking for. I have identified both the correct pencil case and shoe. I will now navigate to 'cabinet_35' in the kitchen to pick up the pencil case first.
+
+Navigate[cabinet_35]
+Assigned!
+Result: Successful execution!
+Objects: potato_4: shelves_26 in closet_1
+cup_2: couch_23 in living_room_1
+pencil_case_1: cabinet_35 in kitchen_1
+pencil_case_5: cabinet_35 in kitchen_1
+shoe_0: cabinet_35 in kitchen_1
+shoe_6: cabinet_35 in kitchen_1
+Thought: I am now at 'cabinet_35' in the kitchen. I will pick up the correct pencil case, 'pencil_case_1', which matches the description provided.
+
+Pick[pencil_case_1]
+Assigned!
+Result: Successful execution!
+Objects: potato_4: shelves_26 in closet_1
+cup_2: couch_23 in living_room_1
+pencil_case_1: held by the agent
+pencil_case_5: cabinet_35 in kitchen_1
+shoe_0: cabinet_35 in kitchen_1
+shoe_6: cabinet_35 in kitchen_1
+Thought: I have successfully picked up the correct pencil case. Now, I need to navigate to the bedroom to place the pencil case on the chest of drawers. I will first find the exact name of the chest of drawers in the bedroom.
+
+FindReceptacleTool[chest of drawers in bedroom_1]
+Assigned!
+Result: - chest_of_drawers_36 in bedroom, chest_of_drawers_37 in bedroom, chest_of_drawers_38 in bedroom
+Objects: potato_4: shelves_26 in closet_1
+cup_2: couch_23 in living_room_1
+pencil_case_1: held by the agent
+pencil_case_5: cabinet_35 in kitchen_1
+shoe_0: cabinet_35 in kitchen_1
+shoe_6: cabinet_35 in kitchen_1
+Thought: I have identified the chest of drawers in the bedroom. I will now navigate to 'chest_of_drawers_36' in the bedroom to place the pencil case.
+
+Navigate[chest_of_drawers_36]
+Assigned!
+Result: Successful execution!
+Objects: potato_4: shelves_26 in closet_1
+cup_2: couch_23 in living_room_1
+pencil_case_1: held by the agent
+pencil_case_5: cabinet_35 in kitchen_1
+shoe_0: cabinet_35 in kitchen_1
+shoe_6: cabinet_35 in kitchen_1
+cup_3: chair_17 in bedroom_1
+Thought: I am now at 'chest_of_drawers_36' in the bedroom. I will place the pencil case on this chest of drawers.
+
+Place[pencil_case_1, on, chest_of_drawers_36, None, None]
+Assigned!
+Result: Successful execution!
+Objects: potato_4: shelves_26 in closet_1
+cup_2: couch_23 in living_room_1
+pencil_case_1: chest_of_drawers_36 in bedroom_1
+pencil_case_5: cabinet_35 in kitchen_1
+shoe_0: cabinet_35 in kitchen_1
+shoe_6: cabinet_35 in kitchen_1
+cup_3: chair_17 in bedroom_1
+Thought: I have successfully placed the pencil case on the chest of drawers in the bedroom. Now, I need to return to the kitchen to pick up the correct shoe, 'shoe_0', which matches the description provided.
+
+Navigate[cabinet_35]
+Assigned!
+Result: Successful execution!
+Objects: potato_4: shelves_26 in closet_1
+cup_2: couch_23 in living_room_1
+pencil_case_1: chest_of_drawers_36 in bedroom_1
+pencil_case_5: cabinet_35 in kitchen_1
+shoe_0: cabinet_35 in kitchen_1
+shoe_6: cabinet_35 in kitchen_1
+cup_3: chair_17 in bedroom_1
+Thought: I am now back at 'cabinet_35' in the kitchen. I will pick up the correct shoe, 'shoe_0', which matches the description provided.
+
+Pick[shoe_0]
+Assigned!
+Result: Successful execution!
+Objects: potato_4: shelves_26 in closet_1
+cup_2: couch_23 in living_room_1
+pencil_case_1: chest_of_drawers_36 in bedroom_1
+pencil_case_5: cabinet_35 in kitchen_1
+shoe_0: held by the agent
+shoe_6: cabinet_35 in kitchen_1
+cup_3: chair_17 in bedroom_1
+Thought: I have successfully picked up the correct shoe. Now, I need to navigate back to the bedroom to place the shoe on the chest of drawers where I placed the pencil case.
+
+Navigate[chest_of_drawers_36]
+Assigned!
+Result: Successful execution!
+Objects: potato_4: shelves_26 in closet_1
+cup_2: couch_23 in living_room_1
+pencil_case_1: chest_of_drawers_36 in bedroom_1
+pencil_case_5: cabinet_35 in kitchen_1
+shoe_0: held by the agent
+shoe_6: cabinet_35 in kitchen_1
+cup_3: chair_17 in bedroom_1
+Thought: I am now at 'chest_of_drawers_36' in the bedroom. I will place the shoe on this chest of drawers next to the pencil case.
+
+Place[shoe_0, on, chest_of_drawers_36, next_to, pencil_case_1]
+Assigned!
+Result: Successful execution!
+Objects: potato_4: shelves_26 in closet_1
+cup_2: couch_23 in living_room_1
+pencil_case_1: chest_of_drawers_36 in bedroom_1
+pencil_case_5: cabinet_35 in kitchen_1
+shoe_0: chest_of_drawers_36 in bedroom_1
+shoe_6: cabinet_35 in kitchen_1
+cup_3: chair_17 in bedroom_1
+Thought: I have successfully placed both the pencil case and the shoe on the chest of drawers in the bedroom. The task is now complete.
+
+Done[]
+Assigned!
