@@ -1,0 +1,54 @@
+# @package _global_
+
+defaults:
+  - /main/base
+  - /habitat_conf/dataset/memento: acquisition_stage ###### SHOULD CHANGE
+  - /planner@evaluation.planner: llm_zero_shot_react_planner_rag ###### SHOULD CHANGE
+  - /world_model@world_model: gt_graph_partial_obs
+  - /llm@evaluation.planner.plan_config.llm: openai_chat ###### SHOULD CHANGE
+  - _self_
+
+num_runs_per_episode: 1
+num_proc: 2
+
+dataset_type: memory_management # memory_management or collaboration
+
+stage: 1 ###### SHOULD CHANGE
+build_memory: true ###### SHOULD CHANGE
+
+evaluation:
+  replan_thresh: 40  # max number of times the LLM is allowed to plan to finish the task
+  save_video: false
+  
+  agents:
+    agent_0:
+      planner:
+        plan_config:
+          constrained_generation: True
+          objects_response: True
+          replanning_threshold: 40
+
+  planner:
+    plan_config:
+      enable_rag: true
+      ####### SHOULD CHANGE
+
+      rag_dataset_dir: ####### SHOULD CHANGE
+        - "./data/memory/few_shot_examples" # path of the memory
+      
+      memory_path: "few_shot_examples" # path of the memory
+      ####### SHOULD CHANGE
+
+      top_k: 5 # RAG top k 
+      ####### SHOULD CHANGE
+
+      example_type: "react"
+      corresponding_memory: false # always retrieve corresponding memory
+
+      ensure_same_scene: false # retrieve memory from the same scene
+      ####### SHOULD CHANGE
+  
+habitat:
+  environment:
+    max_episode_steps: 10000
+    max_episode_seconds: 2000

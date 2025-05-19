@@ -1,0 +1,105 @@
+You are an agent that solves embodied-agent planning problems. The task assigned to you will be situated in a house and will generally involve navigating to objects, picking and placing them on different receptacles to achieve rearrangement. You strictly follow any format specifications and pay attention to the previous actions taken in order to avoid repeating mistakes. 
+
+If there are multiple tasks to complete, please follow them in the order they appear in the instruction.
+
+Rooms do not need to be explored more than once. This means if you have explored the living room and have not found the object, then you should explore the kitchen, if a relevant object is still not found, you should explore the hallway etc...
+
+Many calls to the same action in a row are a sign that something has gone wrong and you should try a different action.
+
+Task: Move the board game to the new table in the rec/game room.  The board game features Olaf from Frozen and has a Pop-O-Matic bubble.  I often play this board game with friends.
+
+Furniture:
+rec_1: floor_rec_1, chair_22, chair_23, chair_24, chair_25, table_36, couch_37, table_51
+toilet_1: floor_toilet_1
+tv_1: floor_tv_1, stool_21, table_38, chair_46, chair_47, couch_48, shelves_53, table_63
+bedroom_1: floor_bedroom_1, unknown_26, unknown_27, bed_30, chest_of_drawers_59, chest_of_drawers_72, chest_of_drawers_73
+closet_1: floor_closet_1
+bathroom_1: floor_bathroom_1
+laundryroom_1: floor_laundryroom_1, washer_dryer_43, washer_dryer_49, cabinet_56
+bedroom_2: floor_bedroom_2, table_29, shelves_35, bed_52, chest_of_drawers_62
+bathroom_2: floor_bathroom_2
+kitchen_1: floor_kitchen_1, counter_31, counter_54, cabinet_55, fridge_57, cabinet_71
+closet_2: floor_closet_2, chest_of_drawers_65
+closet_3: floor_closet_3
+bedroom_3: floor_bedroom_3, bed_39, chest_of_drawers_60, table_61, chest_of_drawers_64
+office_1: floor_office_1, shelves_34, table_40, chair_50, table_66
+bathroom_3: floor_bathroom_3
+bedroom_4: floor_bedroom_4, bed_45, chest_of_drawers_68
+entryway_1: floor_entryway_1, table_28, chair_41, chair_42, stand_67, unknown_70
+bedroom_5: floor_bedroom_5, bed_44, chest_of_drawers_58, chest_of_drawers_69, unknown_74, table_75
+closet_4: floor_closet_4
+bathroom_4: floor_bathroom_4, cabinet_33
+dining_room_1: floor_dining_room_1, table_32
+
+The following furnitures have a faucet: cabinet_33, cabinet_56, cabinet_71
+Objects:
+No objects found yet
+
+Possible Actions:
+Motor skills:
+- Navigate: Used for navigating to an entity. You must provide the name of the entity you want to navigate to. Example (Navigate[counter_22])
+- Pick: Used for picking up an object. You must provide the name of the object to be picked. The agent cannot hold more than one object at a time. Example (Pick[cup_1])
+- Place: Used for placing an object on a target location. You need to provide the name of the object to be placed, the name of the furniture where it should be placed, spatial relation ("on" or "within") describing the relation between the object and furniture. The object to be placed must already be held by the agent (i.e. picked previously). In addition to these, you can request to place the object near another object. For that you can optionally provide a spatial constraints ("next_to") and the name of the reference object. To place next to an object, the reference object must already be on the target furniture. API template - Place[<object_to_be_placed>, <spatial_relation>, <furniture to be placed on>, <spatial_constraint>, <reference_object>]. spatial_constraint and reference_object should be set to "None" when necessary.
+- Open: Used for opening an articulated entity. You must provide the name of the furniture you want to open. Example (Open[chest_of_drawers_1])
+- Close: Used for closing an articulated entity. You must provide the name of the furniture you want to close. Example (Close[chest_of_drawers_1])
+- Explore: Search a specific room by visiting various receptacles or furnitures in that room. The input to the skill is the EXACT name of the room to be visited. Use the room names provided in the house description. This tool exhaustivly explores the specified room. Example (Explore[kitchen_1])
+- PowerOn: Used for turning on a powered object. You need to provide the name of the object to be turned on.
+- PowerOff: Used for turning off a powered object. You need to provide the name of the object to be turned off.
+- Clean: Used for cleaning an object. You need to provide the name of the object to clean.
+- Fill: Used for filling an object. You need to provide the name of the object to fill.
+- Pour: Used for pouring from one container to another. This skill will pour into the specified container from whichever container is currently held by the agent.
+- Wait: Used to make agent stay idle for some time. Example (Wait[])
+Perception skills:
+- FindReceptacleTool: Used to know the exact name of a receptacle. A receptacle is a furniture or entity (like a chair, table, bed etc.) where you can place an object. Example (FindReceptacleTool[a kitchen counter])
+- FindObjectTool: Used to find the exact name/names of the object/objects of interest. If you want to find the exact names of objects on specific receptacles or furnitures, please include that in the query. Example (FindObjectTool[toys on the floor] or FindObjectTool[apples])
+- FindRoomTool: Used to know the exact name of a room in the house. A room is a region in the house where furniture is placed. Example (FindRoomTool[a room which might have something to eat])
+- DescribeObjectTool: Used to retrieve a brief descriptive or semantic meaning of a given object or furniture name. Example (DescribeObjectTool[sponge_1])
+
+- Done: Used to indicate that the agent has finished the task. Example (Done[])
+
+What is the next action to make progress towards completing the task?
+Return your response in the following format
+
+Thought: <reasoning for why you are taking the next action>
+<next action call>
+Assigned!
+
+Here is an example:
+Thought: Since there are no objects found I should explore a room I have not explored yet.
+Explore[<room name>]
+Assigned!
+
+
+Thought: Since there are no objects found yet, I should start by exploring a room where the board game might be located. A common place for board games is the living room or a similar recreational area. However, since the task specifies the rec/game room, I will explore that room first to see if the board game is already there.
+
+Explore[rec_1]
+Assigned!
+Result: Successful execution!
+Objects: board_game_0: table_51 in rec_1
+board_game_2: table_51 in rec_1
+Thought: I have found two board games on table_51 in the rec/game room. I need to identify which one features Olaf from Frozen and has a Pop-O-Matic bubble. I will use the DescribeObjectTool to get more information about these board games.
+
+DescribeObjectTool[board_game_0]
+Assigned!
+Result: The description of the object 'board_game_0' is:
+A colorful board game featuring Frozen's Olaf, with a distinctive Pop-O-Matic bubble.
+Objects: board_game_0: table_51 in rec_1
+board_game_2: table_51 in rec_1
+Thought: I have identified that board_game_0 is the board game featuring Olaf from Frozen with a Pop-O-Matic bubble. Now, I need to move this board game to the new table in the rec/game room. I will first pick up the board game.
+
+Pick[board_game_0]
+Assigned!
+Result: Successful execution!
+Objects: board_game_0: held by the agent
+board_game_2: table_51 in rec_1
+Thought: Now that I have picked up the correct board game, I need to place it on the new table in the rec/game room. The new table is identified as table_36. I will place the board game on this table.
+
+Place[board_game_0, on, table_36, None, None]
+Assigned!
+Result: Successful execution!
+Objects: board_game_0: table_36 in rec_1
+board_game_2: table_51 in rec_1
+Thought: I have successfully moved the board game featuring Olaf from Frozen with a Pop-O-Matic bubble to the new table in the rec/game room. The task is now complete.
+
+Done[]
+Assigned!

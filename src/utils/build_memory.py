@@ -113,5 +113,5 @@ def build_memory(output_path: str, data_path: str, dataset: MemoryManagementData
     # 2. 
 
     # learned_memory
-    # gold_memory
+    # corresponding_memory
     # => 적을 수 있음
