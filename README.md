@@ -7,10 +7,11 @@
 Embodied agents empowered by large language models (LLMs) have shown strong performance in object rearrangement tasks. However, these tasks primarily focus on single-turn interactions with static and simplified instructions, which limits their relevance to real-world personalized assistance. To provide meaningful support, personalized embodied agents must understand personalized knowledge—unique semantics users assign to their environment—and leverage episodic memory to interpret dynamic instructions. Therefore, in this work, we present MEMENTO, a personalized embodied agent evaluation framework designed for comprehensive assessment of memory utilization with personalized knowledge. MEMENTO consists of a two-stage memory evaluation process.  In the *memory acquisition stage*, agents perform tasks with instructions containing personalized knowledge while accumulating the interaction history. Subsequently, the *memory utilization stage* challenges agents to complete the same tasks using modified instructions that require previous interaction history to succeed.  This process enables the evaluation of agents' understanding of personalized knowledge in object rearrangement tasks by focusing on its role in goal interpretation: (1) the ability to identify target objects based on personal meaning (*object semantics*), and (2) the ability to infer object–location configurations from consistent user patterns, such as routines (*user patterns*). Our evaluation across a range of LLM-powered embodied agents reveals that even frontier models struggle to utilize episodic memory with personalized knowledge, highlighting key limitations and providing insights for developing more personalized embodied agents.
 
 ## Installation
+For anonymity reasons, we are unable to share the Docker image directly. Instead, we have uploaded the Dockerfile to the repository.
 
 ### Docker File Build
 ```bash
-docker build -t [image_name]:[tag] .
+docker build -t [your_image_name]:[tag] .
 ```
 
 ### Datasets
@@ -29,7 +30,7 @@ docker run -it \
   --gpus all \
   --pid=host \
   --name container_name \ # Container name
-  image_name/habitat:2.0 \ # Image name
+  [your_image_name]:[tag] \ # Image name
   /bin/bash
 ```
 
@@ -53,11 +54,11 @@ Note: HabitatLLM is separately defined in the workspace to facilitate code manag
 
 ## Datasets
 Our dataset is categorized into three parts. 
-1. Dataset for memory acquisition stage
-2. Dataset for memory utilization stage (single memory task)
-3. Dataset for memory utilization stage (dual memory task)
+1. Dataset for **memory acquisition** stage
+2. Dataset for **memory utilization** stage (**single memory** task)
+3. Dataset for **memory utilization** stage (**dual memory** task)
 
-We have uploaded all dataset files to the data/datasets/ directory.
+We have uploaded all dataset files to the `./data/datasets/` directory.
 
 ## Experiments
 
@@ -65,7 +66,7 @@ We have uploaded all dataset files to the data/datasets/ directory.
 MEMENTO includes a structured approach to running experiments, as exemplified by stage1:
 
 1. **Experiment Script**: 
-   - Path: `./scripts/v1_experiment_stage1.sh`
+   - Path: `./scripts/acquisition_stage.sh`
    - Used to execute the experiment
 
 2. **Data Definition**:
@@ -75,6 +76,7 @@ MEMENTO includes a structured approach to running experiments, as exemplified by
 3. **LLM Configuration**:
    - Path: `./llm/[desired_model_API].yaml`
    - Defines the model and API key
+   - Current Options: [openai_chat, anthropic, openrouter]
    - Note: Models like Llama and Qwen are accessed via OpenRouter
 
 4. **Experiment Management**:
@@ -90,7 +92,7 @@ MEMENTO includes a structured approach to running experiments, as exemplified by
 To run an experiment, simply execute the appropriate script:
 
 ```bash
-./scripts/v1_experiment_stage1.sh
+./scripts/acquisition_stage.sh
 ```
 
 ## Citation

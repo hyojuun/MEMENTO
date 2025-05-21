@@ -1,0 +1,871 @@
+[
+    {
+        "episode_id": 2964,
+        "error": false,
+        "instruction": "Could you first move my lucky pen from the living room table to the shelves, then place it on the floor next to the bed in the bedroom?",
+        "replanning_count_0": 14.0,
+        "run_id": 0,
+        "runtime": 649.3613793849945,
+        "sim_step_count": 3035.0,
+        "task_percent_complete": 0.6666666666666666,
+        "task_state_success": 0.0,
+        "org_data": {
+            "episode_id": "2964",
+            "instruction": "Could you first move my lucky pen from the living room table to the shelves, then place it on the floor next to the bed in the bedroom?",
+            "original_data_info": {
+                "episode_id": "770",
+                "instruction": "First, move the pen from the living room table to the shelves. Then, place it on the floor next to the bed in the bedroom.",
+                "data_path": "data/datasets/partnr_episodes/v0_0/val.json"
+            },
+            "metadata": {
+                "stage": "2",
+                "related_episode_id": "964",
+                "episode_type": "object_semantics",
+                "target_objects": [
+                    {
+                        "id": "Pen_4",
+                        "caption": "A white pen with black accents.",
+                        "source": "ai2thorhab",
+                        "category": "pen",
+                        "cluster": 1
+                    }
+                ],
+                "distractors": [
+                    {
+                        "id": "Pen_3",
+                        "caption": "A red pen with a black tip.",
+                        "source": "ai2thorhab",
+                        "category": "pen",
+                        "cluster": 0,
+                        "pair_id": "Pen_4"
+                    }
+                ],
+                "subtype": "history",
+                "num_targets": 1,
+                "memory": "The white pen with black accents is the user's lucky pen.",
+                "used_object": [
+                    "pen"
+                ]
+            },
+            "scene_id": "102816756",
+            "evaluation_propositions": [
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "Pen_4_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "163cdd355d2d228880dd6ed6f3fc5b49f7ba538a_:0000",
+                            "163cdd355d2d228880dd6ed6f3fc5b49f7ba538a_:0001"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_on_floor",
+                    "args": {
+                        "object_handles": [
+                            "Pen_4_:0000"
+                        ],
+                        "number": 1
+                    }
+                },
+                {
+                    "function_name": "is_next_to",
+                    "args": {
+                        "entity_handles_a": [
+                            "Pen_4_:0000"
+                        ],
+                        "entity_handles_b": [
+                            "0f74f9a6781d2bd17622b0a8ffd796fee0d9ec21_:0000",
+                            "75b2c8735d26f3933c858c7bfe946ccd9fb86132_:0000",
+                            "b1f9c4a8130cfa3f317eca08c6f88e53d5d069aa_:0000",
+                            "d4156a93b74d7b4ee716514036914d8e05d48c17_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_b": false,
+                        "l2_threshold": 1.0
+                    }
+                }
+            ],
+            "evaluation_proposition_dependencies": [
+                {
+                    "proposition_indices": [
+                        2
+                    ],
+                    "depends_on": [
+                        1
+                    ],
+                    "relation_type": "while_satisfied",
+                    "dependency_mode": "any"
+                },
+                {
+                    "proposition_indices": [
+                        1
+                    ],
+                    "depends_on": [
+                        0
+                    ],
+                    "relation_type": "after_satisfied",
+                    "dependency_mode": "any"
+                }
+            ],
+            "evaluation_constraints": [
+                {
+                    "type": "TemporalConstraint",
+                    "args": {
+                        "dag_edges": [
+                            [
+                                0,
+                                1
+                            ],
+                            [
+                                0,
+                                2
+                            ]
+                        ],
+                        "n_propositions": 3
+                    }
+                },
+                {
+                    "type": "TerminalSatisfactionConstraint",
+                    "args": {
+                        "proposition_indices": [
+                            1,
+                            2
+                        ],
+                        "n_propositions": null
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "episode_id": 3079,
+        "error": false,
+        "instruction": "Could you first move my grandfather's gift clock in the bedroom to the stand and place it next to the black vase with a round shape? Then, move the vase to the shelves in the living room.",
+        "replanning_count_0": 13.0,
+        "run_id": 0,
+        "runtime": 473.4544086456299,
+        "sim_step_count": 453.0,
+        "task_percent_complete": 0.6666666666666666,
+        "task_state_success": 0.0,
+        "org_data": {
+            "episode_id": "3079",
+            "instruction": "Could you first move my grandfather's gift clock in the bedroom to the stand and place it next to the black vase with a round shape? Then, move the vase to the shelves in the living room.",
+            "original_data_info": {
+                "episode_id": "705",
+                "instruction": "First, move the clock from the table in the bedroom to the stand and place it next to the vase. Then, move the vase from the stand in the bedroom to the shelves in the living room.",
+                "data_path": "data/datasets/partnr_episodes/v0_0/val.json"
+            },
+            "metadata": {
+                "stage": "2",
+                "related_episode_id": "1079",
+                "episode_type": "object_semantics",
+                "target_objects": [
+                    {
+                        "id": "f03a9160a43f06d49d579eb58f6ed63740afa2e4",
+                        "caption": "A maroon square clock with a patterned face.",
+                        "source": "hssd_hab",
+                        "category": "clock",
+                        "cluster": 0
+                    },
+                    {
+                        "id": "2b6a6f943bdaf73ef2018a02ceb1720ab04b5b2d",
+                        "caption": "A black vase with a round shape.",
+                        "source": "hssd_hab",
+                        "category": "vase",
+                        "cluster": 1
+                    }
+                ],
+                "distractors": [
+                    {
+                        "id": "Alarm_Clock_25",
+                        "caption": "A black digital clock with a red LED display.",
+                        "source": "ai2thorhab",
+                        "category": "clock",
+                        "cluster": 1,
+                        "pair_id": "f03a9160a43f06d49d579eb58f6ed63740afa2e4"
+                    },
+                    {
+                        "id": "18a2fab4d1fe71c969e654740028d422d18ad9b6",
+                        "caption": "A white vase with a textured geometric pattern.",
+                        "source": "hssd_hab",
+                        "category": "vase",
+                        "cluster": 0,
+                        "pair_id": "2b6a6f943bdaf73ef2018a02ceb1720ab04b5b2d"
+                    }
+                ],
+                "subtype": "history",
+                "num_targets": 1,
+                "memory": "The maroon square clock with a patterned face was a gift from 3the user's grandfather.",
+                "used_object": [
+                    "clock"
+                ]
+            },
+            "scene_id": "106878915_174887025",
+            "evaluation_propositions": [
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "f03a9160a43f06d49d579eb58f6ed63740afa2e4_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "e194cb80e9941fcf08be2185146d4dccf9d532c2_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_next_to",
+                    "args": {
+                        "entity_handles_a": [
+                            "f03a9160a43f06d49d579eb58f6ed63740afa2e4_:0000"
+                        ],
+                        "entity_handles_b": [
+                            "2b6a6f943bdaf73ef2018a02ceb1720ab04b5b2d_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_b": false,
+                        "l2_threshold": 1.0
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "2b6a6f943bdaf73ef2018a02ceb1720ab04b5b2d_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "3220d21b0885b4f0ac2c044d00a76c2ff7844dca_:0000",
+                            "679d4207f433ee1bb6030bae48df158a775d2b0b_part_64_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                }
+            ],
+            "evaluation_proposition_dependencies": [
+                {
+                    "proposition_indices": [
+                        1
+                    ],
+                    "depends_on": [
+                        0
+                    ],
+                    "relation_type": "while_satisfied",
+                    "dependency_mode": "any"
+                },
+                {
+                    "proposition_indices": [
+                        2
+                    ],
+                    "depends_on": [
+                        1
+                    ],
+                    "relation_type": "after_satisfied",
+                    "dependency_mode": "any"
+                }
+            ],
+            "evaluation_constraints": [
+                {
+                    "type": "TemporalConstraint",
+                    "args": {
+                        "dag_edges": [
+                            [
+                                0,
+                                2
+                            ],
+                            [
+                                1,
+                                2
+                            ]
+                        ],
+                        "n_propositions": 3
+                    }
+                },
+                {
+                    "type": "TerminalSatisfactionConstraint",
+                    "args": {
+                        "proposition_indices": [
+                            0,
+                            2
+                        ],
+                        "n_propositions": null
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "episode_id": 2978,
+        "error": false,
+        "instruction": "Could you move the book gifted by my dear friend and the Olive Kids Paisley Pencil Case from the bedroom to the living room and place them on the table?",
+        "replanning_count_0": 14.0,
+        "run_id": 0,
+        "runtime": 542.7940046787262,
+        "sim_step_count": 3409.0,
+        "task_percent_complete": 0.5,
+        "task_state_success": 0.0,
+        "org_data": {
+            "episode_id": "2978",
+            "instruction": "Could you move the book gifted by my dear friend and the Olive Kids Paisley Pencil Case from the bedroom to the living room and place them on the table?",
+            "original_data_info": {
+                "episode_id": "390",
+                "instruction": "Move a book and a pencil case from the bedroom to the living room. Place them on the table.",
+                "data_path": "data/datasets/partnr_episodes/v0_0/val.json"
+            },
+            "metadata": {
+                "stage": "2",
+                "related_episode_id": "978",
+                "episode_type": "object_semantics",
+                "target_objects": [
+                    {
+                        "id": "81c6dd3830a8df6644bd1f6b9a239615234e888f",
+                        "caption": "A book with a cover image of a modern interior.",
+                        "source": "hssd_hab",
+                        "category": "book",
+                        "cluster": 1
+                    },
+                    {
+                        "id": "Olive_Kids_Paisley_Pencil_Case",
+                        "caption": "A colorful, paisley-patterned pencil case, Olive Kids Paisley Pencil Case.",
+                        "source": "google",
+                        "category": "pencil_case",
+                        "cluster": 0
+                    }
+                ],
+                "distractors": [
+                    {
+                        "id": "7c4abfaad6caa34008cf4aac249adcba013ad51b",
+                        "caption": "A black book with a slim profile.",
+                        "source": "hssd_hab",
+                        "category": "book",
+                        "cluster": 0,
+                        "pair_id": "81c6dd3830a8df6644bd1f6b9a239615234e888f"
+                    },
+                    {
+                        "id": "Big_Dot_Pink_Pencil_Case",
+                        "caption": "A pink pencil case with large white dots, Big Dot Pink Pencil Case.",
+                        "source": "google",
+                        "category": "pencil_case",
+                        "cluster": 1,
+                        "pair_id": "Olive_Kids_Paisley_Pencil_Case"
+                    }
+                ],
+                "subtype": "history",
+                "num_targets": 1,
+                "memory": "The book with a cover image of a modern interior was a gift from the user's dear friend.",
+                "used_object": [
+                    "book"
+                ]
+            },
+            "scene_id": "107733960_175999701",
+            "evaluation_propositions": [
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "81c6dd3830a8df6644bd1f6b9a239615234e888f_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "7d32f5f7ab814a5cbe9b8eff80e139d2d9f13cf7_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "Olive_Kids_Paisley_Pencil_Case_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "7d32f5f7ab814a5cbe9b8eff80e139d2d9f13cf7_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                }
+            ],
+            "evaluation_proposition_dependencies": [],
+            "evaluation_constraints": [
+                {
+                    "type": "TemporalConstraint",
+                    "args": {
+                        "dag_edges": [],
+                        "n_propositions": 2
+                    }
+                },
+                {
+                    "type": "TerminalSatisfactionConstraint",
+                    "args": {
+                        "proposition_indices": [
+                            0,
+                            1
+                        ],
+                        "n_propositions": null
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "episode_id": 3175,
+        "error": false,
+        "instruction": "Could you move the gift toy from my best friend from the lounge chair to the porch chair?",
+        "replanning_count_0": 15.0,
+        "run_id": 0,
+        "runtime": 488.3199186325073,
+        "sim_step_count": 1136.0,
+        "task_percent_complete": 0.0,
+        "task_state_success": 0.0,
+        "org_data": {
+            "episode_id": "3175",
+            "instruction": "Could you move the gift toy from my best friend from the lounge chair to the porch chair?",
+            "original_data_info": {
+                "episode_id": "519",
+                "instruction": "Move the stuffed toy from the lounge chair to the porch chair.",
+                "data_path": "data/datasets/partnr_episodes/v0_0/val.json"
+            },
+            "metadata": {
+                "stage": "2",
+                "related_episode_id": "1175",
+                "episode_type": "object_semantics",
+                "target_objects": [
+                    {
+                        "id": "Squirrel",
+                        "caption": "A brown and gray stuffed toy squirrel with a fluffy tail.",
+                        "source": "google",
+                        "category": "stuffed_toy",
+                        "cluster": 1
+                    }
+                ],
+                "distractors": [
+                    {
+                        "id": "Animal_Planet_Foam_2Headed_Dragon",
+                        "caption": "A green and blue two-headed dragon stuffed toy, Animal Planet Foam.",
+                        "source": "google",
+                        "category": "stuffed_toy",
+                        "cluster": 0,
+                        "pair_id": "Squirrel"
+                    }
+                ],
+                "subtype": "history",
+                "num_targets": 1,
+                "memory": "The brown and gray stuffed toy squirrel with a fluffy tail is a gift from the user's best friend.",
+                "used_object": [
+                    "stuffed_toy"
+                ]
+            },
+            "scene_id": "107734176_176000019",
+            "evaluation_propositions": [
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "Squirrel_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "0bd3fff760626beb3b250521c516ebc696984229_:0001"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                }
+            ],
+            "evaluation_proposition_dependencies": [],
+            "evaluation_constraints": [
+                {
+                    "type": "TemporalConstraint",
+                    "args": {
+                        "dag_edges": [],
+                        "n_propositions": 1
+                    }
+                },
+                {
+                    "type": "TerminalSatisfactionConstraint",
+                    "args": {
+                        "proposition_indices": [
+                            0
+                        ],
+                        "n_propositions": null
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "episode_id": 3241,
+        "error": false,
+        "instruction": "Please move the black kettle with a silver handle and my Japan trip souvenir keychain from the kitchen cabinet to the bedroom filing cabinet, placing them next to each other.",
+        "replanning_count_0": 15.0,
+        "run_id": 0,
+        "runtime": 200.34085941314697,
+        "sim_step_count": 1849.0,
+        "task_percent_complete": 0.0,
+        "task_state_success": 0.0,
+        "org_data": {
+            "episode_id": "3241",
+            "instruction": "Please move the black kettle with a silver handle and my Japan trip souvenir keychain from the kitchen cabinet to the bedroom filing cabinet, placing them next to each other.",
+            "original_data_info": {
+                "episode_id": "616",
+                "instruction": "Move the kettle and keychain from the kitchen cabinet to the bedroom filing cabinet. Place them next to each other on the filing cabinet.",
+                "data_path": "data/datasets/partnr_episodes/v0_0/val.json"
+            },
+            "metadata": {
+                "stage": "2",
+                "related_episode_id": "1241",
+                "episode_type": "object_semantics",
+                "target_objects": [
+                    {
+                        "id": "6982c7794384aecaa6134b600d473e98d812b8be",
+                        "caption": "A black kettle with a silver handle.",
+                        "source": "hssd_hab",
+                        "category": "kettle",
+                        "cluster": 0
+                    },
+                    {
+                        "id": "Keychain_1",
+                        "caption": "A black and orange keychain with a circular pendant.",
+                        "source": "ai2thorhab",
+                        "category": "keychain",
+                        "cluster": 0
+                    }
+                ],
+                "distractors": [
+                    {
+                        "id": "Kettle_1",
+                        "caption": "A black kettle with a pixelated pattern.",
+                        "source": "ai2thorhab",
+                        "category": "kettle",
+                        "cluster": 1,
+                        "pair_id": "6982c7794384aecaa6134b600d473e98d812b8be"
+                    },
+                    {
+                        "id": "Keychain_2",
+                        "caption": "A black keychain with white buttons and silver keys.",
+                        "source": "ai2thorhab",
+                        "category": "keychain",
+                        "cluster": 1,
+                        "pair_id": "Keychain_1"
+                    }
+                ],
+                "subtype": "history",
+                "num_targets": 1,
+                "memory": "The black and orange keychain with a circular pendant is a souvenir from the user's trip to Japan.",
+                "used_object": [
+                    "keychain"
+                ]
+            },
+            "scene_id": "103997895_171031182",
+            "evaluation_propositions": [
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "6982c7794384aecaa6134b600d473e98d812b8be_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "f70c9cd37e4949edaa532254729fb3153ff6a76f_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "Keychain_1_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "f70c9cd37e4949edaa532254729fb3153ff6a76f_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_next_to",
+                    "args": {
+                        "entity_handles_a": [
+                            "6982c7794384aecaa6134b600d473e98d812b8be_:0000"
+                        ],
+                        "entity_handles_b": [
+                            "Keychain_1_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_b": false,
+                        "l2_threshold": 1.0
+                    }
+                }
+            ],
+            "evaluation_proposition_dependencies": [
+                {
+                    "proposition_indices": [
+                        2
+                    ],
+                    "depends_on": [
+                        0,
+                        1
+                    ],
+                    "relation_type": "while_satisfied",
+                    "dependency_mode": "any"
+                }
+            ],
+            "evaluation_constraints": [
+                {
+                    "type": "TemporalConstraint",
+                    "args": {
+                        "dag_edges": [],
+                        "n_propositions": 3
+                    }
+                },
+                {
+                    "type": "TerminalSatisfactionConstraint",
+                    "args": {
+                        "proposition_indices": [
+                            0,
+                            1,
+                            2
+                        ],
+                        "n_propositions": null
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "episode_id": 3250,
+        "error": false,
+        "instruction": "Could you place the toy airplane, which is a gift from my childhood friend, next to the couch on the living room table?",
+        "replanning_count_0": 10.0,
+        "run_id": 0,
+        "runtime": 115.99154829978944,
+        "sim_step_count": 1100.0,
+        "task_percent_complete": 0.5,
+        "task_state_success": 0.0,
+        "org_data": {
+            "episode_id": "3250",
+            "instruction": "Could you place the toy airplane, which is a gift from my childhood friend, next to the couch on the living room table?",
+            "original_data_info": {
+                "episode_id": "749",
+                "instruction": "Move the toy airplane from the bedroom to the living room table. Place it next to the couch.",
+                "data_path": "data/datasets/partnr_episodes/v0_0/val.json"
+            },
+            "metadata": {
+                "stage": "2",
+                "related_episode_id": "1250",
+                "episode_type": "object_semantics",
+                "target_objects": [
+                    {
+                        "id": "Air_Hogs_Wind_Flyers_Set_Airplane_Red",
+                        "caption": "A red toy airplane, Air Hogs Wind Flyers Set.",
+                        "source": "google",
+                        "category": "toy_airplane",
+                        "cluster": 1
+                    }
+                ],
+                "distractors": [
+                    {
+                        "id": "TURBOPROP_AIRPLANE_WITH_PILOT",
+                        "caption": "A red and white toy turboprop airplane with a pilot.",
+                        "source": "google",
+                        "category": "toy_airplane",
+                        "cluster": 0,
+                        "pair_id": "Air_Hogs_Wind_Flyers_Set_Airplane_Red"
+                    }
+                ],
+                "subtype": "history",
+                "num_targets": 1,
+                "memory": "The red toy airplane, part of the Air Hogs Wind Flyers Set, is a gift from the user's childhood friend.",
+                "used_object": [
+                    "toy_airplane"
+                ]
+            },
+            "scene_id": "103997895_171031182",
+            "evaluation_propositions": [
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "Air_Hogs_Wind_Flyers_Set_Airplane_Red_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "2f38b4f83d8a77af0eb36406b0f00df98cef5e47_:0000",
+                            "735845d0674f69f736af7e0f116767a01392f9b8_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_next_to",
+                    "args": {
+                        "entity_handles_a": [
+                            "Air_Hogs_Wind_Flyers_Set_Airplane_Red_:0000"
+                        ],
+                        "entity_handles_b": [
+                            "50bf1434785c2776eac002be0f7c3abeff54709c_:0000",
+                            "809aa90d72a9aa73fadef388620c7ca3668f9d00_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_b": false,
+                        "l2_threshold": 1.0
+                    }
+                }
+            ],
+            "evaluation_proposition_dependencies": [
+                {
+                    "proposition_indices": [
+                        1
+                    ],
+                    "depends_on": [
+                        0
+                    ],
+                    "relation_type": "while_satisfied",
+                    "dependency_mode": "any"
+                }
+            ],
+            "evaluation_constraints": [
+                {
+                    "type": "TemporalConstraint",
+                    "args": {
+                        "dag_edges": [],
+                        "n_propositions": 2
+                    }
+                },
+                {
+                    "type": "TerminalSatisfactionConstraint",
+                    "args": {
+                        "proposition_indices": [
+                            0,
+                            1
+                        ],
+                        "n_propositions": null
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "episode_id": 3235,
+        "error": false,
+        "instruction": "Could you move my collectible Android figure and the action figure of Leonardo from Teenage Mutant Ninja Turtles to a new living room table?",
+        "replanning_count_0": 12.0,
+        "run_id": 0,
+        "runtime": 152.38265943527222,
+        "sim_step_count": 805.0,
+        "task_percent_complete": 0.5,
+        "task_state_success": 0.0,
+        "org_data": {
+            "episode_id": "3235",
+            "instruction": "Could you move my collectible Android figure and the action figure of Leonardo from Teenage Mutant Ninja Turtles to a new living room table?",
+            "original_data_info": {
+                "episode_id": "493",
+                "instruction": "Move the android figure to a new living room table. Also, move the action figure to a new living room table.",
+                "data_path": "data/datasets/partnr_episodes/v0_0/val.json"
+            },
+            "metadata": {
+                "stage": "2",
+                "related_episode_id": "1235",
+                "episode_type": "object_semantics",
+                "target_objects": [
+                    {
+                        "id": "Android_Figure_Panda",
+                        "caption": "A black and white Android figure, Android_Figure_Panda.",
+                        "source": "google",
+                        "category": "android_figure",
+                        "cluster": 0
+                    },
+                    {
+                        "id": "Nickelodeon_Teenage_Mutant_Ninja_Turtles_Leonardo",
+                        "caption": "A green and blue action figure, Leonardo from Teenage Mutant Ninja Turtles.",
+                        "source": "google",
+                        "category": "action_figure",
+                        "cluster": 0
+                    }
+                ],
+                "distractors": [
+                    {
+                        "id": "Android_Lego",
+                        "caption": "A green Android Lego figure with blocky features.",
+                        "source": "google",
+                        "category": "android_figure",
+                        "cluster": 1,
+                        "pair_id": "Android_Figure_Panda"
+                    },
+                    {
+                        "id": "Dino_3",
+                        "caption": "A green and yellow action figure with dinosaur features, Dino_3.",
+                        "source": "google",
+                        "category": "action_figure",
+                        "cluster": 1,
+                        "pair_id": "Nickelodeon_Teenage_Mutant_Ninja_Turtles_Leonardo"
+                    }
+                ],
+                "subtype": "history",
+                "num_targets": 1,
+                "memory": "The black and white Android_Figure_Panda is a collectible item for the user.",
+                "used_object": [
+                    "android_figure"
+                ]
+            },
+            "scene_id": "103997895_171031182",
+            "evaluation_propositions": [
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "Android_Figure_Panda_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "735845d0674f69f736af7e0f116767a01392f9b8_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "Nickelodeon_Teenage_Mutant_Ninja_Turtles_Leonardo_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "2f38b4f83d8a77af0eb36406b0f00df98cef5e47_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                }
+            ],
+            "evaluation_proposition_dependencies": [],
+            "evaluation_constraints": [
+                {
+                    "type": "TemporalConstraint",
+                    "args": {
+                        "dag_edges": [],
+                        "n_propositions": 2
+                    }
+                },
+                {
+                    "type": "TerminalSatisfactionConstraint",
+                    "args": {
+                        "proposition_indices": [
+                            0,
+                            1
+                        ],
+                        "n_propositions": null
+                    }
+                }
+            ]
+        }
+    }
+]

@@ -1,0 +1,224 @@
+You are an agent that solves embodied-agent planning problems. The task assigned to you will be situated in a house and will generally involve navigating to objects, picking and placing them on different receptacles to achieve rearrangement. You strictly follow any format specifications and pay attention to the previous actions taken in order to avoid repeating mistakes. 
+
+If there are multiple tasks to complete, please follow them in the order they appear in the instruction.
+
+Rooms do not need to be explored more than once. This means if you have explored the living room and have not found the object, then you should explore the kitchen, if a relevant object is still not found, you should explore the hallway etc...
+
+Many calls to the same action in a row are a sign that something has gone wrong and you should try a different action.
+
+Task: Move the phone stand, laptop stand, and multiport hub to the entryway and place them on the table. I prefer to have these items ready on the entryway table for when I head out for work.
+
+Furniture:
+living_room_1: floor_living_room_1, table_14, table_15, couch_23, chair_32, chair_33, unknown_39
+bathroom_1: floor_bathroom_1, toilet_30
+closet_1: floor_closet_1, shelves_24, shelves_25, shelves_26, shelves_27
+workout_1: floor_workout_1
+bedroom_1: floor_bedroom_1, table_16, chair_17, bed_22, chest_of_drawers_36, chest_of_drawers_37, chest_of_drawers_38
+closet_2: floor_closet_2, chest_of_drawers_40
+bathroom_2: floor_bathroom_2, toilet_31
+entryway_1: floor_entryway_1, table_29
+kitchen_1: floor_kitchen_1, stool_18, stool_19, stool_20, unknown_28, counter_34, cabinet_35, cabinet_41, cabinet_42
+dining_room_1: floor_dining_room_1, chair_10, chair_11, chair_12, chair_13, table_21
+
+The following furnitures have a faucet: cabinet_42
+Objects:
+No objects found yet
+
+Possible Actions:
+- Close: Used for closing an articulated entity. You must provide the name of the furniture you want to close. Example (Close[chest_of_drawers_1])
+- DescribeObjectTool: Used to retrieve a brief descriptive or semantic meaning of a given object or furniture name. Example (DescribeObjectTool[sponge_1])
+- Explore: Search a specific room by visiting various receptacles or furnitures in that room. The input to the skill is the EXACT name of the room to be visited. Use the room names provided in the house description. This tool exhaustivly explores the specified room. Example (Explore[kitchen_1])
+- FindObjectTool: Used to find the exact name/names of the object/objects of interest. If you want to find the exact names of objects on specific receptacles or furnitures, please include that in the query. Example (FindObjectTool[toys on the floor] or FindObjectTool[apples])
+- FindReceptacleTool: Used to know the exact name of a receptacle. A receptacle is a furniture or entity (like a chair, table, bed etc.) where you can place an object. Example (FindReceptacleTool[a kitchen counter])
+- FindRoomTool: Used to know the exact name of a room in the house. A room is a region in the house where furniture is placed. Example (FindRoomTool[a room which might have something to eat])
+- Navigate: Used for navigating to an entity. You must provide the name of the entity you want to navigate to. Example (Navigate[counter_22])
+- Open: Used for opening an articulated entity. You must provide the name of the furniture you want to open. Example (Open[chest_of_drawers_1])
+- Pick: Used for picking up an object. You must provide the name of the object to be picked. The agent cannot hold more than one object at a time. Example (Pick[cup_1])
+- Place: Used for placing an object on a target location. You need to provide the name of the object to be placed, the name of the furniture where it should be placed, spatial relation ("on" or "within") describing the relation between the object and furniture. The object to be placed must already be held by the agent (i.e. picked previously). In addition to these, you can request to place the object near another object. For that you can optionally provide a spatial constraints ("next_to") and the name of the reference object. To place next to an object, the reference object must already be on the target furniture. API template - Place[<object_to_be_placed>, <spatial_relation>, <furniture to be placed on>, <spatial_constraint>, <reference_object>]. spatial_constraint and reference_object should be set to "None" when necessary.
+- Wait: Used to make agent stay idle for some time. Example (Wait[])
+- Done: Used to indicate that the agent has finished the task. Example (Done[])
+
+What is the next action to make progress towards completing the task?
+Return your response in the following format
+
+Thought: <reasoning for why you are taking the next action>
+<next action call>
+Assigned!
+Thought: To begin the task, I need to locate the phone stand, laptop stand, and multiport hub. Since no objects have been found yet, I will start by exploring the living room, as it is a common place for such items.
+
+Explore[living_room_1]
+Assigned!
+Result: Successful execution!
+Objects: soap_dispenser_4: shelves_27 in closet_1
+box_3: shelves_25 in closet_1
+box_6: shelves_25 in closet_1
+Thought: The living room did not contain the objects of interest. I will proceed to explore the bedroom next, as it is another likely location for the phone stand, laptop stand, and multiport hub.
+
+Explore[bedroom_1]
+Assigned!
+Result: Successful execution!
+Objects: soap_dispenser_4: shelves_27 in closet_1
+box_3: shelves_25 in closet_1
+box_6: shelves_25 in closet_1
+phone_stand_0: cabinet_35 in kitchen_1
+laptop_stand_1: cabinet_35 in kitchen_1
+Thought: The phone stand and laptop stand have been located in the kitchen. I will now explore the kitchen to find the multiport hub, as it might be in the same area.
+
+Explore[kitchen_1]
+Assigned!
+Result: Successful execution!
+Objects: soap_dispenser_4: shelves_27 in closet_1
+box_3: shelves_25 in closet_1
+box_6: shelves_25 in closet_1
+phone_stand_0: cabinet_35 in kitchen_1
+laptop_stand_1: cabinet_35 in kitchen_1
+multiport_hub_2: cabinet_35 in kitchen_1
+bottle_5: cabinet_42 in kitchen_1
+Thought: I have located all the required objects: the phone stand, laptop stand, and multiport hub in the kitchen. I will now proceed to navigate to the cabinet in the kitchen to pick up these items one by one and move them to the entryway table.
+
+Navigate[cabinet_35]
+Assigned!
+Result: Successful execution!
+Objects: soap_dispenser_4: shelves_27 in closet_1
+box_3: shelves_25 in closet_1
+box_6: shelves_25 in closet_1
+phone_stand_0: cabinet_35 in kitchen_1
+laptop_stand_1: cabinet_35 in kitchen_1
+multiport_hub_2: cabinet_35 in kitchen_1
+bottle_5: cabinet_42 in kitchen_1
+Thought: I am now at the cabinet in the kitchen where the phone stand, laptop stand, and multiport hub are located. I will start by picking up the phone stand.
+
+Pick[phone_stand_0]
+Assigned!
+Result: Successful execution!
+Objects: soap_dispenser_4: shelves_27 in closet_1
+box_3: shelves_25 in closet_1
+box_6: shelves_25 in closet_1
+phone_stand_0: held by the agent
+laptop_stand_1: cabinet_35 in kitchen_1
+multiport_hub_2: cabinet_35 in kitchen_1
+bottle_5: cabinet_42 in kitchen_1
+Thought: I have successfully picked up the phone stand. Now, I will navigate to the entryway table to place the phone stand there.
+
+Navigate[table_29]
+Assigned!
+Result: Successful execution!
+Objects: soap_dispenser_4: shelves_27 in closet_1
+box_3: shelves_25 in closet_1
+box_6: shelves_25 in closet_1
+phone_stand_0: held by the agent
+laptop_stand_1: cabinet_35 in kitchen_1
+multiport_hub_2: cabinet_35 in kitchen_1
+bottle_5: cabinet_42 in kitchen_1
+Thought: I am now at the entryway table. I will place the phone stand on the table.
+
+Place[phone_stand_0, on, table_29, None, None]
+Assigned!
+Result: Successful execution!
+Objects: soap_dispenser_4: shelves_27 in closet_1
+box_3: shelves_25 in closet_1
+box_6: shelves_25 in closet_1
+phone_stand_0: table_29 in entryway_1
+laptop_stand_1: cabinet_35 in kitchen_1
+multiport_hub_2: cabinet_35 in kitchen_1
+bottle_5: cabinet_42 in kitchen_1
+Thought: The phone stand has been successfully placed on the entryway table. Next, I will navigate back to the cabinet in the kitchen to pick up the laptop stand.
+
+Navigate[cabinet_35]
+Assigned!
+Result: Successful execution!
+Objects: soap_dispenser_4: shelves_27 in closet_1
+box_3: shelves_25 in closet_1
+box_6: shelves_25 in closet_1
+phone_stand_0: table_29 in entryway_1
+laptop_stand_1: cabinet_35 in kitchen_1
+multiport_hub_2: cabinet_35 in kitchen_1
+bottle_5: cabinet_42 in kitchen_1
+Thought: I am now back at the cabinet in the kitchen. I will pick up the laptop stand next.
+
+Pick[laptop_stand_1]
+Assigned!
+Result: Successful execution!
+Objects: soap_dispenser_4: shelves_27 in closet_1
+box_3: shelves_25 in closet_1
+box_6: shelves_25 in closet_1
+phone_stand_0: table_29 in entryway_1
+laptop_stand_1: held by the agent
+multiport_hub_2: cabinet_35 in kitchen_1
+bottle_5: cabinet_42 in kitchen_1
+Thought: I have successfully picked up the laptop stand. Now, I will navigate to the entryway table to place the laptop stand there.
+
+Navigate[table_29]
+Assigned!
+Result: Successful execution!
+Objects: soap_dispenser_4: shelves_27 in closet_1
+box_3: shelves_25 in closet_1
+box_6: shelves_25 in closet_1
+phone_stand_0: table_29 in entryway_1
+laptop_stand_1: held by the agent
+multiport_hub_2: cabinet_35 in kitchen_1
+bottle_5: cabinet_42 in kitchen_1
+Thought: I am now at the entryway table. I will place the laptop stand on the table.
+
+Place[laptop_stand_1, on, table_29, None, None]
+Assigned!
+Result: Successful execution!
+Objects: soap_dispenser_4: shelves_27 in closet_1
+box_3: shelves_25 in closet_1
+box_6: shelves_25 in closet_1
+phone_stand_0: table_29 in entryway_1
+laptop_stand_1: table_29 in entryway_1
+multiport_hub_2: cabinet_35 in kitchen_1
+bottle_5: cabinet_42 in kitchen_1
+Thought: The laptop stand has been successfully placed on the entryway table. Next, I will navigate back to the cabinet in the kitchen to pick up the multiport hub.
+
+Navigate[cabinet_35]
+Assigned!
+Result: Successful execution!
+Objects: soap_dispenser_4: shelves_27 in closet_1
+box_3: shelves_25 in closet_1
+box_6: shelves_25 in closet_1
+phone_stand_0: table_29 in entryway_1
+laptop_stand_1: table_29 in entryway_1
+multiport_hub_2: cabinet_35 in kitchen_1
+bottle_5: cabinet_42 in kitchen_1
+Thought: I am now back at the cabinet in the kitchen. I will pick up the multiport hub next.
+
+Pick[multiport_hub_2]
+Assigned!
+Result: Successful execution!
+Objects: soap_dispenser_4: shelves_27 in closet_1
+box_3: shelves_25 in closet_1
+box_6: shelves_25 in closet_1
+phone_stand_0: table_29 in entryway_1
+laptop_stand_1: table_29 in entryway_1
+multiport_hub_2: held by the agent
+bottle_5: cabinet_42 in kitchen_1
+Thought: I have successfully picked up the multiport hub. Now, I will navigate to the entryway table to place the multiport hub there.
+
+Navigate[table_29]
+Assigned!
+Result: Successful execution!
+Objects: soap_dispenser_4: shelves_27 in closet_1
+box_3: shelves_25 in closet_1
+box_6: shelves_25 in closet_1
+phone_stand_0: table_29 in entryway_1
+laptop_stand_1: table_29 in entryway_1
+multiport_hub_2: held by the agent
+bottle_5: cabinet_42 in kitchen_1
+Thought: I am now at the entryway table. I will place the multiport hub on the table to complete the task.
+
+Place[multiport_hub_2, on, table_29, None, None]
+Assigned!
+Result: Successful execution!
+Objects: soap_dispenser_4: shelves_27 in closet_1
+box_3: shelves_25 in closet_1
+box_6: shelves_25 in closet_1
+phone_stand_0: table_29 in entryway_1
+laptop_stand_1: table_29 in entryway_1
+multiport_hub_2: table_29 in entryway_1
+bottle_5: cabinet_42 in kitchen_1
+Thought: All the required objects—the phone stand, laptop stand, and multiport hub—have been successfully placed on the entryway table. The task is now complete.
+
+Done[]
+Assigned!

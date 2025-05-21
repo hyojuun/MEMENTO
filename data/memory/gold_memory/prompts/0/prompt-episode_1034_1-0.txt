@@ -1,0 +1,194 @@
+You are an agent that solves embodied-agent planning problems. The task assigned to you will be situated in a house and will generally involve navigating to objects, picking and placing them on different receptacles to achieve rearrangement. You strictly follow any format specifications and pay attention to the previous actions taken in order to avoid repeating mistakes. 
+
+If there are multiple tasks to complete, please follow them in the order they appear in the instruction.
+
+Rooms do not need to be explored more than once. This means if you have explored the living room and have not found the object, then you should explore the kitchen, if a relevant object is still not found, you should explore the hallway etc...
+
+Many calls to the same action in a row are a sign that something has gone wrong and you should try a different action.
+
+Task: Put away the one jug and one cup in the kitchen cabinet. I prefer to keep the jug and cup in the kitchen cabinet for easy access during breakfast.
+
+Furniture:
+living_room_1: floor_living_room_1, table_14, table_15, couch_23, chair_32, chair_33, unknown_39
+bathroom_1: floor_bathroom_1, toilet_30
+closet_1: floor_closet_1, shelves_24, shelves_25, shelves_26, shelves_27
+workout_1: floor_workout_1
+bedroom_1: floor_bedroom_1, table_16, chair_17, bed_22, chest_of_drawers_36, chest_of_drawers_37, chest_of_drawers_38
+closet_2: floor_closet_2, chest_of_drawers_40
+bathroom_2: floor_bathroom_2, toilet_31
+entryway_1: floor_entryway_1, table_29
+kitchen_1: floor_kitchen_1, stool_18, stool_19, stool_20, unknown_28, counter_34, cabinet_35, cabinet_41, cabinet_42
+dining_room_1: floor_dining_room_1, chair_10, chair_11, chair_12, chair_13, table_21
+
+The following furnitures have a faucet: cabinet_42
+Objects:
+No objects found yet
+
+Possible Actions:
+- Close: Used for closing an articulated entity. You must provide the name of the furniture you want to close. Example (Close[chest_of_drawers_1])
+- DescribeObjectTool: Used to retrieve a brief descriptive or semantic meaning of a given object or furniture name. Example (DescribeObjectTool[sponge_1])
+- Explore: Search a specific room by visiting various receptacles or furnitures in that room. The input to the skill is the EXACT name of the room to be visited. Use the room names provided in the house description. This tool exhaustivly explores the specified room. Example (Explore[kitchen_1])
+- FindObjectTool: Used to find the exact name/names of the object/objects of interest. If you want to find the exact names of objects on specific receptacles or furnitures, please include that in the query. Example (FindObjectTool[toys on the floor] or FindObjectTool[apples])
+- FindReceptacleTool: Used to know the exact name of a receptacle. A receptacle is a furniture or entity (like a chair, table, bed etc.) where you can place an object. Example (FindReceptacleTool[a kitchen counter])
+- FindRoomTool: Used to know the exact name of a room in the house. A room is a region in the house where furniture is placed. Example (FindRoomTool[a room which might have something to eat])
+- Navigate: Used for navigating to an entity. You must provide the name of the entity you want to navigate to. Example (Navigate[counter_22])
+- Open: Used for opening an articulated entity. You must provide the name of the furniture you want to open. Example (Open[chest_of_drawers_1])
+- Pick: Used for picking up an object. You must provide the name of the object to be picked. The agent cannot hold more than one object at a time. Example (Pick[cup_1])
+- Place: Used for placing an object on a target location. You need to provide the name of the object to be placed, the name of the furniture where it should be placed, spatial relation ("on" or "within") describing the relation between the object and furniture. The object to be placed must already be held by the agent (i.e. picked previously). In addition to these, you can request to place the object near another object. For that you can optionally provide a spatial constraints ("next_to") and the name of the reference object. To place next to an object, the reference object must already be on the target furniture. API template - Place[<object_to_be_placed>, <spatial_relation>, <furniture to be placed on>, <spatial_constraint>, <reference_object>]. spatial_constraint and reference_object should be set to "None" when necessary.
+- Wait: Used to make agent stay idle for some time. Example (Wait[])
+- Done: Used to indicate that the agent has finished the task. Example (Done[])
+
+What is the next action to make progress towards completing the task?
+Return your response in the following format
+
+Thought: <reasoning for why you are taking the next action>
+<next action call>
+Assigned!
+Thought: To complete the task of putting away the jug and cup in the kitchen cabinet, I need to first locate these objects. Since I haven't found any objects yet, I should start by exploring the kitchen to see if the jug and cup are there.
+
+Explore[kitchen_1]
+Assigned!
+Result: Successful execution!
+Objects: cushion_2: table_21 in dining_room_1
+jug_0: counter_34 in kitchen_1
+cup_1: counter_34 in kitchen_1
+Thought: I have found both the jug and the cup on the counter in the kitchen. Now, I need to pick up the jug first and place it in the kitchen cabinet.
+
+Pick[jug_0]
+Assigned!
+Result: Successful execution!
+Objects: cushion_2: table_21 in dining_room_1
+jug_0: held by the agent
+cup_1: counter_34 in kitchen_1
+Thought: I have successfully picked up the jug. Now, I need to navigate to the kitchen cabinet to place the jug within it.
+
+Navigate[cabinet_35]
+Assigned!
+Result: Successful execution!
+Objects: cushion_2: table_21 in dining_room_1
+jug_0: held by the agent
+cup_1: counter_34 in kitchen_1
+Thought: I have successfully navigated to the kitchen cabinet. Now, I need to open the cabinet to place the jug inside.
+
+Open[cabinet_35]
+Assigned!
+Result: Successful execution!
+Objects: cushion_2: table_21 in dining_room_1
+jug_0: held by the agent
+cup_1: counter_34 in kitchen_1
+Thought: The kitchen cabinet is now open. I can place the jug inside the cabinet.
+
+Place[jug_0, within, cabinet_35, None, None]
+Assigned!
+Result: Unexpected failure! - No valid placements found for entity due to Furniture cabinet_35 has no receptacle for proposition within
+Objects: cushion_2: table_21 in dining_room_1
+jug_0: held by the agent
+cup_1: counter_34 in kitchen_1
+Thought: It seems that cabinet_35 does not have a valid receptacle for placing objects within it. I should try placing the jug within another cabinet in the kitchen. I will navigate to cabinet_41 and attempt to place the jug there.
+
+Navigate[cabinet_41]
+Assigned!
+Result: Successful execution!
+Objects: cushion_2: table_21 in dining_room_1
+jug_0: held by the agent
+cup_1: counter_34 in kitchen_1
+Thought: I have successfully navigated to cabinet_41. Now, I need to open this cabinet to place the jug inside.
+
+Open[cabinet_41]
+Assigned!
+Result: Successful execution!
+Objects: cushion_2: table_21 in dining_room_1
+jug_0: held by the agent
+cup_1: counter_34 in kitchen_1
+Thought: The cabinet_41 is now open. I can attempt to place the jug within this cabinet.
+
+Place[jug_0, within, cabinet_41, None, None]
+Assigned!
+Result: Unexpected failure! - No valid placements found for entity due to Furniture cabinet_41 has no receptacle for proposition within
+Objects: cushion_2: table_21 in dining_room_1
+jug_0: held by the agent
+cup_1: counter_34 in kitchen_1
+Thought: It seems that both cabinet_35 and cabinet_41 do not have valid receptacles for placing objects within them. I will try the remaining cabinet, cabinet_42, to see if it can accommodate the jug.
+
+Navigate[cabinet_42]
+Assigned!
+Result: Successful execution!
+Objects: cushion_2: table_21 in dining_room_1
+jug_0: held by the agent
+cup_1: counter_34 in kitchen_1
+Thought: I have successfully navigated to cabinet_42. Now, I need to open this cabinet to place the jug inside.
+
+Open[cabinet_42]
+Assigned!
+Result: Successful execution!
+Objects: cushion_2: table_21 in dining_room_1
+jug_0: held by the agent
+cup_1: counter_34 in kitchen_1
+Thought: The cabinet_42 is now open. I will attempt to place the jug within this cabinet.
+
+Place[jug_0, within, cabinet_42, None, None]
+Assigned!
+Result: Successful execution!
+Objects: cushion_2: table_21 in dining_room_1
+jug_0: cabinet_42 in kitchen_1
+cup_1: counter_34 in kitchen_1
+Thought: I have successfully placed the jug within cabinet_42. Now, I need to pick up the cup from the counter and place it in the same cabinet.
+
+Pick[cup_1]
+Assigned!
+Result: Unexpected failure! - Failed to pick! Not close enough to the object.
+Objects: cushion_2: table_21 in dining_room_1
+jug_0: cabinet_42 in kitchen_1
+cup_1: counter_34 in kitchen_1
+Thought: I need to navigate back to the counter where the cup is located so that I can pick it up.
+
+Navigate[counter_34]
+Assigned!
+Result: Successful execution!
+Objects: cushion_2: table_21 in dining_room_1
+jug_0: cabinet_42 in kitchen_1
+cup_1: counter_34 in kitchen_1
+Thought: I have successfully navigated back to the counter where the cup is located. Now, I can pick up the cup.
+
+Pick[cup_1]
+Assigned!
+Result: Unexpected failure! - Failed to pick! Not close enough to the object.
+Objects: cushion_2: table_21 in dining_room_1
+jug_0: cabinet_42 in kitchen_1
+cup_1: counter_34 in kitchen_1
+Thought: It seems there was an issue with the previous navigation or picking attempt. I will try navigating to the counter again to ensure I am close enough to pick up the cup.
+
+Navigate[counter_34]
+Assigned!
+Result: Successful execution!
+Objects: cushion_2: table_21 in dining_room_1
+jug_0: cabinet_42 in kitchen_1
+cup_1: counter_34 in kitchen_1
+Thought: I have successfully navigated to the counter again. Now, I will attempt to pick up the cup once more to ensure I am close enough this time.
+
+Pick[cup_1]
+Assigned!
+Result: Successful execution!
+Objects: cushion_2: table_21 in dining_room_1
+jug_0: cabinet_42 in kitchen_1
+cup_1: held by the agent
+Thought: I have successfully picked up the cup. Now, I need to navigate back to cabinet_42 to place the cup within it, as I have already opened this cabinet.
+
+Navigate[cabinet_42]
+Assigned!
+Result: Successful execution!
+Objects: cushion_2: table_21 in dining_room_1
+jug_0: cabinet_42 in kitchen_1
+cup_1: held by the agent
+Thought: I have successfully navigated back to cabinet_42, which is already open. Now, I can place the cup within the cabinet.
+
+Place[cup_1, within, cabinet_42, None, None]
+Assigned!
+Result: Successful execution!
+Objects: cushion_2: table_21 in dining_room_1
+jug_0: cabinet_42 in kitchen_1
+cup_1: cabinet_42 in kitchen_1
+Thought: I have successfully placed both the jug and the cup within cabinet_42 in the kitchen. The task of putting away the jug and cup in the kitchen cabinet is now complete.
+
+Done[]
+Assigned!

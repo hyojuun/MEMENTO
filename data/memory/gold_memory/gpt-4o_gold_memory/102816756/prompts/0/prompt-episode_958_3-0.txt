@@ -1,0 +1,186 @@
+You are an agent that solves embodied-agent planning problems. The task assigned to you will be situated in a house and will generally involve navigating to objects, picking and placing them on different receptacles to achieve rearrangement. You strictly follow any format specifications and pay attention to the previous actions taken in order to avoid repeating mistakes. 
+
+If there are multiple tasks to complete, please follow them in the order they appear in the instruction.
+
+Rooms do not need to be explored more than once. This means if you have explored the living room and have not found the object, then you should explore the kitchen, if a relevant object is still not found, you should explore the hallway etc...
+
+Many calls to the same action in a row are a sign that something has gone wrong and you should try a different action.
+
+Task: Put the plate and bowl together in another cabinet in the kitchen and place them next to each other. The plate is a square white plate with a black geometric pattern, and the bowl is a white bowl with a brown lid. The plate and bowl are part of my dinnerware set.
+
+Furniture:
+bedroom_1: floor_bedroom_1, chair_41, chair_42, bed_49, table_54, chest_of_drawers_72, chest_of_drawers_73, chest_of_drawers_75, chest_of_drawers_87
+closet_1: floor_closet_1, wardrobe_91
+living_room_1: floor_living_room_1, chair_13, chair_14, chair_15, chair_16, chair_17, chair_18, chair_19, chair_20, chair_21, chair_22, couch_26, couch_28, couch_29, chair_30, stool_31, stool_32, table_38, table_39, table_48, table_50, stand_52, counter_78
+toilet_1: floor_toilet_1, toilet_43
+bedroom_2: floor_bedroom_2, bed_23, chair_46, chair_47, table_53, chest_of_drawers_55, chest_of_drawers_58, chest_of_drawers_59, chest_of_drawers_60, chest_of_drawers_61
+bedroom_3: floor_bedroom_3, bed_37, chair_40, chest_of_drawers_74, table_77, chest_of_drawers_79, chest_of_drawers_80, chest_of_drawers_89, wardrobe_92
+bedroom_4: floor_bedroom_4, chair_27, bed_45, table_51, wardrobe_56, wardrobe_57, chest_of_drawers_82, chest_of_drawers_83, table_84, table_86
+kitchen_1: floor_kitchen_1, shelves_24, shelves_25, chair_33, chair_34, chair_35, chair_36, cabinet_62, cabinet_63, cabinet_64, cabinet_65, cabinet_66, counter_67, counter_68, counter_69, cabinet_70, cabinet_71, cabinet_76, cabinet_81, unknown_88, fridge_90
+other_room_1: floor_other_room_1
+other_room_2: floor_other_room_2
+bathroom_1: floor_bathroom_1, toilet_44
+porch_1: floor_porch_1
+entryway_1: floor_entryway_1, table_85
+
+The following furnitures have a faucet: cabinet_70
+Objects:
+No objects found yet
+
+Possible Actions:
+- Close: Used for closing an articulated entity. You must provide the name of the furniture you want to close. Example (Close[chest_of_drawers_1])
+- DescribeObjectTool: Used to retrieve a brief descriptive or semantic meaning of a given object or furniture name. Example (DescribeObjectTool[sponge_1])
+- Explore: Search a specific room by visiting various receptacles or furnitures in that room. The input to the skill is the EXACT name of the room to be visited. Use the room names provided in the house description. This tool exhaustivly explores the specified room. Example (Explore[kitchen_1])
+- FindObjectTool: Used to find the exact name/names of the object/objects of interest. If you want to find the exact names of objects on specific receptacles or furnitures, please include that in the query. Example (FindObjectTool[toys on the floor] or FindObjectTool[apples])
+- FindReceptacleTool: Used to know the exact name of a receptacle. A receptacle is a furniture or entity (like a chair, table, bed etc.) where you can place an object. Example (FindReceptacleTool[a kitchen counter])
+- FindRoomTool: Used to know the exact name of a room in the house. A room is a region in the house where furniture is placed. Example (FindRoomTool[a room which might have something to eat])
+- Navigate: Used for navigating to an entity. You must provide the name of the entity you want to navigate to. Example (Navigate[counter_22])
+- Open: Used for opening an articulated entity. You must provide the name of the furniture you want to open. Example (Open[chest_of_drawers_1])
+- Pick: Used for picking up an object. You must provide the name of the object to be picked. The agent cannot hold more than one object at a time. Example (Pick[cup_1])
+- Place: Used for placing an object on a target location. You need to provide the name of the object to be placed, the name of the furniture where it should be placed, spatial relation ("on" or "within") describing the relation between the object and furniture. The object to be placed must already be held by the agent (i.e. picked previously). In addition to these, you can request to place the object near another object. For that you can optionally provide a spatial constraints ("next_to") and the name of the reference object. To place next to an object, the reference object must already be on the target furniture. API template - Place[<object_to_be_placed>, <spatial_relation>, <furniture to be placed on>, <spatial_constraint>, <reference_object>]. spatial_constraint and reference_object should be set to "None" when necessary.
+- Wait: Used to make agent stay idle for some time. Example (Wait[])
+- Done: Used to indicate that the agent has finished the task. Example (Done[])
+
+What is the next action to make progress towards completing the task?
+Return your response in the following format
+
+Thought: <reasoning for why you are taking the next action>
+<next action call>
+Assigned!
+Thought: To find the plate and bowl, I should start by exploring the kitchen, as it is the most likely place to find dinnerware items. This will help me locate the objects of interest.
+
+Explore[kitchen_1]
+Assigned!
+Result: Successful execution!
+Objects: soap_dispenser_3: table_50 in living_room_1
+bowl_5: cabinet_70 in kitchen_1
+bowl_1: cabinet_70 in kitchen_1
+plate_0: cabinet_66 in kitchen_1
+cushion_2: shelves_24 in kitchen_1
+Thought: I have found a bowl and a plate in the kitchen. I need to identify which bowl and plate match the description of the dinnerware set. I will use the DescribeObjectTool to get more information about these objects.
+
+DescribeObjectTool[bowl_5]
+Assigned!
+Result: The description of the object 'bowl_5' is:
+A brown bowl with a smooth texture.
+Objects: soap_dispenser_3: table_50 in living_room_1
+bowl_5: cabinet_70 in kitchen_1
+bowl_1: cabinet_70 in kitchen_1
+plate_0: cabinet_66 in kitchen_1
+cushion_2: shelves_24 in kitchen_1
+Thought: The description of 'bowl_5' does not match the description of the bowl in the dinnerware set. I will now describe 'bowl_1' to see if it matches the description of the white bowl with a brown lid.
+
+DescribeObjectTool[bowl_1]
+Assigned!
+Result: The description of the object 'bowl_1' is:
+A white bowl with a brown lid.
+Objects: soap_dispenser_3: table_50 in living_room_1
+bowl_5: cabinet_70 in kitchen_1
+bowl_1: cabinet_70 in kitchen_1
+plate_0: cabinet_66 in kitchen_1
+cushion_2: shelves_24 in kitchen_1
+Thought: The description of 'bowl_1' matches the description of the bowl in the dinnerware set. Now, I need to describe 'plate_0' to see if it matches the description of the square white plate with a black geometric pattern.
+
+DescribeObjectTool[plate_0]
+Assigned!
+Result: The description of the object 'plate_0' is:
+A square white plate with a black geometric pattern.
+Objects: soap_dispenser_3: table_50 in living_room_1
+bowl_5: cabinet_70 in kitchen_1
+bowl_1: cabinet_70 in kitchen_1
+plate_0: cabinet_66 in kitchen_1
+cushion_2: shelves_24 in kitchen_1
+Thought: Both 'bowl_1' and 'plate_0' match the descriptions of the dinnerware set. I need to pick up 'bowl_1' first and then place it in another cabinet in the kitchen.
+
+Navigate[cabinet_70]
+Assigned!
+Result: Successful execution!
+Objects: soap_dispenser_3: table_50 in living_room_1
+bowl_5: cabinet_70 in kitchen_1
+bowl_1: cabinet_70 in kitchen_1
+plate_0: cabinet_66 in kitchen_1
+cushion_2: shelves_24 in kitchen_1
+Thought: I have successfully navigated to 'cabinet_70' where 'bowl_1' is located. Now, I will pick up 'bowl_1'.
+
+Pick[bowl_1]
+Assigned!
+Result: Successful execution!
+Objects: soap_dispenser_3: table_50 in living_room_1
+bowl_5: cabinet_70 in kitchen_1
+bowl_1: held by the agent
+plate_0: cabinet_66 in kitchen_1
+cushion_2: shelves_24 in kitchen_1
+Thought: I have successfully picked up 'bowl_1'. Now, I need to navigate to 'cabinet_66' to pick up 'plate_0'.
+
+Navigate[cabinet_66]
+Assigned!
+Result: Successful execution!
+Objects: soap_dispenser_3: table_50 in living_room_1
+bowl_5: cabinet_70 in kitchen_1
+bowl_1: held by the agent
+plate_0: cabinet_66 in kitchen_1
+cushion_2: shelves_24 in kitchen_1
+Thought: I am currently holding 'bowl_1', so I need to place it in another cabinet before picking up 'plate_0'. I will choose 'cabinet_62' as the new location for placing the dinnerware set.
+
+Navigate[cabinet_62]
+Assigned!
+Result: Successful execution!
+Objects: soap_dispenser_3: table_50 in living_room_1
+bowl_5: cabinet_70 in kitchen_1
+bowl_1: held by the agent
+plate_0: cabinet_66 in kitchen_1
+cushion_2: shelves_24 in kitchen_1
+Thought: I have successfully navigated to 'cabinet_62'. Now, I will place 'bowl_1' within 'cabinet_62' to make space for picking up 'plate_0'.
+
+Place[bowl_1, within, cabinet_62, None, None]
+Assigned!
+Result: Successful execution!
+Objects: soap_dispenser_3: table_50 in living_room_1
+bowl_5: cabinet_70 in kitchen_1
+bowl_1: cabinet_62 in kitchen_1
+plate_0: cabinet_66 in kitchen_1
+cushion_2: shelves_24 in kitchen_1
+Thought: I have successfully placed 'bowl_1' within 'cabinet_62'. Now, I need to pick up 'plate_0' from 'cabinet_66' and place it next to 'bowl_1' in 'cabinet_62'.
+
+Navigate[cabinet_66]
+Assigned!
+Result: Successful execution!
+Objects: soap_dispenser_3: table_50 in living_room_1
+bowl_5: cabinet_70 in kitchen_1
+bowl_1: cabinet_62 in kitchen_1
+plate_0: cabinet_66 in kitchen_1
+cushion_2: shelves_24 in kitchen_1
+Thought: I have successfully navigated to 'cabinet_66'. Now, I will pick up 'plate_0'.
+
+Pick[plate_0]
+Assigned!
+Result: Successful execution!
+Objects: soap_dispenser_3: table_50 in living_room_1
+bowl_5: cabinet_70 in kitchen_1
+bowl_1: cabinet_62 in kitchen_1
+plate_0: held by the agent
+cushion_2: shelves_24 in kitchen_1
+Thought: I have successfully picked up 'plate_0'. Now, I need to navigate back to 'cabinet_62' to place 'plate_0' next to 'bowl_1'.
+
+Navigate[cabinet_62]
+Assigned!
+Result: Successful execution!
+Objects: soap_dispenser_3: table_50 in living_room_1
+bowl_5: cabinet_70 in kitchen_1
+bowl_1: cabinet_62 in kitchen_1
+plate_0: held by the agent
+cushion_2: shelves_24 in kitchen_1
+Thought: I have successfully navigated to 'cabinet_62'. Now, I will place 'plate_0' within 'cabinet_62' next to 'bowl_1' to complete the task.
+
+Place[plate_0, within, cabinet_62, next_to, bowl_1]
+Assigned!
+Result: Successful execution!
+Objects: soap_dispenser_3: table_50 in living_room_1
+bowl_5: cabinet_70 in kitchen_1
+bowl_1: cabinet_62 in kitchen_1
+plate_0: cabinet_62 in kitchen_1
+cushion_2: shelves_24 in kitchen_1
+Thought: I have successfully placed both 'bowl_1' and 'plate_0' within 'cabinet_62' next to each other, completing the task of rearranging the dinnerware set. 
+
+Done[]
+Assigned!

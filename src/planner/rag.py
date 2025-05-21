@@ -28,14 +28,14 @@ def extract_episode_id(file_path):
 
 
 class RAG:
-    def __init__(self, example_type, data_dir, data_source_name, llm_config, scene_id=None, memory_path=None, gold_memory=False, ensure_same_scene=True):
+    def __init__(self, example_type, data_dir, data_source_name, llm_config, scene_id=None, memory_path=None, corresponding_memory=False, ensure_same_scene=True):
         self._device = "cuda"
         self._llm_config = llm_config
         self._example_type = example_type
         self.scene_id = scene_id
         self.memory_path = memory_path
         # self.mapper_file_path = mapper_file_path
-        self.gold_memory = gold_memory
+        self.corresponding_memory = corresponding_memory
         self.ensure_same_scene = ensure_same_scene
 
         # Determine the start header index
@@ -608,7 +608,7 @@ class RAG:
         if use_agent_id:
             indices = np.array([embed_id_to_true_id[ind] for ind in indices])
         
-        if self.gold_memory:
+        if self.corresponding_memory:
             # check if the indices contains any of the related episode ids
             if related_episode_id and len(related_episode_id) > 0:
                 found_episodes = set()  # Track which episode IDs we've found

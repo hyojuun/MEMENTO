@@ -1,0 +1,118 @@
+You are an agent that solves embodied-agent planning problems. The task assigned to you will be situated in a house and will generally involve navigating to objects, picking and placing them on different receptacles to achieve rearrangement. You strictly follow any format specifications and pay attention to the previous actions taken in order to avoid repeating mistakes. 
+
+If there are multiple tasks to complete, please follow them in the order they appear in the instruction.
+
+Rooms do not need to be explored more than once. This means if you have explored the living room and have not found the object, then you should explore the kitchen, if a relevant object is still not found, you should explore the hallway etc...
+
+Many calls to the same action in a row are a sign that something has gone wrong and you should try a different action.
+
+Task: Move the phone stand to the table in the dining room. I prefer to keep my phone accessible in the dining area.
+
+Furniture:
+office_1: floor_office_1, chair_19, table_25, table_32, cabinet_33
+dining_room_1: floor_dining_room_1, couch_9, chair_10, table_17
+laundryroom_1: floor_laundryroom_1, washer_dryer_11, washer_dryer_20, counter_30
+kitchen_1: floor_kitchen_1, couch_22
+kitchen_2: floor_kitchen_2, table_26, cabinet_31, cabinet_34
+entryway_1: floor_entryway_1, table_18
+tv_1: floor_tv_1, shelves_12, chair_13, chair_14, chair_15, chair_16, chair_23, chair_24, stand_29
+toilet_1: floor_toilet_1, toilet_21
+other_room_1: floor_other_room_1, wardrobe_27, wardrobe_28
+
+The following furnitures have a faucet: cabinet_34
+Objects:
+No objects found yet
+
+Possible Actions:
+Motor skills:
+- Navigate: Used for navigating to an entity. You must provide the name of the entity you want to navigate to. Example (Navigate[counter_22])
+- Pick: Used for picking up an object. You must provide the name of the object to be picked. The agent cannot hold more than one object at a time. Example (Pick[cup_1])
+- Place: Used for placing an object on a target location. You need to provide the name of the object to be placed, the name of the furniture where it should be placed, spatial relation ("on" or "within") describing the relation between the object and furniture. The object to be placed must already be held by the agent (i.e. picked previously). In addition to these, you can request to place the object near another object. For that you can optionally provide a spatial constraints ("next_to") and the name of the reference object. To place next to an object, the reference object must already be on the target furniture. API template - Place[<object_to_be_placed>, <spatial_relation>, <furniture to be placed on>, <spatial_constraint>, <reference_object>]. spatial_constraint and reference_object should be set to "None" when necessary.
+- Open: Used for opening an articulated entity. You must provide the name of the furniture you want to open. Example (Open[chest_of_drawers_1])
+- Close: Used for closing an articulated entity. You must provide the name of the furniture you want to close. Example (Close[chest_of_drawers_1])
+- Explore: Search a specific room by visiting various receptacles or furnitures in that room. The input to the skill is the EXACT name of the room to be visited. Use the room names provided in the house description. This tool exhaustivly explores the specified room. Example (Explore[kitchen_1])
+- PowerOn: Used for turning on a powered object. You need to provide the name of the object to be turned on.
+- PowerOff: Used for turning off a powered object. You need to provide the name of the object to be turned off.
+- Clean: Used for cleaning an object. You need to provide the name of the object to clean.
+- Fill: Used for filling an object. You need to provide the name of the object to fill.
+- Pour: Used for pouring from one container to another. This skill will pour into the specified container from whichever container is currently held by the agent.
+- Wait: Used to make agent stay idle for some time. Example (Wait[])
+Perception skills:
+- FindReceptacleTool: Used to know the exact name of a receptacle. A receptacle is a furniture or entity (like a chair, table, bed etc.) where you can place an object. Example (FindReceptacleTool[a kitchen counter])
+- FindObjectTool: Used to find the exact name/names of the object/objects of interest. If you want to find the exact names of objects on specific receptacles or furnitures, please include that in the query. Example (FindObjectTool[toys on the floor] or FindObjectTool[apples])
+- FindRoomTool: Used to know the exact name of a room in the house. A room is a region in the house where furniture is placed. Example (FindRoomTool[a room which might have something to eat])
+- DescribeObjectTool: Used to retrieve a brief descriptive or semantic meaning of a given object or furniture name. Example (DescribeObjectTool[sponge_1])
+
+- Done: Used to indicate that the agent has finished the task. Example (Done[])
+
+What is the next action to make progress towards completing the task?
+Return your response in the following format
+
+Thought: <reasoning for why you are taking the next action>
+<next action call>
+Assigned!
+
+Here is an example:
+Thought: Since there are no objects found I should explore a room I have not explored yet.
+Explore[<room name>]
+Assigned!
+
+
+Thought: Since there are no objects found yet, I should start by exploring a room to locate the phone stand. I will begin with the office, as it is a common place for a phone stand to be located.
+
+Explore[office_1]
+Assigned!
+Result: Successful execution!
+Objects: cushion_1: chair_14 in tv_1
+phone_stand_0: table_25 in office_1
+phone_stand_6: table_25 in office_1
+hand_towel_2: cabinet_33 in office_1
+Thought: I have found two phone stands on table_25 in office_1. I need to pick one of them and move it to the table in the dining room. I will pick phone_stand_0.
+
+Pick[phone_stand_0]
+Assigned!
+Result: Unexpected failure! - Failed to pick! Not close enough to the object.
+Objects: cushion_1: chair_14 in tv_1
+phone_stand_0: table_25 in office_1
+phone_stand_6: table_25 in office_1
+hand_towel_2: cabinet_33 in office_1
+Thought: I attempted to pick up phone_stand_0 but failed because I was not close enough. I need to navigate to table_25 in office_1 to get closer to the phone stand.
+
+Navigate[table_25]
+Assigned!
+Result: Successful execution!
+Objects: cushion_1: chair_14 in tv_1
+phone_stand_0: table_25 in office_1
+phone_stand_6: table_25 in office_1
+hand_towel_2: cabinet_33 in office_1
+Thought: I have successfully navigated to table_25 in office_1. Now, I will attempt to pick up phone_stand_0 again.
+
+Pick[phone_stand_0]
+Assigned!
+Result: Successful execution!
+Objects: cushion_1: chair_14 in tv_1
+phone_stand_0: held by the agent
+phone_stand_6: table_25 in office_1
+hand_towel_2: cabinet_33 in office_1
+Thought: I have successfully picked up phone_stand_0. Now, I need to navigate to the dining room to place the phone stand on the table there.
+
+Navigate[dining_room_1]
+Assigned!
+Result: Successful execution!
+Objects: cushion_1: chair_14 in tv_1
+phone_stand_0: held by the agent
+phone_stand_6: table_25 in office_1
+hand_towel_2: cabinet_33 in office_1
+Thought: I have successfully navigated to dining_room_1. Now, I need to place the phone stand on the table in the dining room.
+
+Place[phone_stand_0, on, table_17, None, None]
+Assigned!
+Result: Successful execution!
+Objects: cushion_1: chair_14 in tv_1
+phone_stand_0: table_17 in dining_room_1
+phone_stand_6: table_25 in office_1
+hand_towel_2: cabinet_33 in office_1
+Thought: I have successfully placed phone_stand_0 on table_17 in the dining room. The task of moving the phone stand to the table in the dining room is now complete.
+
+Done[]
+Assigned!

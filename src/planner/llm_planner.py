@@ -90,7 +90,7 @@ class LLMPlanner(Planner):
                 plan_config.llm,
                 env_interface.env.env.env._env.current_episode.scene_id,
                 plan_config.memory_path,
-                plan_config.gold_memory,
+                plan_config.corresponding_memory,
                 plan_config.ensure_same_scene
             )
 

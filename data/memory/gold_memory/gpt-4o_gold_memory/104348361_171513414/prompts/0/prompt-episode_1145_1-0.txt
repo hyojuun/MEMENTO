@@ -1,0 +1,196 @@
+You are an agent that solves embodied-agent planning problems. The task assigned to you will be situated in a house and will generally involve navigating to objects, picking and placing them on different receptacles to achieve rearrangement. You strictly follow any format specifications and pay attention to the previous actions taken in order to avoid repeating mistakes. 
+
+If there are multiple tasks to complete, please follow them in the order they appear in the instruction.
+
+Rooms do not need to be explored more than once. This means if you have explored the living room and have not found the object, then you should explore the kitchen, if a relevant object is still not found, you should explore the hallway etc...
+
+Many calls to the same action in a row are a sign that something has gone wrong and you should try a different action.
+
+Task: Move the clock to a new living room table. Also, move the candle holder to a new living room table. The clock is brown and black with a green display, and the candle holder is white with a gold rim on a wooden base. The candle holder is a gift from my friend.
+
+Furniture:
+other_room_1: floor_other_room_1
+toilet_1: floor_toilet_1
+living_room_1: floor_living_room_1, chair_17, table_18, unknown_20, table_22, table_23, couch_30
+office_1: floor_office_1, table_19, table_27, cabinet_37, cabinet_38, cabinet_39
+hallway_1: floor_hallway_1
+bedroom_1: floor_bedroom_1, bed_33, chest_of_drawers_35, wardrobe_36
+kitchen_1: floor_kitchen_1, chair_28, chair_29, unknown_31, counter_40, fridge_41, fridge_42, cabinet_43
+bathroom_1: floor_bathroom_1
+closet_1: floor_closet_1
+laundryroom_1: floor_laundryroom_1, unknown_21, washer_dryer_24, washer_dryer_25, chest_of_drawers_34
+closet_2: floor_closet_2, cabinet_47
+closet_3: floor_closet_3, unknown_44, wardrobe_45, table_48
+bathroom_2: floor_bathroom_2
+bedroom_2: floor_bedroom_2, stool_26, bed_32, table_46
+other_room_2: floor_other_room_2
+entryway_1: floor_entryway_1
+hallway_2: floor_hallway_2
+
+The following furnitures have a faucet: cabinet_43
+Objects:
+No objects found yet
+
+Possible Actions:
+- Close: Used for closing an articulated entity. You must provide the name of the furniture you want to close. Example (Close[chest_of_drawers_1])
+- DescribeObjectTool: Used to retrieve a brief descriptive or semantic meaning of a given object or furniture name. Example (DescribeObjectTool[sponge_1])
+- Explore: Search a specific room by visiting various receptacles or furnitures in that room. The input to the skill is the EXACT name of the room to be visited. Use the room names provided in the house description. This tool exhaustivly explores the specified room. Example (Explore[kitchen_1])
+- FindObjectTool: Used to find the exact name/names of the object/objects of interest. If you want to find the exact names of objects on specific receptacles or furnitures, please include that in the query. Example (FindObjectTool[toys on the floor] or FindObjectTool[apples])
+- FindReceptacleTool: Used to know the exact name of a receptacle. A receptacle is a furniture or entity (like a chair, table, bed etc.) where you can place an object. Example (FindReceptacleTool[a kitchen counter])
+- FindRoomTool: Used to know the exact name of a room in the house. A room is a region in the house where furniture is placed. Example (FindRoomTool[a room which might have something to eat])
+- Navigate: Used for navigating to an entity. You must provide the name of the entity you want to navigate to. Example (Navigate[counter_22])
+- Open: Used for opening an articulated entity. You must provide the name of the furniture you want to open. Example (Open[chest_of_drawers_1])
+- Pick: Used for picking up an object. You must provide the name of the object to be picked. The agent cannot hold more than one object at a time. Example (Pick[cup_1])
+- Place: Used for placing an object on a target location. You need to provide the name of the object to be placed, the name of the furniture where it should be placed, spatial relation ("on" or "within") describing the relation between the object and furniture. The object to be placed must already be held by the agent (i.e. picked previously). In addition to these, you can request to place the object near another object. For that you can optionally provide a spatial constraints ("next_to") and the name of the reference object. To place next to an object, the reference object must already be on the target furniture. API template - Place[<object_to_be_placed>, <spatial_relation>, <furniture to be placed on>, <spatial_constraint>, <reference_object>]. spatial_constraint and reference_object should be set to "None" when necessary.
+- Wait: Used to make agent stay idle for some time. Example (Wait[])
+- Done: Used to indicate that the agent has finished the task. Example (Done[])
+
+What is the next action to make progress towards completing the task?
+Return your response in the following format
+
+Thought: <reasoning for why you are taking the next action>
+<next action call>
+Assigned!
+Thought: To complete the task, I need to locate the clock and the candle holder in the house. Since the task involves moving these objects to a new living room table, I will start by exploring the living room to see if these objects are already there.
+
+Explore[living_room_1]
+Assigned!
+Result: Successful execution!
+Objects: candle_holder_4: table_22 in living_room_1
+clock_0: table_22 in living_room_1
+candle_holder_1: table_22 in living_room_1
+clock_3: table_22 in living_room_1
+Thought: I have found multiple clocks and candle holders on table_22 in the living room. I need to identify the specific clock and candle holder described in the task. I will use the DescribeObjectTool to get more details about these objects.
+
+DescribeObjectTool[clock_0]
+Assigned!
+Result: The description of the object 'clock_0' is:
+A brown and black digital clock with a green display.
+Objects: candle_holder_4: table_22 in living_room_1
+clock_0: table_22 in living_room_1
+candle_holder_1: table_22 in living_room_1
+clock_3: table_22 in living_room_1
+Thought: The description of 'clock_0' matches the clock described in the task. I will now identify the correct candle holder by describing the candle holders found on table_22.
+
+DescribeObjectTool[candle_holder_4]
+Assigned!
+Result: The description of the object 'candle_holder_4' is:
+A white and tan candle holder with a rounded base.
+Objects: candle_holder_4: table_22 in living_room_1
+clock_0: table_22 in living_room_1
+candle_holder_1: table_22 in living_room_1
+clock_3: table_22 in living_room_1
+Thought: The description of 'candle_holder_4' does not match the candle holder described in the task. I will now describe 'candle_holder_1' to see if it matches the task description.
+
+DescribeObjectTool[candle_holder_1]
+Assigned!
+Result: The description of the object 'candle_holder_1' is:
+A white candle holder with a gold rim on a wooden base.
+Objects: candle_holder_4: table_22 in living_room_1
+clock_0: table_22 in living_room_1
+candle_holder_1: table_22 in living_room_1
+clock_3: table_22 in living_room_1
+Thought: The description of 'candle_holder_1' matches the candle holder described in the task. I have identified both the clock and the candle holder that need to be moved. Now, I need to find a new table in the living room to place these objects.
+
+FindReceptacleTool[new table in living_room_1]
+Assigned!
+Result: No new table was found in living_room_1. I was able to find the following tables in the living room though:
+- table_18 in living_room, table_22 in living_room, table_23 in living_room
+Objects: candle_holder_4: table_22 in living_room_1
+clock_0: table_22 in living_room_1
+candle_holder_1: table_22 in living_room_1
+clock_3: table_22 in living_room_1
+Thought: Since there is no explicitly labeled "new" table in the living room, I will choose a different table from the ones available, other than table_22, to place the clock and candle holder. I will use table_23 for this purpose. First, I will pick up the clock.
+
+Pick[clock_0]
+Assigned!
+Result: Successful execution!
+Objects: candle_holder_4: table_22 in living_room_1
+clock_0: held by the agent
+candle_holder_1: table_22 in living_room_1
+clock_3: table_22 in living_room_1
+Thought: I have successfully picked up the clock. Now, I will place it on table_23 in the living room.
+
+Place[clock_0, on, table_23, None, None]
+Assigned!
+Result: Unexpected failure! - Failed to place! Not close enough to table_23 or occluded.
+Objects: candle_holder_4: table_22 in living_room_1
+clock_0: held by the agent
+candle_holder_1: table_22 in living_room_1
+clock_3: table_22 in living_room_1
+Thought: The failure to place the clock on table_23 suggests that I need to navigate closer to table_23 to successfully place the object. I will navigate to table_23 in the living room.
+
+Navigate[table_23]
+Assigned!
+Result: Successful execution!
+Objects: candle_holder_4: table_22 in living_room_1
+clock_0: held by the agent
+candle_holder_1: table_22 in living_room_1
+clock_3: table_22 in living_room_1
+Thought: I have successfully navigated to table_23. Now, I will attempt to place the clock on table_23 again.
+
+Place[clock_0, on, table_23, None, None]
+Assigned!
+Result: Successful execution!
+Objects: candle_holder_4: table_22 in living_room_1
+clock_0: table_23 in living_room_1
+candle_holder_1: table_22 in living_room_1
+clock_3: table_22 in living_room_1
+Thought: I have successfully placed the clock on table_23. Now, I need to pick up the candle holder and place it on the same table.
+
+Pick[candle_holder_1]
+Assigned!
+Result: Unexpected failure! - Failed to pick! Not close enough to the object.
+Objects: candle_holder_4: table_22 in living_room_1
+clock_0: table_23 in living_room_1
+candle_holder_1: table_22 in living_room_1
+clock_3: table_22 in living_room_1
+Thought: The failure to pick up the candle holder indicates that I need to navigate closer to table_22 where the candle holder is located. I will navigate to table_22 in the living room.
+
+Navigate[table_22]
+Assigned!
+Result: Successful execution!
+Objects: candle_holder_4: table_22 in living_room_1
+clock_0: table_23 in living_room_1
+candle_holder_1: table_22 in living_room_1
+clock_3: table_22 in living_room_1
+Thought: I have successfully navigated to table_22. Now, I will attempt to pick up the candle holder from table_22.
+
+Pick[candle_holder_1]
+Assigned!
+Result: Successful execution!
+Objects: candle_holder_4: table_22 in living_room_1
+clock_0: table_23 in living_room_1
+candle_holder_1: held by the agent
+clock_3: table_22 in living_room_1
+Thought: I have successfully picked up the candle holder. Now, I will place it on table_23 in the living room, where the clock has already been placed.
+
+Place[candle_holder_1, on, table_23, None, None]
+Assigned!
+Result: Unexpected failure! - Failed to place! Not close enough to table_23 or occluded.
+Objects: candle_holder_4: table_22 in living_room_1
+clock_0: table_23 in living_room_1
+candle_holder_1: held by the agent
+clock_3: table_22 in living_room_1
+Thought: The failure to place the candle holder on table_23 suggests that I need to navigate closer to table_23 to successfully place the object. I will navigate to table_23 in the living room again.
+
+Navigate[table_23]
+Assigned!
+Result: Successful execution!
+Objects: candle_holder_4: table_22 in living_room_1
+clock_0: table_23 in living_room_1
+candle_holder_1: held by the agent
+clock_3: table_22 in living_room_1
+Thought: I have successfully navigated to table_23. Now, I will attempt to place the candle holder on table_23.
+
+Place[candle_holder_1, on, table_23, None, None]
+Assigned!
+Result: Successful execution!
+Objects: candle_holder_4: table_22 in living_room_1
+clock_0: table_23 in living_room_1
+candle_holder_1: table_23 in living_room_1
+clock_3: table_22 in living_room_1
+Thought: I have successfully placed both the clock and the candle holder on table_23 in the living room. The task of moving the clock and the candle holder to a new living room table is now complete.
+
+Done[]
+Assigned!

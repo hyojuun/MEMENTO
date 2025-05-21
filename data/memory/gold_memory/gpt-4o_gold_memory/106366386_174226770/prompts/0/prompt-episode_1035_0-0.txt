@@ -1,0 +1,168 @@
+You are an agent that solves embodied-agent planning problems. The task assigned to you will be situated in a house and will generally involve navigating to objects, picking and placing them on different receptacles to achieve rearrangement. You strictly follow any format specifications and pay attention to the previous actions taken in order to avoid repeating mistakes. 
+
+If there are multiple tasks to complete, please follow them in the order they appear in the instruction.
+
+Rooms do not need to be explored more than once. This means if you have explored the living room and have not found the object, then you should explore the kitchen, if a relevant object is still not found, you should explore the hallway etc...
+
+Many calls to the same action in a row are a sign that something has gone wrong and you should try a different action.
+
+Task: Help me move some toys and a bowl from the dining room to the living room. Take the toy airplane, toy animal, and bowl from the table in the dining room. Place them next to each other on the table in the living room. I enjoy having these toys and the bowl set up together in the living room for playtime with my child.
+
+Furniture:
+living_room_1: floor_living_room_1, table_14, table_15, couch_23, chair_32, chair_33, unknown_39
+bathroom_1: floor_bathroom_1, toilet_30
+closet_1: floor_closet_1, shelves_24, shelves_25, shelves_26, shelves_27
+workout_1: floor_workout_1
+bedroom_1: floor_bedroom_1, table_16, chair_17, bed_22, chest_of_drawers_36, chest_of_drawers_37, chest_of_drawers_38
+closet_2: floor_closet_2, chest_of_drawers_40
+bathroom_2: floor_bathroom_2, toilet_31
+entryway_1: floor_entryway_1, table_29
+kitchen_1: floor_kitchen_1, stool_18, stool_19, stool_20, unknown_28, counter_34, cabinet_35, cabinet_41, cabinet_42
+dining_room_1: floor_dining_room_1, chair_10, chair_11, chair_12, chair_13, table_21
+
+The following furnitures have a faucet: cabinet_42
+Objects:
+No objects found yet
+
+Possible Actions:
+- Close: Used for closing an articulated entity. You must provide the name of the furniture you want to close. Example (Close[chest_of_drawers_1])
+- DescribeObjectTool: Used to retrieve a brief descriptive or semantic meaning of a given object or furniture name. Example (DescribeObjectTool[sponge_1])
+- Explore: Search a specific room by visiting various receptacles or furnitures in that room. The input to the skill is the EXACT name of the room to be visited. Use the room names provided in the house description. This tool exhaustivly explores the specified room. Example (Explore[kitchen_1])
+- FindObjectTool: Used to find the exact name/names of the object/objects of interest. If you want to find the exact names of objects on specific receptacles or furnitures, please include that in the query. Example (FindObjectTool[toys on the floor] or FindObjectTool[apples])
+- FindReceptacleTool: Used to know the exact name of a receptacle. A receptacle is a furniture or entity (like a chair, table, bed etc.) where you can place an object. Example (FindReceptacleTool[a kitchen counter])
+- FindRoomTool: Used to know the exact name of a room in the house. A room is a region in the house where furniture is placed. Example (FindRoomTool[a room which might have something to eat])
+- Navigate: Used for navigating to an entity. You must provide the name of the entity you want to navigate to. Example (Navigate[counter_22])
+- Open: Used for opening an articulated entity. You must provide the name of the furniture you want to open. Example (Open[chest_of_drawers_1])
+- Pick: Used for picking up an object. You must provide the name of the object to be picked. The agent cannot hold more than one object at a time. Example (Pick[cup_1])
+- Place: Used for placing an object on a target location. You need to provide the name of the object to be placed, the name of the furniture where it should be placed, spatial relation ("on" or "within") describing the relation between the object and furniture. The object to be placed must already be held by the agent (i.e. picked previously). In addition to these, you can request to place the object near another object. For that you can optionally provide a spatial constraints ("next_to") and the name of the reference object. To place next to an object, the reference object must already be on the target furniture. API template - Place[<object_to_be_placed>, <spatial_relation>, <furniture to be placed on>, <spatial_constraint>, <reference_object>]. spatial_constraint and reference_object should be set to "None" when necessary.
+- Wait: Used to make agent stay idle for some time. Example (Wait[])
+- Done: Used to indicate that the agent has finished the task. Example (Done[])
+
+What is the next action to make progress towards completing the task?
+Return your response in the following format
+
+Thought: <reasoning for why you are taking the next action>
+<next action call>
+Assigned!
+Thought: To begin the task, I need to locate the toy airplane, toy animal, and bowl in the dining room. I will start by exploring the dining room to find these objects.
+
+Explore[dining_room_1]
+Assigned!
+Result: Successful execution!
+Objects: box_3: couch_23 in living_room_1
+toy_airplane_0: table_21 in dining_room_1
+bowl_2: table_21 in dining_room_1
+toy_animal_1: table_21 in dining_room_1
+Thought: I have found the toy airplane, toy animal, and bowl on the table in the dining room. I will now proceed to pick up the toy airplane first.
+
+Pick[toy_airplane_0]
+Assigned!
+Result: Successful execution!
+Objects: box_3: couch_23 in living_room_1
+toy_airplane_0: held by the agent
+bowl_2: table_21 in dining_room_1
+toy_animal_1: table_21 in dining_room_1
+Thought: I have successfully picked up the toy airplane. Next, I need to navigate to the living room to place the toy airplane on the table there.
+
+FindReceptacleTool[table in living_room_1]
+Assigned!
+Result: - table_14 in living_room
+- table_15 in living_room
+Objects: box_3: couch_23 in living_room_1
+toy_airplane_0: held by the agent
+bowl_2: table_21 in dining_room_1
+toy_animal_1: table_21 in dining_room_1
+Thought: I have identified two tables in the living room: table_14 and table_15. I will navigate to table_14 in the living room to place the toy airplane there.
+
+Navigate[table_14]
+Assigned!
+Result: Successful execution!
+Objects: box_3: couch_23 in living_room_1
+toy_airplane_0: held by the agent
+bowl_2: table_21 in dining_room_1
+toy_animal_1: table_21 in dining_room_1
+Thought: I have successfully navigated to table_14 in the living room. I will now place the toy airplane on this table.
+
+Place[toy_airplane_0, on, table_14, None, None]
+Assigned!
+Result: Successful execution!
+Objects: box_3: couch_23 in living_room_1
+toy_airplane_0: table_14 in living_room_1
+bowl_2: table_21 in dining_room_1
+toy_animal_1: table_21 in dining_room_1
+Thought: I have successfully placed the toy airplane on table_14 in the living room. Next, I need to return to the dining room to pick up the bowl.
+
+Navigate[table_21]
+Assigned!
+Result: Successful execution!
+Objects: box_3: couch_23 in living_room_1
+toy_airplane_0: table_14 in living_room_1
+bowl_2: table_21 in dining_room_1
+toy_animal_1: table_21 in dining_room_1
+Thought: I have successfully navigated back to the table in the dining room. I will now pick up the bowl.
+
+Pick[bowl_2]
+Assigned!
+Result: Successful execution!
+Objects: box_3: couch_23 in living_room_1
+toy_airplane_0: table_14 in living_room_1
+bowl_2: held by the agent
+toy_animal_1: table_21 in dining_room_1
+Thought: I have successfully picked up the bowl. Now, I need to navigate back to the living room to place the bowl on table_14 next to the toy airplane.
+
+Navigate[table_14]
+Assigned!
+Result: Successful execution!
+Objects: box_3: couch_23 in living_room_1
+toy_airplane_0: table_14 in living_room_1
+bowl_2: held by the agent
+toy_animal_1: table_21 in dining_room_1
+Thought: I have successfully navigated to table_14 in the living room. I will now place the bowl on this table next to the toy airplane.
+
+Place[bowl_2, on, table_14, next_to, toy_airplane_0]
+Assigned!
+Result: Successful execution!
+Objects: box_3: couch_23 in living_room_1
+toy_airplane_0: table_14 in living_room_1
+bowl_2: table_14 in living_room_1
+toy_animal_1: table_21 in dining_room_1
+Thought: I have successfully placed the bowl on table_14 next to the toy airplane in the living room. Now, I need to return to the dining room to pick up the toy animal.
+
+Navigate[table_21]
+Assigned!
+Result: Successful execution!
+Objects: box_3: couch_23 in living_room_1
+toy_airplane_0: table_14 in living_room_1
+bowl_2: table_14 in living_room_1
+toy_animal_1: table_21 in dining_room_1
+Thought: I have successfully navigated back to the table in the dining room. I will now pick up the toy animal.
+
+Pick[toy_animal_1]
+Assigned!
+Result: Successful execution!
+Objects: box_3: couch_23 in living_room_1
+toy_airplane_0: table_14 in living_room_1
+bowl_2: table_14 in living_room_1
+toy_animal_1: held by the agent
+Thought: I have successfully picked up the toy animal. Now, I need to navigate back to the living room to place the toy animal on table_14 next to the toy airplane and bowl.
+
+Navigate[table_14]
+Assigned!
+Result: Successful execution!
+Objects: box_3: couch_23 in living_room_1
+toy_airplane_0: table_14 in living_room_1
+bowl_2: table_14 in living_room_1
+toy_animal_1: held by the agent
+Thought: I have successfully navigated to table_14 in the living room. I will now place the toy animal on this table next to the toy airplane and bowl.
+
+Place[toy_animal_1, on, table_14, next_to, bowl_2]
+Assigned!
+Result: Successful execution!
+Objects: box_3: couch_23 in living_room_1
+toy_airplane_0: table_14 in living_room_1
+bowl_2: table_14 in living_room_1
+toy_animal_1: table_14 in living_room_1
+Thought: I have successfully placed the toy animal on table_14 next to the bowl and toy airplane in the living room. All the required objects have been moved and arranged as requested. The task is now complete.
+
+Done[]
+Assigned!

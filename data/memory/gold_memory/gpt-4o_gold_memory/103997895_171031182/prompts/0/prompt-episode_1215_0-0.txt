@@ -1,0 +1,124 @@
+You are an agent that solves embodied-agent planning problems. The task assigned to you will be situated in a house and will generally involve navigating to objects, picking and placing them on different receptacles to achieve rearrangement. You strictly follow any format specifications and pay attention to the previous actions taken in order to avoid repeating mistakes. 
+
+If there are multiple tasks to complete, please follow them in the order they appear in the instruction.
+
+Rooms do not need to be explored more than once. This means if you have explored the living room and have not found the object, then you should explore the kitchen, if a relevant object is still not found, you should explore the hallway etc...
+
+Many calls to the same action in a row are a sign that something has gone wrong and you should try a different action.
+
+Task: Move the book and clock from the living room shelves to the bedroom chair. Place them next to each other on the chair. I prefer to have my book and clock together on the bedroom chair for easy access before bed.
+
+Furniture:
+living_room_1: floor_living_room_1, shelves_11, table_14, couch_17, table_19, couch_21, unknown_22
+laundryroom_1: floor_laundryroom_1, washer_dryer_12, washer_dryer_13, couch_18, cabinet_31
+bathroom_1: floor_bathroom_1, toilet_15
+bedroom_1: floor_bedroom_1, chair_9, chest_of_drawers_32, unknown_33, unknown_35
+closet_1: floor_closet_1, wardrobe_37, wardrobe_39
+kitchen_1: floor_kitchen_1, cabinet_23, table_24, cabinet_25, cabinet_27, cabinet_28, counter_29, cabinet_30, cabinet_34, fridge_36, cabinet_40
+bathroom_2: floor_bathroom_2, toilet_20
+bedroom_2: floor_bedroom_2, bed_10, shelves_16, table_26, filing_cabinet_38
+hallway_1: floor_hallway_1
+
+The following furnitures have a faucet: cabinet_31, cabinet_34
+Objects:
+No objects found yet
+
+Possible Actions:
+- Close: Used for closing an articulated entity. You must provide the name of the furniture you want to close. Example (Close[chest_of_drawers_1])
+- DescribeObjectTool: Used to retrieve a brief descriptive or semantic meaning of a given object or furniture name. Example (DescribeObjectTool[sponge_1])
+- Explore: Search a specific room by visiting various receptacles or furnitures in that room. The input to the skill is the EXACT name of the room to be visited. Use the room names provided in the house description. This tool exhaustivly explores the specified room. Example (Explore[kitchen_1])
+- FindObjectTool: Used to find the exact name/names of the object/objects of interest. If you want to find the exact names of objects on specific receptacles or furnitures, please include that in the query. Example (FindObjectTool[toys on the floor] or FindObjectTool[apples])
+- FindReceptacleTool: Used to know the exact name of a receptacle. A receptacle is a furniture or entity (like a chair, table, bed etc.) where you can place an object. Example (FindReceptacleTool[a kitchen counter])
+- FindRoomTool: Used to know the exact name of a room in the house. A room is a region in the house where furniture is placed. Example (FindRoomTool[a room which might have something to eat])
+- Navigate: Used for navigating to an entity. You must provide the name of the entity you want to navigate to. Example (Navigate[counter_22])
+- Open: Used for opening an articulated entity. You must provide the name of the furniture you want to open. Example (Open[chest_of_drawers_1])
+- Pick: Used for picking up an object. You must provide the name of the object to be picked. The agent cannot hold more than one object at a time. Example (Pick[cup_1])
+- Place: Used for placing an object on a target location. You need to provide the name of the object to be placed, the name of the furniture where it should be placed, spatial relation ("on" or "within") describing the relation between the object and furniture. The object to be placed must already be held by the agent (i.e. picked previously). In addition to these, you can request to place the object near another object. For that you can optionally provide a spatial constraints ("next_to") and the name of the reference object. To place next to an object, the reference object must already be on the target furniture. API template - Place[<object_to_be_placed>, <spatial_relation>, <furniture to be placed on>, <spatial_constraint>, <reference_object>]. spatial_constraint and reference_object should be set to "None" when necessary.
+- Wait: Used to make agent stay idle for some time. Example (Wait[])
+- Done: Used to indicate that the agent has finished the task. Example (Done[])
+
+What is the next action to make progress towards completing the task?
+Return your response in the following format
+
+Thought: <reasoning for why you are taking the next action>
+<next action call>
+Assigned!
+Thought: The task requires moving a book and a clock from the living room shelves to the bedroom chair. First, I need to explore the living room to locate the book and clock.
+
+Explore[living_room_1]
+Assigned!
+Result: Successful execution!
+Objects: book_0: shelves_11 in living_room_1
+clock_1: shelves_11 in living_room_1
+Thought: I have found both the book and the clock on the shelves in the living room. I will now navigate to the shelves to pick up the book first.
+
+Navigate[shelves_11]
+Assigned!
+Result: Successful execution!
+Objects: book_0: shelves_11 in living_room_1
+clock_1: shelves_11 in living_room_1
+Thought: I have successfully navigated to the shelves in the living room. Now, I will pick up the book.
+
+Pick[book_0]
+Assigned!
+Result: Successful execution!
+Objects: book_0: held by the agent
+clock_1: shelves_11 in living_room_1
+Thought: I have successfully picked up the book. Now, I need to navigate to the bedroom chair to place the book there.
+
+Navigate[chair_9]
+Assigned!
+Result: Successful execution!
+Objects: book_0: held by the agent
+clock_1: shelves_11 in living_room_1
+bottle_3: unknown_35 in bedroom_1
+cup_2: shelves_16 in bedroom_2
+Thought: I have successfully navigated to the bedroom chair. Now, I will place the book on the chair.
+
+Place[book_0, on, chair_9, None, None]
+Assigned!
+Result: Successful execution!
+Objects: book_0: chair_9 in bedroom_1
+clock_1: shelves_11 in living_room_1
+bottle_3: unknown_35 in bedroom_1
+cup_2: shelves_16 in bedroom_2
+Thought: I have successfully placed the book on the bedroom chair. Now, I need to return to the living room shelves to pick up the clock.
+
+Navigate[shelves_11]
+Assigned!
+Result: Successful execution!
+Objects: book_0: chair_9 in bedroom_1
+clock_1: shelves_11 in living_room_1
+bottle_3: unknown_35 in bedroom_1
+cup_2: shelves_16 in bedroom_2
+Thought: I have successfully navigated back to the shelves in the living room. Now, I will pick up the clock.
+
+Pick[clock_1]
+Assigned!
+Result: Successful execution!
+Objects: book_0: chair_9 in bedroom_1
+clock_1: held by the agent
+bottle_3: unknown_35 in bedroom_1
+cup_2: shelves_16 in bedroom_2
+Thought: I have successfully picked up the clock. Now, I need to navigate back to the bedroom chair to place the clock next to the book.
+
+Navigate[chair_9]
+Assigned!
+Result: Successful execution!
+Objects: book_0: chair_9 in bedroom_1
+clock_1: held by the agent
+bottle_3: unknown_35 in bedroom_1
+cup_2: shelves_16 in bedroom_2
+Thought: I have successfully navigated back to the bedroom chair. Now, I will place the clock on the chair next to the book.
+
+Place[clock_1, on, chair_9, next_to, book_0]
+Assigned!
+Result: Successful execution!
+Objects: book_0: chair_9 in bedroom_1
+clock_1: chair_9 in bedroom_1
+bottle_3: unknown_35 in bedroom_1
+cup_2: shelves_16 in bedroom_2
+Thought: I have successfully placed both the book and the clock on the bedroom chair next to each other. The task is now complete.
+
+Done[]
+Assigned!

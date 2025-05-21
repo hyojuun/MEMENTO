@@ -1,0 +1,811 @@
+[
+    {
+        "episode_id": 1238,
+        "error": false,
+        "instruction": "Move the laptop and mouse pad from the table in the bedroom to the counter in the kitchen. Place them next to each other on the counter. The laptop is black and rugged with a gray touchpad, and the mouse pad is black with a logo in the corner. The laptop and mouse pad are part of my work setup.",
+        "replanning_count_0": 25.0,
+        "run_id": 0,
+        "runtime": 225.88882780075076,
+        "sim_step_count": 3416.0,
+        "task_percent_complete": 0.3333333333333333,
+        "task_state_success": 0.0,
+        "org_data": {
+            "episode_id": "1238",
+            "instruction": "Move the laptop and mouse pad from the table in the bedroom to the counter in the kitchen. Place them next to each other on the counter. The laptop is black and rugged with a gray touchpad, and the mouse pad is black with a logo in the corner. The laptop and mouse pad are part of my work setup.",
+            "original_data_info": {
+                "episode_id": "496",
+                "instruction": "Move the laptop and mouse pad from the table in the bedroom to the counter in the kitchen. Place them next to each other on the counter.",
+                "data_path": "data/datasets/partnr_episodes/v0_0/val.json"
+            },
+            "metadata": {
+                "stage": "1",
+                "related_episode_id": "3238",
+                "episode_type": "object_semantics",
+                "source_file": "val",
+                "target_objects": [
+                    {
+                        "id": "Laptop_29",
+                        "caption": "A black rugged laptop with a gray touchpad.",
+                        "source": "ai2thorhab",
+                        "category": "laptop",
+                        "cluster": 1
+                    },
+                    {
+                        "id": "B003QTD4Y6",
+                        "caption": "A black mouse pad with a logo in the corner.",
+                        "source": "amazon_berkeley",
+                        "category": "mouse_pad",
+                        "cluster": 0
+                    }
+                ],
+                "distractors": [
+                    {
+                        "id": "Laptop_3",
+                        "caption": "A black laptop with a gray keyboard.",
+                        "source": "ai2thorhab",
+                        "category": "laptop",
+                        "cluster": 0,
+                        "pair_id": "Laptop_29"
+                    }
+                ],
+                "subtype": "group",
+                "num_targets": 2,
+                "memory": "The black rugged laptop and black mouse pad with a logo are part of the user's work setup.",
+                "used_object": [
+                    "laptop",
+                    "mouse_pad"
+                ]
+            },
+            "scene_id": "103997895_171031182",
+            "evaluation_propositions": [
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "Laptop_29_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "559f21c7f5628a83b31d616e90bdcc02e7744731_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "B003QTD4Y6_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "559f21c7f5628a83b31d616e90bdcc02e7744731_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_next_to",
+                    "args": {
+                        "entity_handles_a": [
+                            "Laptop_29_:0000"
+                        ],
+                        "entity_handles_b": [
+                            "B003QTD4Y6_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_b": false,
+                        "l2_threshold": 1.0
+                    }
+                }
+            ],
+            "evaluation_proposition_dependencies": [
+                {
+                    "proposition_indices": [
+                        2
+                    ],
+                    "depends_on": [
+                        0,
+                        1
+                    ],
+                    "relation_type": "while_satisfied",
+                    "dependency_mode": "any"
+                }
+            ],
+            "evaluation_constraints": [
+                {
+                    "type": "TemporalConstraint",
+                    "args": {
+                        "dag_edges": [],
+                        "n_propositions": 3
+                    }
+                },
+                {
+                    "type": "TerminalSatisfactionConstraint",
+                    "args": {
+                        "proposition_indices": [
+                            0,
+                            1,
+                            2
+                        ],
+                        "n_propositions": null
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "episode_id": 1231,
+        "error": false,
+        "instruction": "Move the laptop and laptop stand from the living room table to the bedroom chair. Also, bring a book from the bedroom chair to the living room table. The laptop is gray with a black keyboard and touchpad, the laptop stand is black with a rounded design, and the book is a green sketchbook with a spiral binding and brown central design. The laptop and the laptop stand are essential for my work setup.",
+        "replanning_count_0": 23.0,
+        "run_id": 0,
+        "runtime": 160.01849222183228,
+        "sim_step_count": 1588.0,
+        "task_percent_complete": 0.6666666666666666,
+        "task_state_success": 0.0,
+        "org_data": {
+            "episode_id": "1231",
+            "instruction": "Move the laptop and laptop stand from the living room table to the bedroom chair. Also, bring a book from the bedroom chair to the living room table. The laptop is gray with a black keyboard and touchpad, the laptop stand is black with a rounded design, and the book is a green sketchbook with a spiral binding and brown central design. The laptop and the laptop stand are essential for my work setup.",
+            "original_data_info": {
+                "episode_id": "486",
+                "instruction": "Move the laptop and laptop stand from the living room table to the bedroom chair. Also, bring a book from the bedroom chair to the living room table.",
+                "data_path": "data/datasets/partnr_episodes/v0_0/val.json"
+            },
+            "metadata": {
+                "stage": "1",
+                "related_episode_id": "3231",
+                "episode_type": "object_semantics",
+                "source_file": "val",
+                "target_objects": [
+                    {
+                        "id": "Laptop_23",
+                        "caption": "A gray laptop with a black keyboard and touchpad.",
+                        "source": "ai2thorhab",
+                        "category": "laptop",
+                        "cluster": 0
+                    },
+                    {
+                        "id": "B00WRDRRWW",
+                        "caption": "A black laptop stand with a rounded design.",
+                        "source": "amazon_berkeley",
+                        "category": "laptop_stand",
+                        "cluster": 1
+                    },
+                    {
+                        "id": "edf5a667080ed733fda55514ee18a8081f9dcf9c",
+                        "caption": "A green sketchbook with a spiral binding and brown central design.",
+                        "source": "hssd_hab",
+                        "category": "book",
+                        "cluster": 0
+                    }
+                ],
+                "distractors": [
+                    {
+                        "id": "Laptop_20",
+                        "caption": "A black laptop with a glossy finish.",
+                        "source": "ai2thorhab",
+                        "category": "laptop",
+                        "cluster": 1,
+                        "pair_id": "Laptop_23"
+                    },
+                    {
+                        "id": "B00WRDS8H0",
+                        "caption": "A sleek black laptop stand with a glass surface.",
+                        "source": "amazon_berkeley",
+                        "category": "laptop_stand",
+                        "cluster": 0,
+                        "pair_id": "B00WRDRRWW"
+                    },
+                    {
+                        "id": "Book_25",
+                        "caption": "A book with a colorful cover.",
+                        "source": "ai2thorhab",
+                        "category": "book",
+                        "cluster": 1,
+                        "pair_id": "edf5a667080ed733fda55514ee18a8081f9dcf9c"
+                    }
+                ],
+                "subtype": "group",
+                "num_targets": 2,
+                "memory": "The gray laptop and black laptop stand are essential for the user's work setup.",
+                "used_object": [
+                    "laptop_stand",
+                    "laptop"
+                ]
+            },
+            "scene_id": "103997895_171031182",
+            "evaluation_propositions": [
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "Laptop_23_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "04801d6f327197470d63bfd728d4cf02bd33ec56_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "B00WRDRRWW_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "04801d6f327197470d63bfd728d4cf02bd33ec56_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "edf5a667080ed733fda55514ee18a8081f9dcf9c_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "2f38b4f83d8a77af0eb36406b0f00df98cef5e47_:0000",
+                            "735845d0674f69f736af7e0f116767a01392f9b8_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                }
+            ],
+            "evaluation_proposition_dependencies": [],
+            "evaluation_constraints": [
+                {
+                    "type": "TemporalConstraint",
+                    "args": {
+                        "dag_edges": [],
+                        "n_propositions": 3
+                    }
+                },
+                {
+                    "type": "TerminalSatisfactionConstraint",
+                    "args": {
+                        "proposition_indices": [
+                            0,
+                            1,
+                            2
+                        ],
+                        "n_propositions": null
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "episode_id": 986,
+        "error": false,
+        "instruction": "First, move the shoe and then the hat from the bedroom to the office and set them on the floor. Then, place them next to each other on the office table. The shoe is a white and silver ASICS with royal blue accents, GEL-1140V model, and the hat is a beige straw with a black band, DPC Tropical Trends Hat. The shoe and the hat are part of my travel essentials.",
+        "replanning_count_0": 22.0,
+        "run_id": 0,
+        "runtime": 366.3441162109375,
+        "sim_step_count": 4258.0,
+        "task_percent_complete": 0.0,
+        "task_state_success": 0.0,
+        "org_data": {
+            "episode_id": "986",
+            "instruction": "First, move the shoe and then the hat from the bedroom to the office and set them on the floor. Then, place them next to each other on the office table. The shoe is a white and silver ASICS with royal blue accents, GEL-1140V model, and the hat is a beige straw with a black band, DPC Tropical Trends Hat. The shoe and the hat are part of my travel essentials.",
+            "original_data_info": {
+                "episode_id": "664",
+                "instruction": "First, move the shoe and then the hat from the bedroom to the office and set them on the floor. Then, place them next to each other on the office table.",
+                "data_path": "data/datasets/partnr_episodes/v0_0/val.json"
+            },
+            "metadata": {
+                "stage": "1",
+                "related_episode_id": "2986",
+                "episode_type": "object_semantics",
+                "source_file": "val",
+                "target_objects": [
+                    {
+                        "id": "ASICS_GEL1140V_WhiteRoyalSilver",
+                        "caption": "A white and silver ASICS shoe with royal blue accents, GEL-1140V model.",
+                        "source": "google",
+                        "category": "shoe",
+                        "cluster": 0
+                    },
+                    {
+                        "id": "DPC_tropical_Trends_Hat",
+                        "caption": "A beige straw hat with a black band, DPC Tropical Trends Hat.",
+                        "source": "google",
+                        "category": "hat",
+                        "cluster": 0
+                    }
+                ],
+                "distractors": [
+                    {
+                        "id": "Cream_Tieks_Italian_Leather_Ballet_Flats",
+                        "caption": "Cream-colored, Italian leather ballet flats, Tieks.",
+                        "source": "google",
+                        "category": "shoe",
+                        "cluster": 1,
+                        "pair_id": "ASICS_GEL1140V_WhiteRoyalSilver"
+                    },
+                    {
+                        "id": "DPC_Handmade_Hat_Brown",
+                        "caption": "A brown, handmade hat, DPC Handmade Hat.",
+                        "source": "google",
+                        "category": "hat",
+                        "cluster": 1,
+                        "pair_id": "DPC_tropical_Trends_Hat"
+                    }
+                ],
+                "subtype": "group",
+                "num_targets": 2,
+                "memory": "The white and silver ASICS shoe with royal blue accents and the beige straw hat with a black band are part of the user's travel essentials.",
+                "used_object": [
+                    "shoe",
+                    "hat"
+                ]
+            },
+            "scene_id": "107733960_175999701",
+            "evaluation_propositions": [
+                {
+                    "function_name": "is_in_room",
+                    "args": {
+                        "object_handles": [
+                            "ASICS_GEL1140V_WhiteRoyalSilver_:0000"
+                        ],
+                        "room_ids": [
+                            "office"
+                        ],
+                        "number": 1,
+                        "is_same_room": false
+                    }
+                },
+                {
+                    "function_name": "is_in_room",
+                    "args": {
+                        "object_handles": [
+                            "DPC_tropical_Trends_Hat_:0000"
+                        ],
+                        "room_ids": [
+                            "office"
+                        ],
+                        "number": 1,
+                        "is_same_room": false
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "ASICS_GEL1140V_WhiteRoyalSilver_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "6b63013dfa25cabaa2ef3d0830c19c823e6b1f7d_:0001"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "DPC_tropical_Trends_Hat_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "6b63013dfa25cabaa2ef3d0830c19c823e6b1f7d_:0001"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_next_to",
+                    "args": {
+                        "entity_handles_a": [
+                            "ASICS_GEL1140V_WhiteRoyalSilver_:0000"
+                        ],
+                        "entity_handles_b": [
+                            "DPC_tropical_Trends_Hat_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_b": false,
+                        "l2_threshold": 1.0
+                    }
+                }
+            ],
+            "evaluation_proposition_dependencies": [
+                {
+                    "proposition_indices": [
+                        4
+                    ],
+                    "depends_on": [
+                        2,
+                        3
+                    ],
+                    "relation_type": "while_satisfied",
+                    "dependency_mode": "any"
+                },
+                {
+                    "proposition_indices": [
+                        2
+                    ],
+                    "depends_on": [
+                        0
+                    ],
+                    "relation_type": "after_satisfied",
+                    "dependency_mode": "any"
+                },
+                {
+                    "proposition_indices": [
+                        3
+                    ],
+                    "depends_on": [
+                        1
+                    ],
+                    "relation_type": "after_satisfied",
+                    "dependency_mode": "any"
+                }
+            ],
+            "evaluation_constraints": [
+                {
+                    "type": "TemporalConstraint",
+                    "args": {
+                        "dag_edges": [
+                            [
+                                0,
+                                2
+                            ],
+                            [
+                                0,
+                                3
+                            ],
+                            [
+                                0,
+                                4
+                            ],
+                            [
+                                1,
+                                2
+                            ],
+                            [
+                                1,
+                                3
+                            ],
+                            [
+                                1,
+                                4
+                            ]
+                        ],
+                        "n_propositions": 5
+                    }
+                },
+                {
+                    "type": "TerminalSatisfactionConstraint",
+                    "args": {
+                        "proposition_indices": [
+                            2,
+                            3,
+                            4
+                        ],
+                        "n_propositions": null
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "episode_id": 1126,
+        "error": false,
+        "instruction": "Move a laptop and a laptop stand from the lounge counter to the dining room table. Place them next to each other on the table. The laptop is black with a dark keyboard, and the laptop stand is black with a rounded design. These items are part of my work setup.",
+        "replanning_count_0": 10.0,
+        "run_id": 0,
+        "runtime": 90.96493220329285,
+        "sim_step_count": 894.0,
+        "task_percent_complete": 0.0,
+        "task_state_success": 0.0,
+        "org_data": {
+            "episode_id": "1126",
+            "instruction": "Move a laptop and a laptop stand from the lounge counter to the dining room table. Place them next to each other on the table. The laptop is black with a dark keyboard, and the laptop stand is black with a rounded design. These items are part of my work setup.",
+            "original_data_info": {
+                "episode_id": "442",
+                "instruction": "Move a laptop and a laptop stand from the lounge counter to the dining room table. Place them next to each other on the table.",
+                "data_path": "data/datasets/partnr_episodes/v0_0/val.json"
+            },
+            "metadata": {
+                "stage": "1",
+                "related_episode_id": "3126",
+                "episode_type": "object_semantics",
+                "source_file": "val",
+                "target_objects": [
+                    {
+                        "id": "Laptop_2",
+                        "caption": "A black laptop with a dark keyboard.",
+                        "source": "ai2thorhab",
+                        "category": "laptop",
+                        "cluster": 1
+                    },
+                    {
+                        "id": "B00WRDRRWW",
+                        "caption": "A black laptop stand with a rounded design.",
+                        "source": "amazon_berkeley",
+                        "category": "laptop_stand",
+                        "cluster": 1
+                    }
+                ],
+                "distractors": [
+                    {
+                        "id": "Laptop_23",
+                        "caption": "A gray laptop with a black keyboard and touchpad.",
+                        "source": "ai2thorhab",
+                        "category": "laptop",
+                        "cluster": 0,
+                        "pair_id": "Laptop_2"
+                    },
+                    {
+                        "id": "B00WRDS8H0",
+                        "caption": "A sleek black laptop stand with a glass surface.",
+                        "source": "amazon_berkeley",
+                        "category": "laptop_stand",
+                        "cluster": 0,
+                        "pair_id": "B00WRDRRWW"
+                    }
+                ],
+                "subtype": "group",
+                "num_targets": 2,
+                "memory": "The black laptop with a dark keyboard and the black laptop stand with a rounded design are part of the user's work setup.",
+                "used_object": [
+                    "laptop_stand",
+                    "laptop"
+                ]
+            },
+            "scene_id": "102344529",
+            "evaluation_propositions": [
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "Laptop_2_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "3631f4924b2008d86b4a02c6cbf4ef640a10c4e6_part_6_:0000",
+                            "43cc99743f6d75e5f7b92ab8e5c9ba7f3e932ad0_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "B00WRDRRWW_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "3631f4924b2008d86b4a02c6cbf4ef640a10c4e6_part_6_:0000",
+                            "43cc99743f6d75e5f7b92ab8e5c9ba7f3e932ad0_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_next_to",
+                    "args": {
+                        "entity_handles_a": [
+                            "Laptop_2_:0000"
+                        ],
+                        "entity_handles_b": [
+                            "B00WRDRRWW_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_b": false,
+                        "l2_threshold": 1.0
+                    }
+                }
+            ],
+            "evaluation_proposition_dependencies": [
+                {
+                    "proposition_indices": [
+                        2
+                    ],
+                    "depends_on": [
+                        0,
+                        1
+                    ],
+                    "relation_type": "while_satisfied",
+                    "dependency_mode": "any"
+                }
+            ],
+            "evaluation_constraints": [
+                {
+                    "type": "TemporalConstraint",
+                    "args": {
+                        "dag_edges": [],
+                        "n_propositions": 3
+                    }
+                },
+                {
+                    "type": "TerminalSatisfactionConstraint",
+                    "args": {
+                        "proposition_indices": [
+                            0,
+                            1,
+                            2
+                        ],
+                        "n_propositions": null
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "episode_id": 958,
+        "error": false,
+        "instruction": "Put the plate and bowl together in another cabinet in the kitchen and place them next to each other. The plate is a square white plate with a black geometric pattern, and the bowl is a white bowl with a brown lid. The plate and bowl are part of my dinnerware set.",
+        "replanning_count_0": 15.0,
+        "run_id": 0,
+        "runtime": 159.90737962722778,
+        "sim_step_count": 1562.0,
+        "task_percent_complete": 0.0,
+        "task_state_success": 0.0,
+        "org_data": {
+            "episode_id": "958",
+            "instruction": "Put the plate and bowl together in another cabinet in the kitchen and place them next to each other. The plate is a square white plate with a black geometric pattern, and the bowl is a white bowl with a brown lid. The plate and bowl are part of my dinnerware set.",
+            "original_data_info": {
+                "episode_id": "536",
+                "instruction": "Put the plate and bowl together in another cabinet in the kitchen and place them next to each other.",
+                "data_path": "data/datasets/partnr_episodes/v0_0/val.json"
+            },
+            "metadata": {
+                "stage": "1",
+                "related_episode_id": "2958",
+                "episode_type": "object_semantics",
+                "source_file": "val",
+                "target_objects": [
+                    {
+                        "id": "Plate_28",
+                        "caption": "A square white plate with a black geometric pattern.",
+                        "source": "ai2thorhab",
+                        "category": "plate",
+                        "cluster": 1
+                    },
+                    {
+                        "id": "B075HWTX4Z",
+                        "caption": "A white bowl with a brown lid.",
+                        "source": "amazon_berkeley",
+                        "category": "bowl",
+                        "cluster": 1
+                    }
+                ],
+                "distractors": [
+                    {
+                        "id": "Plate_22",
+                        "caption": "A black plate with a polka dot pattern.",
+                        "source": "ai2thorhab",
+                        "category": "plate",
+                        "cluster": 0,
+                        "pair_id": "Plate_28"
+                    },
+                    {
+                        "id": "Bowl_4",
+                        "caption": "A brown bowl with a smooth texture.",
+                        "source": "ai2thorhab",
+                        "category": "bowl",
+                        "cluster": 0,
+                        "pair_id": "B075HWTX4Z"
+                    }
+                ],
+                "subtype": "group",
+                "num_targets": 2,
+                "memory": "The square white plate with a black geometric pattern and the white bowl with a brown lid are part of the user's dinnerware set.",
+                "used_object": [
+                    "plate",
+                    "bowl"
+                ]
+            },
+            "scene_id": "102816756",
+            "evaluation_propositions": [
+                {
+                    "function_name": "is_inside",
+                    "args": {
+                        "object_handles": [
+                            "Plate_28_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "33c1689bc5fb3b6f599f261ad069d9510804deb9_:0000",
+                            "33c1689bc5fb3b6f599f261ad069d9510804deb9_:0001",
+                            "424d7e7d258370736e6cfdbad2b253e521f80c79_:0000",
+                            "42c2fce42ed600de5f0c6919ba47fe97e60ab673_:0000",
+                            "77af27c6a414131f13d2aac55153720028fd4ed5_:0000",
+                            "a19b47699883e5841599452274d671a1bb2c775e_:0000",
+                            "bdab4ca579230f7652590bc19fa00a35701857ef_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_inside",
+                    "args": {
+                        "object_handles": [
+                            "B075HWTX4Z_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "33c1689bc5fb3b6f599f261ad069d9510804deb9_:0000",
+                            "33c1689bc5fb3b6f599f261ad069d9510804deb9_:0001",
+                            "424d7e7d258370736e6cfdbad2b253e521f80c79_:0000",
+                            "42c2fce42ed600de5f0c6919ba47fe97e60ab673_:0000",
+                            "77af27c6a414131f13d2aac55153720028fd4ed5_:0000",
+                            "a19b47699883e5841599452274d671a1bb2c775e_:0000",
+                            "bdab4ca579230f7652590bc19fa00a35701857ef_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_next_to",
+                    "args": {
+                        "entity_handles_a": [
+                            "Plate_28_:0000"
+                        ],
+                        "entity_handles_b": [
+                            "B075HWTX4Z_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_b": false,
+                        "l2_threshold": 1.0
+                    }
+                }
+            ],
+            "evaluation_proposition_dependencies": [
+                {
+                    "proposition_indices": [
+                        2
+                    ],
+                    "depends_on": [
+                        0,
+                        1
+                    ],
+                    "relation_type": "while_satisfied",
+                    "dependency_mode": "any"
+                }
+            ],
+            "evaluation_constraints": [
+                {
+                    "type": "TemporalConstraint",
+                    "args": {
+                        "dag_edges": [],
+                        "n_propositions": 3
+                    }
+                },
+                {
+                    "type": "SameArgConstraint",
+                    "args": {
+                        "proposition_indices": [
+                            0,
+                            1
+                        ],
+                        "arg_names": [
+                            "receptacle_handles",
+                            "receptacle_handles"
+                        ],
+                        "n_propositions": null
+                    }
+                },
+                {
+                    "type": "TerminalSatisfactionConstraint",
+                    "args": {
+                        "proposition_indices": [
+                            0,
+                            1,
+                            2
+                        ],
+                        "n_propositions": null
+                    }
+                }
+            ]
+        }
+    }
+]

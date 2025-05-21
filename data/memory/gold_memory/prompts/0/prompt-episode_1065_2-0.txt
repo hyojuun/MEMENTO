@@ -1,0 +1,195 @@
+You are an agent that solves embodied-agent planning problems. The task assigned to you will be situated in a house and will generally involve navigating to objects, picking and placing them on different receptacles to achieve rearrangement. You strictly follow any format specifications and pay attention to the previous actions taken in order to avoid repeating mistakes. 
+
+If there are multiple tasks to complete, please follow them in the order they appear in the instruction.
+
+Rooms do not need to be explored more than once. This means if you have explored the living room and have not found the object, then you should explore the kitchen, if a relevant object is still not found, you should explore the hallway etc...
+
+Many calls to the same action in a row are a sign that something has gone wrong and you should try a different action.
+
+Task: Help me organize my closet in the bedroom. First, place the basket and shoe on another shelf in the bedroom, next to each other. Then, move them to the stand in the bedroom and place the hat close by. I have a routine of organizing my closet by first rearranging items on the shelf before placing them on the stand with the hat nearby.
+
+Furniture:
+porch_1: floor_porch_1
+porch_2: floor_porch_2
+bathroom_1: floor_bathroom_1
+bathroom_2: floor_bathroom_2, washer_dryer_10
+bedroom_1: floor_bedroom_1, shelves_12, shelves_14, stool_15, bed_17
+bedroom_2: floor_bedroom_2, table_13, bed_19, stand_23
+entryway_1: floor_entryway_1
+workout_1: floor_workout_1
+living_room_1: floor_living_room_1, table_11, couch_18, table_20, fridge_22
+kitchen_1: floor_kitchen_1, table_16, cabinet_21
+
+The following furnitures have a faucet: cabinet_21
+Objects:
+No objects found yet
+
+Possible Actions:
+- Close: Used for closing an articulated entity. You must provide the name of the furniture you want to close. Example (Close[chest_of_drawers_1])
+- DescribeObjectTool: Used to retrieve a brief descriptive or semantic meaning of a given object or furniture name. Example (DescribeObjectTool[sponge_1])
+- Explore: Search a specific room by visiting various receptacles or furnitures in that room. The input to the skill is the EXACT name of the room to be visited. Use the room names provided in the house description. This tool exhaustivly explores the specified room. Example (Explore[kitchen_1])
+- FindObjectTool: Used to find the exact name/names of the object/objects of interest. If you want to find the exact names of objects on specific receptacles or furnitures, please include that in the query. Example (FindObjectTool[toys on the floor] or FindObjectTool[apples])
+- FindReceptacleTool: Used to know the exact name of a receptacle. A receptacle is a furniture or entity (like a chair, table, bed etc.) where you can place an object. Example (FindReceptacleTool[a kitchen counter])
+- FindRoomTool: Used to know the exact name of a room in the house. A room is a region in the house where furniture is placed. Example (FindRoomTool[a room which might have something to eat])
+- Navigate: Used for navigating to an entity. You must provide the name of the entity you want to navigate to. Example (Navigate[counter_22])
+- Open: Used for opening an articulated entity. You must provide the name of the furniture you want to open. Example (Open[chest_of_drawers_1])
+- Pick: Used for picking up an object. You must provide the name of the object to be picked. The agent cannot hold more than one object at a time. Example (Pick[cup_1])
+- Place: Used for placing an object on a target location. You need to provide the name of the object to be placed, the name of the furniture where it should be placed, spatial relation ("on" or "within") describing the relation between the object and furniture. The object to be placed must already be held by the agent (i.e. picked previously). In addition to these, you can request to place the object near another object. For that you can optionally provide a spatial constraints ("next_to") and the name of the reference object. To place next to an object, the reference object must already be on the target furniture. API template - Place[<object_to_be_placed>, <spatial_relation>, <furniture to be placed on>, <spatial_constraint>, <reference_object>]. spatial_constraint and reference_object should be set to "None" when necessary.
+- Wait: Used to make agent stay idle for some time. Example (Wait[])
+- Done: Used to indicate that the agent has finished the task. Example (Done[])
+
+What is the next action to make progress towards completing the task?
+Return your response in the following format
+
+Thought: <reasoning for why you are taking the next action>
+<next action call>
+Assigned!
+Thought: To begin organizing the closet in the bedroom, I need to locate the basket, shoe, and hat. Since the task is situated in the bedroom, I will start by exploring the bedroom to find these objects.
+
+Explore[bedroom_1]
+Assigned!
+Result: Successful execution!
+Objects: basket_0: shelves_14 in bedroom_1
+shoe_1: shelves_14 in bedroom_1
+hat_2: stand_23 in bedroom_2
+Thought: I have found the basket and shoe on shelves_14 in bedroom_1, and the hat on stand_23 in bedroom_2. I will first navigate to shelves_14 in bedroom_1 to pick up the basket and shoe.
+
+Navigate[shelves_14]
+Assigned!
+Result: Successful execution!
+Objects: basket_0: shelves_14 in bedroom_1
+shoe_1: shelves_14 in bedroom_1
+hat_2: stand_23 in bedroom_2
+Thought: I am now at shelves_14 in bedroom_1. I will pick up the basket first.
+
+Pick[basket_0]
+Assigned!
+Result: Successful execution!
+Objects: basket_0: held by the agent
+shoe_1: shelves_14 in bedroom_1
+hat_2: stand_23 in bedroom_2
+Thought: I have successfully picked up the basket. Now, I will place the basket on another shelf in the bedroom, next to where I will place the shoe.
+
+FindReceptacleTool[shelves in bedroom_1]
+Assigned!
+Result: - shelves_12 in bedroom
+- shelves_14 in bedroom
+Objects: basket_0: held by the agent
+shoe_1: shelves_14 in bedroom_1
+hat_2: stand_23 in bedroom_2
+Thought: I have identified another shelf, shelves_12, in bedroom_1 where I can place the basket. I will place the basket on shelves_12.
+
+Place[basket_0, on, shelves_12, None, None]
+Assigned!
+Result: Successful execution!
+Objects: basket_0: shelves_12 in bedroom_1
+shoe_1: shelves_14 in bedroom_1
+hat_2: stand_23 in bedroom_2
+Thought: I have successfully placed the basket on shelves_12. Now, I will pick up the shoe from shelves_14 and place it next to the basket on shelves_12.
+
+Pick[shoe_1]
+Assigned!
+Result: Successful execution!
+Objects: basket_0: shelves_12 in bedroom_1
+shoe_1: held by the agent
+hat_2: stand_23 in bedroom_2
+Thought: I have successfully picked up the shoe. Now, I will place the shoe next to the basket on shelves_12.
+
+Place[shoe_1, on, shelves_12, next_to, basket_0]
+Assigned!
+Result: Successful execution!
+Objects: basket_0: shelves_12 in bedroom_1
+shoe_1: shelves_12 in bedroom_1
+hat_2: stand_23 in bedroom_2
+Thought: I have successfully placed the basket and shoe next to each other on shelves_12. Now, I need to move them to the stand in bedroom_2 and place the hat close by. I will first navigate to shelves_12 to pick up the basket.
+
+Navigate[shelves_12]
+Assigned!
+Result: Successful execution!
+Objects: basket_0: shelves_12 in bedroom_1
+shoe_1: shelves_12 in bedroom_1
+hat_2: stand_23 in bedroom_2
+Thought: I am now at shelves_12 in bedroom_1. I will pick up the basket first to move it to the stand in bedroom_2.
+
+Pick[basket_0]
+Assigned!
+Result: Successful execution!
+Objects: basket_0: held by the agent
+shoe_1: shelves_12 in bedroom_1
+hat_2: stand_23 in bedroom_2
+Thought: I have successfully picked up the basket. Now, I need to navigate to bedroom_2 to place the basket on the stand.
+
+Navigate[bedroom_2]
+Assigned!
+Result: Successful execution!
+Objects: basket_0: held by the agent
+shoe_1: shelves_12 in bedroom_1
+hat_2: stand_23 in bedroom_2
+Thought: I am now in bedroom_2. I will navigate to the stand_23 to place the basket on it.
+
+Navigate[stand_23]
+Assigned!
+Result: Successful execution!
+Objects: basket_0: held by the agent
+shoe_1: shelves_12 in bedroom_1
+hat_2: stand_23 in bedroom_2
+Thought: I am now at stand_23 in bedroom_2. I will place the basket on the stand.
+
+Place[basket_0, on, stand_23, None, None]
+Assigned!
+Result: Successful execution!
+Objects: basket_0: stand_23 in bedroom_2
+shoe_1: shelves_12 in bedroom_1
+hat_2: stand_23 in bedroom_2
+Thought: I have successfully placed the basket on stand_23 in bedroom_2. Now, I need to go back to bedroom_1 to pick up the shoe from shelves_12 and move it to the stand in bedroom_2.
+
+Navigate[bedroom_1]
+Assigned!
+Result: Successful execution!
+Objects: basket_0: stand_23 in bedroom_2
+shoe_1: shelves_12 in bedroom_1
+hat_2: stand_23 in bedroom_2
+Thought: I am now in bedroom_1. I will navigate to shelves_12 to pick up the shoe.
+
+Navigate[shelves_12]
+Assigned!
+Result: Successful execution!
+Objects: basket_0: stand_23 in bedroom_2
+shoe_1: shelves_12 in bedroom_1
+hat_2: stand_23 in bedroom_2
+Thought: I am now at shelves_12 in bedroom_1. I will pick up the shoe to move it to the stand in bedroom_2.
+
+Pick[shoe_1]
+Assigned!
+Result: Successful execution!
+Objects: basket_0: stand_23 in bedroom_2
+shoe_1: held by the agent
+hat_2: stand_23 in bedroom_2
+Thought: I have successfully picked up the shoe. Now, I need to navigate back to bedroom_2 to place the shoe on the stand next to the basket.
+
+Navigate[bedroom_2]
+Assigned!
+Result: Successful execution!
+Objects: basket_0: stand_23 in bedroom_2
+shoe_1: held by the agent
+hat_2: stand_23 in bedroom_2
+Thought: I am now in bedroom_2. I will navigate to stand_23 to place the shoe next to the basket.
+
+Navigate[stand_23]
+Assigned!
+Result: Successful execution!
+Objects: basket_0: stand_23 in bedroom_2
+shoe_1: held by the agent
+hat_2: stand_23 in bedroom_2
+Thought: I am now at stand_23 in bedroom_2. I will place the shoe next to the basket on the stand.
+
+Place[shoe_1, on, stand_23, next_to, basket_0]
+Assigned!
+Result: Successful execution!
+Objects: basket_0: stand_23 in bedroom_2
+shoe_1: stand_23 in bedroom_2
+hat_2: stand_23 in bedroom_2
+Thought: I have successfully placed the basket and shoe next to each other on stand_23 in bedroom_2. Now, I need to ensure the hat is placed close by on the stand as well. Since the hat is already on stand_23, I will simply ensure it is placed close to the basket and shoe.
+
+Done[]
+Assigned!

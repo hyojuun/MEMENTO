@@ -6,8 +6,8 @@ import argparse
 from collections import defaultdict, Counter
 
 # Default file paths
-DEFAULT_INPUT_FILE = 'data/datasets/PEAD/v1/v1_val_stage2_filtered.json'
-DEFAULT_OUTPUT_FILE = 'data/datasets/PEAD/v1/v1_val_stage2_filtered_combined.json'
+DEFAULT_INPUT_FILE = 'data/datasets/single_memory_utilization_stage.json'
+DEFAULT_OUTPUT_FILE = 'data/datasets/joint_memory_utilization_stage.json'
 
 # Define combination types
 COMBINATION_TYPES = [

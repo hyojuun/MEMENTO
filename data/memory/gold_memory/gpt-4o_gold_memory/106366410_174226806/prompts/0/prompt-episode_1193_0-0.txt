@@ -1,0 +1,181 @@
+You are an agent that solves embodied-agent planning problems. The task assigned to you will be situated in a house and will generally involve navigating to objects, picking and placing them on different receptacles to achieve rearrangement. You strictly follow any format specifications and pay attention to the previous actions taken in order to avoid repeating mistakes. 
+
+If there are multiple tasks to complete, please follow them in the order they appear in the instruction.
+
+Rooms do not need to be explored more than once. This means if you have explored the living room and have not found the object, then you should explore the kitchen, if a relevant object is still not found, you should explore the hallway etc...
+
+Many calls to the same action in a row are a sign that something has gone wrong and you should try a different action.
+
+Task: First, move the phone stand and candle to the bedroom couch? Then, relocate them to the dining table and place them next to each other. Leave the doll on the living room couch. I like to move the phone stand and candle to the bedroom couch occasionally before finally placing them on the dining table next to each other for dining ambiance. The doll stays on the living room couch as part of the decor.
+
+Furniture:
+kitchen_1: floor_kitchen_1, cabinet_12, fridge_32, cabinet_34
+office_1: floor_office_1, chair_9, table_36, unknown_41
+laundryroom_1: floor_laundryroom_1, washer_dryer_17
+hallway_1: floor_hallway_1
+bathroom_1: floor_bathroom_1, toilet_28, chest_of_drawers_33
+bedroom_1: floor_bedroom_1, bed_16, table_25, couch_29, chest_of_drawers_35, chest_of_drawers_39
+living_room_1: floor_living_room_1, bench_10, couch_11, table_14, stool_27, table_30, stand_31, table_40, unknown_42
+workout_1: floor_workout_1, table_13, chair_15, unknown_37, unknown_38
+dining_room_1: floor_dining_room_1, unknown_18, chair_19, chair_20, chair_21, chair_22, chair_23, chair_24, table_26
+
+The following furnitures have a faucet: cabinet_34
+Objects:
+No objects found yet
+
+Possible Actions:
+- Close: Used for closing an articulated entity. You must provide the name of the furniture you want to close. Example (Close[chest_of_drawers_1])
+- DescribeObjectTool: Used to retrieve a brief descriptive or semantic meaning of a given object or furniture name. Example (DescribeObjectTool[sponge_1])
+- Explore: Search a specific room by visiting various receptacles or furnitures in that room. The input to the skill is the EXACT name of the room to be visited. Use the room names provided in the house description. This tool exhaustivly explores the specified room. Example (Explore[kitchen_1])
+- FindObjectTool: Used to find the exact name/names of the object/objects of interest. If you want to find the exact names of objects on specific receptacles or furnitures, please include that in the query. Example (FindObjectTool[toys on the floor] or FindObjectTool[apples])
+- FindReceptacleTool: Used to know the exact name of a receptacle. A receptacle is a furniture or entity (like a chair, table, bed etc.) where you can place an object. Example (FindReceptacleTool[a kitchen counter])
+- FindRoomTool: Used to know the exact name of a room in the house. A room is a region in the house where furniture is placed. Example (FindRoomTool[a room which might have something to eat])
+- Navigate: Used for navigating to an entity. You must provide the name of the entity you want to navigate to. Example (Navigate[counter_22])
+- Open: Used for opening an articulated entity. You must provide the name of the furniture you want to open. Example (Open[chest_of_drawers_1])
+- Pick: Used for picking up an object. You must provide the name of the object to be picked. The agent cannot hold more than one object at a time. Example (Pick[cup_1])
+- Place: Used for placing an object on a target location. You need to provide the name of the object to be placed, the name of the furniture where it should be placed, spatial relation ("on" or "within") describing the relation between the object and furniture. The object to be placed must already be held by the agent (i.e. picked previously). In addition to these, you can request to place the object near another object. For that you can optionally provide a spatial constraints ("next_to") and the name of the reference object. To place next to an object, the reference object must already be on the target furniture. API template - Place[<object_to_be_placed>, <spatial_relation>, <furniture to be placed on>, <spatial_constraint>, <reference_object>]. spatial_constraint and reference_object should be set to "None" when necessary.
+- Wait: Used to make agent stay idle for some time. Example (Wait[])
+- Done: Used to indicate that the agent has finished the task. Example (Done[])
+
+What is the next action to make progress towards completing the task?
+Return your response in the following format
+
+Thought: <reasoning for why you are taking the next action>
+<next action call>
+Assigned!
+Thought: To begin the task, I need to locate the phone stand and candle. I will start by exploring the living room, as it is a common area where such items might be found.
+
+Explore[living_room_1]
+Assigned!
+Result: Successful execution!
+Objects: doll_2: couch_11 in living_room_1
+Thought: The doll is located on the living room couch, which is where it needs to remain. I will now explore the bedroom to search for the phone stand and candle.
+
+Explore[bedroom_1]
+Assigned!
+Result: Successful execution!
+Objects: doll_2: couch_11 in living_room_1
+teapot_3: toilet_28 in bathroom_1
+candle_1: table_25 in bedroom_1
+phone_stand_0: table_25 in bedroom_1
+Thought: I have found both the phone stand and the candle on the table in the bedroom. I will now proceed to pick up the phone stand first and move it to the bedroom couch.
+
+Pick[phone_stand_0]
+Assigned!
+Result: Unexpected failure! - Failed to pick! Not close enough to the object.
+Objects: doll_2: couch_11 in living_room_1
+teapot_3: toilet_28 in bathroom_1
+candle_1: table_25 in bedroom_1
+phone_stand_0: table_25 in bedroom_1
+Thought: I need to navigate closer to the table in the bedroom where the phone stand is located in order to pick it up.
+
+Navigate[table_25]
+Assigned!
+Result: Successful execution!
+Objects: doll_2: couch_11 in living_room_1
+teapot_3: toilet_28 in bathroom_1
+candle_1: table_25 in bedroom_1
+phone_stand_0: table_25 in bedroom_1
+Thought: I am now close enough to the table in the bedroom. I will proceed to pick up the phone stand.
+
+Pick[phone_stand_0]
+Assigned!
+Result: Successful execution!
+Objects: doll_2: couch_11 in living_room_1
+teapot_3: toilet_28 in bathroom_1
+candle_1: table_25 in bedroom_1
+phone_stand_0: held by the agent
+Thought: I have successfully picked up the phone stand. Now, I will place it on the bedroom couch.
+
+Place[phone_stand_0, on, couch_29, None, None]
+Assigned!
+Result: Successful execution!
+Objects: doll_2: couch_11 in living_room_1
+teapot_3: toilet_28 in bathroom_1
+candle_1: table_25 in bedroom_1
+phone_stand_0: couch_29 in bedroom_1
+Thought: The phone stand is now placed on the bedroom couch. Next, I will pick up the candle from the table in the bedroom and place it on the bedroom couch as well.
+
+Pick[candle_1]
+Assigned!
+Result: Successful execution!
+Objects: doll_2: couch_11 in living_room_1
+teapot_3: toilet_28 in bathroom_1
+candle_1: held by the agent
+phone_stand_0: couch_29 in bedroom_1
+Thought: I have successfully picked up the candle. Now, I will place it on the bedroom couch next to the phone stand.
+
+Place[candle_1, on, couch_29, next_to, phone_stand_0]
+Assigned!
+Result: Successful execution!
+Objects: doll_2: couch_11 in living_room_1
+teapot_3: toilet_28 in bathroom_1
+candle_1: couch_29 in bedroom_1
+phone_stand_0: couch_29 in bedroom_1
+Thought: The phone stand and candle are now on the bedroom couch as required. The next step is to move them to the dining table and place them next to each other. I will start by picking up the phone stand from the bedroom couch.
+
+Pick[phone_stand_0]
+Assigned!
+Result: Successful execution!
+Objects: doll_2: couch_11 in living_room_1
+teapot_3: toilet_28 in bathroom_1
+candle_1: couch_29 in bedroom_1
+phone_stand_0: held by the agent
+Thought: I have successfully picked up the phone stand from the bedroom couch. Now, I need to navigate to the dining table to place the phone stand there.
+
+Navigate[table_26]
+Assigned!
+Result: Successful execution!
+Objects: doll_2: couch_11 in living_room_1
+teapot_3: toilet_28 in bathroom_1
+candle_1: couch_29 in bedroom_1
+phone_stand_0: held by the agent
+Thought: I am now at the dining table. I will place the phone stand on the dining table.
+
+Place[phone_stand_0, on, table_26, None, None]
+Assigned!
+Result: Successful execution!
+Objects: doll_2: couch_11 in living_room_1
+teapot_3: toilet_28 in bathroom_1
+candle_1: couch_29 in bedroom_1
+phone_stand_0: table_26 in dining_room_1
+Thought: The phone stand is now placed on the dining table. Next, I will return to the bedroom couch to pick up the candle and place it on the dining table next to the phone stand.
+
+Navigate[couch_29]
+Assigned!
+Result: Successful execution!
+Objects: doll_2: couch_11 in living_room_1
+teapot_3: toilet_28 in bathroom_1
+candle_1: couch_29 in bedroom_1
+phone_stand_0: table_26 in dining_room_1
+Thought: I am now at the bedroom couch. I will pick up the candle to move it to the dining table.
+
+Pick[candle_1]
+Assigned!
+Result: Successful execution!
+Objects: doll_2: couch_11 in living_room_1
+teapot_3: toilet_28 in bathroom_1
+candle_1: held by the agent
+phone_stand_0: table_26 in dining_room_1
+Thought: I have successfully picked up the candle from the bedroom couch. Now, I need to navigate back to the dining table to place the candle next to the phone stand.
+
+Navigate[table_26]
+Assigned!
+Result: Successful execution!
+Objects: doll_2: couch_11 in living_room_1
+teapot_3: toilet_28 in bathroom_1
+candle_1: held by the agent
+phone_stand_0: table_26 in dining_room_1
+Thought: I am now at the dining table. I will place the candle on the dining table next to the phone stand to complete the task.
+
+Place[candle_1, on, table_26, next_to, phone_stand_0]
+Assigned!
+Result: Successful execution!
+Objects: doll_2: couch_11 in living_room_1
+teapot_3: toilet_28 in bathroom_1
+candle_1: table_26 in dining_room_1
+phone_stand_0: table_26 in dining_room_1
+Thought: I have successfully placed the phone stand and candle on the dining table next to each other, and the doll remains on the living room couch as required. The task is now complete.
+
+Done[]
+Assigned!

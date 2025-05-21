@@ -1,0 +1,643 @@
+[
+    {
+        "episode_id": 2986,
+        "error": false,
+        "instruction": "First, move my travel essentials from the bedroom to the office and set them on the floor. Then, place them next to each other on the office table.",
+        "replanning_count_0": 28.0,
+        "run_id": 0,
+        "runtime": 440.9463875293732,
+        "sim_step_count": 4922.0,
+        "task_percent_complete": 1.0,
+        "task_state_success": 1.0,
+        "org_data": {
+            "episode_id": "2986",
+            "instruction": "First, move my travel essentials from the bedroom to the office and set them on the floor. Then, place them next to each other on the office table.",
+            "original_data_info": {
+                "episode_id": "664",
+                "instruction": "First, move the shoe and then the hat from the bedroom to the office and set them on the floor. Then, place them next to each other on the office table.",
+                "data_path": "data/datasets/partnr_episodes/v0_0/val.json"
+            },
+            "metadata": {
+                "stage": "2",
+                "related_episode_id": "986",
+                "episode_type": "object_semantics",
+                "target_objects": [
+                    {
+                        "id": "ASICS_GEL1140V_WhiteRoyalSilver",
+                        "caption": "A white and silver ASICS shoe with royal blue accents, GEL-1140V model.",
+                        "source": "google",
+                        "category": "shoe",
+                        "cluster": 0
+                    },
+                    {
+                        "id": "DPC_tropical_Trends_Hat",
+                        "caption": "A beige straw hat with a black band, DPC Tropical Trends Hat.",
+                        "source": "google",
+                        "category": "hat",
+                        "cluster": 0
+                    }
+                ],
+                "distractors": [
+                    {
+                        "id": "Cream_Tieks_Italian_Leather_Ballet_Flats",
+                        "caption": "Cream-colored, Italian leather ballet flats, Tieks.",
+                        "source": "google",
+                        "category": "shoe",
+                        "cluster": 1,
+                        "pair_id": "ASICS_GEL1140V_WhiteRoyalSilver"
+                    },
+                    {
+                        "id": "DPC_Handmade_Hat_Brown",
+                        "caption": "A brown, handmade hat, DPC Handmade Hat.",
+                        "source": "google",
+                        "category": "hat",
+                        "cluster": 1,
+                        "pair_id": "DPC_tropical_Trends_Hat"
+                    }
+                ],
+                "subtype": "group",
+                "num_targets": 2,
+                "memory": "The white and silver ASICS shoe with royal blue accents and the beige straw hat with a black band are part of the user's travel essentials.",
+                "used_object": [
+                    "shoe",
+                    "hat"
+                ]
+            },
+            "scene_id": "107733960_175999701",
+            "evaluation_propositions": [
+                {
+                    "function_name": "is_in_room",
+                    "args": {
+                        "object_handles": [
+                            "ASICS_GEL1140V_WhiteRoyalSilver_:0000"
+                        ],
+                        "room_ids": [
+                            "office"
+                        ],
+                        "number": 1,
+                        "is_same_room": false
+                    }
+                },
+                {
+                    "function_name": "is_in_room",
+                    "args": {
+                        "object_handles": [
+                            "DPC_tropical_Trends_Hat_:0000"
+                        ],
+                        "room_ids": [
+                            "office"
+                        ],
+                        "number": 1,
+                        "is_same_room": false
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "ASICS_GEL1140V_WhiteRoyalSilver_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "6b63013dfa25cabaa2ef3d0830c19c823e6b1f7d_:0001"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "DPC_tropical_Trends_Hat_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "6b63013dfa25cabaa2ef3d0830c19c823e6b1f7d_:0001"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_next_to",
+                    "args": {
+                        "entity_handles_a": [
+                            "ASICS_GEL1140V_WhiteRoyalSilver_:0000"
+                        ],
+                        "entity_handles_b": [
+                            "DPC_tropical_Trends_Hat_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_b": false,
+                        "l2_threshold": 1.0
+                    }
+                }
+            ],
+            "evaluation_proposition_dependencies": [
+                {
+                    "proposition_indices": [
+                        4
+                    ],
+                    "depends_on": [
+                        2,
+                        3
+                    ],
+                    "relation_type": "while_satisfied",
+                    "dependency_mode": "any"
+                },
+                {
+                    "proposition_indices": [
+                        2
+                    ],
+                    "depends_on": [
+                        0
+                    ],
+                    "relation_type": "after_satisfied",
+                    "dependency_mode": "any"
+                },
+                {
+                    "proposition_indices": [
+                        3
+                    ],
+                    "depends_on": [
+                        1
+                    ],
+                    "relation_type": "after_satisfied",
+                    "dependency_mode": "any"
+                }
+            ],
+            "evaluation_constraints": [
+                {
+                    "type": "TemporalConstraint",
+                    "args": {
+                        "dag_edges": [
+                            [
+                                0,
+                                2
+                            ],
+                            [
+                                0,
+                                3
+                            ],
+                            [
+                                0,
+                                4
+                            ],
+                            [
+                                1,
+                                2
+                            ],
+                            [
+                                1,
+                                3
+                            ],
+                            [
+                                1,
+                                4
+                            ]
+                        ],
+                        "n_propositions": 5
+                    }
+                },
+                {
+                    "type": "TerminalSatisfactionConstraint",
+                    "args": {
+                        "proposition_indices": [
+                            2,
+                            3,
+                            4
+                        ],
+                        "n_propositions": null
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "episode_id": 3147,
+        "error": false,
+        "instruction": "Please move my cooking essentials from the office to the kitchen and place them next to each other on the counter.",
+        "replanning_count_0": 24.0,
+        "run_id": 0,
+        "runtime": 160.60831093788147,
+        "sim_step_count": 2162.0,
+        "task_percent_complete": 1.0,
+        "task_state_success": 1.0,
+        "org_data": {
+            "episode_id": "3147",
+            "instruction": "Please move my cooking essentials from the office to the kitchen and place them next to each other on the counter.",
+            "original_data_info": {
+                "episode_id": "560",
+                "instruction": "Move the kettle and ladle from the office to the kitchen and place them next to each other on the counter.",
+                "data_path": "data/datasets/partnr_episodes/v0_0/val.json"
+            },
+            "metadata": {
+                "stage": "2",
+                "related_episode_id": "1147",
+                "episode_type": "object_semantics",
+                "target_objects": [
+                    {
+                        "id": "e41fb9d079791e99e3ff9e216c5e4416a9a83570",
+                        "caption": "A black kettle with a curved handle.",
+                        "source": "hssd_hab",
+                        "category": "kettle",
+                        "cluster": 0
+                    },
+                    {
+                        "id": "Ladle_2",
+                        "caption": "A black ladle with a round scoop.",
+                        "source": "ai2thorhab",
+                        "category": "ladle",
+                        "cluster": 0
+                    }
+                ],
+                "distractors": [
+                    {
+                        "id": "Kettle_1",
+                        "caption": "A black kettle with a pixelated pattern.",
+                        "source": "ai2thorhab",
+                        "category": "kettle",
+                        "cluster": 1,
+                        "pair_id": "e41fb9d079791e99e3ff9e216c5e4416a9a83570"
+                    },
+                    {
+                        "id": "Ladle_3",
+                        "caption": "A black ladle with a blue handle.",
+                        "source": "ai2thorhab",
+                        "category": "ladle",
+                        "cluster": 1,
+                        "pair_id": "Ladle_2"
+                    }
+                ],
+                "subtype": "group",
+                "num_targets": 2,
+                "memory": "The black kettle with a curved handle and the black ladle with a round scoop are part of the user's cooking essentials.",
+                "used_object": [
+                    "ladle",
+                    "kettle"
+                ]
+            },
+            "scene_id": "104348361_171513414",
+            "evaluation_propositions": [
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "e41fb9d079791e99e3ff9e216c5e4416a9a83570_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "55dcc18191c2412b899ff405d5d0574571bb81cf_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "Ladle_2_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "55dcc18191c2412b899ff405d5d0574571bb81cf_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_next_to",
+                    "args": {
+                        "entity_handles_a": [
+                            "e41fb9d079791e99e3ff9e216c5e4416a9a83570_:0000"
+                        ],
+                        "entity_handles_b": [
+                            "Ladle_2_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_b": false,
+                        "l2_threshold": 1.0
+                    }
+                }
+            ],
+            "evaluation_proposition_dependencies": [
+                {
+                    "proposition_indices": [
+                        2
+                    ],
+                    "depends_on": [
+                        0,
+                        1
+                    ],
+                    "relation_type": "while_satisfied",
+                    "dependency_mode": "any"
+                }
+            ],
+            "evaluation_constraints": [
+                {
+                    "type": "TemporalConstraint",
+                    "args": {
+                        "dag_edges": [],
+                        "n_propositions": 3
+                    }
+                },
+                {
+                    "type": "TerminalSatisfactionConstraint",
+                    "args": {
+                        "proposition_indices": [
+                            0,
+                            1,
+                            2
+                        ],
+                        "n_propositions": null
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "episode_id": 3201,
+        "error": false,
+        "instruction": "Could you please move my favorite childhood toys from the bedroom table to the workout table and place them next to each other?",
+        "replanning_count_0": 16.0,
+        "run_id": 0,
+        "runtime": 93.52247381210329,
+        "sim_step_count": 1558.0,
+        "task_percent_complete": 1.0,
+        "task_state_success": 1.0,
+        "org_data": {
+            "episode_id": "3201",
+            "instruction": "Could you please move my favorite childhood toys from the bedroom table to the workout table and place them next to each other?",
+            "original_data_info": {
+                "episode_id": "483",
+                "instruction": "Move the toy airplane and stuffed toy from the bedroom table to the workout table. Place them next to each other on the table.",
+                "data_path": "data/datasets/partnr_episodes/v0_0/val.json"
+            },
+            "metadata": {
+                "stage": "2",
+                "related_episode_id": "1201",
+                "episode_type": "object_semantics",
+                "target_objects": [
+                    {
+                        "id": "Air_Hogs_Wind_Flyers_Set_Airplane_Red",
+                        "caption": "A red toy airplane, Air Hogs Wind Flyers Set.",
+                        "source": "google",
+                        "category": "toy_airplane",
+                        "cluster": 1
+                    },
+                    {
+                        "id": "Animal_Planet_Foam_2Headed_Dragon",
+                        "caption": "A green and blue two-headed dragon stuffed toy, Animal Planet Foam.",
+                        "source": "google",
+                        "category": "stuffed_toy",
+                        "cluster": 0
+                    }
+                ],
+                "distractors": [
+                    {
+                        "id": "TURBOPROP_AIRPLANE_WITH_PILOT",
+                        "caption": "A red and white toy turboprop airplane with a pilot.",
+                        "source": "google",
+                        "category": "toy_airplane",
+                        "cluster": 0,
+                        "pair_id": "Air_Hogs_Wind_Flyers_Set_Airplane_Red"
+                    },
+                    {
+                        "id": "567ba453e60735e7667f25ea6d09377be18bda66",
+                        "caption": "A white stuffed bear with pink accents and a heart.",
+                        "source": "hssd_hab",
+                        "category": "stuffed_toy",
+                        "cluster": 1,
+                        "pair_id": "Animal_Planet_Foam_2Headed_Dragon"
+                    }
+                ],
+                "subtype": "group",
+                "num_targets": 2,
+                "memory": "The red Air Hogs Wind Flyers Set toy airplane and the green and blue two-headed dragon stuffed toy are part of the user's favorite childhood toys.",
+                "used_object": [
+                    "stuffed_toy",
+                    "toy_airplane"
+                ]
+            },
+            "scene_id": "106366410_174226806",
+            "evaluation_propositions": [
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "Air_Hogs_Wind_Flyers_Set_Airplane_Red_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "47da03c52e0003488334f8dea02c926cbe66029c_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "Animal_Planet_Foam_2Headed_Dragon_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "47da03c52e0003488334f8dea02c926cbe66029c_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_next_to",
+                    "args": {
+                        "entity_handles_a": [
+                            "Air_Hogs_Wind_Flyers_Set_Airplane_Red_:0000"
+                        ],
+                        "entity_handles_b": [
+                            "Animal_Planet_Foam_2Headed_Dragon_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_b": false,
+                        "l2_threshold": 1.0
+                    }
+                }
+            ],
+            "evaluation_proposition_dependencies": [
+                {
+                    "proposition_indices": [
+                        2
+                    ],
+                    "depends_on": [
+                        0,
+                        1
+                    ],
+                    "relation_type": "while_satisfied",
+                    "dependency_mode": "any"
+                }
+            ],
+            "evaluation_constraints": [
+                {
+                    "type": "TemporalConstraint",
+                    "args": {
+                        "dag_edges": [],
+                        "n_propositions": 3
+                    }
+                },
+                {
+                    "type": "TerminalSatisfactionConstraint",
+                    "args": {
+                        "proposition_indices": [
+                            0,
+                            1,
+                            2
+                        ],
+                        "n_propositions": null
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "episode_id": 3126,
+        "error": false,
+        "instruction": "Could you move my work setup from the lounge counter to the dining room table and place them side by side?",
+        "replanning_count_0": 13.0,
+        "run_id": 0,
+        "runtime": 82.98149824142456,
+        "sim_step_count": 894.0,
+        "task_percent_complete": 1.0,
+        "task_state_success": 1.0,
+        "org_data": {
+            "episode_id": "3126",
+            "instruction": "Could you move my work setup from the lounge counter to the dining room table and place them side by side?",
+            "original_data_info": {
+                "episode_id": "442",
+                "instruction": "Move a laptop and a laptop stand from the lounge counter to the dining room table. Place them next to each other on the table.",
+                "data_path": "data/datasets/partnr_episodes/v0_0/val.json"
+            },
+            "metadata": {
+                "stage": "2",
+                "related_episode_id": "1126",
+                "episode_type": "object_semantics",
+                "target_objects": [
+                    {
+                        "id": "Laptop_2",
+                        "caption": "A black laptop with a dark keyboard.",
+                        "source": "ai2thorhab",
+                        "category": "laptop",
+                        "cluster": 1
+                    },
+                    {
+                        "id": "B00WRDRRWW",
+                        "caption": "A black laptop stand with a rounded design.",
+                        "source": "amazon_berkeley",
+                        "category": "laptop_stand",
+                        "cluster": 1
+                    }
+                ],
+                "distractors": [
+                    {
+                        "id": "Laptop_3",
+                        "caption": "A black laptop with a gray keyboard.",
+                        "source": "ai2thorhab",
+                        "category": "laptop",
+                        "cluster": 0,
+                        "pair_id": "Laptop_2"
+                    },
+                    {
+                        "id": "B00WRDS8H0",
+                        "caption": "A sleek black laptop stand with a glass surface.",
+                        "source": "amazon_berkeley",
+                        "category": "laptop_stand",
+                        "cluster": 0,
+                        "pair_id": "B00WRDRRWW"
+                    }
+                ],
+                "subtype": "group",
+                "num_targets": 2,
+                "memory": "The black laptop with a dark keyboard and the black laptop stand with a rounded design are part of the user's work setup.",
+                "used_object": [
+                    "laptop_stand",
+                    "laptop"
+                ]
+            },
+            "scene_id": "102344529",
+            "evaluation_propositions": [
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "Laptop_2_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "3631f4924b2008d86b4a02c6cbf4ef640a10c4e6_part_6_:0000",
+                            "43cc99743f6d75e5f7b92ab8e5c9ba7f3e932ad0_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "B00WRDRRWW_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "3631f4924b2008d86b4a02c6cbf4ef640a10c4e6_part_6_:0000",
+                            "43cc99743f6d75e5f7b92ab8e5c9ba7f3e932ad0_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_next_to",
+                    "args": {
+                        "entity_handles_a": [
+                            "Laptop_2_:0000"
+                        ],
+                        "entity_handles_b": [
+                            "B00WRDRRWW_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_b": false,
+                        "l2_threshold": 1.0
+                    }
+                }
+            ],
+            "evaluation_proposition_dependencies": [
+                {
+                    "proposition_indices": [
+                        2
+                    ],
+                    "depends_on": [
+                        0,
+                        1
+                    ],
+                    "relation_type": "while_satisfied",
+                    "dependency_mode": "any"
+                }
+            ],
+            "evaluation_constraints": [
+                {
+                    "type": "TemporalConstraint",
+                    "args": {
+                        "dag_edges": [],
+                        "n_propositions": 3
+                    }
+                },
+                {
+                    "type": "TerminalSatisfactionConstraint",
+                    "args": {
+                        "proposition_indices": [
+                            0,
+                            1,
+                            2
+                        ],
+                        "n_propositions": null
+                    }
+                }
+            ]
+        }
+    }
+]
