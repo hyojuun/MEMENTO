@@ -1,0 +1,143 @@
+[
+    {
+        "episode_id": 3024,
+        "error": false,
+        "instruction": "Could you place the black hexagonal dumbbell and my favorite running gear on the shelves in the living room next to each other?",
+        "replanning_count_0": 10.0,
+        "run_id": 0,
+        "runtime": 175.34876775741577,
+        "sim_step_count": 2620.0,
+        "task_percent_complete": 0.3333333333333333,
+        "task_state_success": 0.0,
+        "org_data": {
+            "episode_id": "3024",
+            "instruction": "Could you place the black hexagonal dumbbell and my favorite running gear on the shelves in the living room next to each other?",
+            "original_data_info": {
+                "episode_id": "713",
+                "instruction": "Move the dumbbell and show to the shelves in the living room and place them next to each other.",
+                "data_path": "data/datasets/partnr_episodes/v0_0/val.json"
+            },
+            "metadata": {
+                "stage": "2",
+                "related_episode_id": "1024",
+                "episode_type": "object_semantics",
+                "target_objects": [
+                    {
+                        "id": "B074DZNJ3T",
+                        "caption": "A black hexagonal dumbbell with a metal handle.",
+                        "source": "amazon_berkeley",
+                        "category": "dumbbell",
+                        "cluster": 0
+                    },
+                    {
+                        "id": "PureConnect_2_Color_AnthrcteKnckoutPnkGrnGecko_Size_50",
+                        "caption": "A black and pink running shoe, PureConnect 2.",
+                        "source": "google",
+                        "category": "shoe",
+                        "cluster": 0
+                    }
+                ],
+                "distractors": [
+                    {
+                        "id": "B01LR5RSG0",
+                        "caption": "An orange dumbbell with rounded ends.",
+                        "source": "amazon_berkeley",
+                        "category": "dumbbell",
+                        "cluster": 1,
+                        "pair_id": "B074DZNJ3T"
+                    },
+                    {
+                        "id": "Sperry_TopSider_tNB9t6YBUf3",
+                        "caption": "A brown boat shoe with white laces, Sperry Top-Sider.",
+                        "source": "google",
+                        "category": "shoe",
+                        "cluster": 1,
+                        "pair_id": "PureConnect_2_Color_AnthrcteKnckoutPnkGrnGecko_Size_50"
+                    }
+                ],
+                "subtype": "preference",
+                "num_targets": 1,
+                "memory": "The black and pink running shoe, PureConnect 2, is part of the user's favorite running gear.",
+                "used_object": [
+                    "shoe"
+                ]
+            },
+            "scene_id": "102817140",
+            "evaluation_propositions": [
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "B074DZNJ3T_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "7b395deb580a75ca10a361d25b5e10b1bab8464b_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "PureConnect_2_Color_AnthrcteKnckoutPnkGrnGecko_Size_50_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "7b395deb580a75ca10a361d25b5e10b1bab8464b_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_next_to",
+                    "args": {
+                        "entity_handles_a": [
+                            "B074DZNJ3T_:0000"
+                        ],
+                        "entity_handles_b": [
+                            "PureConnect_2_Color_AnthrcteKnckoutPnkGrnGecko_Size_50_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_b": false,
+                        "l2_threshold": 1.0
+                    }
+                }
+            ],
+            "evaluation_proposition_dependencies": [
+                {
+                    "proposition_indices": [
+                        2
+                    ],
+                    "depends_on": [
+                        0,
+                        1
+                    ],
+                    "relation_type": "while_satisfied",
+                    "dependency_mode": "any"
+                }
+            ],
+            "evaluation_constraints": [
+                {
+                    "type": "TemporalConstraint",
+                    "args": {
+                        "dag_edges": [],
+                        "n_propositions": 3
+                    }
+                },
+                {
+                    "type": "TerminalSatisfactionConstraint",
+                    "args": {
+                        "proposition_indices": [
+                            0,
+                            1,
+                            2
+                        ],
+                        "n_propositions": null
+                    }
+                }
+            ]
+        }
+    }
+]

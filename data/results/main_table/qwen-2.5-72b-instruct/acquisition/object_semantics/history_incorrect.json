@@ -1,0 +1,815 @@
+[
+    {
+        "episode_id": 1151,
+        "error": false,
+        "instruction": "Help me prepare the laundry room for a cleaning session. First, move the vase from the washer dryer to the closet table. Then, take the stuffed toy and basket and place them next to each other on the chest of drawers. The vase is black and white with a speckled pattern, the basket is a blue Easter basket with rabbit ears, and the stuffed toy is blue with a friendly face. The basket is my childhood Easter basket.",
+        "replanning_count_0": 19.0,
+        "run_id": 0,
+        "runtime": 102.7499499320984,
+        "sim_step_count": 929.0,
+        "task_percent_complete": 0.75,
+        "task_state_success": 0.0,
+        "org_data": {
+            "episode_id": "1151",
+            "instruction": "Help me prepare the laundry room for a cleaning session. First, move the vase from the washer dryer to the closet table. Then, take the stuffed toy and basket and place them next to each other on the chest of drawers. The vase is black and white with a speckled pattern, the basket is a blue Easter basket with rabbit ears, and the stuffed toy is blue with a friendly face. The basket is my childhood Easter basket.",
+            "original_data_info": {
+                "episode_id": "697",
+                "instruction": "Help me prepare the laundry room for a cleaning session. First, move the vase from the washer dryer to the closet table. Then, take the stuffed toy and basket and place them next to each other on the chest of drawers.",
+                "data_path": "data/datasets/partnr_episodes/v0_0/val.json"
+            },
+            "metadata": {
+                "stage": "1",
+                "related_episode_id": "3151",
+                "episode_type": "object_semantics",
+                "source_file": "val",
+                "target_objects": [
+                    {
+                        "id": "f51fd63c6cd12ee673b94946d1450c6afc8713be",
+                        "caption": "A black and white vase with a speckled pattern.",
+                        "source": "hssd_hab",
+                        "category": "vase",
+                        "cluster": 1
+                    },
+                    {
+                        "id": "RJ_Rabbit_Easter_Basket_Blue",
+                        "caption": "A blue Easter basket with rabbit ears, RJ_Rabbit_Easter_Basket_Blue.",
+                        "source": "google",
+                        "category": "basket",
+                        "cluster": 1
+                    },
+                    {
+                        "id": "Ortho_Forward_Facing_QCaor9ImJ2G",
+                        "caption": "A blue stuffed toy with a friendly face, Ortho_Forward_Facing_QCaor9ImJ2G.",
+                        "source": "google",
+                        "category": "stuffed_toy",
+                        "cluster": 0
+                    }
+                ],
+                "distractors": [
+                    {
+                        "id": "40bf81e852fd34c4d390fa68f71d2cafcb91f2f4",
+                        "caption": "A white vase with circular cutouts.",
+                        "source": "hssd_hab",
+                        "category": "vase",
+                        "cluster": 0,
+                        "pair_id": "f51fd63c6cd12ee673b94946d1450c6afc8713be"
+                    },
+                    {
+                        "id": "Spritz_Easter_Basket_Plastic_Teal",
+                        "caption": "A teal plastic basket, Spritz Easter Basket.",
+                        "source": "google",
+                        "category": "basket",
+                        "cluster": 0,
+                        "pair_id": "RJ_Rabbit_Easter_Basket_Blue"
+                    },
+                    {
+                        "id": "Elephant",
+                        "caption": "A gray stuffed toy elephant with large floppy ears.",
+                        "source": "google",
+                        "category": "stuffed_toy",
+                        "cluster": 1,
+                        "pair_id": "Ortho_Forward_Facing_QCaor9ImJ2G"
+                    }
+                ],
+                "subtype": "history",
+                "num_targets": 1,
+                "memory": "The blue Easter basket with rabbit ears is the user's childhood Easter basket.",
+                "used_object": [
+                    "basket"
+                ]
+            },
+            "scene_id": "104348361_171513414",
+            "evaluation_propositions": [
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "f51fd63c6cd12ee673b94946d1450c6afc8713be_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "eaf719f5dd094990daa3e96831f847f47733587f_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_next_to",
+                    "args": {
+                        "entity_handles_a": [
+                            "Ortho_Forward_Facing_QCaor9ImJ2G_:0000"
+                        ],
+                        "entity_handles_b": [
+                            "RJ_Rabbit_Easter_Basket_Blue_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_b": false,
+                        "l2_threshold": 1.0
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "Ortho_Forward_Facing_QCaor9ImJ2G_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "07b4946baa48b230b224946422be140ff626c328_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "RJ_Rabbit_Easter_Basket_Blue_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "07b4946baa48b230b224946422be140ff626c328_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                }
+            ],
+            "evaluation_proposition_dependencies": [
+                {
+                    "proposition_indices": [
+                        1
+                    ],
+                    "depends_on": [
+                        2,
+                        3
+                    ],
+                    "relation_type": "while_satisfied",
+                    "dependency_mode": "any"
+                }
+            ],
+            "evaluation_constraints": [
+                {
+                    "type": "TemporalConstraint",
+                    "args": {
+                        "dag_edges": [
+                            [
+                                0,
+                                1
+                            ],
+                            [
+                                0,
+                                2
+                            ],
+                            [
+                                0,
+                                3
+                            ]
+                        ],
+                        "n_propositions": 4
+                    }
+                },
+                {
+                    "type": "TerminalSatisfactionConstraint",
+                    "args": {
+                        "proposition_indices": [
+                            0,
+                            1,
+                            2,
+                            3
+                        ],
+                        "n_propositions": null
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "episode_id": 1175,
+        "error": false,
+        "instruction": "Move the stuffed toy from the lounge chair to the porch chair. The stuffed toy is a brown and gray squirrel with a fluffy tail. This toy is a gift from my best friend.",
+        "replanning_count_0": 23.0,
+        "run_id": 0,
+        "runtime": 315.6484444141388,
+        "sim_step_count": 7022.0,
+        "task_percent_complete": 0.0,
+        "task_state_success": 0.0,
+        "org_data": {
+            "episode_id": "1175",
+            "instruction": "Move the stuffed toy from the lounge chair to the porch chair. The stuffed toy is a brown and gray squirrel with a fluffy tail. This toy is a gift from my best friend.",
+            "original_data_info": {
+                "episode_id": "519",
+                "instruction": "Move the stuffed toy from the lounge chair to the porch chair.",
+                "data_path": "data/datasets/partnr_episodes/v0_0/val.json"
+            },
+            "metadata": {
+                "stage": "1",
+                "related_episode_id": "3175",
+                "episode_type": "object_semantics",
+                "source_file": "val",
+                "target_objects": [
+                    {
+                        "id": "Squirrel",
+                        "caption": "A brown and gray stuffed toy squirrel with a fluffy tail.",
+                        "source": "google",
+                        "category": "stuffed_toy",
+                        "cluster": 1
+                    }
+                ],
+                "distractors": [
+                    {
+                        "id": "Ortho_Forward_Facing_3Q6J2oKJD92",
+                        "caption": "A plush stuffed toy, Ortho_Forward_Facing_3Q6J2oKJD92.",
+                        "source": "google",
+                        "category": "stuffed_toy",
+                        "cluster": 0,
+                        "pair_id": "Squirrel"
+                    }
+                ],
+                "subtype": "history",
+                "num_targets": 1,
+                "memory": "The brown and gray stuffed toy squirrel with a fluffy tail is a gift from the user's best friend.",
+                "used_object": [
+                    "stuffed_toy"
+                ]
+            },
+            "scene_id": "107734176_176000019",
+            "evaluation_propositions": [
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "Squirrel_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "0bd3fff760626beb3b250521c516ebc696984229_:0001"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                }
+            ],
+            "evaluation_proposition_dependencies": [],
+            "evaluation_constraints": [
+                {
+                    "type": "TemporalConstraint",
+                    "args": {
+                        "dag_edges": [],
+                        "n_propositions": 1
+                    }
+                },
+                {
+                    "type": "TerminalSatisfactionConstraint",
+                    "args": {
+                        "proposition_indices": [
+                            0
+                        ],
+                        "n_propositions": null
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "episode_id": 1205,
+        "error": false,
+        "instruction": "Move the laptop from the office to the dining room. Place it on the table. The laptop is black with a sleek design. This laptop is essential for my work.",
+        "replanning_count_0": 10.0,
+        "run_id": 0,
+        "runtime": 55.68334770202637,
+        "sim_step_count": 640.0,
+        "task_percent_complete": 0.5,
+        "task_state_success": 0.0,
+        "org_data": {
+            "episode_id": "1205",
+            "instruction": "Move the laptop from the office to the dining room. Place it on the table. The laptop is black with a sleek design. This laptop is essential for my work.",
+            "original_data_info": {
+                "episode_id": "608",
+                "instruction": "Move the laptop from the office to the dining room. Place it on the table.",
+                "data_path": "data/datasets/partnr_episodes/v0_0/val.json"
+            },
+            "metadata": {
+                "stage": "1",
+                "related_episode_id": "3205",
+                "episode_type": "object_semantics",
+                "source_file": "val",
+                "target_objects": [
+                    {
+                        "id": "Laptop_24",
+                        "caption": "A black laptop with a sleek design.",
+                        "source": "ai2thorhab",
+                        "category": "laptop",
+                        "cluster": 1
+                    }
+                ],
+                "distractors": [
+                    {
+                        "id": "Laptop_28",
+                        "caption": "A gray laptop with a black screen and keyboard.",
+                        "source": "ai2thorhab",
+                        "category": "laptop",
+                        "cluster": 0,
+                        "pair_id": "Laptop_24"
+                    }
+                ],
+                "subtype": "history",
+                "num_targets": 1,
+                "memory": "The black laptop with a sleek design is essential for the user's work.",
+                "used_object": [
+                    "laptop"
+                ]
+            },
+            "scene_id": "106366410_174226806",
+            "evaluation_propositions": [
+                {
+                    "function_name": "is_in_room",
+                    "args": {
+                        "object_handles": [
+                            "Laptop_24_:0000"
+                        ],
+                        "room_ids": [
+                            "dining room"
+                        ],
+                        "number": 1,
+                        "is_same_room": false
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "Laptop_24_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "89181c03caf21d1d90ee760ed5ab3986f462f698_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                }
+            ],
+            "evaluation_proposition_dependencies": [],
+            "evaluation_constraints": [
+                {
+                    "type": "TemporalConstraint",
+                    "args": {
+                        "dag_edges": [],
+                        "n_propositions": 2
+                    }
+                },
+                {
+                    "type": "TerminalSatisfactionConstraint",
+                    "args": {
+                        "proposition_indices": [
+                            0,
+                            1
+                        ],
+                        "n_propositions": null
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "episode_id": 1276,
+        "error": false,
+        "instruction": "Move the stuffed toy, basket, and picture frame from the bedroom shelves to the living room table. Place them next to each other on the table. The stuffed toy is cream-colored, resembling a dog with a long nose, the basket is a teal plastic Spritz Easter Basket, and the picture frame is black adorned with teardrop-shaped embellishments. The stuffed toy was a gift from my best friend.",
+        "replanning_count_0": 19.0,
+        "run_id": 0,
+        "runtime": 514.2641754150391,
+        "sim_step_count": 3726.0,
+        "task_percent_complete": 0.0,
+        "task_state_success": 0.0,
+        "org_data": {
+            "episode_id": "1276",
+            "instruction": "Move the stuffed toy, basket, and picture frame from the bedroom shelves to the living room table. Place them next to each other on the table. The stuffed toy is cream-colored, resembling a dog with a long nose, the basket is a teal plastic Spritz Easter Basket, and the picture frame is black adorned with teardrop-shaped embellishments. The stuffed toy was a gift from my best friend.",
+            "original_data_info": {
+                "episode_id": "596",
+                "instruction": "Move the stuffed toy, basket, and picture frame from the bedroom shelves to the living room table. Place them next to each other on the table.",
+                "data_path": "data/datasets/partnr_episodes/v0_0/val.json"
+            },
+            "metadata": {
+                "stage": "1",
+                "related_episode_id": "3276",
+                "episode_type": "object_semantics",
+                "source_file": "val",
+                "target_objects": [
+                    {
+                        "id": "42df49592ce3c646bf92368203f520035f62a28f",
+                        "caption": "A cream stuffed toy resembling a dog with a long nose.",
+                        "source": "hssd_hab",
+                        "category": "stuffed_toy",
+                        "cluster": 1
+                    },
+                    {
+                        "id": "Spritz_Easter_Basket_Plastic_Teal",
+                        "caption": "A teal plastic basket, Spritz Easter Basket.",
+                        "source": "google",
+                        "category": "basket",
+                        "cluster": 0
+                    },
+                    {
+                        "id": "faa3c5c9cb8d500bc1b11cc2baeb3f49bef68b4a",
+                        "caption": "A black picture frame adorned with teardrop-shaped embellishments.",
+                        "source": "hssd_hab",
+                        "category": "picture_frame",
+                        "cluster": 0
+                    }
+                ],
+                "distractors": [
+                    {
+                        "id": "Animal_Planet_Foam_2Headed_Dragon",
+                        "caption": "A green and blue two-headed dragon stuffed toy, Animal Planet Foam.",
+                        "source": "google",
+                        "category": "stuffed_toy",
+                        "cluster": 0,
+                        "pair_id": "42df49592ce3c646bf92368203f520035f62a28f"
+                    },
+                    {
+                        "id": "RJ_Rabbit_Easter_Basket_Blue",
+                        "caption": "A blue Easter basket with rabbit ears, RJ_Rabbit_Easter_Basket_Blue.",
+                        "source": "google",
+                        "category": "basket",
+                        "cluster": 1,
+                        "pair_id": "Spritz_Easter_Basket_Plastic_Teal"
+                    },
+                    {
+                        "id": "cd2f6a34f4c65388245ea2d66964edd3519f000e",
+                        "caption": "A silver picture frame with a beaded border.",
+                        "source": "hssd_hab",
+                        "category": "picture_frame",
+                        "cluster": 1,
+                        "pair_id": "faa3c5c9cb8d500bc1b11cc2baeb3f49bef68b4a"
+                    }
+                ],
+                "subtype": "history",
+                "num_targets": 1,
+                "memory": "The cream stuffed toy resembling a dog with a long nose was a gift from the user's best friend.",
+                "used_object": [
+                    "stuffed_toy"
+                ]
+            },
+            "scene_id": "104348010_171512832",
+            "evaluation_propositions": [
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "42df49592ce3c646bf92368203f520035f62a28f_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "5d70cc76c99acee4513ec5f7fad497d2baebca9e_:0000",
+                            "5d70cc76c99acee4513ec5f7fad497d2baebca9e_:0001",
+                            "b7be6ad871800511e7a320626aac37272eb919c4_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "Spritz_Easter_Basket_Plastic_Teal_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "5d70cc76c99acee4513ec5f7fad497d2baebca9e_:0000",
+                            "5d70cc76c99acee4513ec5f7fad497d2baebca9e_:0001",
+                            "b7be6ad871800511e7a320626aac37272eb919c4_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "faa3c5c9cb8d500bc1b11cc2baeb3f49bef68b4a_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "5d70cc76c99acee4513ec5f7fad497d2baebca9e_:0000",
+                            "5d70cc76c99acee4513ec5f7fad497d2baebca9e_:0001",
+                            "b7be6ad871800511e7a320626aac37272eb919c4_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_next_to",
+                    "args": {
+                        "entity_handles_a": [
+                            "42df49592ce3c646bf92368203f520035f62a28f_:0000"
+                        ],
+                        "entity_handles_b": [
+                            "Spritz_Easter_Basket_Plastic_Teal_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_b": false,
+                        "l2_threshold": 1.0
+                    }
+                },
+                {
+                    "function_name": "is_next_to",
+                    "args": {
+                        "entity_handles_a": [
+                            "Spritz_Easter_Basket_Plastic_Teal_:0000"
+                        ],
+                        "entity_handles_b": [
+                            "faa3c5c9cb8d500bc1b11cc2baeb3f49bef68b4a_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_b": false,
+                        "l2_threshold": 1.0
+                    }
+                }
+            ],
+            "evaluation_proposition_dependencies": [
+                {
+                    "proposition_indices": [
+                        3
+                    ],
+                    "depends_on": [
+                        0,
+                        1
+                    ],
+                    "relation_type": "while_satisfied",
+                    "dependency_mode": "any"
+                },
+                {
+                    "proposition_indices": [
+                        4
+                    ],
+                    "depends_on": [
+                        1,
+                        2
+                    ],
+                    "relation_type": "while_satisfied",
+                    "dependency_mode": "any"
+                }
+            ],
+            "evaluation_constraints": [
+                {
+                    "type": "TemporalConstraint",
+                    "args": {
+                        "dag_edges": [],
+                        "n_propositions": 5
+                    }
+                },
+                {
+                    "type": "TerminalSatisfactionConstraint",
+                    "args": {
+                        "proposition_indices": [
+                            0,
+                            1,
+                            2,
+                            3,
+                            4
+                        ],
+                        "n_propositions": null
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "episode_id": 1235,
+        "error": false,
+        "instruction": "Move the android figure to a new living room table. Also, move the action figure to a new living room table. The android figure is a black and white Android_Figure_Panda, and the action figure is a green and blue Leonardo from Teenage Mutant Ninja Turtles. The Android figure is a collectible item.",
+        "replanning_count_0": 8.0,
+        "run_id": 0,
+        "runtime": 53.91307878494263,
+        "sim_step_count": 783.0,
+        "task_percent_complete": 0.5,
+        "task_state_success": 0.0,
+        "org_data": {
+            "episode_id": "1235",
+            "instruction": "Move the android figure to a new living room table. Also, move the action figure to a new living room table. The android figure is a black and white Android_Figure_Panda, and the action figure is a green and blue Leonardo from Teenage Mutant Ninja Turtles. The Android figure is a collectible item.",
+            "original_data_info": {
+                "episode_id": "493",
+                "instruction": "Move the android figure to a new living room table. Also, move the action figure to a new living room table.",
+                "data_path": "data/datasets/partnr_episodes/v0_0/val.json"
+            },
+            "metadata": {
+                "stage": "1",
+                "related_episode_id": "3235",
+                "episode_type": "object_semantics",
+                "source_file": "val",
+                "target_objects": [
+                    {
+                        "id": "Android_Figure_Panda",
+                        "caption": "A black and white Android figure, Android_Figure_Panda.",
+                        "source": "google",
+                        "category": "android_figure",
+                        "cluster": 0
+                    },
+                    {
+                        "id": "Nickelodeon_Teenage_Mutant_Ninja_Turtles_Leonardo",
+                        "caption": "A green and blue action figure, Leonardo from Teenage Mutant Ninja Turtles.",
+                        "source": "google",
+                        "category": "action_figure",
+                        "cluster": 0
+                    }
+                ],
+                "distractors": [
+                    {
+                        "id": "Android_Lego",
+                        "caption": "A green Android Lego figure with blocky features.",
+                        "source": "google",
+                        "category": "android_figure",
+                        "cluster": 1,
+                        "pair_id": "Android_Figure_Panda"
+                    },
+                    {
+                        "id": "Dino_4",
+                        "caption": "A green and yellow dinosaur action figure, Dino_4.",
+                        "source": "google",
+                        "category": "action_figure",
+                        "cluster": 1,
+                        "pair_id": "Nickelodeon_Teenage_Mutant_Ninja_Turtles_Leonardo"
+                    }
+                ],
+                "subtype": "history",
+                "num_targets": 1,
+                "memory": "The black and white Android_Figure_Panda is a collectible item for the user.",
+                "used_object": [
+                    "android_figure"
+                ]
+            },
+            "scene_id": "103997895_171031182",
+            "evaluation_propositions": [
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "Android_Figure_Panda_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "735845d0674f69f736af7e0f116767a01392f9b8_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "Nickelodeon_Teenage_Mutant_Ninja_Turtles_Leonardo_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "2f38b4f83d8a77af0eb36406b0f00df98cef5e47_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                }
+            ],
+            "evaluation_proposition_dependencies": [],
+            "evaluation_constraints": [
+                {
+                    "type": "TemporalConstraint",
+                    "args": {
+                        "dag_edges": [],
+                        "n_propositions": 2
+                    }
+                },
+                {
+                    "type": "TerminalSatisfactionConstraint",
+                    "args": {
+                        "proposition_indices": [
+                            0,
+                            1
+                        ],
+                        "n_propositions": null
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "episode_id": 1123,
+        "error": false,
+        "instruction": "Move the phone stand to a new dining room chair. Also, move the statue to a new dining room chair. The phone stand is silver and light blue with a sleek design, and the statue is dark bronze with elongated features. The statue was a gift from my best friend.",
+        "replanning_count_0": 13.0,
+        "run_id": 0,
+        "runtime": 104.74404096603394,
+        "sim_step_count": 1562.0,
+        "task_percent_complete": 0.5,
+        "task_state_success": 0.0,
+        "org_data": {
+            "episode_id": "1123",
+            "instruction": "Move the phone stand to a new dining room chair. Also, move the statue to a new dining room chair. The phone stand is silver and light blue with a sleek design, and the statue is dark bronze with elongated features. The statue was a gift from my best friend.",
+            "original_data_info": {
+                "episode_id": "437",
+                "instruction": "Move the phone stand to a new dining room chair. Also, move the statue to a new dining room chair.",
+                "data_path": "data/datasets/partnr_episodes/v0_0/val.json"
+            },
+            "metadata": {
+                "stage": "1",
+                "related_episode_id": "3123",
+                "episode_type": "object_semantics",
+                "source_file": "val",
+                "target_objects": [
+                    {
+                        "id": "B01IJ5A0PC",
+                        "caption": "A silver and light blue phone stand with a sleek design.",
+                        "source": "amazon_berkeley",
+                        "category": "phone_stand",
+                        "cluster": 1
+                    },
+                    {
+                        "id": "Stone_Statue_4",
+                        "caption": "A dark bronze abstract statue with elongated features.",
+                        "source": "ai2thorhab",
+                        "category": "statue",
+                        "cluster": 0
+                    }
+                ],
+                "distractors": [
+                    {
+                        "id": "B01IJ5A2UA",
+                        "caption": "A black phone stand with a minimalist design.",
+                        "source": "amazon_berkeley",
+                        "category": "phone_stand",
+                        "cluster": 0,
+                        "pair_id": "B01IJ5A0PC"
+                    },
+                    {
+                        "id": "Waving_Statue_2",
+                        "caption": "A black statue with an arm raised.",
+                        "source": "ai2thorhab",
+                        "category": "statue",
+                        "cluster": 1,
+                        "pair_id": "Stone_Statue_4"
+                    }
+                ],
+                "subtype": "history",
+                "num_targets": 1,
+                "memory": "The dark bronze abstract statue with elongated features was a gift from the user's best friend.",
+                "used_object": [
+                    "statue"
+                ]
+            },
+            "scene_id": "102344529",
+            "evaluation_propositions": [
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "B01IJ5A0PC_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "0de6d641b47727ad31bcc723282fca16686e3709_:0000",
+                            "0de6d641b47727ad31bcc723282fca16686e3709_:0001",
+                            "3631f4924b2008d86b4a02c6cbf4ef640a10c4e6_part_3_:0000",
+                            "3631f4924b2008d86b4a02c6cbf4ef640a10c4e6_part_3_:0001",
+                            "3631f4924b2008d86b4a02c6cbf4ef640a10c4e6_part_3_:0002",
+                            "3631f4924b2008d86b4a02c6cbf4ef640a10c4e6_part_3_:0003"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "Stone_Statue_4_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "0de6d641b47727ad31bcc723282fca16686e3709_:0000",
+                            "0de6d641b47727ad31bcc723282fca16686e3709_:0001",
+                            "3631f4924b2008d86b4a02c6cbf4ef640a10c4e6_part_3_:0000",
+                            "3631f4924b2008d86b4a02c6cbf4ef640a10c4e6_part_3_:0001",
+                            "3631f4924b2008d86b4a02c6cbf4ef640a10c4e6_part_3_:0002",
+                            "3631f4924b2008d86b4a02c6cbf4ef640a10c4e6_part_3_:0003"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                }
+            ],
+            "evaluation_proposition_dependencies": [],
+            "evaluation_constraints": [
+                {
+                    "type": "TemporalConstraint",
+                    "args": {
+                        "dag_edges": [],
+                        "n_propositions": 2
+                    }
+                },
+                {
+                    "type": "TerminalSatisfactionConstraint",
+                    "args": {
+                        "proposition_indices": [
+                            0,
+                            1
+                        ],
+                        "n_propositions": null
+                    }
+                }
+            ]
+        }
+    }
+]

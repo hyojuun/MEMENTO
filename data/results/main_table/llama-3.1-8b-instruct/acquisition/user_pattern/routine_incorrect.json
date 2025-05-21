@@ -1,0 +1,1365 @@
+[
+    {
+        "episode_id": 1144,
+        "error": false,
+        "instruction": "Help me prepare the laundry room for a cleaning session. First, move the vase from the washer dryer to the closet table. Then, take the stuffed toy and basket and place them next to each other on the chest of drawers. I always set up the laundry room this way before starting a cleaning session.",
+        "replanning_count_0": 14.0,
+        "run_id": 0,
+        "runtime": 62.25917339324951,
+        "sim_step_count": 838.0,
+        "task_percent_complete": 0.25,
+        "task_state_success": 0.0,
+        "org_data": {
+            "episode_id": "1144",
+            "instruction": "Help me prepare the laundry room for a cleaning session. First, move the vase from the washer dryer to the closet table. Then, take the stuffed toy and basket and place them next to each other on the chest of drawers. I always set up the laundry room this way before starting a cleaning session.",
+            "original_data_info": {
+                "episode_id": "697",
+                "instruction": "Help me prepare the laundry room for a cleaning session. First, move the vase from the washer dryer to the closet table. Then, take the stuffed toy and basket and place them next to each other on the chest of drawers.",
+                "data_path": "data/datasets/partnr_episodes/v0_0/val.json"
+            },
+            "metadata": {
+                "stage": "1",
+                "related_episode_id": "3144",
+                "episode_type": "user_pattern",
+                "source_file": "val",
+                "target_objects": [
+                    {
+                        "id": "f51fd63c6cd12ee673b94946d1450c6afc8713be",
+                        "caption": "A black and white vase with a speckled pattern.",
+                        "source": "hssd_hab",
+                        "category": "vase",
+                        "cluster": 1
+                    },
+                    {
+                        "id": "RJ_Rabbit_Easter_Basket_Blue",
+                        "caption": "A blue Easter basket with rabbit ears, RJ_Rabbit_Easter_Basket_Blue.",
+                        "source": "google",
+                        "category": "basket",
+                        "cluster": 1
+                    },
+                    {
+                        "id": "Ortho_Forward_Facing_QCaor9ImJ2G",
+                        "caption": "A blue stuffed toy with a friendly face, Ortho_Forward_Facing_QCaor9ImJ2G.",
+                        "source": "google",
+                        "category": "stuffed_toy",
+                        "cluster": 0
+                    }
+                ],
+                "subtype": "routine",
+                "memory": "Move the vase to the closet table and place the stuffed toy and basket next to each other on the chest of drawers before a cleaning session."
+            },
+            "scene_id": "104348361_171513414",
+            "evaluation_propositions": [
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "f51fd63c6cd12ee673b94946d1450c6afc8713be_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "eaf719f5dd094990daa3e96831f847f47733587f_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_next_to",
+                    "args": {
+                        "entity_handles_a": [
+                            "Ortho_Forward_Facing_QCaor9ImJ2G_:0000"
+                        ],
+                        "entity_handles_b": [
+                            "RJ_Rabbit_Easter_Basket_Blue_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_b": false,
+                        "l2_threshold": 1.0
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "Ortho_Forward_Facing_QCaor9ImJ2G_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "07b4946baa48b230b224946422be140ff626c328_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "RJ_Rabbit_Easter_Basket_Blue_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "07b4946baa48b230b224946422be140ff626c328_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                }
+            ],
+            "evaluation_proposition_dependencies": [
+                {
+                    "proposition_indices": [
+                        1
+                    ],
+                    "depends_on": [
+                        2,
+                        3
+                    ],
+                    "relation_type": "while_satisfied",
+                    "dependency_mode": "any"
+                }
+            ],
+            "evaluation_constraints": [
+                {
+                    "type": "TemporalConstraint",
+                    "args": {
+                        "dag_edges": [
+                            [
+                                0,
+                                1
+                            ],
+                            [
+                                0,
+                                2
+                            ],
+                            [
+                                0,
+                                3
+                            ]
+                        ],
+                        "n_propositions": 4
+                    }
+                },
+                {
+                    "type": "TerminalSatisfactionConstraint",
+                    "args": {
+                        "proposition_indices": [
+                            0,
+                            1,
+                            2,
+                            3
+                        ],
+                        "n_propositions": null
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "episode_id": 1224,
+        "error": false,
+        "instruction": "Move the picture frame and clock to the table in the bedroom. Then, place them next to each other on the counter in the kitchen. I usually like to start my day by having the picture frame and clock together in the kitchen.",
+        "replanning_count_0": 25.0,
+        "run_id": 0,
+        "runtime": 158.09795880317688,
+        "sim_step_count": 2188.0,
+        "task_percent_complete": 0.2,
+        "task_state_success": 0.0,
+        "org_data": {
+            "episode_id": "1224",
+            "instruction": "Move the picture frame and clock to the table in the bedroom. Then, place them next to each other on the counter in the kitchen. I usually like to start my day by having the picture frame and clock together in the kitchen.",
+            "original_data_info": {
+                "episode_id": "738",
+                "instruction": "Move the picture frame and clock to the table in the bedroom. Then, place them next to each other on the counter in the kitchen.",
+                "data_path": "data/datasets/partnr_episodes/v0_0/val.json"
+            },
+            "metadata": {
+                "stage": "1",
+                "related_episode_id": "3224",
+                "episode_type": "user_pattern",
+                "source_file": "val",
+                "target_objects": [
+                    {
+                        "id": "faa3c5c9cb8d500bc1b11cc2baeb3f49bef68b4a",
+                        "caption": "A black picture frame adorned with teardrop-shaped embellishments.",
+                        "source": "hssd_hab",
+                        "category": "picture_frame",
+                        "cluster": 0
+                    },
+                    {
+                        "id": "ad8d273db79dfd442b2bf8902da4dc0b4d60054b",
+                        "caption": "A dark green analog alarm clock with twin bells.",
+                        "source": "hssd_hab",
+                        "category": "clock",
+                        "cluster": 1
+                    }
+                ],
+                "subtype": "routine",
+                "memory": "Place the picture frame and clock next to each other on the kitchen counter for the morning routine."
+            },
+            "scene_id": "103997895_171031182",
+            "evaluation_propositions": [
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "faa3c5c9cb8d500bc1b11cc2baeb3f49bef68b4a_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "319c007ee7d07ca84c797a512ad4a98c9abc42da_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "ad8d273db79dfd442b2bf8902da4dc0b4d60054b_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "319c007ee7d07ca84c797a512ad4a98c9abc42da_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "faa3c5c9cb8d500bc1b11cc2baeb3f49bef68b4a_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "559f21c7f5628a83b31d616e90bdcc02e7744731_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "ad8d273db79dfd442b2bf8902da4dc0b4d60054b_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "559f21c7f5628a83b31d616e90bdcc02e7744731_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_next_to",
+                    "args": {
+                        "entity_handles_a": [
+                            "faa3c5c9cb8d500bc1b11cc2baeb3f49bef68b4a_:0000"
+                        ],
+                        "entity_handles_b": [
+                            "ad8d273db79dfd442b2bf8902da4dc0b4d60054b_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_b": false,
+                        "l2_threshold": 1.0
+                    }
+                }
+            ],
+            "evaluation_proposition_dependencies": [
+                {
+                    "proposition_indices": [
+                        4
+                    ],
+                    "depends_on": [
+                        2,
+                        3
+                    ],
+                    "relation_type": "while_satisfied",
+                    "dependency_mode": "any"
+                },
+                {
+                    "proposition_indices": [
+                        2
+                    ],
+                    "depends_on": [
+                        0
+                    ],
+                    "relation_type": "after_satisfied",
+                    "dependency_mode": "any"
+                },
+                {
+                    "proposition_indices": [
+                        3
+                    ],
+                    "depends_on": [
+                        1
+                    ],
+                    "relation_type": "after_satisfied",
+                    "dependency_mode": "any"
+                }
+            ],
+            "evaluation_constraints": [
+                {
+                    "type": "TemporalConstraint",
+                    "args": {
+                        "dag_edges": [
+                            [
+                                0,
+                                2
+                            ],
+                            [
+                                0,
+                                3
+                            ],
+                            [
+                                0,
+                                4
+                            ],
+                            [
+                                1,
+                                2
+                            ],
+                            [
+                                1,
+                                3
+                            ],
+                            [
+                                1,
+                                4
+                            ]
+                        ],
+                        "n_propositions": 5
+                    }
+                },
+                {
+                    "type": "TerminalSatisfactionConstraint",
+                    "args": {
+                        "proposition_indices": [
+                            2,
+                            3,
+                            4
+                        ],
+                        "n_propositions": null
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "episode_id": 1154,
+        "error": false,
+        "instruction": "Move the jug, kettle, and bread from the kitchen counter to the living room table. Place them next to each other. I like to have the jug, kettle, and bread on the living room table for my morning routine.",
+        "replanning_count_0": 41.0,
+        "run_id": 0,
+        "runtime": 156.77498054504397,
+        "sim_step_count": 1351.0,
+        "task_percent_complete": 0.0,
+        "task_state_success": 0.0,
+        "org_data": {
+            "episode_id": "1154",
+            "instruction": "Move the jug, kettle, and bread from the kitchen counter to the living room table. Place them next to each other. I like to have the jug, kettle, and bread on the living room table for my morning routine.",
+            "original_data_info": {
+                "episode_id": "467",
+                "instruction": "Move the jug, kettle, and bread from the kitchen counter to the living room table. Place them next to each other.",
+                "data_path": "data/datasets/partnr_episodes/v0_0/val.json"
+            },
+            "metadata": {
+                "stage": "1",
+                "related_episode_id": "3154",
+                "episode_type": "user_pattern",
+                "source_file": "val",
+                "target_objects": [
+                    {
+                        "id": "ad87281ca93b236560306a08f0953ba340e85c3c",
+                        "caption": "A dark green jug with a wavy top and abstract pattern.",
+                        "source": "hssd_hab",
+                        "category": "jug",
+                        "cluster": 1
+                    },
+                    {
+                        "id": "5a2d4315640f464391c6a256818c3c11fdd8f4f6",
+                        "caption": "A white kettle with a black handle and lid.",
+                        "source": "hssd_hab",
+                        "category": "kettle",
+                        "cluster": 0
+                    },
+                    {
+                        "id": "Bread_1",
+                        "caption": "A loaf of brown bread.",
+                        "source": "ai2thorhab",
+                        "category": "bread",
+                        "cluster": 0
+                    }
+                ],
+                "subtype": "routine",
+                "memory": "Arrange the jug, kettle, and bread on the living room table for the morning routine."
+            },
+            "scene_id": "107734176_176000019",
+            "evaluation_propositions": [
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "ad87281ca93b236560306a08f0953ba340e85c3c_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "033774ae209de7a75a61ef44b69e42189f9af358_:0000",
+                            "086ae0df95ac1b212fabe2f0b8bf5c63968dfb69_:0000",
+                            "174666b4a100a3e62f73d11e96a2ff9c432cd731_:0000",
+                            "174666b4a100a3e62f73d11e96a2ff9c432cd731_:0001",
+                            "1f366035e778f93cff51f06f392d86814b3eab65_:0000",
+                            "24304078d26588e2d78d4db014c5804506388cf5_:0000",
+                            "9d5c4c5e897817e769610d84c3fa695b4f4fee0b_:0000",
+                            "b39d5fdf03917dbc9ef22c8b7d310e2f3675c4c6_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "5a2d4315640f464391c6a256818c3c11fdd8f4f6_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "033774ae209de7a75a61ef44b69e42189f9af358_:0000",
+                            "086ae0df95ac1b212fabe2f0b8bf5c63968dfb69_:0000",
+                            "174666b4a100a3e62f73d11e96a2ff9c432cd731_:0000",
+                            "174666b4a100a3e62f73d11e96a2ff9c432cd731_:0001",
+                            "1f366035e778f93cff51f06f392d86814b3eab65_:0000",
+                            "24304078d26588e2d78d4db014c5804506388cf5_:0000",
+                            "9d5c4c5e897817e769610d84c3fa695b4f4fee0b_:0000",
+                            "b39d5fdf03917dbc9ef22c8b7d310e2f3675c4c6_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "Bread_1_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "033774ae209de7a75a61ef44b69e42189f9af358_:0000",
+                            "086ae0df95ac1b212fabe2f0b8bf5c63968dfb69_:0000",
+                            "174666b4a100a3e62f73d11e96a2ff9c432cd731_:0000",
+                            "174666b4a100a3e62f73d11e96a2ff9c432cd731_:0001",
+                            "1f366035e778f93cff51f06f392d86814b3eab65_:0000",
+                            "24304078d26588e2d78d4db014c5804506388cf5_:0000",
+                            "9d5c4c5e897817e769610d84c3fa695b4f4fee0b_:0000",
+                            "b39d5fdf03917dbc9ef22c8b7d310e2f3675c4c6_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_next_to",
+                    "args": {
+                        "entity_handles_a": [
+                            "ad87281ca93b236560306a08f0953ba340e85c3c_:0000"
+                        ],
+                        "entity_handles_b": [
+                            "5a2d4315640f464391c6a256818c3c11fdd8f4f6_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_b": false,
+                        "l2_threshold": 1.0
+                    }
+                },
+                {
+                    "function_name": "is_next_to",
+                    "args": {
+                        "entity_handles_a": [
+                            "5a2d4315640f464391c6a256818c3c11fdd8f4f6_:0000"
+                        ],
+                        "entity_handles_b": [
+                            "Bread_1_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_b": false,
+                        "l2_threshold": 1.0
+                    }
+                }
+            ],
+            "evaluation_proposition_dependencies": [
+                {
+                    "proposition_indices": [
+                        3
+                    ],
+                    "depends_on": [
+                        0,
+                        1
+                    ],
+                    "relation_type": "while_satisfied",
+                    "dependency_mode": "any"
+                },
+                {
+                    "proposition_indices": [
+                        4
+                    ],
+                    "depends_on": [
+                        1,
+                        2
+                    ],
+                    "relation_type": "while_satisfied",
+                    "dependency_mode": "any"
+                }
+            ],
+            "evaluation_constraints": [
+                {
+                    "type": "TemporalConstraint",
+                    "args": {
+                        "dag_edges": [],
+                        "n_propositions": 5
+                    }
+                },
+                {
+                    "type": "TerminalSatisfactionConstraint",
+                    "args": {
+                        "proposition_indices": [
+                            0,
+                            1,
+                            2,
+                            3,
+                            4
+                        ],
+                        "n_propositions": null
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "episode_id": 1065,
+        "error": false,
+        "instruction": "Help me organize my closet in the bedroom. First, place the basket and shoe on another shelf in the bedroom, next to each other. Then, move them to the stand in the bedroom and place the hat close by. I have a routine of organizing my closet by first rearranging items on the shelf before placing them on the stand with the hat nearby.",
+        "replanning_count_0": 24.0,
+        "run_id": 0,
+        "runtime": 75.42786598205566,
+        "sim_step_count": 950.0,
+        "task_percent_complete": 0.1428571428571428,
+        "task_state_success": 0.0,
+        "org_data": {
+            "episode_id": "1065",
+            "instruction": "Help me organize my closet in the bedroom. First, place the basket and shoe on another shelf in the bedroom, next to each other. Then, move them to the stand in the bedroom and place the hat close by. I have a routine of organizing my closet by first rearranging items on the shelf before placing them on the stand with the hat nearby.",
+            "original_data_info": {
+                "episode_id": "704",
+                "instruction": "Help me organize my closet in the bedroom. First, place the basket and shoe on another shelf in the bedroom, next to each other. Then, move them to the stand in the bedroom and place the hat close by.",
+                "data_path": "data/datasets/partnr_episodes/v0_0/val.json"
+            },
+            "metadata": {
+                "stage": "1",
+                "related_episode_id": "3065",
+                "episode_type": "user_pattern",
+                "source_file": "val",
+                "target_objects": [
+                    {
+                        "id": "Spritz_Easter_Basket_Plastic_Teal",
+                        "caption": "A teal plastic basket, Spritz Easter Basket.",
+                        "source": "google",
+                        "category": "basket",
+                        "cluster": 0
+                    },
+                    {
+                        "id": "AMBERLIGHT_UP_W",
+                        "caption": "A white and gold sneaker with high-top design, AMBERLIGHT_UP_W.",
+                        "source": "google",
+                        "category": "shoe",
+                        "cluster": 0
+                    }
+                ],
+                "subtype": "routine",
+                "memory": "First, arrange the basket and shoe on a shelf before placing them on the stand with the hat nearby in the bedroom."
+            },
+            "scene_id": "106878915_174887025",
+            "evaluation_propositions": [
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "Spritz_Easter_Basket_Plastic_Teal_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "3220d21b0885b4f0ac2c044d00a76c2ff7844dca_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "AMBERLIGHT_UP_W_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "3220d21b0885b4f0ac2c044d00a76c2ff7844dca_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_next_to",
+                    "args": {
+                        "entity_handles_a": [
+                            "Spritz_Easter_Basket_Plastic_Teal_:0000"
+                        ],
+                        "entity_handles_b": [
+                            "AMBERLIGHT_UP_W_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_b": false,
+                        "l2_threshold": 1.0
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "Spritz_Easter_Basket_Plastic_Teal_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "e194cb80e9941fcf08be2185146d4dccf9d532c2_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "AMBERLIGHT_UP_W_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "e194cb80e9941fcf08be2185146d4dccf9d532c2_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_next_to",
+                    "args": {
+                        "entity_handles_a": [
+                            "DPC_Handmade_Hat_Brown_:0000"
+                        ],
+                        "entity_handles_b": [
+                            "Spritz_Easter_Basket_Plastic_Teal_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_b": false,
+                        "l2_threshold": 1.0
+                    }
+                },
+                {
+                    "function_name": "is_next_to",
+                    "args": {
+                        "entity_handles_a": [
+                            "DPC_Handmade_Hat_Brown_:0000"
+                        ],
+                        "entity_handles_b": [
+                            "AMBERLIGHT_UP_W_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_b": false,
+                        "l2_threshold": 1.0
+                    }
+                }
+            ],
+            "evaluation_proposition_dependencies": [
+                {
+                    "proposition_indices": [
+                        2
+                    ],
+                    "depends_on": [
+                        0,
+                        1
+                    ],
+                    "relation_type": "while_satisfied",
+                    "dependency_mode": "any"
+                },
+                {
+                    "proposition_indices": [
+                        5
+                    ],
+                    "depends_on": [
+                        3
+                    ],
+                    "relation_type": "while_satisfied",
+                    "dependency_mode": "any"
+                },
+                {
+                    "proposition_indices": [
+                        6
+                    ],
+                    "depends_on": [
+                        4
+                    ],
+                    "relation_type": "while_satisfied",
+                    "dependency_mode": "any"
+                },
+                {
+                    "proposition_indices": [
+                        3
+                    ],
+                    "depends_on": [
+                        0,
+                        2
+                    ],
+                    "relation_type": "after_satisfied",
+                    "dependency_mode": "any"
+                },
+                {
+                    "proposition_indices": [
+                        4
+                    ],
+                    "depends_on": [
+                        1,
+                        2
+                    ],
+                    "relation_type": "after_satisfied",
+                    "dependency_mode": "any"
+                }
+            ],
+            "evaluation_constraints": [
+                {
+                    "type": "TemporalConstraint",
+                    "args": {
+                        "dag_edges": [
+                            [
+                                0,
+                                3
+                            ],
+                            [
+                                0,
+                                4
+                            ],
+                            [
+                                0,
+                                5
+                            ],
+                            [
+                                0,
+                                6
+                            ],
+                            [
+                                1,
+                                3
+                            ],
+                            [
+                                1,
+                                4
+                            ],
+                            [
+                                1,
+                                5
+                            ],
+                            [
+                                1,
+                                6
+                            ],
+                            [
+                                2,
+                                3
+                            ],
+                            [
+                                2,
+                                4
+                            ],
+                            [
+                                2,
+                                5
+                            ],
+                            [
+                                2,
+                                6
+                            ]
+                        ],
+                        "n_propositions": 7
+                    }
+                },
+                {
+                    "type": "TerminalSatisfactionConstraint",
+                    "args": {
+                        "proposition_indices": [
+                            3,
+                            4,
+                            5,
+                            6
+                        ],
+                        "n_propositions": null
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "episode_id": 1007,
+        "error": false,
+        "instruction": "Move the lamp, then the vase, and finally the statue to the shelves. Then, move them to the table in the bedroom and place them next to each other. I usually arrange the lamp, vase, and statue on the bedroom table in this sequence for a calming bedtime atmosphere.",
+        "replanning_count_0": 35.0,
+        "run_id": 0,
+        "runtime": 235.72982382774356,
+        "sim_step_count": 2890.0,
+        "task_percent_complete": 0.25,
+        "task_state_success": 0.0,
+        "org_data": {
+            "episode_id": "1007",
+            "instruction": "Move the lamp, then the vase, and finally the statue to the shelves. Then, move them to the table in the bedroom and place them next to each other. I usually arrange the lamp, vase, and statue on the bedroom table in this sequence for a calming bedtime atmosphere.",
+            "original_data_info": {
+                "episode_id": "719",
+                "instruction": "Move the lamp, then the vase, and finally the statue to the shelves. Then, move them to the table in the bedroom and place them next to each other.",
+                "data_path": "data/datasets/partnr_episodes/v0_0/val.json"
+            },
+            "metadata": {
+                "stage": "1",
+                "related_episode_id": "3007",
+                "episode_type": "user_pattern",
+                "source_file": "val",
+                "target_objects": [
+                    {
+                        "id": "B07HK3PNSK",
+                        "caption": "A lamp with a pineapple-shaped neon outline and a black base.",
+                        "source": "amazon_berkeley",
+                        "category": "lamp",
+                        "cluster": 1
+                    },
+                    {
+                        "id": "xxxx59b79f40x2b52x4d5axb58bx2c8d239b9a1e",
+                        "caption": "A brown vase with dot and stripe patterns.",
+                        "source": "hssd_hab",
+                        "category": "vase",
+                        "cluster": 1
+                    },
+                    {
+                        "id": "Towel_Statue_1",
+                        "caption": "A dark bronze statue of a standing figure with an umbrella.",
+                        "source": "ai2thorhab",
+                        "category": "statue",
+                        "cluster": 0
+                    }
+                ],
+                "subtype": "routine",
+                "memory": "Arrange the lamp, vase, and statue on the bedroom table in sequence for a calming bedtime atmosphere."
+            },
+            "scene_id": "102817140",
+            "evaluation_propositions": [
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "B07HK3PNSK_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "3bd0e65f7e1c55fe38c4b6101e30f44fe392151a_:0000",
+                            "7b395deb580a75ca10a361d25b5e10b1bab8464b_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "xxxx59b79f40x2b52x4d5axb58bx2c8d239b9a1e_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "3bd0e65f7e1c55fe38c4b6101e30f44fe392151a_:0000",
+                            "7b395deb580a75ca10a361d25b5e10b1bab8464b_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "Towel_Statue_1_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "3bd0e65f7e1c55fe38c4b6101e30f44fe392151a_:0000",
+                            "7b395deb580a75ca10a361d25b5e10b1bab8464b_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "B07HK3PNSK_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "2d677064b6bd4a3ba262cd510fd03c58efb57533_:0000",
+                            "689340fdf94601c7e57aabc45c1f1752bc7791da_:0000",
+                            "72305abe342ae61ffd01243a6acfcdb8aa0381c6_:0000",
+                            "72305abe342ae61ffd01243a6acfcdb8aa0381c6_:0001",
+                            "a858cba39573583f6aff0a31d237bcebabaaf503_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "xxxx59b79f40x2b52x4d5axb58bx2c8d239b9a1e_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "2d677064b6bd4a3ba262cd510fd03c58efb57533_:0000",
+                            "689340fdf94601c7e57aabc45c1f1752bc7791da_:0000",
+                            "72305abe342ae61ffd01243a6acfcdb8aa0381c6_:0000",
+                            "72305abe342ae61ffd01243a6acfcdb8aa0381c6_:0001",
+                            "a858cba39573583f6aff0a31d237bcebabaaf503_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "Towel_Statue_1_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "2d677064b6bd4a3ba262cd510fd03c58efb57533_:0000",
+                            "689340fdf94601c7e57aabc45c1f1752bc7791da_:0000",
+                            "72305abe342ae61ffd01243a6acfcdb8aa0381c6_:0000",
+                            "72305abe342ae61ffd01243a6acfcdb8aa0381c6_:0001",
+                            "a858cba39573583f6aff0a31d237bcebabaaf503_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_next_to",
+                    "args": {
+                        "entity_handles_a": [
+                            "B07HK3PNSK_:0000"
+                        ],
+                        "entity_handles_b": [
+                            "xxxx59b79f40x2b52x4d5axb58bx2c8d239b9a1e_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_b": false,
+                        "l2_threshold": 1.0
+                    }
+                },
+                {
+                    "function_name": "is_next_to",
+                    "args": {
+                        "entity_handles_a": [
+                            "xxxx59b79f40x2b52x4d5axb58bx2c8d239b9a1e_:0000"
+                        ],
+                        "entity_handles_b": [
+                            "Towel_Statue_1_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_b": false,
+                        "l2_threshold": 1.0
+                    }
+                }
+            ],
+            "evaluation_proposition_dependencies": [
+                {
+                    "proposition_indices": [
+                        6
+                    ],
+                    "depends_on": [
+                        3,
+                        4
+                    ],
+                    "relation_type": "while_satisfied",
+                    "dependency_mode": "any"
+                },
+                {
+                    "proposition_indices": [
+                        7
+                    ],
+                    "depends_on": [
+                        4,
+                        5
+                    ],
+                    "relation_type": "while_satisfied",
+                    "dependency_mode": "any"
+                },
+                {
+                    "proposition_indices": [
+                        3
+                    ],
+                    "depends_on": [
+                        0
+                    ],
+                    "relation_type": "after_satisfied",
+                    "dependency_mode": "any"
+                },
+                {
+                    "proposition_indices": [
+                        4
+                    ],
+                    "depends_on": [
+                        1
+                    ],
+                    "relation_type": "after_satisfied",
+                    "dependency_mode": "any"
+                },
+                {
+                    "proposition_indices": [
+                        5
+                    ],
+                    "depends_on": [
+                        2
+                    ],
+                    "relation_type": "after_satisfied",
+                    "dependency_mode": "any"
+                }
+            ],
+            "evaluation_constraints": [
+                {
+                    "type": "TemporalConstraint",
+                    "args": {
+                        "dag_edges": [
+                            [
+                                0,
+                                1
+                            ],
+                            [
+                                1,
+                                2
+                            ],
+                            [
+                                2,
+                                3
+                            ],
+                            [
+                                2,
+                                4
+                            ],
+                            [
+                                2,
+                                5
+                            ],
+                            [
+                                2,
+                                6
+                            ],
+                            [
+                                2,
+                                7
+                            ]
+                        ],
+                        "n_propositions": 8
+                    }
+                },
+                {
+                    "type": "TerminalSatisfactionConstraint",
+                    "args": {
+                        "proposition_indices": [
+                            3,
+                            4,
+                            5,
+                            6,
+                            7
+                        ],
+                        "n_propositions": null
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "episode_id": 967,
+        "error": false,
+        "instruction": "Move a book and a pencil case from the bedroom to the living room. Place them on the table. I usually keep my book and pencil case in the living room for my afternoon study sessions.",
+        "replanning_count_0": 26.0,
+        "run_id": 0,
+        "runtime": 483.2663991451264,
+        "sim_step_count": 5296.0,
+        "task_percent_complete": 0.0,
+        "task_state_success": 0.0,
+        "org_data": {
+            "episode_id": "967",
+            "instruction": "Move a book and a pencil case from the bedroom to the living room. Place them on the table. I usually keep my book and pencil case in the living room for my afternoon study sessions.",
+            "original_data_info": {
+                "episode_id": "390",
+                "instruction": "Move a book and a pencil case from the bedroom to the living room. Place them on the table.",
+                "data_path": "data/datasets/partnr_episodes/v0_0/val.json"
+            },
+            "metadata": {
+                "stage": "1",
+                "related_episode_id": "2967",
+                "episode_type": "user_pattern",
+                "source_file": "val",
+                "target_objects": [
+                    {
+                        "id": "81c6dd3830a8df6644bd1f6b9a239615234e888f",
+                        "caption": "A book with a cover image of a modern interior.",
+                        "source": "hssd_hab",
+                        "category": "book",
+                        "cluster": 1
+                    },
+                    {
+                        "id": "Olive_Kids_Paisley_Pencil_Case",
+                        "caption": "A colorful, paisley-patterned pencil case, Olive Kids Paisley Pencil Case.",
+                        "source": "google",
+                        "category": "pencil_case",
+                        "cluster": 0
+                    }
+                ],
+                "subtype": "routine",
+                "memory": "Keep the book and pencil case in the living room for afternoon study sessions."
+            },
+            "scene_id": "107733960_175999701",
+            "evaluation_propositions": [
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "81c6dd3830a8df6644bd1f6b9a239615234e888f_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "7d32f5f7ab814a5cbe9b8eff80e139d2d9f13cf7_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "Olive_Kids_Paisley_Pencil_Case_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "7d32f5f7ab814a5cbe9b8eff80e139d2d9f13cf7_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                }
+            ],
+            "evaluation_proposition_dependencies": [],
+            "evaluation_constraints": [
+                {
+                    "type": "TemporalConstraint",
+                    "args": {
+                        "dag_edges": [],
+                        "n_propositions": 2
+                    }
+                },
+                {
+                    "type": "TerminalSatisfactionConstraint",
+                    "args": {
+                        "proposition_indices": [
+                            0,
+                            1
+                        ],
+                        "n_propositions": null
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "episode_id": 972,
+        "error": false,
+        "instruction": "First, move the vase and statue to the other shelves in the living room. Then, place them next to each other on the table in the living room. I always like to keep the vase and statue together on the table for my morning meditation.",
+        "replanning_count_0": 9.0,
+        "run_id": 0,
+        "runtime": 89.44383144378662,
+        "sim_step_count": 1056.0,
+        "task_percent_complete": 0.0,
+        "task_state_success": 0.0,
+        "org_data": {
+            "episode_id": "972",
+            "instruction": "First, move the vase and statue to the other shelves in the living room. Then, place them next to each other on the table in the living room. I always like to keep the vase and statue together on the table for my morning meditation.",
+            "original_data_info": {
+                "episode_id": "660",
+                "instruction": "First, move the vase and statue to the other shelves in the living room. Then, place them next to each other on the table in the living room.",
+                "data_path": "data/datasets/partnr_episodes/v0_0/val.json"
+            },
+            "metadata": {
+                "stage": "1",
+                "related_episode_id": "2972",
+                "episode_type": "user_pattern",
+                "source_file": "val",
+                "target_objects": [
+                    {
+                        "id": "Vase_Medium_5",
+                        "caption": "A black vase with a bulbous shape.",
+                        "source": "ai2thorhab",
+                        "category": "vase",
+                        "cluster": 1
+                    },
+                    {
+                        "id": "Dog_Statue_3",
+                        "caption": "A black dog statue.",
+                        "source": "ai2thorhab",
+                        "category": "statue",
+                        "cluster": 1
+                    }
+                ],
+                "subtype": "routine",
+                "memory": "Keep the vase and statue together on the table for morning meditation."
+            },
+            "scene_id": "107733960_175999701",
+            "evaluation_propositions": [
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "Vase_Medium_5_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "e6f8c01259ecf4b053c6f3ae6d9a6ae4cc4780a7_part_23_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "Dog_Statue_3_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "e6f8c01259ecf4b053c6f3ae6d9a6ae4cc4780a7_part_23_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "Vase_Medium_5_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "7d32f5f7ab814a5cbe9b8eff80e139d2d9f13cf7_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "Dog_Statue_3_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "7d32f5f7ab814a5cbe9b8eff80e139d2d9f13cf7_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_next_to",
+                    "args": {
+                        "entity_handles_a": [
+                            "Vase_Medium_5_:0000"
+                        ],
+                        "entity_handles_b": [
+                            "Dog_Statue_3_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_b": false,
+                        "l2_threshold": 1.0
+                    }
+                }
+            ],
+            "evaluation_proposition_dependencies": [
+                {
+                    "proposition_indices": [
+                        4
+                    ],
+                    "depends_on": [
+                        2,
+                        3
+                    ],
+                    "relation_type": "while_satisfied",
+                    "dependency_mode": "any"
+                },
+                {
+                    "proposition_indices": [
+                        2
+                    ],
+                    "depends_on": [
+                        0
+                    ],
+                    "relation_type": "after_satisfied",
+                    "dependency_mode": "any"
+                },
+                {
+                    "proposition_indices": [
+                        3
+                    ],
+                    "depends_on": [
+                        1
+                    ],
+                    "relation_type": "after_satisfied",
+                    "dependency_mode": "any"
+                }
+            ],
+            "evaluation_constraints": [
+                {
+                    "type": "TemporalConstraint",
+                    "args": {
+                        "dag_edges": [
+                            [
+                                0,
+                                2
+                            ],
+                            [
+                                0,
+                                3
+                            ],
+                            [
+                                0,
+                                4
+                            ],
+                            [
+                                1,
+                                2
+                            ],
+                            [
+                                1,
+                                3
+                            ],
+                            [
+                                1,
+                                4
+                            ]
+                        ],
+                        "n_propositions": 5
+                    }
+                },
+                {
+                    "type": "TerminalSatisfactionConstraint",
+                    "args": {
+                        "proposition_indices": [
+                            2,
+                            3,
+                            4
+                        ],
+                        "n_propositions": null
+                    }
+                }
+            ]
+        }
+    }
+]

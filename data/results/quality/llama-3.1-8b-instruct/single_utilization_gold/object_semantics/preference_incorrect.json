@@ -1,0 +1,333 @@
+[
+    {
+        "episode_id": 3024,
+        "error": false,
+        "instruction": "Could you place the black hexagonal dumbbell and my favorite running gear on the shelves in the living room next to each other?",
+        "replanning_count_0": 10.0,
+        "run_id": 0,
+        "runtime": 107.0843985080719,
+        "sim_step_count": 2620.0,
+        "task_percent_complete": 0.3333333333333333,
+        "task_state_success": 0.0,
+        "org_data": {
+            "episode_id": "3024",
+            "instruction": "Could you place the black hexagonal dumbbell and my favorite running gear on the shelves in the living room next to each other?",
+            "original_data_info": {
+                "episode_id": "713",
+                "instruction": "Move the dumbbell and show to the shelves in the living room and place them next to each other.",
+                "data_path": "data/datasets/partnr_episodes/v0_0/val.json"
+            },
+            "metadata": {
+                "stage": "2",
+                "related_episode_id": "1024",
+                "episode_type": "object_semantics",
+                "target_objects": [
+                    {
+                        "id": "B074DZNJ3T",
+                        "caption": "A black hexagonal dumbbell with a metal handle.",
+                        "source": "amazon_berkeley",
+                        "category": "dumbbell",
+                        "cluster": 0
+                    },
+                    {
+                        "id": "PureConnect_2_Color_AnthrcteKnckoutPnkGrnGecko_Size_50",
+                        "caption": "A black and pink running shoe, PureConnect 2.",
+                        "source": "google",
+                        "category": "shoe",
+                        "cluster": 0
+                    }
+                ],
+                "distractors": [
+                    {
+                        "id": "B01LR5RSG0",
+                        "caption": "An orange dumbbell with rounded ends.",
+                        "source": "amazon_berkeley",
+                        "category": "dumbbell",
+                        "cluster": 1,
+                        "pair_id": "B074DZNJ3T"
+                    },
+                    {
+                        "id": "Sperry_TopSider_tNB9t6YBUf3",
+                        "caption": "A brown boat shoe with white laces, Sperry Top-Sider.",
+                        "source": "google",
+                        "category": "shoe",
+                        "cluster": 1,
+                        "pair_id": "PureConnect_2_Color_AnthrcteKnckoutPnkGrnGecko_Size_50"
+                    }
+                ],
+                "subtype": "preference",
+                "num_targets": 1,
+                "memory": "The black and pink running shoe, PureConnect 2, is part of the user's favorite running gear.",
+                "used_object": [
+                    "shoe"
+                ]
+            },
+            "scene_id": "102817140",
+            "evaluation_propositions": [
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "B074DZNJ3T_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "7b395deb580a75ca10a361d25b5e10b1bab8464b_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "PureConnect_2_Color_AnthrcteKnckoutPnkGrnGecko_Size_50_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "7b395deb580a75ca10a361d25b5e10b1bab8464b_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_next_to",
+                    "args": {
+                        "entity_handles_a": [
+                            "B074DZNJ3T_:0000"
+                        ],
+                        "entity_handles_b": [
+                            "PureConnect_2_Color_AnthrcteKnckoutPnkGrnGecko_Size_50_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_b": false,
+                        "l2_threshold": 1.0
+                    }
+                }
+            ],
+            "evaluation_proposition_dependencies": [
+                {
+                    "proposition_indices": [
+                        2
+                    ],
+                    "depends_on": [
+                        0,
+                        1
+                    ],
+                    "relation_type": "while_satisfied",
+                    "dependency_mode": "any"
+                }
+            ],
+            "evaluation_constraints": [
+                {
+                    "type": "TemporalConstraint",
+                    "args": {
+                        "dag_edges": [],
+                        "n_propositions": 3
+                    }
+                },
+                {
+                    "type": "TerminalSatisfactionConstraint",
+                    "args": {
+                        "proposition_indices": [
+                            0,
+                            1,
+                            2
+                        ],
+                        "n_propositions": null
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "episode_id": 3148,
+        "error": false,
+        "instruction": "Could you move the jug from my preferred kitchenware collection from the kitchen counter to the living room table? Then, take the cup from the same collection and the plain white plate with a smooth, circular design from the kitchen cabinet to the living room table, and place them next to each other.",
+        "replanning_count_0": 21.0,
+        "run_id": 0,
+        "runtime": 122.6432249546051,
+        "sim_step_count": 1781.0,
+        "task_percent_complete": 0.5,
+        "task_state_success": 0.0,
+        "org_data": {
+            "episode_id": "3148",
+            "instruction": "Could you move the jug from my preferred kitchenware collection from the kitchen counter to the living room table? Then, take the cup from the same collection and the plain white plate with a smooth, circular design from the kitchen cabinet to the living room table, and place them next to each other.",
+            "original_data_info": {
+                "episode_id": "564",
+                "instruction": "First, move the jug from the kitchen counter to living room table. Then, take the cup and plate from the kitchen cabinet to the living room table and place them next to each other.",
+                "data_path": "data/datasets/partnr_episodes/v0_0/val.json"
+            },
+            "metadata": {
+                "stage": "2",
+                "related_episode_id": "1148",
+                "episode_type": "object_semantics",
+                "target_objects": [
+                    {
+                        "id": "aaf1ba3e91ae781751ab5eba22ec2bbd30e05365",
+                        "caption": "A blue jug with a round lid.",
+                        "source": "hssd_hab",
+                        "category": "jug",
+                        "cluster": 1
+                    },
+                    {
+                        "id": "6a833596dd725a0044674dbaada29368ebe7a53e",
+                        "caption": "A yellow cup with a white interior.",
+                        "source": "hssd_hab",
+                        "category": "cup",
+                        "cluster": 1
+                    },
+                    {
+                        "id": "b599eb548442db2690265de15d2bf8aa549acd02",
+                        "caption": "A plain white plate with a smooth, circular design.",
+                        "source": "hssd_hab",
+                        "category": "plate",
+                        "cluster": 1
+                    }
+                ],
+                "distractors": [
+                    {
+                        "id": "e70ea42b5270583ea34fe50123b841d79a380e19",
+                        "caption": "A white jug with a colorful dot pattern.",
+                        "source": "hssd_hab",
+                        "category": "jug",
+                        "cluster": 0,
+                        "pair_id": "aaf1ba3e91ae781751ab5eba22ec2bbd30e05365"
+                    },
+                    {
+                        "id": "Cup_4",
+                        "caption": "A translucent gray cup with a tapered design.",
+                        "source": "ai2thorhab",
+                        "category": "cup",
+                        "cluster": 0,
+                        "pair_id": "6a833596dd725a0044674dbaada29368ebe7a53e"
+                    },
+                    {
+                        "id": "Plate_13",
+                        "caption": "A dark blue, hexagonal plate.",
+                        "source": "ai2thorhab",
+                        "category": "plate",
+                        "cluster": 0,
+                        "pair_id": "b599eb548442db2690265de15d2bf8aa549acd02"
+                    }
+                ],
+                "subtype": "preference",
+                "num_targets": 2,
+                "memory": "The blue jug with a round lid and the yellow cup with a white interior are part of the user's preferred kitchenware collection.",
+                "used_object": [
+                    "jug",
+                    "cup"
+                ]
+            },
+            "scene_id": "104348361_171513414",
+            "evaluation_propositions": [
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "aaf1ba3e91ae781751ab5eba22ec2bbd30e05365_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "2e7f82e48f14d6fb2ad6a6b1a8d0429e76401542_part_7_:0000",
+                            "7adfff7e2fab4e59b6390f012d434a6239b04e66_:0000",
+                            "87ec2d5fefc4493289c251c6eb84f1c02371addc_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "6a833596dd725a0044674dbaada29368ebe7a53e_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "2e7f82e48f14d6fb2ad6a6b1a8d0429e76401542_part_7_:0000",
+                            "7adfff7e2fab4e59b6390f012d434a6239b04e66_:0000",
+                            "87ec2d5fefc4493289c251c6eb84f1c02371addc_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "b599eb548442db2690265de15d2bf8aa549acd02_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "2e7f82e48f14d6fb2ad6a6b1a8d0429e76401542_part_7_:0000",
+                            "7adfff7e2fab4e59b6390f012d434a6239b04e66_:0000",
+                            "87ec2d5fefc4493289c251c6eb84f1c02371addc_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_next_to",
+                    "args": {
+                        "entity_handles_a": [
+                            "6a833596dd725a0044674dbaada29368ebe7a53e_:0000"
+                        ],
+                        "entity_handles_b": [
+                            "b599eb548442db2690265de15d2bf8aa549acd02_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_b": false,
+                        "l2_threshold": 1.0
+                    }
+                }
+            ],
+            "evaluation_proposition_dependencies": [
+                {
+                    "proposition_indices": [
+                        3
+                    ],
+                    "depends_on": [
+                        1,
+                        2
+                    ],
+                    "relation_type": "while_satisfied",
+                    "dependency_mode": "any"
+                }
+            ],
+            "evaluation_constraints": [
+                {
+                    "type": "TemporalConstraint",
+                    "args": {
+                        "dag_edges": [
+                            [
+                                0,
+                                1
+                            ],
+                            [
+                                0,
+                                2
+                            ],
+                            [
+                                0,
+                                3
+                            ]
+                        ],
+                        "n_propositions": 4
+                    }
+                },
+                {
+                    "type": "TerminalSatisfactionConstraint",
+                    "args": {
+                        "proposition_indices": [
+                            0,
+                            1,
+                            2,
+                            3
+                        ],
+                        "n_propositions": null
+                    }
+                }
+            ]
+        }
+    }
+]

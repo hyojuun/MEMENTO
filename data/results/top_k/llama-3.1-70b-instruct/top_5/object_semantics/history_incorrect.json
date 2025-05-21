@@ -1,0 +1,1273 @@
+[
+    {
+        "episode_id": 3079,
+        "error": false,
+        "instruction": "Could you first move my grandfather's gift clock in the bedroom to the stand and place it next to the black vase with a round shape? Then, move the vase to the shelves in the living room.",
+        "replanning_count_0": 18.0,
+        "run_id": 0,
+        "runtime": 113.09440326690674,
+        "sim_step_count": 858.0,
+        "task_percent_complete": 0.6666666666666666,
+        "task_state_success": 0.0,
+        "org_data": {
+            "episode_id": "3079",
+            "instruction": "Could you first move my grandfather's gift clock in the bedroom to the stand and place it next to the black vase with a round shape? Then, move the vase to the shelves in the living room.",
+            "original_data_info": {
+                "episode_id": "705",
+                "instruction": "First, move the clock from the table in the bedroom to the stand and place it next to the vase. Then, move the vase from the stand in the bedroom to the shelves in the living room.",
+                "data_path": "data/datasets/partnr_episodes/v0_0/val.json"
+            },
+            "metadata": {
+                "stage": "2",
+                "related_episode_id": "1079",
+                "episode_type": "object_semantics",
+                "target_objects": [
+                    {
+                        "id": "f03a9160a43f06d49d579eb58f6ed63740afa2e4",
+                        "caption": "A maroon square clock with a patterned face.",
+                        "source": "hssd_hab",
+                        "category": "clock",
+                        "cluster": 0
+                    },
+                    {
+                        "id": "2b6a6f943bdaf73ef2018a02ceb1720ab04b5b2d",
+                        "caption": "A black vase with a round shape.",
+                        "source": "hssd_hab",
+                        "category": "vase",
+                        "cluster": 1
+                    }
+                ],
+                "distractors": [
+                    {
+                        "id": "Alarm_Clock_25",
+                        "caption": "A black digital clock with a red LED display.",
+                        "source": "ai2thorhab",
+                        "category": "clock",
+                        "cluster": 1,
+                        "pair_id": "f03a9160a43f06d49d579eb58f6ed63740afa2e4"
+                    },
+                    {
+                        "id": "18a2fab4d1fe71c969e654740028d422d18ad9b6",
+                        "caption": "A white vase with a textured geometric pattern.",
+                        "source": "hssd_hab",
+                        "category": "vase",
+                        "cluster": 0,
+                        "pair_id": "2b6a6f943bdaf73ef2018a02ceb1720ab04b5b2d"
+                    }
+                ],
+                "subtype": "history",
+                "num_targets": 1,
+                "memory": "The maroon square clock with a patterned face was a gift from 3the user's grandfather.",
+                "used_object": [
+                    "clock"
+                ]
+            },
+            "scene_id": "106878915_174887025",
+            "evaluation_propositions": [
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "f03a9160a43f06d49d579eb58f6ed63740afa2e4_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "e194cb80e9941fcf08be2185146d4dccf9d532c2_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_next_to",
+                    "args": {
+                        "entity_handles_a": [
+                            "f03a9160a43f06d49d579eb58f6ed63740afa2e4_:0000"
+                        ],
+                        "entity_handles_b": [
+                            "2b6a6f943bdaf73ef2018a02ceb1720ab04b5b2d_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_b": false,
+                        "l2_threshold": 1.0
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "2b6a6f943bdaf73ef2018a02ceb1720ab04b5b2d_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "3220d21b0885b4f0ac2c044d00a76c2ff7844dca_:0000",
+                            "679d4207f433ee1bb6030bae48df158a775d2b0b_part_64_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                }
+            ],
+            "evaluation_proposition_dependencies": [
+                {
+                    "proposition_indices": [
+                        1
+                    ],
+                    "depends_on": [
+                        0
+                    ],
+                    "relation_type": "while_satisfied",
+                    "dependency_mode": "any"
+                },
+                {
+                    "proposition_indices": [
+                        2
+                    ],
+                    "depends_on": [
+                        1
+                    ],
+                    "relation_type": "after_satisfied",
+                    "dependency_mode": "any"
+                }
+            ],
+            "evaluation_constraints": [
+                {
+                    "type": "TemporalConstraint",
+                    "args": {
+                        "dag_edges": [
+                            [
+                                0,
+                                2
+                            ],
+                            [
+                                1,
+                                2
+                            ]
+                        ],
+                        "n_propositions": 3
+                    }
+                },
+                {
+                    "type": "TerminalSatisfactionConstraint",
+                    "args": {
+                        "proposition_indices": [
+                            0,
+                            2
+                        ],
+                        "n_propositions": null
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "episode_id": 2960,
+        "error": false,
+        "instruction": "Could you move the book which is a gift from my best friend and the white candle on a black holder from the living room couch to the dining table, placing them next to each other?",
+        "replanning_count_0": 29.0,
+        "run_id": 0,
+        "runtime": 650.5648903846741,
+        "sim_step_count": 5733.0,
+        "task_percent_complete": 0.0,
+        "task_state_success": 0.0,
+        "org_data": {
+            "episode_id": "2960",
+            "instruction": "Could you move the book which is a gift from my best friend and the white candle on a black holder from the living room couch to the dining table, placing them next to each other?",
+            "original_data_info": {
+                "episode_id": "763",
+                "instruction": "Move the book and candle from the living room couch to the dining table? Place them next to each other on the table.",
+                "data_path": "data/datasets/partnr_episodes/v0_0/val.json"
+            },
+            "metadata": {
+                "stage": "2",
+                "related_episode_id": "960",
+                "episode_type": "object_semantics",
+                "target_objects": [
+                    {
+                        "id": "Book_15",
+                        "caption": "A beige book titled \"UNIX\" with a simple cover design.",
+                        "source": "ai2thorhab",
+                        "category": "book",
+                        "cluster": 1
+                    },
+                    {
+                        "id": "Candle_6",
+                        "caption": "A white candle on a black holder.",
+                        "source": "ai2thorhab",
+                        "category": "candle",
+                        "cluster": 1
+                    }
+                ],
+                "distractors": [
+                    {
+                        "id": "6c012b2a87c94cc8b26d014ba8601b4eadf0c17d",
+                        "caption": "A black book with a textured cover.",
+                        "source": "hssd_hab",
+                        "category": "book",
+                        "cluster": 0,
+                        "pair_id": "Book_15"
+                    },
+                    {
+                        "id": "xxxx575beb73xadbex4b2axbc06x2273ca72ce73",
+                        "caption": "A gradient teal candle with a white top.",
+                        "source": "hssd_hab",
+                        "category": "candle",
+                        "cluster": 0,
+                        "pair_id": "Candle_6"
+                    }
+                ],
+                "subtype": "history",
+                "num_targets": 1,
+                "memory": "The beige book titled 'UNIX' is a gift from the user's best friend.",
+                "used_object": [
+                    "book"
+                ]
+            },
+            "scene_id": "102816756",
+            "evaluation_propositions": [
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "Book_15_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "786845ecaee2a43d135f922f4d617da02c8543b6_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "Candle_6_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "786845ecaee2a43d135f922f4d617da02c8543b6_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_next_to",
+                    "args": {
+                        "entity_handles_a": [
+                            "Book_15_:0000"
+                        ],
+                        "entity_handles_b": [
+                            "Candle_6_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_b": false,
+                        "l2_threshold": 1.0
+                    }
+                }
+            ],
+            "evaluation_proposition_dependencies": [
+                {
+                    "proposition_indices": [
+                        2
+                    ],
+                    "depends_on": [
+                        0,
+                        1
+                    ],
+                    "relation_type": "while_satisfied",
+                    "dependency_mode": "any"
+                }
+            ],
+            "evaluation_constraints": [
+                {
+                    "type": "TemporalConstraint",
+                    "args": {
+                        "dag_edges": [],
+                        "n_propositions": 3
+                    }
+                },
+                {
+                    "type": "TerminalSatisfactionConstraint",
+                    "args": {
+                        "proposition_indices": [
+                            0,
+                            1,
+                            2
+                        ],
+                        "n_propositions": null
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "episode_id": 3151,
+        "error": false,
+        "instruction": "Could you prepare the laundry room for cleaning by first moving the black and white vase with a speckled pattern from washer dryer to the closet table? Then, place my childhood Easter basket and the blue stuffed toy with a friendly face next to each other on the chest of drawers.",
+        "replanning_count_0": 22.0,
+        "run_id": 0,
+        "runtime": 187.2531440258026,
+        "sim_step_count": 1460.0,
+        "task_percent_complete": 0.25,
+        "task_state_success": 0.0,
+        "org_data": {
+            "episode_id": "3151",
+            "instruction": "Could you prepare the laundry room for cleaning by first moving the black and white vase with a speckled pattern from washer dryer to the closet table? Then, place my childhood Easter basket and the blue stuffed toy with a friendly face next to each other on the chest of drawers.",
+            "original_data_info": {
+                "episode_id": "697",
+                "instruction": "Help me prepare the laundry room for a cleaning session. First, move the vase from the washer dryer to the closet table. Then, take the stuffed toy and basket and place them next to each other on the chest of drawers.",
+                "data_path": "data/datasets/partnr_episodes/v0_0/val.json"
+            },
+            "metadata": {
+                "stage": "2",
+                "related_episode_id": "1151",
+                "episode_type": "object_semantics",
+                "target_objects": [
+                    {
+                        "id": "f51fd63c6cd12ee673b94946d1450c6afc8713be",
+                        "caption": "A black and white vase with a speckled pattern.",
+                        "source": "hssd_hab",
+                        "category": "vase",
+                        "cluster": 1
+                    },
+                    {
+                        "id": "RJ_Rabbit_Easter_Basket_Blue",
+                        "caption": "A blue Easter basket with rabbit ears, RJ_Rabbit_Easter_Basket_Blue.",
+                        "source": "google",
+                        "category": "basket",
+                        "cluster": 1
+                    },
+                    {
+                        "id": "Ortho_Forward_Facing_QCaor9ImJ2G",
+                        "caption": "A blue stuffed toy with a friendly face, Ortho_Forward_Facing_QCaor9ImJ2G.",
+                        "source": "google",
+                        "category": "stuffed_toy",
+                        "cluster": 0
+                    }
+                ],
+                "distractors": [
+                    {
+                        "id": "4fc6a72c3c780fd8c70c0bdd23aa877b0c4f4a7b",
+                        "caption": "A white vase with a scalloped design.",
+                        "source": "hssd_hab",
+                        "category": "vase",
+                        "cluster": 0,
+                        "pair_id": "f51fd63c6cd12ee673b94946d1450c6afc8713be"
+                    },
+                    {
+                        "id": "Spritz_Easter_Basket_Plastic_Teal",
+                        "caption": "A teal plastic basket, Spritz Easter Basket.",
+                        "source": "google",
+                        "category": "basket",
+                        "cluster": 0,
+                        "pair_id": "RJ_Rabbit_Easter_Basket_Blue"
+                    },
+                    {
+                        "id": "b469cdabd74ce7e2a4cfb787504e17a8e71f172d",
+                        "caption": "A blue stuffed toy with a textured pattern and a white snout.",
+                        "source": "hssd_hab",
+                        "category": "stuffed_toy",
+                        "cluster": 1,
+                        "pair_id": "Ortho_Forward_Facing_QCaor9ImJ2G"
+                    }
+                ],
+                "subtype": "history",
+                "num_targets": 1,
+                "memory": "The blue Easter basket with rabbit ears is the user's childhood Easter basket.",
+                "used_object": [
+                    "basket"
+                ]
+            },
+            "scene_id": "104348361_171513414",
+            "evaluation_propositions": [
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "f51fd63c6cd12ee673b94946d1450c6afc8713be_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "eaf719f5dd094990daa3e96831f847f47733587f_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_next_to",
+                    "args": {
+                        "entity_handles_a": [
+                            "Ortho_Forward_Facing_QCaor9ImJ2G_:0000"
+                        ],
+                        "entity_handles_b": [
+                            "RJ_Rabbit_Easter_Basket_Blue_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_b": false,
+                        "l2_threshold": 1.0
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "Ortho_Forward_Facing_QCaor9ImJ2G_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "07b4946baa48b230b224946422be140ff626c328_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "RJ_Rabbit_Easter_Basket_Blue_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "07b4946baa48b230b224946422be140ff626c328_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                }
+            ],
+            "evaluation_proposition_dependencies": [
+                {
+                    "proposition_indices": [
+                        1
+                    ],
+                    "depends_on": [
+                        2,
+                        3
+                    ],
+                    "relation_type": "while_satisfied",
+                    "dependency_mode": "any"
+                }
+            ],
+            "evaluation_constraints": [
+                {
+                    "type": "TemporalConstraint",
+                    "args": {
+                        "dag_edges": [
+                            [
+                                0,
+                                1
+                            ],
+                            [
+                                0,
+                                2
+                            ],
+                            [
+                                0,
+                                3
+                            ]
+                        ],
+                        "n_propositions": 4
+                    }
+                },
+                {
+                    "type": "TerminalSatisfactionConstraint",
+                    "args": {
+                        "proposition_indices": [
+                            0,
+                            1,
+                            2,
+                            3
+                        ],
+                        "n_propositions": null
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "episode_id": 3022,
+        "error": false,
+        "instruction": "Could you move the souvenir statue from my last vacation and the colorful Cole Hardware electric pots from the living room shelves to the bedroom chest of drawers and place them next to each other?",
+        "replanning_count_0": 31.0,
+        "run_id": 0,
+        "runtime": 520.750471830368,
+        "sim_step_count": 7652.0,
+        "task_percent_complete": 0.3333333333333333,
+        "task_state_success": 0.0,
+        "org_data": {
+            "episode_id": "3022",
+            "instruction": "Could you move the souvenir statue from my last vacation and the colorful Cole Hardware electric pots from the living room shelves to the bedroom chest of drawers and place them next to each other?",
+            "original_data_info": {
+                "episode_id": "586",
+                "instruction": "Move the statue and plant container from the living room shelves to the bedroom chest of drawers. Place them next to each other on the chest of drawers.",
+                "data_path": "data/datasets/partnr_episodes/v0_0/val.json"
+            },
+            "metadata": {
+                "stage": "2",
+                "related_episode_id": "1022",
+                "episode_type": "object_semantics",
+                "target_objects": [
+                    {
+                        "id": "Cole_Hardware_Electric_Pot_Assortment_55",
+                        "caption": "A colorful assortment of electric pots, Cole Hardware.",
+                        "source": "google",
+                        "category": "plant_container",
+                        "cluster": 0
+                    },
+                    {
+                        "id": "Dog_Statue_4",
+                        "caption": "A gray dog-shaped statue.",
+                        "source": "ai2thorhab",
+                        "category": "statue",
+                        "cluster": 1
+                    }
+                ],
+                "distractors": [
+                    {
+                        "id": "Ecoforms_Plant_Pot_GP9AAvocado",
+                        "caption": "A green and beige plant pot, Ecoforms GP9A Avocado.",
+                        "source": "google",
+                        "category": "plant_container",
+                        "cluster": 1,
+                        "pair_id": "Cole_Hardware_Electric_Pot_Assortment_55"
+                    },
+                    {
+                        "id": "Towel_Statue_Master",
+                        "caption": "A dark bronze statue of a standing figure.",
+                        "source": "ai2thorhab",
+                        "category": "statue",
+                        "cluster": 0,
+                        "pair_id": "Dog_Statue_4"
+                    }
+                ],
+                "subtype": "history",
+                "num_targets": 1,
+                "memory": "The gray dog-shaped statue is a souvenir from the user's last vacation.",
+                "used_object": [
+                    "statue"
+                ]
+            },
+            "scene_id": "102817140",
+            "evaluation_propositions": [
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "Cole_Hardware_Electric_Pot_Assortment_55_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "2d93837fd0fb80b2f2e9b0d3d55eb6506b22d4c1_:0000",
+                            "47c28745703eaa9b3bfe792ad97a4de3467d3bc3_:0000",
+                            "ee4b6239be4a2513feccbe0a96c2a59cda30b1ee_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "Dog_Statue_4_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "2d93837fd0fb80b2f2e9b0d3d55eb6506b22d4c1_:0000",
+                            "47c28745703eaa9b3bfe792ad97a4de3467d3bc3_:0000",
+                            "ee4b6239be4a2513feccbe0a96c2a59cda30b1ee_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_next_to",
+                    "args": {
+                        "entity_handles_a": [
+                            "Cole_Hardware_Electric_Pot_Assortment_55_:0000"
+                        ],
+                        "entity_handles_b": [
+                            "Dog_Statue_4_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_b": false,
+                        "l2_threshold": 1.0
+                    }
+                }
+            ],
+            "evaluation_proposition_dependencies": [
+                {
+                    "proposition_indices": [
+                        2
+                    ],
+                    "depends_on": [
+                        0,
+                        1
+                    ],
+                    "relation_type": "while_satisfied",
+                    "dependency_mode": "any"
+                }
+            ],
+            "evaluation_constraints": [
+                {
+                    "type": "TemporalConstraint",
+                    "args": {
+                        "dag_edges": [],
+                        "n_propositions": 3
+                    }
+                },
+                {
+                    "type": "TerminalSatisfactionConstraint",
+                    "args": {
+                        "proposition_indices": [
+                            0,
+                            1,
+                            2
+                        ],
+                        "n_propositions": null
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "episode_id": 3011,
+        "error": false,
+        "instruction": "Can we move the special gift vase and the white candle with a light blue base from the living room table to the bedroom chest of drawers?",
+        "replanning_count_0": 41.0,
+        "run_id": 0,
+        "runtime": 245.1116337776184,
+        "sim_step_count": 2279.0,
+        "task_percent_complete": 0.0,
+        "task_state_success": 0.0,
+        "org_data": {
+            "episode_id": "3011",
+            "instruction": "Can we move the special gift vase and the white candle with a light blue base from the living room table to the bedroom chest of drawers?",
+            "original_data_info": {
+                "episode_id": "398",
+                "instruction": "Can we move the candle and vase from the living room table to the bedroom chest of drawers?",
+                "data_path": "data/datasets/partnr_episodes/v0_0/val.json"
+            },
+            "metadata": {
+                "stage": "2",
+                "related_episode_id": "1011",
+                "episode_type": "object_semantics",
+                "target_objects": [
+                    {
+                        "id": "36f46c7b967c8101325848bcf43db07589ae2cc1",
+                        "caption": "A white candle with a light blue base in a round holder.",
+                        "source": "hssd_hab",
+                        "category": "candle",
+                        "cluster": 1
+                    },
+                    {
+                        "id": "c3a6db9251980820f1e2ddcabebf8d21f059e0a4",
+                        "caption": "A black vase with white geometric patterns.",
+                        "source": "hssd_hab",
+                        "category": "vase",
+                        "cluster": 0
+                    }
+                ],
+                "distractors": [
+                    {
+                        "id": "ea21d1fc5ed78e1a0c2ec72acdecbf7ca7983ffe",
+                        "caption": "A pink ombre candle with a cylindrical shape.",
+                        "source": "hssd_hab",
+                        "category": "candle",
+                        "cluster": 0,
+                        "pair_id": "36f46c7b967c8101325848bcf43db07589ae2cc1"
+                    },
+                    {
+                        "id": "8ffc1468a4c10a3badb8b36062d58f5553c02d21",
+                        "caption": "A light green vase with a tall, cylindrical shape.",
+                        "source": "hssd_hab",
+                        "category": "vase",
+                        "cluster": 1,
+                        "pair_id": "c3a6db9251980820f1e2ddcabebf8d21f059e0a4"
+                    }
+                ],
+                "subtype": "history",
+                "num_targets": 1,
+                "memory": "The black vase with white geometric patterns was a special gift to the user.",
+                "used_object": [
+                    "vase"
+                ]
+            },
+            "scene_id": "102817140",
+            "evaluation_propositions": [
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "36f46c7b967c8101325848bcf43db07589ae2cc1_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "2d93837fd0fb80b2f2e9b0d3d55eb6506b22d4c1_:0000",
+                            "47c28745703eaa9b3bfe792ad97a4de3467d3bc3_:0000",
+                            "ee4b6239be4a2513feccbe0a96c2a59cda30b1ee_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "c3a6db9251980820f1e2ddcabebf8d21f059e0a4_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "2d93837fd0fb80b2f2e9b0d3d55eb6506b22d4c1_:0000",
+                            "47c28745703eaa9b3bfe792ad97a4de3467d3bc3_:0000",
+                            "ee4b6239be4a2513feccbe0a96c2a59cda30b1ee_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                }
+            ],
+            "evaluation_proposition_dependencies": [],
+            "evaluation_constraints": [
+                {
+                    "type": "TemporalConstraint",
+                    "args": {
+                        "dag_edges": [],
+                        "n_propositions": 2
+                    }
+                },
+                {
+                    "type": "TerminalSatisfactionConstraint",
+                    "args": {
+                        "proposition_indices": [
+                            0,
+                            1
+                        ],
+                        "n_propositions": null
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "episode_id": 3206,
+        "error": false,
+        "instruction": "Could you move the dark blue clock with a patterned face, then the gift vase from my friend, and finally the wooden picture frame with a colorful illustration to the table in the living room? Then move them all to the bench and place them next to each other.",
+        "replanning_count_0": 41.0,
+        "run_id": 0,
+        "runtime": 342.0053012371063,
+        "sim_step_count": 4409.0,
+        "task_percent_complete": 0.5,
+        "task_state_success": 0.0,
+        "org_data": {
+            "episode_id": "3206",
+            "instruction": "Could you move the dark blue clock with a patterned face, then the gift vase from my friend, and finally the wooden picture frame with a colorful illustration to the table in the living room? Then move them all to the bench and place them next to each other.",
+            "original_data_info": {
+                "episode_id": "754",
+                "instruction": "Move the clock, then the vase, and finally the picture frame to the table in the living room. Then move them to the bench in the living room and place them next to each other.",
+                "data_path": "data/datasets/partnr_episodes/v0_0/val.json"
+            },
+            "metadata": {
+                "stage": "2",
+                "related_episode_id": "1206",
+                "episode_type": "object_semantics",
+                "target_objects": [
+                    {
+                        "id": "da06e4266205dbcaaa469ae0b03e6cc49222a256",
+                        "caption": "A dark blue clock with a patterned face and a handle.",
+                        "source": "hssd_hab",
+                        "category": "clock",
+                        "cluster": 0
+                    },
+                    {
+                        "id": "b5a2e303c9a5cfa54fb5b257cd82926b194e1e26",
+                        "caption": "A tall, slender dark green vase.",
+                        "source": "hssd_hab",
+                        "category": "vase",
+                        "cluster": 1
+                    },
+                    {
+                        "id": "3dd23dc556fc4cfddb51b24987f1758ca0db4f2c",
+                        "caption": "A wooden picture frame with a colorful illustration inside.",
+                        "source": "hssd_hab",
+                        "category": "picture_frame",
+                        "cluster": 0
+                    }
+                ],
+                "distractors": [
+                    {
+                        "id": "Alarm_Clock_17",
+                        "caption": "A black digital clock with a green LED display.",
+                        "source": "ai2thorhab",
+                        "category": "clock",
+                        "cluster": 1,
+                        "pair_id": "da06e4266205dbcaaa469ae0b03e6cc49222a256"
+                    },
+                    {
+                        "id": "dfcbfd3a7de15b9689dc0580c38f2f0896b6647d",
+                        "caption": "A white and light gray vase with a matte finish.",
+                        "source": "hssd_hab",
+                        "category": "vase",
+                        "cluster": 0,
+                        "pair_id": "b5a2e303c9a5cfa54fb5b257cd82926b194e1e26"
+                    },
+                    {
+                        "id": "c03338f63524b422e6445dc7415b809f6232b267",
+                        "caption": "A silver picture frame with zebra design.",
+                        "source": "hssd_hab",
+                        "category": "picture_frame",
+                        "cluster": 1,
+                        "pair_id": "3dd23dc556fc4cfddb51b24987f1758ca0db4f2c"
+                    }
+                ],
+                "subtype": "history",
+                "num_targets": 1,
+                "memory": "The tall, slender dark green vase is a gift from the user's friend.",
+                "used_object": [
+                    "vase"
+                ]
+            },
+            "scene_id": "106366410_174226806",
+            "evaluation_propositions": [
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "da06e4266205dbcaaa469ae0b03e6cc49222a256_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "4b1657c70ba522ca82a8cdfa1b19b8239141e9a4_:0000",
+                            "d92f26c58b92c75b976b5b95feb1bc0d1039e7b0_:0000",
+                            "983e167916e12d920189d565ee5a3efb8419dd3b_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "b5a2e303c9a5cfa54fb5b257cd82926b194e1e26_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "4b1657c70ba522ca82a8cdfa1b19b8239141e9a4_:0000",
+                            "d92f26c58b92c75b976b5b95feb1bc0d1039e7b0_:0000",
+                            "983e167916e12d920189d565ee5a3efb8419dd3b_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "3dd23dc556fc4cfddb51b24987f1758ca0db4f2c_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "4b1657c70ba522ca82a8cdfa1b19b8239141e9a4_:0000",
+                            "d92f26c58b92c75b976b5b95feb1bc0d1039e7b0_:0000",
+                            "983e167916e12d920189d565ee5a3efb8419dd3b_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "da06e4266205dbcaaa469ae0b03e6cc49222a256_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "212c762e23660aaf12b153f4ac9d3d9ff4c0f5ce_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "b5a2e303c9a5cfa54fb5b257cd82926b194e1e26_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "212c762e23660aaf12b153f4ac9d3d9ff4c0f5ce_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "3dd23dc556fc4cfddb51b24987f1758ca0db4f2c_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "212c762e23660aaf12b153f4ac9d3d9ff4c0f5ce_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_next_to",
+                    "args": {
+                        "entity_handles_a": [
+                            "da06e4266205dbcaaa469ae0b03e6cc49222a256_:0000"
+                        ],
+                        "entity_handles_b": [
+                            "b5a2e303c9a5cfa54fb5b257cd82926b194e1e26_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_b": false,
+                        "l2_threshold": 1.0
+                    }
+                },
+                {
+                    "function_name": "is_next_to",
+                    "args": {
+                        "entity_handles_a": [
+                            "b5a2e303c9a5cfa54fb5b257cd82926b194e1e26_:0000"
+                        ],
+                        "entity_handles_b": [
+                            "3dd23dc556fc4cfddb51b24987f1758ca0db4f2c_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_b": false,
+                        "l2_threshold": 1.0
+                    }
+                }
+            ],
+            "evaluation_proposition_dependencies": [
+                {
+                    "proposition_indices": [
+                        6
+                    ],
+                    "depends_on": [
+                        3,
+                        4
+                    ],
+                    "relation_type": "while_satisfied",
+                    "dependency_mode": "any"
+                },
+                {
+                    "proposition_indices": [
+                        7
+                    ],
+                    "depends_on": [
+                        4,
+                        5
+                    ],
+                    "relation_type": "while_satisfied",
+                    "dependency_mode": "any"
+                },
+                {
+                    "proposition_indices": [
+                        3
+                    ],
+                    "depends_on": [
+                        0
+                    ],
+                    "relation_type": "after_satisfied",
+                    "dependency_mode": "any"
+                },
+                {
+                    "proposition_indices": [
+                        4
+                    ],
+                    "depends_on": [
+                        1
+                    ],
+                    "relation_type": "after_satisfied",
+                    "dependency_mode": "any"
+                },
+                {
+                    "proposition_indices": [
+                        5
+                    ],
+                    "depends_on": [
+                        2
+                    ],
+                    "relation_type": "after_satisfied",
+                    "dependency_mode": "any"
+                }
+            ],
+            "evaluation_constraints": [
+                {
+                    "type": "TemporalConstraint",
+                    "args": {
+                        "dag_edges": [
+                            [
+                                0,
+                                1
+                            ],
+                            [
+                                1,
+                                2
+                            ],
+                            [
+                                2,
+                                3
+                            ],
+                            [
+                                2,
+                                4
+                            ],
+                            [
+                                2,
+                                5
+                            ],
+                            [
+                                2,
+                                6
+                            ],
+                            [
+                                2,
+                                7
+                            ]
+                        ],
+                        "n_propositions": 8
+                    }
+                },
+                {
+                    "type": "TerminalSatisfactionConstraint",
+                    "args": {
+                        "proposition_indices": [
+                            3,
+                            4,
+                            5,
+                            6,
+                            7
+                        ],
+                        "n_propositions": null
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "episode_id": 3203,
+        "error": false,
+        "instruction": "Could you move the gift candle from my friend from the living room stand to the office chair and place it next to the table?",
+        "replanning_count_0": 17.0,
+        "run_id": 0,
+        "runtime": 121.75782775878906,
+        "sim_step_count": 1846.0,
+        "task_percent_complete": 0.0,
+        "task_state_success": 0.0,
+        "org_data": {
+            "episode_id": "3203",
+            "instruction": "Could you move the gift candle from my friend from the living room stand to the office chair and place it next to the table?",
+            "original_data_info": {
+                "episode_id": "602",
+                "instruction": "Move the candle from the living room stand to the office chair and place it next to the table?",
+                "data_path": "data/datasets/partnr_episodes/v0_0/val.json"
+            },
+            "metadata": {
+                "stage": "2",
+                "related_episode_id": "1203",
+                "episode_type": "object_semantics",
+                "target_objects": [
+                    {
+                        "id": "95c68d8838c86a3f597fac1a72dcad7951f044fe",
+                        "caption": "A blue and black candle with a textured pattern.",
+                        "source": "hssd_hab",
+                        "category": "candle",
+                        "cluster": 1
+                    }
+                ],
+                "distractors": [
+                    {
+                        "id": "8afd350c5cc0029c3604c697947d1e1399403955",
+                        "caption": "A blue and brown candle with a gradient pattern.",
+                        "source": "hssd_hab",
+                        "category": "candle",
+                        "cluster": 0,
+                        "pair_id": "95c68d8838c86a3f597fac1a72dcad7951f044fe"
+                    }
+                ],
+                "subtype": "history",
+                "num_targets": 1,
+                "memory": "The blue and black candle with a textured pattern was a gift from the user's friend.",
+                "used_object": [
+                    "candle"
+                ]
+            },
+            "scene_id": "106366410_174226806",
+            "evaluation_propositions": [
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "95c68d8838c86a3f597fac1a72dcad7951f044fe_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "10fbb1b128e2609be03e6885809cf491b65a29ca_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_next_to",
+                    "args": {
+                        "entity_handles_a": [
+                            "95c68d8838c86a3f597fac1a72dcad7951f044fe_:0000"
+                        ],
+                        "entity_handles_b": [
+                            "62d5b81040a4546e5fda73df2e6a9648eb6ceb52_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_b": false,
+                        "l2_threshold": 1.0
+                    }
+                }
+            ],
+            "evaluation_proposition_dependencies": [
+                {
+                    "proposition_indices": [
+                        1
+                    ],
+                    "depends_on": [
+                        0
+                    ],
+                    "relation_type": "while_satisfied",
+                    "dependency_mode": "any"
+                }
+            ],
+            "evaluation_constraints": [
+                {
+                    "type": "TemporalConstraint",
+                    "args": {
+                        "dag_edges": [],
+                        "n_propositions": 2
+                    }
+                },
+                {
+                    "type": "TerminalSatisfactionConstraint",
+                    "args": {
+                        "proposition_indices": [
+                            0,
+                            1
+                        ],
+                        "n_propositions": null
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "episode_id": 3235,
+        "error": false,
+        "instruction": "Could you move my collectible Android figure and the action figure of Leonardo from Teenage Mutant Ninja Turtles to a new living room table?",
+        "replanning_count_0": 15.0,
+        "run_id": 0,
+        "runtime": 108.03304743766785,
+        "sim_step_count": 812.0,
+        "task_percent_complete": 0.5,
+        "task_state_success": 0.0,
+        "org_data": {
+            "episode_id": "3235",
+            "instruction": "Could you move my collectible Android figure and the action figure of Leonardo from Teenage Mutant Ninja Turtles to a new living room table?",
+            "original_data_info": {
+                "episode_id": "493",
+                "instruction": "Move the android figure to a new living room table. Also, move the action figure to a new living room table.",
+                "data_path": "data/datasets/partnr_episodes/v0_0/val.json"
+            },
+            "metadata": {
+                "stage": "2",
+                "related_episode_id": "1235",
+                "episode_type": "object_semantics",
+                "target_objects": [
+                    {
+                        "id": "Android_Figure_Panda",
+                        "caption": "A black and white Android figure, Android_Figure_Panda.",
+                        "source": "google",
+                        "category": "android_figure",
+                        "cluster": 0
+                    },
+                    {
+                        "id": "Nickelodeon_Teenage_Mutant_Ninja_Turtles_Leonardo",
+                        "caption": "A green and blue action figure, Leonardo from Teenage Mutant Ninja Turtles.",
+                        "source": "google",
+                        "category": "action_figure",
+                        "cluster": 0
+                    }
+                ],
+                "distractors": [
+                    {
+                        "id": "Android_Lego",
+                        "caption": "A green Android Lego figure with blocky features.",
+                        "source": "google",
+                        "category": "android_figure",
+                        "cluster": 1,
+                        "pair_id": "Android_Figure_Panda"
+                    },
+                    {
+                        "id": "Dino_3",
+                        "caption": "A green and yellow action figure with dinosaur features, Dino_3.",
+                        "source": "google",
+                        "category": "action_figure",
+                        "cluster": 1,
+                        "pair_id": "Nickelodeon_Teenage_Mutant_Ninja_Turtles_Leonardo"
+                    }
+                ],
+                "subtype": "history",
+                "num_targets": 1,
+                "memory": "The black and white Android_Figure_Panda is a collectible item for the user.",
+                "used_object": [
+                    "android_figure"
+                ]
+            },
+            "scene_id": "103997895_171031182",
+            "evaluation_propositions": [
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "Android_Figure_Panda_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "735845d0674f69f736af7e0f116767a01392f9b8_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "Nickelodeon_Teenage_Mutant_Ninja_Turtles_Leonardo_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "2f38b4f83d8a77af0eb36406b0f00df98cef5e47_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                }
+            ],
+            "evaluation_proposition_dependencies": [],
+            "evaluation_constraints": [
+                {
+                    "type": "TemporalConstraint",
+                    "args": {
+                        "dag_edges": [],
+                        "n_propositions": 2
+                    }
+                },
+                {
+                    "type": "TerminalSatisfactionConstraint",
+                    "args": {
+                        "proposition_indices": [
+                            0,
+                            1
+                        ],
+                        "n_propositions": null
+                    }
+                }
+            ]
+        }
+    }
+]

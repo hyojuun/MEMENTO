@@ -1,0 +1,146 @@
+[
+    {
+        "episode_id": 3200,
+        "error": false,
+        "instruction": "Could you move my personal workout gear and the transparent spray bottle from the workout table to the office table?",
+        "replanning_count_0": 18.0,
+        "run_id": 0,
+        "runtime": 136.16760993003845,
+        "sim_step_count": 1151.0,
+        "task_percent_complete": 0.6666666666666666,
+        "task_state_success": 0.0,
+        "org_data": {
+            "episode_id": "3200",
+            "instruction": "Could you move my personal workout gear and the transparent spray bottle from the workout table to the office table?",
+            "original_data_info": {
+                "episode_id": "481",
+                "instruction": "Move the dumbbell, tennis racquet, and spray bottle from the workout table to the office table.",
+                "data_path": "data/datasets/partnr_episodes/v0_0/val.json"
+            },
+            "metadata": {
+                "stage": "2",
+                "related_episode_id": "1200",
+                "episode_type": "object_semantics",
+                "target_objects": [
+                    {
+                        "id": "B01LR5RO5U",
+                        "caption": "A green dumbbell with a smooth finish.",
+                        "source": "amazon_berkeley",
+                        "category": "dumbbell",
+                        "cluster": 1
+                    },
+                    {
+                        "id": "Tennis_Racquet_2",
+                        "caption": "A black tennis racquet with a brown handle.",
+                        "source": "ai2thorhab",
+                        "category": "tennis_racquet",
+                        "cluster": 0
+                    },
+                    {
+                        "id": "Spray_Bottle_7",
+                        "caption": "A transparent spray bottle with a sleek design.",
+                        "source": "ai2thorhab",
+                        "category": "spray_bottle",
+                        "cluster": 1
+                    }
+                ],
+                "distractors": [
+                    {
+                        "id": "B074DZNJ3T",
+                        "caption": "A black hexagonal dumbbell with a metal handle.",
+                        "source": "amazon_berkeley",
+                        "category": "dumbbell",
+                        "cluster": 0,
+                        "pair_id": "B01LR5RO5U"
+                    },
+                    {
+                        "id": "Tennis_Racquet_5",
+                        "caption": "A tennis racquet with an orange frame, yellow strings, and a green handle.",
+                        "source": "ai2thorhab",
+                        "category": "tennis_racquet",
+                        "cluster": 1,
+                        "pair_id": "Tennis_Racquet_2"
+                    },
+                    {
+                        "id": "Spray_Bottle_3",
+                        "caption": "A black spray bottle with a silver nozzle.",
+                        "source": "ai2thorhab",
+                        "category": "spray_bottle",
+                        "cluster": 0,
+                        "pair_id": "Spray_Bottle_7"
+                    }
+                ],
+                "subtype": "group",
+                "num_targets": 2,
+                "memory": "The green dumbbell and black tennis racquet with a brown handle are part of the user's personal workout gear.",
+                "used_object": [
+                    "tennis_racquet",
+                    "dumbbell"
+                ]
+            },
+            "scene_id": "106366410_174226806",
+            "evaluation_propositions": [
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "B01LR5RO5U_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "62d5b81040a4546e5fda73df2e6a9648eb6ceb52_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "Tennis_Racquet_2_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "62d5b81040a4546e5fda73df2e6a9648eb6ceb52_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "Spray_Bottle_7_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "62d5b81040a4546e5fda73df2e6a9648eb6ceb52_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                }
+            ],
+            "evaluation_proposition_dependencies": [],
+            "evaluation_constraints": [
+                {
+                    "type": "TemporalConstraint",
+                    "args": {
+                        "dag_edges": [],
+                        "n_propositions": 3
+                    }
+                },
+                {
+                    "type": "TerminalSatisfactionConstraint",
+                    "args": {
+                        "proposition_indices": [
+                            0,
+                            1,
+                            2
+                        ],
+                        "n_propositions": null
+                    }
+                }
+            ]
+        }
+    }
+]

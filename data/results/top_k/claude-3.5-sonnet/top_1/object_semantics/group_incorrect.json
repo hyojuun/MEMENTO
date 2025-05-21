@@ -1,0 +1,215 @@
+[
+    {
+        "episode_id": 2986,
+        "error": false,
+        "instruction": "First, move my travel essentials from the bedroom to the office and set them on the floor. Then, place them next to each other on the office table.",
+        "replanning_count_0": 24.0,
+        "run_id": 0,
+        "runtime": 476.3139281272888,
+        "sim_step_count": 3948.0,
+        "task_percent_complete": 0.2,
+        "task_state_success": 0.0,
+        "org_data": {
+            "episode_id": "2986",
+            "instruction": "First, move my travel essentials from the bedroom to the office and set them on the floor. Then, place them next to each other on the office table.",
+            "original_data_info": {
+                "episode_id": "664",
+                "instruction": "First, move the shoe and then the hat from the bedroom to the office and set them on the floor. Then, place them next to each other on the office table.",
+                "data_path": "data/datasets/partnr_episodes/v0_0/val.json"
+            },
+            "metadata": {
+                "stage": "2",
+                "related_episode_id": "986",
+                "episode_type": "object_semantics",
+                "target_objects": [
+                    {
+                        "id": "ASICS_GEL1140V_WhiteRoyalSilver",
+                        "caption": "A white and silver ASICS shoe with royal blue accents, GEL-1140V model.",
+                        "source": "google",
+                        "category": "shoe",
+                        "cluster": 0
+                    },
+                    {
+                        "id": "DPC_tropical_Trends_Hat",
+                        "caption": "A beige straw hat with a black band, DPC Tropical Trends Hat.",
+                        "source": "google",
+                        "category": "hat",
+                        "cluster": 0
+                    }
+                ],
+                "distractors": [
+                    {
+                        "id": "Cream_Tieks_Italian_Leather_Ballet_Flats",
+                        "caption": "Cream-colored, Italian leather ballet flats, Tieks.",
+                        "source": "google",
+                        "category": "shoe",
+                        "cluster": 1,
+                        "pair_id": "ASICS_GEL1140V_WhiteRoyalSilver"
+                    },
+                    {
+                        "id": "DPC_Handmade_Hat_Brown",
+                        "caption": "A brown, handmade hat, DPC Handmade Hat.",
+                        "source": "google",
+                        "category": "hat",
+                        "cluster": 1,
+                        "pair_id": "DPC_tropical_Trends_Hat"
+                    }
+                ],
+                "subtype": "group",
+                "num_targets": 2,
+                "memory": "The white and silver ASICS shoe with royal blue accents and the beige straw hat with a black band are part of the user's travel essentials.",
+                "used_object": [
+                    "shoe",
+                    "hat"
+                ]
+            },
+            "scene_id": "107733960_175999701",
+            "evaluation_propositions": [
+                {
+                    "function_name": "is_in_room",
+                    "args": {
+                        "object_handles": [
+                            "ASICS_GEL1140V_WhiteRoyalSilver_:0000"
+                        ],
+                        "room_ids": [
+                            "office"
+                        ],
+                        "number": 1,
+                        "is_same_room": false
+                    }
+                },
+                {
+                    "function_name": "is_in_room",
+                    "args": {
+                        "object_handles": [
+                            "DPC_tropical_Trends_Hat_:0000"
+                        ],
+                        "room_ids": [
+                            "office"
+                        ],
+                        "number": 1,
+                        "is_same_room": false
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "ASICS_GEL1140V_WhiteRoyalSilver_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "6b63013dfa25cabaa2ef3d0830c19c823e6b1f7d_:0001"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "DPC_tropical_Trends_Hat_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "6b63013dfa25cabaa2ef3d0830c19c823e6b1f7d_:0001"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_next_to",
+                    "args": {
+                        "entity_handles_a": [
+                            "ASICS_GEL1140V_WhiteRoyalSilver_:0000"
+                        ],
+                        "entity_handles_b": [
+                            "DPC_tropical_Trends_Hat_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_b": false,
+                        "l2_threshold": 1.0
+                    }
+                }
+            ],
+            "evaluation_proposition_dependencies": [
+                {
+                    "proposition_indices": [
+                        4
+                    ],
+                    "depends_on": [
+                        2,
+                        3
+                    ],
+                    "relation_type": "while_satisfied",
+                    "dependency_mode": "any"
+                },
+                {
+                    "proposition_indices": [
+                        2
+                    ],
+                    "depends_on": [
+                        0
+                    ],
+                    "relation_type": "after_satisfied",
+                    "dependency_mode": "any"
+                },
+                {
+                    "proposition_indices": [
+                        3
+                    ],
+                    "depends_on": [
+                        1
+                    ],
+                    "relation_type": "after_satisfied",
+                    "dependency_mode": "any"
+                }
+            ],
+            "evaluation_constraints": [
+                {
+                    "type": "TemporalConstraint",
+                    "args": {
+                        "dag_edges": [
+                            [
+                                0,
+                                2
+                            ],
+                            [
+                                0,
+                                3
+                            ],
+                            [
+                                0,
+                                4
+                            ],
+                            [
+                                1,
+                                2
+                            ],
+                            [
+                                1,
+                                3
+                            ],
+                            [
+                                1,
+                                4
+                            ]
+                        ],
+                        "n_propositions": 5
+                    }
+                },
+                {
+                    "type": "TerminalSatisfactionConstraint",
+                    "args": {
+                        "proposition_indices": [
+                            2,
+                            3,
+                            4
+                        ],
+                        "n_propositions": null
+                    }
+                }
+            ]
+        }
+    }
+]

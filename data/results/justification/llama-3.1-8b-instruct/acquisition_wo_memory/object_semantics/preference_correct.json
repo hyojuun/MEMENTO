@@ -1,0 +1,144 @@
+[
+    {
+        "episode_id": 1024,
+        "error": "False",
+        "instruction": "Move the dumbbell and shoe to the shelves in the living room and place them next to each other. The dumbbell is black and hexagonal with a metal handle, and the shoe is a black and pink running shoe, PureConnect 2. The shoe is part of my favorite running gear.",
+        "replanning_count_0": 16.0,
+        "run_id": 0.0,
+        "runtime": 180.2632110118866,
+        "sim_step_count": 2589.0,
+        "task_percent_complete": 1.0,
+        "task_state_success": 1.0,
+        "org_data": {
+            "episode_id": "1024",
+            "instruction": "Move the dumbbell and shoe to the shelves in the living room and place them next to each other. The dumbbell is black and hexagonal with a metal handle, and the shoe is a black and pink running shoe, PureConnect 2. The shoe is part of my favorite running gear.",
+            "original_data_info": {
+                "episode_id": "713",
+                "instruction": "Move the dumbbell and show to the shelves in the living room and place them next to each other.",
+                "data_path": "data/datasets/partnr_episodes/v0_0/val.json"
+            },
+            "metadata": {
+                "stage": "1",
+                "related_episode_id": "3024",
+                "episode_type": "object_semantics",
+                "source_file": "val",
+                "target_objects": [
+                    {
+                        "id": "B074DZNJ3T",
+                        "caption": "A black hexagonal dumbbell with a metal handle.",
+                        "source": "amazon_berkeley",
+                        "category": "dumbbell",
+                        "cluster": 0
+                    },
+                    {
+                        "id": "PureConnect_2_Color_AnthrcteKnckoutPnkGrnGecko_Size_50",
+                        "caption": "A black and pink running shoe, PureConnect 2.",
+                        "source": "google",
+                        "category": "shoe",
+                        "cluster": 0
+                    }
+                ],
+                "distractors": [
+                    {
+                        "id": "B01LR5S6HK",
+                        "caption": "A blue dumbbell with rounded ends.",
+                        "source": "amazon_berkeley",
+                        "category": "dumbbell",
+                        "cluster": 1,
+                        "pair_id": "B074DZNJ3T"
+                    },
+                    {
+                        "id": "Copperhead_Snake_Tieks_Brown_Snake_Print_Ballet_Flats",
+                        "caption": "A brown snake-print ballet flat, Copperhead Snake Tieks.",
+                        "source": "google",
+                        "category": "shoe",
+                        "cluster": 1,
+                        "pair_id": "PureConnect_2_Color_AnthrcteKnckoutPnkGrnGecko_Size_50"
+                    }
+                ],
+                "subtype": "preference",
+                "num_targets": 1,
+                "memory": "The black and pink running shoe, PureConnect 2, is part of the user's favorite running gear.",
+                "used_object": [
+                    "shoe"
+                ]
+            },
+            "scene_id": "102817140",
+            "evaluation_propositions": [
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "B074DZNJ3T_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "7b395deb580a75ca10a361d25b5e10b1bab8464b_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_on_top",
+                    "args": {
+                        "object_handles": [
+                            "PureConnect_2_Color_AnthrcteKnckoutPnkGrnGecko_Size_50_:0000"
+                        ],
+                        "receptacle_handles": [
+                            "7b395deb580a75ca10a361d25b5e10b1bab8464b_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_receptacle": false
+                    }
+                },
+                {
+                    "function_name": "is_next_to",
+                    "args": {
+                        "entity_handles_a": [
+                            "B074DZNJ3T_:0000"
+                        ],
+                        "entity_handles_b": [
+                            "PureConnect_2_Color_AnthrcteKnckoutPnkGrnGecko_Size_50_:0000"
+                        ],
+                        "number": 1,
+                        "is_same_b": false,
+                        "l2_threshold": 1.0
+                    }
+                }
+            ],
+            "evaluation_proposition_dependencies": [
+                {
+                    "proposition_indices": [
+                        2
+                    ],
+                    "depends_on": [
+                        0,
+                        1
+                    ],
+                    "relation_type": "while_satisfied",
+                    "dependency_mode": "any"
+                }
+            ],
+            "evaluation_constraints": [
+                {
+                    "type": "TemporalConstraint",
+                    "args": {
+                        "dag_edges": [],
+                        "n_propositions": 3
+                    }
+                },
+                {
+                    "type": "TerminalSatisfactionConstraint",
+                    "args": {
+                        "proposition_indices": [
+                            0,
+                            1,
+                            2
+                        ],
+                        "n_propositions": null
+                    }
+                }
+            ]
+        }
+    }
+]
