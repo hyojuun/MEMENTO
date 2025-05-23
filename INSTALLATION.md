@@ -1,4 +1,4 @@
-# Habitat-LLM Installation Instructions
+# MEMENTO Installation Instructions
 
 ### Requirements:
 - Conda or Mamba
