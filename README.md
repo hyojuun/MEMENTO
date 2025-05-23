@@ -36,7 +36,7 @@ docker run -it \
 
 #### Docker Container Internal Structure
 ```
-/HabitatLLM : repository codes
+/MEMENTO : repository codes
 /third_party: habitat, partnr-planner, ...
 ```
 
