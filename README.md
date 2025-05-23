@@ -30,7 +30,7 @@ docker run -it \
   --gpus all \
   --pid=host \
   --name container_name \ # Container name
-  [your_image_name]:[tag] \ # Image name
+  dongwxxkchoi/memento:v1 \ # Image name
   /bin/bash
 ```
 
