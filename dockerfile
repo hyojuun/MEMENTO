@@ -1,8 +1,7 @@
 # -----------------------------------------------------------------------------
 # Base image
 # -----------------------------------------------------------------------------
-# FROM nvidia/cuda:12.1.0-runtime-ubuntu22.04
-FROM nvidia/cuda:12.1.0-devel-ubuntu22.04
+FROM --platform=linux/amd64 nvidia/cuda:12.4.0-runtime-ubuntu22.04
 # workspace and data directory
 RUN mkdir -p /workspace /data
 
