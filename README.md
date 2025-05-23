@@ -48,7 +48,7 @@ $ ln -s /data /HabitatLLM/data # Create symlink if you downloaded Habitat data o
 ```
 
 ## Installation (Option 2: Manual)
-Follow [INSTALLATION.MD](INSTALLATION.MD)
+Follow [INSTALLATION.md](INSTALLATION.md)
 
 
 ## Datasets
