@@ -23,10 +23,6 @@ conda install pytorch==2.4.1 torchvision==0.19.1 torchaudio==2.4.1 pytorch-cuda=
 conda install habitat-sim=0.3.3 withbullet headless -c conda-forge -c aihabitat -y
 # NOTE: If the above fails, packages may not be available for your system. Install from source (see https://github.com/facebookresearch/habitat-sim).
 
-pip install -e ./third_party/habitat-lab/partnr-planner
-pip install -e ./third_party/habitat-lab/habitat-lab
-pip install -e ./third_party/habitat-lab/habitat-baselines
-pip install -e ./third_party/transformers-CFG
 pip install -r requirements.txt
 ```
 If you have issues with library linking make sure that the conda libraries are in your LD_LIBRARY_PATH (e.g `export LD_LIBRARY_PATH=/path/to/anaconda/envs/myenv/lib:$LD_LIBRARY_PATH`)
