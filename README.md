@@ -26,9 +26,7 @@ docker run -it \
   -v /path/to/local/huggingface_cache/:/data/huggingface_cache/ \  # Mount Hugging Face cache (used as HF_HUB_CACHE)
   -v /path/to/local/habitat_data/:/data/ \  # Mount your local Habitat data, or download datasets inside the container.
   -e NVIDIA_DRIVER_CAPABILITIES=all \ 
-  -u Y \  # Use the predefined username ‘Y’
   --gpus all \
-  --pid=host \
   --name container_name \ # Container name
   dongwxxkchoi/memento:v1 \ # Image name
   /bin/bash
@@ -45,6 +43,7 @@ docker run -it \
 $ source activate
 $ conda activate habitat
 $ ln -s /data /MEMENTO/data # Create symlink if you downloaded Habitat data outside the container.
+$ bash scripts/copy_data.sh
 ```
 
 ## Installation (Option 2: Manual)
@@ -57,7 +56,7 @@ Our dataset is categorized into three parts.
 2. Dataset for **memory utilization** stage (**single memory** task)
 3. Dataset for **memory utilization** stage (**dual memory** task)
 
-We have uploaded all dataset files to the `./data/datasets/` directory.
+We have uploaded all dataset files to the `./memento_data/datasets` directory.
 
 ## Experiments
 
