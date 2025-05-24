@@ -36,7 +36,7 @@ docker run -it \
 
 #### Docker Container Internal Structure
 ```
-/MEMENTO : repository codes
+/MEMENTOrepository codes
 /third_party: habitat, partnr-planner, ...
 ```
 
@@ -44,7 +44,7 @@ docker run -it \
 ```bash
 $ source activate
 $ conda activate habitat
-$ ln -s /data /HabitatLLM/data # Create symlink if you downloaded Habitat data outside the container.
+$ ln -s /data /MEMENTO/data # Create symlink if you downloaded Habitat data outside the container.
 ```
 
 ## Installation (Option 2: Manual)

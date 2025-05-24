@@ -25,7 +25,7 @@ def build_memory(output_path: str, data_path: str, dataset: MemoryManagementData
     Returns:
         str: The constructed memory path.
     """
-    # /HabitatLLM/outputs/v1_experiment/gpt-4o_v1_stage1_04-09_15-59/results
+    # /MEMENTO/outputs/v1_experiment/gpt-4o_v1_stage1_04-09_15-59/results
     # 여기서 v1_experiment/gpt-4o_v1_stage1_04-09_15-59/results를 파싱해야 함
     job_name = output_path.split('/')[-3] # v1_experiment
     run_name = output_path.split('/')[-2] # gpt-4o_v1_stage1_04-09_15-59
@@ -33,7 +33,7 @@ def build_memory(output_path: str, data_path: str, dataset: MemoryManagementData
     # data/datasets/PEAD/v1/filtered_object_semantics_1_val.json.gz
     # dataset_name = data_path.split('/')[-1]
     
-    # /HabitatLLM/outputs/{job_name}/{run_name}/results/{dataset_name}/prompts/0/prompt-episode_{episode_id}_0-0.txt
+    # /MEMENTO/outputs/{job_name}/{run_name}/results/{dataset_name}/prompts/0/prompt-episode_{episode_id}_0-0.txt
     
     # 그렇다면, episode_id 별로 돌아야 함.
     # 그러려면, 해당 경로의 파일들을 옮겨야 함.
@@ -52,10 +52,10 @@ def build_memory(output_path: str, data_path: str, dataset: MemoryManagementData
     trace_files = glob.glob(f"{output_path}/{dataset_name}/traces/0/trace-episode_*.txt", recursive=True)
     
     ep_scene_map_dict = episode_scene_map(dataset) # episode_id -> scene_id
-    base_memory_path = f"/HabitatLLM/memory/{job_name}/{run_name}"
+    base_memory_path = f"/MEMENTO/memory/{job_name}/{run_name}"
     os.makedirs(base_memory_path, exist_ok=True)
     
-    # mapper_path = f"/HabitatLLM/memory/{job_name}/mapper.json"
+    # mapper_path = f"/MEMENTO/memory/{job_name}/mapper.json"
     # if not os.path.exists(mapper_path):
     #     with open(mapper_path, 'w') as mapper_file:
     #         json.dump({"learned": None, "oracle": None}, mapper_file)

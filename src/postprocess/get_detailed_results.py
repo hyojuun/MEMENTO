@@ -29,10 +29,10 @@ STAGE3_SUBCATEGORY_DICT = {
 
 def get_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--result_path", type=str, default="/HabitatLLM/data/outputs/v0_val/gpt-4o_object-semantics-stage1_04-09_14-48/results/episode_log.csv")
+    parser.add_argument("--result_path", type=str, default="/MEMENTO/data/outputs/v0_val/gpt-4o_object-semantics-stage1_04-09_14-48/results/episode_log.csv")
     parser.add_argument("--type", type=str, choices=["object_semantics", "user_pattern", "all"], default="all", help="Type of results to print")
     parser.add_argument("--stage", type=int, choices=[1, 2, 3], default=1, help="Stage of results to print")
-    parser.add_argument("--save_dir", type=str, default="/HabitatLLM/results/gpt-4o_object-semantics-stage1_04-09_14-48")
+    parser.add_argument("--save_dir", type=str, default="/MEMENTO/results/gpt-4o_object-semantics-stage1_04-09_14-48")
     parser.add_argument("--do_integrate", action="store_true", help="Integrate results from different stages")
     parser.add_argument("--integration_path_list", type=str, nargs="+", help="Path of the results to integrate")
     args = parser.parse_args()
