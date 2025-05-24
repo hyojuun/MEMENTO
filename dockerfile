@@ -34,11 +34,9 @@ VOLUME ["/MEMENTO"]
 
 COPY . /MEMENTO
 
-RUN git submodule sync
-RUN git submodule update --init --recursive
-
 # Download submodules
-RUN git submodule update --init --recursive \
+RUN git submodule sync \
+    && git submodule update --init --recursive \
     && cd third_party/habitat-lab \
     && git fetch --tags \
     && git checkout v0.3.3 \
@@ -62,35 +60,13 @@ RUN conda run -n habitat conda install numpy=1.26.4 huggingface_hub -y
 RUN conda run -n habitat conda install habitat-sim=0.3.3 withbullet headless -c conda-forge -c aihabitat -y
 RUN conda run -n habitat conda install -c conda-forge ffmpeg=4.3.1 -y
 
-
+# FROM dongwxxkchoi/memento:base
 
 
 
 
 # Install pip requirements
 # RUN conda run -n habitat pip install -r requirements.txt
-
-# # -----------------------------------------------------------------------------
-# # Create users and give permissions
-# # -----------------------------------------------------------------------------
-# # USER 8002:1002
-
-# RUN useradd -m -u 8018 -s /bin/bash Y && echo "Y:password" | chpasswd && usermod -aG sudo Y
-
-# # Set root password
-# RUN echo "root:password" | chpasswd
-
-# # Give permissions to all users
-# RUN chown -R :sudo /opt/conda && chmod -R g+rwx /opt/conda && \
-#     chown -R :sudo /workspace && chmod -R g+rwx /workspace && \
-#     chown -R :sudo /HabitatLLM && chmod -R g+rwx /HabitatLLM
-
-# # Set default permissions for new files for all users
-# RUN echo "Y" >> /etc/bash.bashrc && \
-#     echo "Y" >> /root/.bashrc && \
-#     for user in Y; do \
-#         echo "Y" >> /home/$user/.bashrc; \
-#     done
 
 # # -----------------------------------------------------------------------------
 # # OpenGL
