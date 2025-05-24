@@ -30,13 +30,13 @@ docker run -it \
   --gpus all \
   --pid=host \
   --name container_name \ # Container name
-  [your_image_name]:[tag] \ # Image name
+  dongwxxkchoi/memento:v1 \ # Image name
   /bin/bash
 ```
 
 #### Docker Container Internal Structure
 ```
-/HabitatLLM : repository codes
+/MEMENTO : repository codes
 /third_party: habitat, partnr-planner, ...
 ```
 
@@ -48,7 +48,7 @@ $ ln -s /data /HabitatLLM/data # Create symlink if you downloaded Habitat data o
 ```
 
 ## Installation (Option 2: Manual)
-Follow [INSTALLATION.MD](INSTALLATION.MD)
+Follow [INSTALLATION.md](INSTALLATION.md)
 
 
 ## Datasets
