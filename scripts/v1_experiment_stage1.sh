@@ -1,6 +1,6 @@
 #! /bin/bash
 
-export PYTHONPATH="$PYTHONPATH:/HabitatLLM"
+export PYTHONPATH="$PYTHONPATH:/MEMENTO"
 CUDA_DEVICES=0 ####### SHOULD CHANGE
 
 now=$(date +%m-%d_%H-%M)

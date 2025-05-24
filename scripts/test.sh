@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-export PYTHONPATH="$PYTHONPATH:/HabitatLLM"
+export PYTHONPATH="$PYTHONPATH:/MEMENTO"
 
 now=$(date +%Y-%m-%d_%H-%M-%S)
 

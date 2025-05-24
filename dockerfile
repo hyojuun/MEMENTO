@@ -60,28 +60,27 @@ RUN conda run -n habitat conda install numpy=1.26.4 huggingface_hub -y
 RUN conda run -n habitat conda install habitat-sim=0.3.3 withbullet headless -c conda-forge -c aihabitat -y
 RUN conda run -n habitat conda install -c conda-forge ffmpeg=4.3.1 -y
 
-# FROM dongwxxkchoi/memento:base
 
 
-
-
+# -----------------------------------------------------------------------------
 # Install pip requirements
-# RUN conda run -n habitat pip install -r requirements.txt
+# -----------------------------------------------------------------------------
+RUN conda run -n habitat pip install -r requirements.txt
 
-# # -----------------------------------------------------------------------------
-# # OpenGL
-# # -----------------------------------------------------------------------------
-# RUN mkdir -p /usr/share/glvnd/egl_vendor.d && \
-#     echo '{ \
-#         "file_format_version" : "1.0.0", \
-#         "ICD" : { \
-#             "library_path" : "libEGL_nvidia.so.0" \
-#         } \
-#     }' > /usr/share/glvnd/egl_vendor.d/10_nvidia.json
+# -----------------------------------------------------------------------------
+# OpenGL
+# -----------------------------------------------------------------------------
+RUN mkdir -p /usr/share/glvnd/egl_vendor.d && \
+    echo '{ \
+        "file_format_version" : "1.0.0", \
+        "ICD" : { \
+            "library_path" : "libEGL_nvidia.so.0" \
+        } \
+    }' > /usr/share/glvnd/egl_vendor.d/10_nvidia.json
 
-# # -----------------------------------------------------------------------------
-# # Final setup
-# # -----------------------------------------------------------------------------
-# WORKDIR /MEMENTO
+# -----------------------------------------------------------------------------
+# Final setup
+# -----------------------------------------------------------------------------
+WORKDIR /MEMENTO
 
-# SHELL ["conda", "run", "-n", "habitat", "/bin/bash", "-c"]
+SHELL ["conda", "run", "-n", "habitat", "/bin/bash", "-c"]

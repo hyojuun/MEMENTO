@@ -1,7 +1,7 @@
 #! /bin/bash
 
 
-export PYTHONPATH="$PYTHONPATH:/HabitatLLM"
+export PYTHONPATH="$PYTHONPATH:/MEMENTO"
 CUDA_DEVICES=5
 now=$(date +%m-%d_%H-%M)
 

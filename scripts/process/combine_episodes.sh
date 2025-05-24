@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Add project directory to PYTHONPATH
-export PYTHONPATH="$PYTHONPATH:/HabitatLLM"
+export PYTHONPATH="$PYTHONPATH:/MEMENTO"
 
 # Get current date and time for logging
 now=$(date +%m-%d_%H-%M)

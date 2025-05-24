@@ -117,8 +117,8 @@ class OpenRouterModel(AbstractModel):
             base_url="https://openrouter.ai/api/v1",
             api_key=self.config.get("api_key"),
             default_headers={
-                "HTTP-Referer": "https://example.com/habitatllm",  # 필요에 따라 수정
-                "X-Title": "HabitatLLM Experiment"
+                "HTTP-Referer": "https://example.com/MEMENTO",  # 필요에 따라 수정
+                "X-Title": "MEMENTO Experiment"
             }
         )
 
